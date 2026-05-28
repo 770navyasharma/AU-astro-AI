@@ -326,26 +326,33 @@ function openCall() {
     
     // Check if user is returning
     const isReturning = minutesUsedSeconds > 0;
-    document.getElementById('callStartHeadline').textContent = isReturning ? 'वापस आए! 🌟' : 'डॉ. प्रिया तैयार हैं';
-    document.getElementById('callStartSub').textContent = isReturning ? 'जहाँ छोड़ा था, वहीं से शुरू करें।' : 'कॉल शुरू करने के लिए नीचे क्लिक करें';
-    document.getElementById('callStartBtnText').innerHTML = isReturning ? '<i class="fa-solid fa-play"></i> सेशन जारी रखें' : '<i class="fa-solid fa-phone-volume"></i> सेशन शुरू करें';
     
-    // Show overlay to block call until they click Start
-    document.getElementById('callStartOverlay').classList.remove('hidden');
+    const btn = document.getElementById('primaryCallActionBtn');
+    if (btn) {
+        btn.innerHTML = isReturning ? '<i class="fa-solid fa-play"></i> सेशन जारी रखें' : '<i class="fa-solid fa-phone-volume"></i> सेशन शुरू करें';
+        btn.setAttribute('onclick', 'beginCallTimer()');
+    }
 }
 
 function beginCallTimer() {
-    document.getElementById('callStartOverlay').classList.add('hidden');
+    const btn = document.getElementById('primaryCallActionBtn');
+    if (btn) {
+        btn.innerHTML = '<i class="fa-solid fa-phone-slash"></i> सेशन समाप्त करें';
+        btn.setAttribute('onclick', 'closeCall()');
+    }
     
     // Clear chat to make it look fresh
-    const chatContainer = document.getElementById('chatContainer');
-    if (chatContainer) {
-        chatContainer.innerHTML = `
-            <div class="chat-message ai-bubble">
-                <img src="assets/dr_priya_verma.png" alt="Dr Priya" class="chat-avatar">
+    const transcript = document.getElementById('transcript');
+    if (transcript) {
+        transcript.innerHTML = `
+            <div style="text-align:center; margin-bottom:30px;">
+                <p style="color:rgba(255,255,255,0.6); font-style:italic; font-size:14px;">बोलना शुरू करें।<br><span style="font-size:12px; color:rgba(255,255,255,0.4);">डॉ. प्रिया के साथ आपकी बातचीत यहाँ दिखाई देगी।</span></p>
+            </div>
+            <div class="chat-bubble ai-bubble">
+                <img src="assets/dr_priya_verma.png" class="chat-avatar" alt="AI">
                 <div class="bubble-content">
                     <div class="bubble-header">डॉ. प्रिया वर्मा</div>
-                    <p>नमस्ते! मैं आपकी क्या सहायता कर सकती हूँ?</p>
+                    <p>नमस्ते! बताइए, आज मन में क्या सवाल है?</p>
                 </div>
             </div>
         `;
