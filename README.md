@@ -1,6 +1,6 @@
-# AU Astro AI — Full PRD, Jira Cards & Tech Team Brief
+# AU Astro AI - Flow and Details
 **Product:** Amar Ujala × AI Astrologer (Dr. Priya Verma)
-**Version:** 1.0 | **Date:** May 2026 | **Owner:** Product / Growth
+**Version:** 1.0 | **Date:** May 2026 | **Owner:** Navya Sharma
 
 ---
 
@@ -8,8 +8,8 @@
 
 AU Astro AI is a cross-platform AI-powered astrology consultation feature embedded in the Amar Ujala ecosystem. A user on **Mobile Web (MWeb) gets 5 free minutes** per day. A user on the **Native App gets 10 free minutes** per day. The system uses **Deferred Deep Linking** to bridge sessions across platforms, **Agentic Memory** to persist chat history, and a **full analytics stack** (GA4 + CDP) to track every step of the user journey.
 
-**Live Prototype (Vercel):** `[ATTACH VERCEL LINK]`
-**GitHub Repo:** `[ATTACH GITHUB LINK]`
+**Live Prototype (Vercel):** [auastroaidemodesign.vercel.app](https://auastroaidemodesign.vercel.app/)
+**GitHub Repo:** [AU-astro-AI](https://github.com/770navyasharma/AU-astro-AI)
 **Assets Folder:** `assets/` in repo root — `dr_priya_verma.png` + all background images
 
 ---
@@ -494,8 +494,8 @@ This mail covers implementation requirements across three workstreams. Please go
 
 | Resource | Link |
 |---|---|
-| Live Prototype (Vercel) | `[ATTACH]` — Test MWeb · App · Desktop Web flows |
-| GitHub Repo | `[ATTACH]` — Full source code |
+| Live Prototype (Vercel) | [auastroaidemodesign.vercel.app](https://auastroaidemodesign.vercel.app/) — Test MWeb · App · Desktop Web flows |
+| GitHub Repo | [AU-astro-AI](https://github.com/770navyasharma/AU-astro-AI) — Full source code |
 | Assets Folder | `/assets/` in repo — `dr_priya_verma.png` · backgrounds |
 | Design Reference | Use prototype for exact animations, timing, text, modals |
 
@@ -563,7 +563,7 @@ Please share time estimates for:
 Happy to do a 30-min live walkthrough of the prototype with your team — just reply and we'll schedule.
 
 Best,
-**[Your Name]**
+**Navya Sharma**
 Product, Amar Ujala
 
 > *Full API contracts, DB schemas, event tables, acceptance criteria, and UTM taxonomy are in the PRD attached above.*
