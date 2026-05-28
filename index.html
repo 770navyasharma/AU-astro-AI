@@ -376,6 +376,57 @@
         </div>
     </div>
 
+    <!-- ==========================================
+         MWEB APP DOWNLOAD SHEET (NO CLOSE BUTTON)
+         ========================================== -->
+    <div class="modal-overlay hidden" id="mwebAppDownloadSheet">
+        <div class="bottom-sheet">
+            <h3 style="color:#FFF; font-size:22px; font-weight:800; margin-bottom:15px; text-align: center;">आपका मुफ़्त समय समाप्त हो गया है ⏱️</h3>
+            <p style="color:rgba(255,255,255,0.8); font-size:14px; margin-bottom:20px; line-height:1.5; text-align: center;">
+                आपने डॉ. प्रिया के साथ सफलतापूर्वक बात की! आगे अपने भविष्य, करियर और प्रेम के बारे में जानने के लिए अभी Amar Ujala ऐप डाउनलोड करें।
+            </p>
+
+            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-around;">
+                <img src="assets/au_logo.png" alt="Amar Ujala" style="height: 48px; object-fit: contain;">
+                <div style="text-align: left;">
+                    <div style="color: #FFD700; font-weight: 800; font-size: 16px;"><i class="fa-solid fa-star"></i> 4.5+ Rating</div>
+                    <div style="color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 600;"><i class="fa-solid fa-download"></i> 10M+ Downloads</div>
+                </div>
+            </div>
+
+            <button class="cta-btn yellow-btn full-width mb-10" onclick="downloadApp()">
+                Amar Ujala App डाउनलोड करें
+            </button>
+            <button class="cta-btn text-btn full-width" style="color:rgba(255,255,255,0.6);" onclick="goBackToFeedFromDownloadSheet()">
+                वापस जाएं (Go to Home)
+            </button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         APP TIME OVER FEEDBACK SHEET (NO CLOSE BUTTON)
+         ========================================== -->
+    <div class="modal-overlay hidden" id="appTimeOverFeedbackSheet">
+        <div class="bottom-sheet text-center">
+            <img src="assets/dr_priya_verma.png" class="feedback-avatar mb-15" alt="Dr Priya" style="margin: 0 auto 15px auto;">
+            <h3 class="text-white mb-10" style="font-size:22px;">आज का समय समाप्त हुआ! 🌅</h3>
+            <p style="color:rgba(255,255,255,0.7); font-size:14px; margin-bottom:20px; line-height: 1.5;">कल 10 फ्री मिनट के साथ फिर मिलेंगे। कृपया अपना अनुभव हमारे साथ साझा करें।</p>
+            
+            <div class="star-rating mb-15" style="font-size: 24px; color: #FFD700;">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+            </div>
+
+            <textarea class="dark-textarea mb-15" placeholder="कुछ और बताना चाहेंगे? (वैकल्पिक)"></textarea>
+
+            <button class="cta-btn yellow-btn full-width mb-10" onclick="submitAppFeedback()">
+                फीडबैक सबमिट करें
+            </button>
+            <button class="cta-btn text-btn full-width" style="color:rgba(255,255,255,0.6);" onclick="goBackToFeedFromAppSheet()">
+                वापस जाएं (Back to Home)
+            </button>
+        </div>
+    </div>
+
     <!-- 6. App 10-Minute Hard Stop & Feedback -->
     <div class="modal-overlay hidden" id="feedbackModal">
         <div class="modal premium-modal modal-bg text-center">

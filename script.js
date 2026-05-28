@@ -285,6 +285,10 @@ function openGatewayScreen() {
                 // If MWeb and time is over, force the Download App bottom sheet instead of Gateway State C
                 document.getElementById('mwebAppDownloadSheet').classList.remove('hidden');
                 return; // Stop execution here, don't show the gateway screen
+            } else {
+                // If App and time is over, force the Feedback bottom sheet instead of Gateway State C
+                document.getElementById('appTimeOverFeedbackSheet').classList.remove('hidden');
+                return; // Stop execution here, don't show the gateway screen
             }
 
             container.innerHTML = `
@@ -410,7 +414,7 @@ function checkTimeLimits() {
         document.getElementById('callInterface').classList.add('hidden');
         minutesUsedSeconds = 600;
         sessionStorage.setItem('minutesUsed', minutesUsedSeconds);
-        openModal('stop10MinModal');
+        openSheet('appTimeOverFeedbackSheet');
     }
 }
 
@@ -441,6 +445,16 @@ function endCallManually() {
 function goBackToFeedFromDownloadSheet() {
     closeSheet('mwebAppDownloadSheet');
     goBackToFeed();
+}
+
+function goBackToFeedFromAppSheet() {
+    closeSheet('appTimeOverFeedbackSheet');
+    goBackToFeed();
+}
+
+function submitAppFeedback() {
+    closeSheet('appTimeOverFeedbackSheet');
+    showThankYou();
 }
 
 function downloadApp() {
