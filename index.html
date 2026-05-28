@@ -31,14 +31,14 @@
             <button class="demo-btn active" onclick="showSection('mweb-feed', this)">1. Mobile Web</button>
             <button class="demo-btn" onclick="showSection('app-feed', this)">2. Native App</button>
             <button class="demo-btn" onclick="showSection('web-feed', this)">3. Desktop Web</button>
-            <button class="demo-btn" onclick="goToStartScreen()">4. Start/Resume Screen</button>
+            <button class="demo-btn" onclick="openGatewayScreen()">4. Start/Resume Screen</button>
             <button class="demo-btn" onclick="openCall()">5. Live Call UI</button>
         </div>
         
         <h4 class="demo-title mt-10">Trigger PLG Modals (Responsive)</h4>
         <div class="demo-btn-group">
             <button class="demo-btn-outline" onclick="openSheet('loginSheet')">Login Sheet</button>
-            <button class="demo-btn-outline" onclick="goToStartScreen()">Start/Resume Screen</button>
+            <button class="demo-btn-outline" onclick="openGatewayScreen()">Start/Resume Screen</button>
             <button class="demo-btn-outline" onclick="showWarningToast('ध्यान दें: आपकी फ्री कॉल में 1 मिनट बचा है।')">4-Min Warn (Toast)</button>
             <button class="demo-btn-outline" onclick="showWarningToast('ध्यान दें: आपकी 10 मिनट फ्री कॉल में 1 मिनट बचा है।')">9-Min Warn (Toast)</button>
             <button class="demo-btn-outline" onclick="openModal('stop5MinModal')">5-Min Stop</button>
@@ -84,10 +84,10 @@
                     </div>
                 </div>
                 <div class="full-card-text">
-                    <h4 id="mwebBannerTitle">भविष्य की उलझन का सटीक जवाब!</h4>
-                    <p id="mwebBannerSub">डॉ. प्रिया से 5 मिनट फ्री बात करें। 🌟</p>
+                    <h4 id="mwebBannerTitle">ज्योतिष से बात करें, भविष्य जानें!</h4>
+                    <p id="mwebBannerSub" style="color: #FFD700;">डॉ. प्रिया से 5 मिनट फ्री बात करें। 🌟</p>
                 </div>
-                <div class="full-card-chevron"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="full-card-chevron"><i class="fa-solid fa-chevron-right" style="color: #FFF; font-size: 20px;"></i></div>
             </div>
         </div>
 
@@ -108,11 +108,11 @@
                     </div>
                 </div>
                 <div class="full-card-text">
-                    <h4 id="appBannerTitle">आपकी पर्सनल AI ज्योतिषी ऑनलाइन हैं!</h4>
-                    <p id="appBannerSub">रोज़ 10 मिनट फ्री ज्योतिष सलाह पाएं। ✨</p>
+                    <h4 id="appBannerTitle">ज्योतिष से बात करें, भविष्य जानें!</h4>
+                    <p id="appBannerSub" style="color: #FFD700;">रोज़ 10 मिनट फ्री ज्योतिष सलाह पाएं। ✨</p>
                 </div>
                 <div class="full-card-icon">
-                    <i class="fa-solid fa-chevron-right text-gold"></i>
+                    <i class="fa-solid fa-chevron-right" style="color: #FFF; font-size: 20px;"></i>
                 </div>
             </div>
 
@@ -166,46 +166,29 @@
 
 
         <!-- ==========================================
-             4. START / RESUME SESSION SCREEN
+             4. UNIFIED GATEWAY SCREEN (Login + Start Session)
              ========================================== -->
-        <div id="startResumeScreen" class="view-section hidden">
+        <div id="unifiedGatewayScreen" class="view-section hidden">
             <div class="start-screen-wrapper">
-                <div class="start-screen-card modal-bg">
-
-                    <!-- Top nav bar -->
-                    <div class="start-top-nav">
-                        <button class="start-back-btn" onclick="goBackToFeed()">
-                            <i class="fa-solid fa-arrow-left"></i> वापस
-                        </button>
-                    </div>
-
-                    <!-- Astrologer Avatar (large, centered) -->
-                    <div class="start-avatar-center">
-                        <div class="start-avatar-wrapper start-avatar-lg">
+                <div class="start-screen-card modal-bg" style="justify-content: flex-start; padding-top: 40px;">
+                    
+                    <!-- Top Section: Avatar & Astrologer Details -->
+                    <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 24px;">
+                        <div class="start-avatar-wrapper" style="width: 90px; height: 90px;">
                             <div class="app-avatar-ring pulse-ring-1" style="width:100%;height:100%;"></div>
-                            <div class="app-avatar-ring pulse-ring-2" style="width:100%;height:100%;"></div>
                             <img src="assets/dr_priya_verma.png" alt="Dr Priya">
                         </div>
-                        <div class="live-badge" style="margin-top:14px; display:inline-block;">● लाइव · डॉ. प्रिया वर्मा</div>
-                        <p style="color:rgba(255,255,255,0.55); font-size:12px; margin-top:6px;">✨ AI ज्योतिषी · करियर • प्रेम • धन</p>
+                        <div>
+                            <h2 style="color: #FFF; font-size: 24px; font-weight: 800; margin-bottom: 4px;">डॉ. प्रिया वर्मा</h2>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 13px;">आपकी पर्सनल AI ज्योतिषी</p>
+                            <div class="live-badge" style="margin-top: 8px; display: inline-block;">● लाइव</div>
+                        </div>
                     </div>
 
-                    <!-- Headline -->
-                    <div class="start-content-section">
-                        <h2 class="start-headline" id="startScreenHeadline">भविष्य के हर सवाल का जवाब, सिर्फ एक कॉल दूर</h2>
-                        <p class="start-sub" id="startScreenSub">डॉ. प्रिया आपकी कुंडली पढ़कर करियर, प्रेम और धन के हर सवाल का सटीक जवाब देंगी।</p>
+                    <!-- Dynamic Content Area -->
+                    <div id="gatewayDynamicContent" style="flex: 1; display: flex; flex-direction: column;">
+                        <!-- JS will inject content here based on state (Guest / Logged In) -->
                     </div>
-
-                    <!-- Minutes badge -->
-                    <div class="start-timer-badge" style="margin-bottom:20px;">
-                        <span id="startTimerBadge">🕐 5:00 मिनट बिल्कुल मुफ़्त</span>
-                    </div>
-
-                    <!-- CTA Button -->
-                    <button class="cta-btn yellow-btn full-width" id="startSessionBtn" onclick="startSessionNow()">
-                        <i class="fa-solid fa-phone-volume call-ring-anim"></i>
-                        <span id="startBtnLabel">सेशन शुरू करें</span>
-                    </button>
 
                 </div>
             </div>
@@ -343,52 +326,7 @@
          THE MODAL ECOSYSTEM (Responsive Modals)
          ========================================== -->
          
-    <!-- 1. Mweb / App Login Sheet -->
-    <div class="bottom-sheet-overlay hidden" id="loginSheet">
-        <div class="bottom-sheet premium-sheet modal-bg">
-            <button class="close-sheet-btn" onclick="closeSheet('loginSheet')"><i class="fa-solid fa-xmark"></i></button>
-            <div class="sheet-indicator"></div>
-            
-            <div class="sheet-body text-center mt-15">
-                <img src="assets/dr_priya_verma.png" class="feedback-avatar mb-10" alt="Dr Priya">
-                <!-- Swappable Headers based on State -->
-                <h3 class="mb-10" style="font-size:22px; font-weight:900; color:#FFF;" id="loginHeader">अपनी 5 मिनट की फ्री कॉल शुरू करें!</h3>
-                <p style="color:rgba(255,255,255,0.7); font-size:13px; margin-bottom:20px;" id="loginSubtext">डॉ. प्रिया इंतज़ार कर रही हैं। आगे बढ़ने के लिए अपना मोबाइल नंबर दर्ज करें। (100% सुरक्षित)</p>
-                
-                <div class="trust-chips mb-20">
-                    <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> 5 मिन फ्री</span>
-                    <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> कोई OTP स्पैम नहीं</span>
-                    <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> 100% सुरक्षित</span>
-                </div>
 
-                <div class="input-group dark-input mb-15">
-                    <i class="fa-solid fa-user text-light" style="padding:16px;"></i>
-                    <input type="text" id="loginNameField" placeholder="अपना नाम दर्ज करें *" class="input-field" required>
-                </div>
-
-                <div class="input-group dark-input">
-                    <span class="country-code"><img src="https://flagcdn.com/w20/in.png" style="width:16px; margin-right:5px; vertical-align:middle;"> +91</span>
-                    <input type="tel" id="loginPhoneField" placeholder="मोबाइल नंबर दर्ज करें *" class="input-field" required>
-                    <i class="fa-solid fa-lock text-light" style="padding:16px;"></i>
-                </div>
-                
-                <button class="cta-btn yellow-btn full-width mt-15" onclick="simulateLogin()">
-                    OTP भेजें और शुरू करें
-                </button>
-
-                <div style="display:flex; align-items:center; margin:20px 0; color:rgba(255,255,255,0.4); font-size:12px;">
-                    <hr style="flex:1; border-color:rgba(255,255,255,0.1);"><span style="padding:0 10px;">या</span><hr style="flex:1; border-color:rgba(255,255,255,0.1);">
-                </div>
-
-                <button class="cta-btn text-btn full-width" style="background:#FFF; color:#000; display:flex; justify-content:center; align-items:center; gap:10px; font-weight:600;" onclick="simulateGoogleLogin()">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" style="width:20px;" alt="Google">
-                    Google से लॉगिन करें
-                </button>
-                
-                <p style="color:rgba(255,255,255,0.4); font-size:11px; margin-top:20px;">जारी रखकर आप अमर उजाला की Terms & Privacy से सहमत हैं।</p>
-            </div>
-        </div>
-    </div>
 
 
     <div class="modal-overlay hidden" id="stop5MinModal">

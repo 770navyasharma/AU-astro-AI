@@ -126,13 +126,7 @@ function handleBannerClick(source) {
         document.body.classList.remove('body-desktop-mode');
     }
 
-    if (!isLoggedIn) {
-        // Show login sheet
-        openSheet('loginSheet');
-    } else {
-        // Already logged in → go to Start/Resume screen
-        goToStartScreen();
-    }
+    openGatewayScreen();
 }
 
 
@@ -152,8 +146,6 @@ function simulateLogin() {
         return;
     }
 
-    closeSheet('loginSheet');
-
     // Mark as logged in
     isLoggedIn = true;
     if (currentUserState === 'guest') {
@@ -169,10 +161,10 @@ function simulateLogin() {
     // Update banners
     updateAllBanners();
 
-    // After short delay, navigate to Start Screen
+    // After short delay, refresh gateway screen
     setTimeout(() => {
-        goToStartScreen();
-    }, 1800);
+        openGatewayScreen();
+    }, 1500);
 }
 
 function simulateGoogleLogin() {
@@ -190,8 +182,8 @@ function simulateGoogleLogin() {
     updateAllBanners();
 
     setTimeout(() => {
-        goToStartScreen();
-    }, 1800);
+        openGatewayScreen();
+    }, 1500);
 }
 
 function showSuccessToast(message) {
@@ -241,43 +233,90 @@ function showWarningToast(message) {
 // ==========================================
 // START / RESUME SCREEN
 // ==========================================
-function goToStartScreen() {
+function openGatewayScreen() {
     document.querySelectorAll('.view-section').forEach(s => s.classList.add('hidden'));
     document.getElementById('callInterface').classList.add('hidden');
     stopCallTimer();
 
-    // App = 10 min, MWeb / Desktop = 5 min  — based on WHICH feed the user came from
     const isAppFlow     = lastFeedSource === 'app-feed';
     const platformTotal = isAppFlow ? FREE_TOTAL : GUEST_TOTAL;  // 600s vs 300s
-
     const remaining = Math.max(0, platformTotal - minutesUsedSeconds);
     const rMin = Math.floor(remaining / 60);
     const rSec = remaining % 60;
     const remStr = `${rMin}:${rSec.toString().padStart(2,'0')}`;
+    const totalMinStr = isAppFlow ? '10:00' : '5:00';
+    
+    const container = document.getElementById('gatewayDynamicContent');
+    
+    if (!isLoggedIn) {
+        // STATE A: GUEST (NOT LOGGED IN)
+        container.innerHTML = `
+            <div style="margin-bottom: 24px;">
+                <h3 style="color:#FFF; font-size:22px; font-weight:900; margin-bottom:8px;">अपनी ${totalMinStr} मिनट की फ्री कॉल शुरू करें!</h3>
+                <p style="color:rgba(255,255,255,0.7); font-size:14px;">डॉ. प्रिया आपकी कुंडली पढ़कर करियर, प्रेम और धन के हर सवाल का सटीक जवाब देंगी। आगे बढ़ने के लिए विवरण दें।</p>
+            </div>
+            
+            <div class="trust-chips mb-20">
+                <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> 5 मिन फ्री</span>
+                <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> कोई स्पैम नहीं</span>
+                <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> 100% सुरक्षित</span>
+            </div>
 
-    const isReturning = minutesUsedSeconds > 0;
+            <div class="input-group dark-input mb-15">
+                <i class="fa-solid fa-user text-light" style="padding:16px;"></i>
+                <input type="text" id="loginNameField" placeholder="अपना नाम दर्ज करें *" class="input-field" required>
+            </div>
 
-    // Update content
-    const headline = document.getElementById('startScreenHeadline');
-    const sub      = document.getElementById('startScreenSub');
-    const badge    = document.getElementById('startTimerBadge');
-    const btnLabel = document.getElementById('startBtnLabel');
-
-    if (isReturning) {
-        headline.textContent = 'वापस आए! डॉ. प्रिया आपका इंतज़ार कर रही थीं 🌟';
-        sub.textContent      = 'आपकी पिछली बातचीत याद है। जहाँ छोड़ा था, वहीं से शुरू करें।';
-        badge.innerHTML      = `🕐 ${remStr} मिनट अभी बाकी हैं`;
-        btnLabel.textContent = 'सेशन जारी रखें';
+            <div class="input-group dark-input mb-20">
+                <span class="country-code"><img src="https://flagcdn.com/w20/in.png" style="width:16px; margin-right:5px; vertical-align:middle;"> +91</span>
+                <input type="tel" id="loginPhoneField" placeholder="मोबाइल नंबर दर्ज करें *" class="input-field" required>
+                <i class="fa-solid fa-lock text-light" style="padding:16px;"></i>
+            </div>
+            
+            <button class="cta-btn yellow-btn full-width" onclick="simulateLogin()">
+                OTP भेजें और शुरू करें
+            </button>
+        `;
     } else {
-        headline.textContent = 'भविष्य के हर सवाल का जवाब, सिर्फ एक कॉल दूर';
-        sub.textContent      = 'डॉ. प्रिया आपकी कुंडली पढ़कर करियर, प्रेम और धन के हर सवाल का सटीक जवाब देंगी।';
-        // Show 10:00 for App, 5:00 for MWeb/Desktop
-        const totalMinStr = isAppFlow ? '10:00' : '5:00';
-        badge.innerHTML      = `🕐 ${totalMinStr} मिनट बिल्कुल मुफ़्त`;
-        btnLabel.textContent = 'सेशन शुरू करें';
+        if (remaining > 0) {
+            // STATE B: LOGGED IN (TIME REMAINING)
+            const isReturning = minutesUsedSeconds > 0;
+            const headlineText = isReturning ? 'वापस आए! डॉ. प्रिया आपका इंतज़ार कर रही थीं 🌟' : 'भविष्य के हर सवाल का जवाब, सिर्फ एक कॉल दूर';
+            const subText = isReturning ? 'आपकी पिछली बातचीत याद है। जहाँ छोड़ा था, वहीं से शुरू करें।' : 'डॉ. प्रिया आपकी कुंडली पढ़कर करियर, प्रेम और धन के हर सवाल का सटीक जवाब देंगी।';
+            const badgeText = isReturning ? `🕐 ${remStr} मिनट अभी बाकी हैं` : `🕐 ${totalMinStr} मिनट बिल्कुल मुफ़्त`;
+            const btnText = isReturning ? 'सेशन जारी रखें' : 'सेशन शुरू करें';
+
+            container.innerHTML = `
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 20px;">
+                    <h3 style="color:#FFF; font-size:26px; font-weight:900; margin-bottom:12px; line-height: 1.3;">${headlineText}</h3>
+                    <p style="color:rgba(255,255,255,0.7); font-size:15px; margin-bottom:24px; line-height: 1.6;">${subText}</p>
+                    
+                    <div class="start-timer-badge" style="margin-bottom:24px; align-self: flex-start;">
+                        <span>${badgeText}</span>
+                    </div>
+
+                    <button class="cta-btn yellow-btn full-width mt-auto" onclick="startSessionNow()">
+                        <i class="fa-solid fa-phone-volume call-ring-anim"></i> ${btnText}
+                    </button>
+                </div>
+            `;
+        } else {
+            // STATE C: LOGGED IN (TIME OVER)
+            container.innerHTML = `
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 20px; text-align: center;">
+                    <i class="fa-solid fa-calendar-check" style="font-size: 48px; color: #10B981; margin-bottom: 20px;"></i>
+                    <h3 style="color:#FFF; font-size:24px; font-weight:900; margin-bottom:12px;">आज की लिमिट समाप्त हो गई है!</h3>
+                    <p style="color:rgba(255,255,255,0.7); font-size:15px; margin-bottom:24px;">कल फिर से ${totalMinStr} फ्री मिनट के साथ वापस आएं।</p>
+                    
+                    <button class="cta-btn dark-btn full-width mt-auto" onclick="goBackToFeed()">
+                        वापस जाएं (Back to Home)
+                    </button>
+                </div>
+            `;
+        }
     }
 
-    document.getElementById('startResumeScreen').classList.remove('hidden');
+    document.getElementById('unifiedGatewayScreen').classList.remove('hidden');
 }
 
 function startSessionNow() {
