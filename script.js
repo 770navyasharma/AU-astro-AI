@@ -323,6 +323,34 @@ function openCall() {
     document.querySelectorAll('.view-section').forEach(s => s.classList.add('hidden'));
     document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('callInterface').classList.remove('hidden');
+    
+    // Check if user is returning
+    const isReturning = minutesUsedSeconds > 0;
+    document.getElementById('callStartHeadline').textContent = isReturning ? 'वापस आए! 🌟' : 'डॉ. प्रिया तैयार हैं';
+    document.getElementById('callStartSub').textContent = isReturning ? 'जहाँ छोड़ा था, वहीं से शुरू करें।' : 'कॉल शुरू करने के लिए नीचे क्लिक करें';
+    document.getElementById('callStartBtnText').innerHTML = isReturning ? '<i class="fa-solid fa-play"></i> सेशन जारी रखें' : '<i class="fa-solid fa-phone-volume"></i> सेशन शुरू करें';
+    
+    // Show overlay to block call until they click Start
+    document.getElementById('callStartOverlay').classList.remove('hidden');
+}
+
+function beginCallTimer() {
+    document.getElementById('callStartOverlay').classList.add('hidden');
+    
+    // Clear chat to make it look fresh
+    const chatContainer = document.getElementById('chatContainer');
+    if (chatContainer) {
+        chatContainer.innerHTML = `
+            <div class="chat-message ai-bubble">
+                <img src="assets/dr_priya_verma.png" alt="Dr Priya" class="chat-avatar">
+                <div class="bubble-content">
+                    <div class="bubble-header">डॉ. प्रिया वर्मा</div>
+                    <p>नमस्ते! मैं आपकी क्या सहायता कर सकती हूँ?</p>
+                </div>
+            </div>
+        `;
+    }
+    
     startCallTimer();
 }
 
