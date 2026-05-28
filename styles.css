@@ -399,12 +399,22 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 }
 
 /* Typewriter Animation */
+.typewriter-text {
+    font-weight: 900;
+    font-size: 1.15em;
+    color: #FFF; /* Crisp white to stand out against the gold base */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease;
+}
+
 .typewriter-cursor {
     display: inline-block;
     width: 2px;
-    background-color: #FFD700;
-    margin-left: 2px;
-    animation: blink 0.8s step-end infinite;
+    height: 1em;
+    background-color: #FFF;
+    margin-left: 3px;
+    vertical-align: text-bottom;
+    animation: blink 0.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes blink {
