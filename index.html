@@ -35,17 +35,27 @@
             <button class="demo-btn" onclick="openCall()">5. Live Call UI</button>
         </div>
         
-        <h4 class="demo-title mt-10">Trigger PLG Modals (Responsive)</h4>
+        <h4 class="demo-title mt-10">Test Gateway Flows (MWeb)</h4>
         <div class="demo-btn-group">
-            <button class="demo-btn-outline" onclick="openGatewayScreen()">Login Sheet (Gateway)</button>
-            <button class="demo-btn-outline" onclick="openGatewayScreen()">Start/Resume Screen</button>
-            <button class="demo-btn-outline" onclick="showWarningToast('ध्यान दें: आपकी फ्री कॉल में 1 मिनट बचा है।')">4-Min Warn (Toast)</button>
-            <button class="demo-btn-outline" onclick="showWarningToast('ध्यान दें: आपकी 10 मिनट फ्री कॉल में 1 मिनट बचा है।')">9-Min Warn (Toast)</button>
-            <button class="demo-btn-outline" onclick="openModal('stop5MinModal')">5-Min Stop</button>
-            <button class="demo-btn-outline" onclick="openModal('stop10MinModal')">10-Min Stop</button>
+            <button class="demo-btn-outline" onclick="demoGateway('mweb', 'guest')">Guest (Login)</button>
+            <button class="demo-btn-outline" onclick="demoGateway('mweb', 'resume')">Logged In (Resume)</button>
+            <button class="demo-btn-outline" onclick="demoGateway('mweb', 'over')">Time Over (Download Sheet)</button>
+        </div>
+
+        <h4 class="demo-title mt-10">Test Gateway Flows (Native App)</h4>
+        <div class="demo-btn-group">
+            <button class="demo-btn-outline" onclick="demoGateway('app', 'guest')">Guest (Login)</button>
+            <button class="demo-btn-outline" onclick="demoGateway('app', 'resume')">Logged In (Resume)</button>
+            <button class="demo-btn-outline" onclick="demoGateway('app', 'over')">Time Over (Return Tomorrow)</button>
+        </div>
+
+        <h4 class="demo-title mt-10">Trigger PLG Modals</h4>
+        <div class="demo-btn-group">
+            <button class="demo-btn-outline" onclick="openCall()">Live Call UI</button>
+            <button class="demo-btn-outline" onclick="showWarningToast('ध्यान दें: आपकी फ्री कॉल में 1 मिनट बचा है।')">Warn Toast</button>
             <button class="demo-btn-outline" onclick="openModal('welcomeBackModal')">Welcome Back</button>
             <button class="demo-btn-outline" onclick="openSheet('feedbackModal')">Feedback</button>
-            <button class="demo-btn-outline" onclick="showThankYou()">Thank You Screen</button>
+            <button class="demo-btn-outline" onclick="showThankYou()">Thank You</button>
         </div>
 
         <h4 class="demo-title mt-10">Push Notifications</h4>

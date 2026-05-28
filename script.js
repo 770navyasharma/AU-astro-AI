@@ -539,6 +539,21 @@ function resetDemo() {
     location.reload();
 }
 
+function demoGateway(platform, state) {
+    if (platform === 'mweb') {
+        lastFeedSource = 'mweb-feed';
+        if (state === 'guest') { isLoggedIn = false; minutesUsedSeconds = 0; }
+        if (state === 'resume') { isLoggedIn = true; minutesUsedSeconds = 120; }
+        if (state === 'over') { isLoggedIn = true; minutesUsedSeconds = 300; }
+    } else {
+        lastFeedSource = 'app-feed';
+        if (state === 'guest') { isLoggedIn = false; minutesUsedSeconds = 0; }
+        if (state === 'resume') { isLoggedIn = true; minutesUsedSeconds = 120; }
+        if (state === 'over') { isLoggedIn = true; minutesUsedSeconds = 600; }
+    }
+    openGatewayScreen();
+}
+
 function simulatePush(segment) {
     const notif = document.getElementById('pushNotification');
     const title = document.getElementById('pushTitle');
