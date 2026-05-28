@@ -564,3 +564,49 @@ function simulatePush(segment) {
     notif.classList.remove('hidden');
     setTimeout(() => notif.classList.add('hidden'), 10000);
 }
+
+// ==========================================
+// TYPEWRITER ANIMATION FOR BANNERS
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const words = ["करियर", "धन", "प्रेम", "विवाह", "भविष्य"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+        const elements = document.querySelectorAll('.typewriter-text');
+        if (!elements.length) return;
+
+        const currentWord = words[wordIndex];
+        
+        if (isDeleting) {
+            charIndex--;
+        } else {
+            charIndex++;
+        }
+
+        const textToDisplay = currentWord.substring(0, charIndex);
+        
+        elements.forEach(el => {
+            el.textContent = textToDisplay;
+        });
+
+        let typeSpeed = isDeleting ? 50 : 100;
+
+        if (!isDeleting && charIndex === currentWord.length) {
+            // Pause at the end of a word
+            typeSpeed = 1500;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            typeSpeed = 500; // Pause before typing next word
+        }
+
+        setTimeout(type, typeSpeed);
+    }
+
+    // Start typewriter
+    setTimeout(type, 1000);
+});

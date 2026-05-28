@@ -397,3 +397,17 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     0%   { transform: scaleY(0.55); opacity: 0.7; }
     100% { transform: scaleY(1.0);  opacity: 1;   }
 }
+
+/* Typewriter Animation */
+.typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    background-color: #FFD700;
+    margin-left: 2px;
+    animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
