@@ -329,7 +329,7 @@ function openCall() {
     
     const btn = document.getElementById('primaryCallActionBtn');
     if (btn) {
-        btn.innerHTML = isReturning ? '<i class="fa-solid fa-play"></i> सेशन जारी रखें' : '<i class="fa-solid fa-phone-volume"></i> सेशन शुरू करें';
+        btn.innerHTML = isReturning ? '<i class="fa-solid fa-play"></i> सेशन जारी रखें' : '<i class="fa-solid fa-play"></i> सेशन शुरू करें';
         btn.setAttribute('onclick', 'beginCallTimer()');
     }
 }
