@@ -454,7 +454,7 @@ function goBackToFeedFromAppSheet() {
 
 function submitAppFeedback() {
     closeSheet('appTimeOverFeedbackSheet');
-    showThankYou();
+    window.open('https://amarujala.com/feedback', '_blank');
 }
 
 function downloadApp() {
