@@ -128,7 +128,7 @@ function simulateLogin() {
     sessionStorage.setItem('userState', currentUserState);
 
     // Show success toast
-    showSuccessToast('✅ लॉगिन सफल! डॉ. प्रिया आपका इंतज़ार कर रही हैं ✨');
+    showSuccessToast('✅ लॉगिन सफल! अपनी कुंडली के राज़ जानने के लिए तैयार हो जाएं ✨');
 
     // Update banners
     updateAllBanners();
@@ -150,7 +150,7 @@ function simulateGoogleLogin() {
     sessionStorage.setItem('isLoggedIn', 'true');
     sessionStorage.setItem('userState', currentUserState);
 
-    showSuccessToast('✅ Google से लॉगिन सफल! डॉ. प्रिया आपका इंतज़ार कर रही हैं ✨');
+    showSuccessToast('✅ Google से लॉगिन सफल! अपनी कुंडली के राज़ जानने के लिए तैयार हो जाएं ✨');
     updateAllBanners();
 
     setTimeout(() => {
@@ -281,6 +281,12 @@ function openGatewayScreen() {
             `;
         } else {
             // STATE C: LOGGED IN (TIME OVER)
+            if (!isAppFlow) {
+                // If MWeb and time is over, force the Download App bottom sheet instead of Gateway State C
+                document.getElementById('mwebAppDownloadSheet').classList.remove('hidden');
+                return; // Stop execution here, don't show the gateway screen
+            }
+
             container.innerHTML = `
                 <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 20px; text-align: center;">
                     <i class="fa-solid fa-hourglass-end" style="font-size: 48px; color: #EF4444; margin-bottom: 20px;"></i>
@@ -384,10 +390,13 @@ function checkTimeLimits() {
         showWarningToast('ध्यान दें: आपकी फ्री कॉल में 1 मिनट बचा है।');
     }
 
-    // MWeb Guest: 5-min hard stop (at 300s total)
+    // MWeb 5-min hard stop
     if (totalUsed >= 300 && currentUserState === 'guest') {
         stopCallTimer();
-        openModal('stop5MinModal');
+        document.getElementById('callInterface').classList.add('hidden');
+        minutesUsedSeconds = 300;
+        sessionStorage.setItem('minutesUsed', minutesUsedSeconds);
+        openSheet('mwebAppDownloadSheet');
     }
 
     // App Free: 9-min warning (at 540s total)
@@ -429,9 +438,15 @@ function endCallManually() {
     openSheet('feedbackModal');
 }
 
+function goBackToFeedFromDownloadSheet() {
+    closeSheet('mwebAppDownloadSheet');
+    goBackToFeed();
+}
+
 function downloadApp() {
     // Simulate deferred deep link — user "installs" app, comes back as 'free' user
     closeModal('stop5MinModal');
+    closeSheet('mwebAppDownloadSheet');
     closeModal('warning4MinModal');
 
     // Upgrade user state to "free" (simulates app login)
