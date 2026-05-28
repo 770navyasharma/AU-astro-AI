@@ -223,14 +223,16 @@ function openGatewayScreen() {
     if (!isLoggedIn) {
         // STATE A: GUEST (NOT LOGGED IN)
         container.innerHTML = `
-            <div style="margin-bottom: 20px;">
-                <h3 style="color:#FFF; font-size:18px; font-weight:800; margin-bottom:8px;">अपने जीवन की उलझनों का समाधान पाएं</h3>
-                <p style="color:rgba(255,255,255,0.7); font-size:14px; line-height: 1.5;">डॉ. प्रिया आपकी कुंडली का सटीक विश्लेषण कर करियर, प्रेम और धन से जुड़े हर सवाल का जवाब देंगी।</p>
+            <div style="margin-bottom: 24px;">
+                <h3 style="color:#FFF; font-size:20px; font-weight:800; margin-bottom:8px;">अपने भविष्य की बातें करें 🌟</h3>
+                <p style="color:#FFD700; font-size:14px; font-weight:700; margin-bottom:12px;">विशेषज्ञता: करियर • विवाह • प्रेम • धन</p>
+                <p style="color:rgba(255,255,255,0.7); font-size:14px; line-height: 1.5;">डॉ. प्रिया आपकी कुंडली का सटीक विश्लेषण कर हर सवाल का जवाब देंगी।</p>
             </div>
             
-            <div class="trust-chips mb-20" style="background: rgba(255,215,0,0.1); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,215,0,0.2);">
-                <span class="trust-chip" style="margin-right: 12px; font-weight: 700; color: #FFD700;"><i class="fa-solid fa-gift"></i> ${totalMinStr} मिनट फ्री कॉल</span>
-                <span class="trust-chip"><i class="fa-solid fa-shield-halved text-gold"></i> 100% सुरक्षित</span>
+            <div class="trust-chips mb-20" style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); justify-content: space-between;">
+                <span class="trust-chip" style="font-size: 11px;"><i class="fa-solid fa-gift text-gold"></i> ${totalMinStr} मिनट मुफ़्त</span>
+                <span class="trust-chip" style="font-size: 11px;"><i class="fa-solid fa-shield-halved text-gold"></i> 100% सुरक्षित</span>
+                <span class="trust-chip" style="font-size: 11px;"><i class="fa-solid fa-user-shield text-gold"></i> कोई स्पैम नहीं</span>
             </div>
 
             <div class="input-group dark-input mb-15">
@@ -253,21 +255,28 @@ function openGatewayScreen() {
             // STATE B: LOGGED IN (TIME REMAINING)
             const isReturning = minutesUsedSeconds > 0;
             const headlineText = isReturning ? 'वापस आए! डॉ. प्रिया आपका इंतज़ार कर रही थीं 🌟' : 'भविष्य के हर सवाल का जवाब, सिर्फ एक कॉल दूर';
-            const subText = isReturning ? 'आपकी पिछली बातचीत याद है। जहाँ छोड़ा था, वहीं से शुरू करें।' : 'डॉ. प्रिया आपकी कुंडली पढ़कर करियर, प्रेम और धन के हर सवाल का सटीक जवाब देंगी।';
-            const badgeText = isReturning ? `🕐 ${remStr} मिनट अभी बाकी हैं` : `🕐 ${totalMinStr} मिनट बिल्कुल मुफ़्त`;
+            const subText = isReturning ? 'आपकी पिछली बातचीत याद है। जहाँ छोड़ा था, वहीं से शुरू करें।' : 'डॉ. प्रिया आपकी कुंडली का सटीक विश्लेषण कर हर सवाल का जवाब देंगी।';
+            const badgeText = isReturning ? `⏱ ${remStr} मिनट अभी बाकी हैं` : `⏱ ${totalMinStr} मिनट बिल्कुल मुफ़्त`;
             const btnText = isReturning ? 'सेशन जारी रखें' : 'सेशन शुरू करें';
 
             container.innerHTML = `
                 <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 20px;">
-                    <h3 style="color:#FFF; font-size:26px; font-weight:900; margin-bottom:12px; line-height: 1.3;">${headlineText}</h3>
+                    <h3 style="color:#FFF; font-size:24px; font-weight:900; margin-bottom:12px; line-height: 1.3;">${headlineText}</h3>
                     <p style="color:rgba(255,255,255,0.7); font-size:15px; margin-bottom:24px; line-height: 1.6;">${subText}</p>
                     
-                    <div class="start-timer-badge" style="margin-bottom:24px; align-self: flex-start;">
-                        <span>${badgeText}</span>
+                    <div class="start-timer-badge" style="margin-bottom:24px; align-self: flex-start; border: 1px solid rgba(255,215,0,0.3); background: rgba(255,215,0,0.1);">
+                        <span style="color:#FFD700; font-weight: 700;">${badgeText}</span>
                     </div>
 
-                    <button class="cta-btn yellow-btn full-width mt-auto" onclick="startSessionNow()">
+                    <div style="text-align: center; margin-bottom: 12px; color: rgba(255,255,255,0.5); font-size: 13px;">
+                        <i class="fa-solid fa-circle-check text-green"></i> आप सुरक्षित रूप से लॉग इन हैं
+                    </div>
+
+                    <button class="cta-btn yellow-btn full-width mb-10" onclick="startSessionNow()">
                         <i class="fa-solid fa-phone-volume call-ring-anim"></i> ${btnText}
+                    </button>
+                    <button class="cta-btn text-btn full-width" style="color:rgba(255,255,255,0.6);" onclick="goBackToFeed()">
+                        वापस जाएं
                     </button>
                 </div>
             `;
@@ -275,9 +284,9 @@ function openGatewayScreen() {
             // STATE C: LOGGED IN (TIME OVER)
             container.innerHTML = `
                 <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 20px; text-align: center;">
-                    <i class="fa-solid fa-calendar-check" style="font-size: 48px; color: #10B981; margin-bottom: 20px;"></i>
-                    <h3 style="color:#FFF; font-size:24px; font-weight:900; margin-bottom:12px;">आज की लिमिट समाप्त हो गई है!</h3>
-                    <p style="color:rgba(255,255,255,0.7); font-size:15px; margin-bottom:24px;">कल फिर से ${totalMinStr} फ्री मिनट के साथ वापस आएं।</p>
+                    <i class="fa-solid fa-hourglass-end" style="font-size: 48px; color: #EF4444; margin-bottom: 20px;"></i>
+                    <h3 style="color:#FFF; font-size:24px; font-weight:900; margin-bottom:12px;">समय समाप्त हो गया है! 🌅</h3>
+                    <p style="color:rgba(255,255,255,0.7); font-size:15px; margin-bottom:24px;">आज की आपकी ${totalMinStr} मिनट की लिमिट पूरी हो चुकी है। कल फिर से अपने नए मुफ़्त मिनटों के साथ वापस आएं।</p>
                     
                     <button class="cta-btn dark-btn full-width mt-auto" onclick="goBackToFeed()">
                         वापस जाएं (Back to Home)

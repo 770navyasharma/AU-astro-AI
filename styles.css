@@ -410,10 +410,11 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 .typewriter-cursor {
     display: inline-block;
     width: 2px;
-    height: 1em;
+    height: 1.05em;
     background-color: #FFF;
     margin-left: 3px;
-    vertical-align: text-bottom;
+    vertical-align: middle;
+    transform: translateY(-2px);
     animation: blink 0.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
