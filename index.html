@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amar Ujala - AI Astrology Cross-Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="state-guest">
+
+    <!-- Header & Demo Controller -->
+    <header class="app-header">
+        <div class="logo">
+            <span class="logo-red">अमर</span> <span class="logo-black">उजाला</span>
+        </div>
+        <div class="user-state-selector">
+            <select id="userStateSelect" onchange="switchUserState()">
+                <option value="guest">Guest (Default)</option>
+                <option value="free">App User (Free)</option>
+                <option value="paid">Premium</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- DEMO DASHBOARD -->
+    <div class="demo-dashboard">
+        <h4 class="demo-title">View Screens</h4>
+        <div class="demo-btn-group">
+            <button class="demo-btn active" onclick="showSection('mweb-feed', this)">1. Mobile Web</button>
+            <button class="demo-btn" onclick="showSection('app-feed', this)">2. Native App</button>
+            <button class="demo-btn" onclick="showSection('web-feed', this)">3. Desktop Web</button>
+            <button class="demo-btn" onclick="goToStartScreen()">4. Start/Resume Screen</button>
+            <button class="demo-btn" onclick="openCall()">5. Live Call UI</button>
+        </div>
+        
+        <h4 class="demo-title mt-10">Trigger PLG Modals (Responsive)</h4>
+        <div class="demo-btn-group">
+            <button class="demo-btn-outline" onclick="openSheet('loginSheet')">Login Sheet</button>
+            <button class="demo-btn-outline" onclick="goToStartScreen()">Start/Resume Screen</button>
+            <button class="demo-btn-outline" onclick="showWarningToast('ध्यान दें: आपकी फ्री कॉल में 1 मिनट बचा है।')">4-Min Warn (Toast)</button>
+            <button class="demo-btn-outline" onclick="showWarningToast('ध्यान दें: आपकी 10 मिनट फ्री कॉल में 1 मिनट बचा है।')">9-Min Warn (Toast)</button>
+            <button class="demo-btn-outline" onclick="openModal('stop5MinModal')">5-Min Stop</button>
+            <button class="demo-btn-outline" onclick="openModal('stop10MinModal')">10-Min Stop</button>
+            <button class="demo-btn-outline" onclick="openModal('welcomeBackModal')">Welcome Back</button>
+            <button class="demo-btn-outline" onclick="openSheet('feedbackModal')">Feedback</button>
+            <button class="demo-btn-outline" onclick="showThankYou()">Thank You Screen</button>
+        </div>
+
+        <h4 class="demo-title mt-10">Push Notifications</h4>
+        <div class="demo-btn-group">
+            <button class="demo-btn-outline text-blue" onclick="simulatePush('web_morning')">Web (Morning 5m)</button>
+            <button class="demo-btn-outline text-blue" onclick="simulatePush('app_morning')">App (Morning 10m)</button>
+            <button class="demo-btn-outline text-blue" onclick="simulatePush('app_unused')">App (Missed Astro)</button>
+        </div>
+
+        <div class="demo-btn-group mt-10">
+            <button class="demo-btn-outline text-red" style="border-color:var(--au-red);" onclick="resetDemo()">🔄 Reset Demo (Fresh Start)</button>
+        </div>
+    </div>
+
+
+    <main class="feed-container">
+        
+        <!-- ==========================================
+             1. MWEB ACQUISITION FEED (Mobile Web)
+             ========================================== -->
+        <div id="mweb-feed" class="view-section mobile-frame">
+            <div class="article-header mb-15">
+                <p class="text-light" style="font-size:12px; font-weight:600;">Astrology > Predictions</p>
+                <h1 style="font-size:22px; font-weight:900; margin-top:8px;">मेष राशि: आज का राशिफल</h1>
+            </div>
+
+            <!-- MWEB COMPACT BANNER -->
+            <h4 style="font-size:14px; font-weight:800; margin-bottom:10px;">✨ ज्योतिष सेवाएं</h4>
+            <div class="app-full-width-card astro-premium-bg banner-shine mb-20" onclick="handleBannerClick('mweb')">
+                <div class="full-card-avatar">
+                    <div class="app-avatar-ring pulse-ring-1" style="width:100%; height:100%;"></div>
+                    <img src="assets/dr_priya_verma.png" alt="Dr Priya">
+                    <div class="mweb-waveform app-small-waveform">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        <div class="bar"></div><div class="bar"></div>
+                    </div>
+                </div>
+                <div class="full-card-text">
+                    <h4 id="mwebBannerTitle">भविष्य की उलझन का सटीक जवाब!</h4>
+                    <p id="mwebBannerSub">डॉ. प्रिया से 5 मिनट फ्री बात करें। 🌟</p>
+                </div>
+                <div class="full-card-chevron"><i class="fa-solid fa-chevron-right"></i></div>
+            </div>
+        </div>
+
+
+        <!-- ==========================================
+             2. APP FEED & DISCOVERY (Native App)
+             ========================================== -->
+        <div id="app-feed" class="view-section hidden mobile-frame">
+            <!-- APP DISCOVERY BANNER (Full Width Card) -->
+            <h4 style="font-size:14px; font-weight:800; margin-bottom:10px;">✨ ज्योतिष सेवाएं</h4>
+            <div class="app-full-width-card astro-premium-bg banner-shine mb-25" onclick="handleBannerClick('app')">
+                <div class="full-card-avatar">
+                    <div class="app-avatar-ring pulse-ring-1" style="width:100%; height:100%;"></div>
+                    <img src="assets/dr_priya_verma.png" alt="Dr Priya">
+                    <div class="mweb-waveform app-small-waveform">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        <div class="bar"></div><div class="bar"></div>
+                    </div>
+                </div>
+                <div class="full-card-text">
+                    <h4 id="appBannerTitle">आपकी पर्सनल AI ज्योतिषी ऑनलाइन हैं!</h4>
+                    <p id="appBannerSub">रोज़ 10 मिनट फ्री ज्योतिष सलाह पाएं। ✨</p>
+                </div>
+                <div class="full-card-icon">
+                    <i class="fa-solid fa-chevron-right text-gold"></i>
+                </div>
+            </div>
+
+            <!-- APP LARGE BANNER (Mid-Feed) -->
+            <section class="app-feed-banner astro-premium-bg banner-shine mt-25" onclick="handleBannerClick('app')">
+                <div class="app-banner-bg"></div>
+                <div class="app-banner-content text-center">
+                    <div class="app-avatar-wrapper">
+                        <div class="app-avatar-ring pulse-ring-1"></div>
+                        <div class="app-avatar-ring pulse-ring-2"></div>
+                        <img src="assets/dr_priya_verma.png" alt="Dr Priya">
+                    </div>
+                    <div class="live-badge mt-10" style="color: #FFF;">DR. PRIYA</div>
+                    <h2 class="app-banner-title mt-10">आपकी पर्सनल AI ज्योतिषी ऑनलाइन हैं!</h2>
+                    <p class="app-banner-sub">करियर, प्रेम या धन... अपने हर सवाल का जवाब पाएं। रोज़ 10 मिनट बिल्कुल मुफ़्त।</p>
+                    <button class="app-cta mt-15"><i class="fa-solid fa-phone-volume call-ring-anim"></i> अभी बात करें</button>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- ==========================================
+             3. DESKTOP WEB FEED
+             ========================================== -->
+        <div id="web-feed" class="view-section hidden">
+            <!-- DESKTOP WIDE BANNER -->
+            <section class="desktop-banner astro-premium-bg banner-shine" onclick="handleBannerClick('desktop')">
+                <div class="desktop-banner-bg"></div>
+                <div class="desktop-banner-content" style="gap: 50px; justify-content: center;">
+                    <div class="desktop-text" style="flex: 0 1 550px;">
+                        <div class="live-badge mb-10" style="color: #FFF;">EXCLUSIVE AI CALL</div>
+                        <h2 class="desktop-title">भविष्य की हर उलझन का सटीक जवाब! 🌟</h2>
+                        <p class="desktop-sub">AI ज्योतिषी डॉ. प्रिया से अभी 5 मिनट फ्री बात करें।<br>करियर, प्रेम या धन... अपने हर सवाल का जवाब पाएं।</p>
+                        <button class="desktop-cta mt-15"><i class="fa-solid fa-phone-volume call-ring-anim"></i> अभी कॉल करें</button>
+                    </div>
+                    <div class="desktop-visual">
+                        <div class="desktop-avatar-wrapper">
+                            <div class="pulse-ring-1" style="width:100%; height:100%;"></div>
+                            <div class="pulse-ring-2" style="width:100%; height:100%;"></div>
+                            <img src="assets/dr_priya_verma.png" alt="Dr Priya">
+                            <div class="mweb-waveform desktop-waveform">
+                                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- ==========================================
+             4. START / RESUME SESSION SCREEN
+             ========================================== -->
+        <div id="startResumeScreen" class="view-section hidden">
+            <div class="start-screen-wrapper">
+                <div class="start-screen-card modal-bg">
+
+                    <!-- Top nav bar -->
+                    <div class="start-top-nav">
+                        <button class="start-back-btn" onclick="goBackToFeed()">
+                            <i class="fa-solid fa-arrow-left"></i> वापस
+                        </button>
+                    </div>
+
+                    <!-- Astrologer Avatar (large, centered) -->
+                    <div class="start-avatar-center">
+                        <div class="start-avatar-wrapper start-avatar-lg">
+                            <div class="app-avatar-ring pulse-ring-1" style="width:100%;height:100%;"></div>
+                            <div class="app-avatar-ring pulse-ring-2" style="width:100%;height:100%;"></div>
+                            <img src="assets/dr_priya_verma.png" alt="Dr Priya">
+                        </div>
+                        <div class="live-badge" style="margin-top:14px; display:inline-block;">● लाइव · डॉ. प्रिया वर्मा</div>
+                        <p style="color:rgba(255,255,255,0.55); font-size:12px; margin-top:6px;">✨ AI ज्योतिषी · करियर • प्रेम • धन</p>
+                    </div>
+
+                    <!-- Headline -->
+                    <div class="start-content-section">
+                        <h2 class="start-headline" id="startScreenHeadline">भविष्य के हर सवाल का जवाब, सिर्फ एक कॉल दूर</h2>
+                        <p class="start-sub" id="startScreenSub">डॉ. प्रिया आपकी कुंडली पढ़कर करियर, प्रेम और धन के हर सवाल का सटीक जवाब देंगी।</p>
+                    </div>
+
+                    <!-- Minutes badge -->
+                    <div class="start-timer-badge" style="margin-bottom:20px;">
+                        <span id="startTimerBadge">🕐 5:00 मिनट बिल्कुल मुफ़्त</span>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <button class="cta-btn yellow-btn full-width" id="startSessionBtn" onclick="startSessionNow()">
+                        <i class="fa-solid fa-phone-volume call-ring-anim"></i>
+                        <span id="startBtnLabel">सेशन शुरू करें</span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ==========================================
+             5. THANK YOU SCREEN (after feedback)
+             ========================================== -->
+        <div id="thankYouScreen" class="view-section hidden">
+            <div class="start-screen-wrapper">
+                <div class="start-screen-card modal-bg text-center">
+                    <div class="thankyou-anim">
+                        <i class="fa-solid fa-circle-check" style="font-size:64px; color:#10B981;"></i>
+                    </div>
+                    <h2 style="color:#FFF; font-size:26px; margin: 20px 0 10px;">धन्यवाद! 🌟</h2>
+                    <p style="color:rgba(255,255,255,0.7); font-size:15px; margin-bottom:25px;">आपका फीडबैक मिल गया। 🙏</p>
+
+                    <!-- Countdown bar -->
+                    <div class="thankyou-countdown">
+                        <p style="color:rgba(255,255,255,0.5); font-size:12px; margin-bottom:8px;">स्वचालित बंद हो जाएगा: <span id="tyCountdown">10</span> सेकंड</p>
+                        <div class="ty-progress-bar">
+                            <div class="ty-progress-fill" id="tyProgressFill"></div>
+                        </div>
+                    </div>
+
+                    <button class="cta-btn dark-btn full-width mt-15" onclick="closeThankYou()">वापस जाएं</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- ==========================================
+         THE CORE UI: NATIVE ASTRO SCREEN (Responsive Desktop/Mobile)
+         ========================================== -->
+    <div class="call-interface hidden" id="callInterface" style="background:#030510;">
+        <!-- New Starry Background for the whole screen -->
+        <div class="starry-bg-layer"></div>
+
+        <div class="desktop-call-wrapper" style="background:transparent; box-shadow:none;">
+            <!-- Sidebar Menu -->
+            <div class="sidebar-overlay hidden" id="sidebarOverlay" onclick="closeSidebar()"></div>
+            <div class="astro-sidebar" id="astroSidebar">
+                <div class="sidebar-header" style="padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <h3 style="color:#FFF; font-size:18px;"><i class="fa-solid fa-message"></i> पिछली चैट्स</h3>
+                </div>
+                <div class="sidebar-chat-list">
+                    <div class="chat-history-item active">
+                        <i class="fa-solid fa-message"></i>
+                        <div class="chat-info">
+                            <h4>शादी और करियर</h4>
+                            <p>आज, 9:41 AM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="icon-btn mobile-menu-btn" onclick="openSidebar()" style="position:absolute; top:20px; left:20px; z-index:10; color:#FFF; font-size:20px; background:rgba(255,255,255,0.1); border-radius:50%; width:40px; height:40px; display:flex; justify-content:center; align-items:center; border:none;"><i class="fa-solid fa-bars"></i></button>
+            
+            <div class="call-content-grid">
+                <!-- Left Column (Desktop) / Top Section (Mobile) -->
+                <div class="astro-profile-panel">
+                    <div class="profile-center text-center" style="width:100%; max-width:400px;">
+                        <div class="start-avatar-wrapper mx-auto mb-15" style="width:160px; height:160px; margin: 0 auto 20px auto;">
+                            <div class="app-avatar-ring pulse-ring-1" style="width:100%;height:100%;"></div>
+                            <div class="app-avatar-ring pulse-ring-2" style="width:100%;height:100%;"></div>
+                            <img src="assets/dr_priya_verma.png" alt="Profile" style="border:none;">
+                        </div>
+                        <h2 style="font-size:28px; color:#FFF; font-family:serif; margin-bottom:8px;">डॉ. प्रिया वर्मा</h2>
+                        <p style="color:rgba(255,255,255,0.6); font-size:14px; margin-bottom:30px; font-style:italic;">मनोवैज्ञानिक ज्योतिष, करियर काउंसलिंग</p>
+                        
+                        <div class="timer-badge mb-20" style="display:inline-flex; align-items:center; justify-content:center; gap:10px; background:rgba(0,0,0,0.5); padding:12px 24px; border-radius:30px; border:1px solid rgba(255,255,255,0.1); width:100%;">
+                            <i class="fa-solid fa-clock text-gold"></i>
+                            <span style="color:rgba(255,255,255,0.7); font-size:14px;">समय शेष:</span>
+                            <strong id="timer" style="color:#FFF; font-size:18px;">05:00</strong>
+                        </div>
+
+                        <button class="cta-btn yellow-btn full-width" style="border-radius:30px; display:flex; align-items:center; justify-content:center; gap:10px; font-weight:800;" onclick="closeCall()">
+                            <i class="fa-solid fa-phone-slash"></i> सेशन समाप्त करें
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column (Desktop) / Bottom Section (Mobile) -->
+                <div class="chat-panel-container">
+                    <div class="chat-panel">
+                        <div class="chat-transcript" id="transcript" style="flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column;">
+                            <div style="text-align:center; margin-bottom:30px;">
+                                <p style="color:rgba(255,255,255,0.6); font-style:italic; font-size:14px;">बोलना शुरू करें।<br><span style="font-size:12px; color:rgba(255,255,255,0.4);">डॉ. प्रिया के साथ आपकी बातचीत यहाँ दिखाई देगी।</span></p>
+                            </div>
+                            <div class="chat-bubble ai-bubble">
+                                <img src="assets/dr_priya_verma.png" class="chat-avatar" alt="AI">
+                                <div class="bubble-content">
+                                    <div class="bubble-header">डॉ. प्रिया</div>
+                                    <p>नमस्ते! बताइए, आज मन में क्या सवाल है?</p>
+                                    <span class="timestamp">9:41 AM</span>
+                                </div>
+                            </div>
+                            <div class="chat-bubble user-bubble">
+                                <div class="bubble-content">
+                                    <div class="bubble-header">आप</div>
+                                    <p>मेरी शादी कब होगी?</p>
+                                    <span class="timestamp">9:41 AM</span>
+                                </div>
+                                <img src="https://ui-avatars.com/api/?name=User&background=FCA311&color=fff" class="chat-avatar" alt="User">
+                            </div>
+                            <div class="chat-bubble ai-bubble">
+                                <img src="assets/dr_priya_verma.png" class="chat-avatar" alt="AI">
+                                <div class="bubble-content">
+                                    <div class="bubble-header">डॉ. प्रिया</div>
+                                    <p>आपकी मीन राशि और बृहस्पति की दशा देखें तो फ़रवरी-मार्च 2027 शुभ है।</p>
+                                    <span class="timestamp">9:42 AM</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input-bar" style="background:transparent; border-top:1px solid rgba(255,255,255,0.05); justify-content:center; padding:15px; border-radius:0 0 16px 16px;">
+                            <div class="voice-wave-anim">
+                                <div class="bar bar-1"></div>
+                                <div class="bar bar-2"></div>
+                                <div class="bar bar-3"></div>
+                                <div class="bar bar-4"></div>
+                                <div class="bar bar-5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==========================================
+         THE MODAL ECOSYSTEM (Responsive Modals)
+         ========================================== -->
+         
+    <!-- 1. Mweb / App Login Sheet -->
+    <div class="bottom-sheet-overlay hidden" id="loginSheet">
+        <div class="bottom-sheet premium-sheet modal-bg">
+            <button class="close-sheet-btn" onclick="closeSheet('loginSheet')"><i class="fa-solid fa-xmark"></i></button>
+            <div class="sheet-indicator"></div>
+            
+            <div class="sheet-body text-center mt-15">
+                <img src="assets/dr_priya_verma.png" class="feedback-avatar mb-10" alt="Dr Priya">
+                <!-- Swappable Headers based on State -->
+                <h3 class="mb-10" style="font-size:22px; font-weight:900; color:#FFF;" id="loginHeader">अपनी 5 मिनट की फ्री कॉल शुरू करें!</h3>
+                <p style="color:rgba(255,255,255,0.7); font-size:13px; margin-bottom:20px;" id="loginSubtext">डॉ. प्रिया इंतज़ार कर रही हैं। आगे बढ़ने के लिए अपना मोबाइल नंबर दर्ज करें। (100% सुरक्षित)</p>
+                
+                <div class="trust-chips mb-20">
+                    <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> 5 मिन फ्री</span>
+                    <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> कोई OTP स्पैम नहीं</span>
+                    <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> 100% सुरक्षित</span>
+                </div>
+
+                <div class="input-group dark-input mb-15">
+                    <i class="fa-solid fa-user text-light" style="padding:16px;"></i>
+                    <input type="text" id="loginNameField" placeholder="अपना नाम दर्ज करें *" class="input-field" required>
+                </div>
+
+                <div class="input-group dark-input">
+                    <span class="country-code"><img src="https://flagcdn.com/w20/in.png" style="width:16px; margin-right:5px; vertical-align:middle;"> +91</span>
+                    <input type="tel" id="loginPhoneField" placeholder="मोबाइल नंबर दर्ज करें *" class="input-field" required>
+                    <i class="fa-solid fa-lock text-light" style="padding:16px;"></i>
+                </div>
+                
+                <button class="cta-btn yellow-btn full-width mt-15" onclick="simulateLogin()">
+                    OTP भेजें और शुरू करें
+                </button>
+
+                <div style="display:flex; align-items:center; margin:20px 0; color:rgba(255,255,255,0.4); font-size:12px;">
+                    <hr style="flex:1; border-color:rgba(255,255,255,0.1);"><span style="padding:0 10px;">या</span><hr style="flex:1; border-color:rgba(255,255,255,0.1);">
+                </div>
+
+                <button class="cta-btn text-btn full-width" style="background:#FFF; color:#000; display:flex; justify-content:center; align-items:center; gap:10px; font-weight:600;" onclick="simulateGoogleLogin()">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" style="width:20px;" alt="Google">
+                    Google से लॉगिन करें
+                </button>
+                
+                <p style="color:rgba(255,255,255,0.4); font-size:11px; margin-top:20px;">जारी रखकर आप अमर उजाला की Terms & Privacy से सहमत हैं।</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal-overlay hidden" id="stop5MinModal">
+        <div class="modal premium-modal modal-bg text-center">
+            <button class="close-sheet-btn" onclick="closeModal('stop5MinModal')"><i class="fa-solid fa-xmark"></i></button>
+            <img src="assets/dr_priya_verma.png" class="feedback-avatar mb-15" alt="Dr Priya">
+            <h3 class="text-white mb-10" style="font-size:20px;">5 मिनट पूरे! 🛑</h3>
+            <p style="color:rgba(255,255,255,0.7); font-size:13px; margin-bottom:20px;">सवाल अधूरा है? बातचीत जारी रखने के लिए ऐप डाउनलोड करें।</p>
+            
+            <button class="cta-btn yellow-btn full-width mb-10" onclick="downloadApp()">ऐप डाउनलोड करें</button>
+        </div>
+    </div>
+
+    <!-- 4. App Welcome Back Modal -->
+    <div class="modal-overlay hidden" id="welcomeBackModal">
+        <div class="modal premium-modal modal-bg">
+            <button class="close-sheet-btn" onclick="closeModal('welcomeBackModal')"><i class="fa-solid fa-xmark"></i></button>
+            <div class="confetti-bg"></div>
+            <h2 class="text-white mb-10" style="font-size:24px;">बधाई हो! 🎉<br><span class="text-gold">आपके आज के 5 मिनट बचे हैं।</span></h2>
+            <p style="color:rgba(255,255,255,0.7); font-size:13px; margin-bottom:20px;">डॉ. प्रिया को आपकी पिछली बातें याद हैं।</p>
+
+            <button class="cta-btn yellow-btn full-width mb-10" onclick="resumeCallFromWelcome()">बातचीत जारी रखें</button>
+            <button class="cta-btn dark-btn full-width mb-10" onclick="closeModal('welcomeBackModal')">बाद में जारी रखें</button>
+            <button class="cta-btn text-btn full-width" style="color:rgba(255,255,255,0.4);" onclick="endCallManually()">सेशन समाप्त करें</button>
+        </div>
+    </div>
+
+    <!-- 6. App 10-Minute Hard Stop Modal -->
+    <div class="modal-overlay hidden" id="stop10MinModal">
+        <div class="modal premium-modal modal-bg text-center">
+            <button class="close-sheet-btn" onclick="goToFeedbackFrom10Min()"><i class="fa-solid fa-xmark"></i></button>
+            <img src="assets/dr_priya_verma.png" class="feedback-avatar mb-15" alt="Dr Priya">
+            <h3 class="text-white mb-10" style="font-size:20px;">आज का समय पूरा हुआ! 🌅</h3>
+            <p style="color:rgba(255,255,255,0.7); font-size:13px; margin-bottom:20px;">कल 10 फ्री मिनट के साथ फिर मिलेंगे।</p>
+            
+            <button class="cta-btn yellow-btn full-width mb-10" onclick="goToFeedbackFrom10Min()">ठीक है</button>
+        </div>
+    </div>
+
+    <!-- 6. App 10-Minute Hard Stop & Feedback -->
+    <div class="modal-overlay hidden" id="feedbackModal">
+        <div class="modal premium-modal modal-bg text-center">
+            <button class="close-sheet-btn" onclick="closeSheet('feedbackModal')"><i class="fa-solid fa-xmark"></i></button>
+            <img src="assets/dr_priya_verma.png" class="feedback-avatar mb-15" alt="Dr Priya">
+            
+            <h3 class="text-white mb-10" style="font-size:20px;" id="feedbackHeader">जाने से पहले... 🌟</h3>
+            <p style="color:rgba(255,255,255,0.7); font-size:13px; margin-bottom:20px;" id="feedbackBody">कृपया आज के सेशन के लिए डॉ. प्रिया को रेट करें।</p>
+            
+            <div class="star-rating mb-15">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+            </div>
+
+            <textarea class="dark-textarea mb-15" placeholder="कुछ और बताना चाहेंगे? (वैकल्पिक)"></textarea>
+
+            <button class="cta-btn yellow-btn full-width" onclick="submitFeedback()">फीडबैक भेजें</button>
+        </div>
+    </div>
+
+    <!-- 7. End Call Confirmation Modal -->
+    <div class="modal-overlay hidden" id="endCallConfirmModal">
+        <div class="modal premium-modal modal-bg text-center">
+            <button class="close-sheet-btn" onclick="closeModal('endCallConfirmModal')"><i class="fa-solid fa-xmark"></i></button>
+            <img src="assets/dr_priya_verma.png" class="feedback-avatar mb-15" alt="Dr Priya">
+            <h3 class="text-white mb-10" style="font-size:22px;">क्या आप सच में कॉल काटना चाहते हैं? 🥺</h3>
+            <p style="color:rgba(255,255,255,0.7); font-size:13px; margin-bottom:20px;">अभी आपके पास समय बचा है। अगर आप अभी जाते हैं, तो डॉ. प्रिया आपका इंतज़ार करती रह जाएंगी।</p>
+            
+            <button class="cta-btn yellow-btn full-width mb-10" onclick="cancelEndCall()">नहीं, बातचीत जारी रखें</button>
+            <button class="cta-btn text-btn full-width" style="color:rgba(255,255,255,0.4);" onclick="confirmEndCall()">हाँ, सेशन समाप्त करें</button>
+        </div>
+    </div>
+
+    <!-- Simulated System Push Notification -->
+    <div id="pushNotification" class="push-notification hidden">
+        <div class="push-icon"><span class="logo-red">अ</span></div>
+        <div class="push-content">
+            <div class="push-header">
+                <span class="push-app">अमर उजाला</span>
+                <span class="push-time">अभी</span>
+            </div>
+            <h4 id="pushTitle">🔮 आपका सवाल अधूरा है</h4>
+            <p id="pushBody">डॉ. प्रिया अभी भी इंतज़ार में हैं। App पर 10 मिनट रोज़ — अभी डाउनलोड करें।</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
