@@ -46,36 +46,8 @@ function switchUserState() {
 }
 
 function updateAllBanners() {
-    // Calculate remaining time
-    const total = currentUserState === 'paid' ? FREE_TOTAL : (currentUserState === 'free' ? FREE_TOTAL : GUEST_TOTAL);
-    const remaining = Math.max(0, total - minutesUsedSeconds);
-    const rMin = Math.floor(remaining / 60);
-    const rSec = remaining % 60;
-    const remStr = `${rMin}:${rSec.toString().padStart(2,'0')}`;
-
-    if (isLoggedIn) {
-        // MWeb banner
-        const mTitle = document.getElementById('mwebBannerTitle');
-        const mSub   = document.getElementById('mwebBannerSub');
-        if (mTitle) mTitle.innerHTML = `<span class="banner-loggedin-badge">● वापस आए!</span><br>डॉ. प्रिया इंतज़ार कर रही हैं`;
-        if (mSub)   mSub.textContent  = `⏱ ${remStr} मिनट अभी बाकी हैं — जारी रखें`;
-
-        // App banner
-        const aTitle = document.getElementById('appBannerTitle');
-        const aSub   = document.getElementById('appBannerSub');
-        if (aTitle) aTitle.innerHTML = `<span class="banner-loggedin-badge">● वापस आए!</span><br>डॉ. प्रिया ऑनलाइन हैं`;
-        if (aSub)   aSub.textContent  = `⏱ ${remStr} मिनट अभी बाकी हैं`;
-    } else {
-        const mTitle = document.getElementById('mwebBannerTitle');
-        const mSub   = document.getElementById('mwebBannerSub');
-        if (mTitle) mTitle.textContent = 'भविष्य की उलझन का सटीक जवाब!';
-        if (mSub)   mSub.textContent   = 'डॉ. प्रिया से 5 मिनट फ्री बात करें। 🌟';
-
-        const aTitle = document.getElementById('appBannerTitle');
-        const aSub   = document.getElementById('appBannerSub');
-        if (aTitle) aTitle.textContent = 'आपकी पर्सनल AI ज्योतिषी ऑनलाइन हैं!';
-        if (aSub)   aSub.textContent   = 'रोज़ 10 मिनट फ्री ज्योतिष सलाह पाएं। ✨';
-    }
+    // We no longer overwrite the banner text here because the user requested the banner 
+    // text and typewriter animation to remain identical whether logged in or out.
 }
 
 
@@ -251,15 +223,14 @@ function openGatewayScreen() {
     if (!isLoggedIn) {
         // STATE A: GUEST (NOT LOGGED IN)
         container.innerHTML = `
-            <div style="margin-bottom: 24px;">
-                <h3 style="color:#FFF; font-size:22px; font-weight:900; margin-bottom:8px;">अपनी ${totalMinStr} मिनट की फ्री कॉल शुरू करें!</h3>
-                <p style="color:rgba(255,255,255,0.7); font-size:14px;">डॉ. प्रिया आपकी कुंडली पढ़कर करियर, प्रेम और धन के हर सवाल का सटीक जवाब देंगी। आगे बढ़ने के लिए विवरण दें।</p>
+            <div style="margin-bottom: 20px;">
+                <h3 style="color:#FFF; font-size:18px; font-weight:800; margin-bottom:8px;">अपने जीवन की उलझनों का समाधान पाएं</h3>
+                <p style="color:rgba(255,255,255,0.7); font-size:14px; line-height: 1.5;">डॉ. प्रिया आपकी कुंडली का सटीक विश्लेषण कर करियर, प्रेम और धन से जुड़े हर सवाल का जवाब देंगी।</p>
             </div>
             
-            <div class="trust-chips mb-20">
-                <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> 5 मिन फ्री</span>
-                <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> कोई स्पैम नहीं</span>
-                <span class="trust-chip"><i class="fa-solid fa-check text-gold"></i> 100% सुरक्षित</span>
+            <div class="trust-chips mb-20" style="background: rgba(255,215,0,0.1); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,215,0,0.2);">
+                <span class="trust-chip" style="margin-right: 12px; font-weight: 700; color: #FFD700;"><i class="fa-solid fa-gift"></i> ${totalMinStr} मिनट फ्री कॉल</span>
+                <span class="trust-chip"><i class="fa-solid fa-shield-halved text-gold"></i> 100% सुरक्षित</span>
             </div>
 
             <div class="input-group dark-input mb-15">
