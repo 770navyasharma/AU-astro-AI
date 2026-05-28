@@ -33,7 +33,7 @@ MWeb (5 min/day) ──┐                    ┌── Native App (10 min/day)
 
 ---
 
-# 📋 JIRA CARD 1 — Deferred Deep Linking & Cross-Platform Session Bridging
+# 📋 MODULE 1 — Deferred Deep Linking & Cross-Platform Session Bridging
 
 **Card ID:** AU-ASTRO-001
 **Priority:** P0
@@ -130,7 +130,7 @@ When a MWeb user installs the native app (or already has it), they must land dir
 
 ---
 
-# 📋 JIRA CARD 2 — Agentic Memory: Chat History & User Session Persistence
+# 📋 MODULE 2 — Agentic Memory: Chat History & User Session Persistence
 
 **Card ID:** AU-ASTRO-002
 **Priority:** P0
@@ -235,7 +235,7 @@ Continue naturally. Do not repeat greetings if user has spoken before.
 
 ---
 
-# 📋 JIRA CARD 3 — Analytics: GA4 Events + CDP Event Schema
+# 📋 MODULE 3 — Analytics: GA4 Events + CDP Event Schema
 
 **Card ID:** AU-ASTRO-003
 **Priority:** P1
