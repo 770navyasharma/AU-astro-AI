@@ -23,6 +23,20 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('body-mobile-mode'); // Default to mobile mode
 
     updateAllBanners();
+
+
+    // Explicitly handle phone input focus for older browsers
+    document.querySelectorAll('.phone-input-group').forEach(group => {
+        const input = group.querySelector('.login-input');
+        if (input) {
+            input.addEventListener('focus', () => {
+                group.style.setProperty('border-color', '#FFD700', 'important');
+            });
+            input.addEventListener('blur', () => {
+                group.style.setProperty('border-color', 'rgba(255,255,255,0.1)', 'important');
+            });
+        }
+    });
 });
 
 function switchUserState() {
@@ -54,11 +68,79 @@ function updateAllBanners() {
 // ==========================================
 // SECTION / SCREEN NAVIGATION
 // ==========================================
+
+/**
+ * Central function: syncs ALL filter buttons to the currently visible screen.
+ * Call this any time the visible screen changes.
+ */
+function setActiveFilter(sectionId) {
+    // Clear all active states across every group
+    document.querySelectorAll('.demo-btn, .demo-btn-outline').forEach(b => b.classList.remove('active'));
+
+    // Map sectionId -> which button index in mweb-filters to activate
+    // Buttons: 0=Banner, 1=Start Screen, 2=Splash, 3=Contact, 4=Gateway, 5=Call
+    const filterMap = {
+        'mweb-feed': 0,
+        'mweb-start-login': 1,
+        'mweb-splash': 2,
+        'astro-contact-screen': 3,
+        'unifiedGatewayScreen': 4,
+        'callInterface': 5
+    };
+
+    // Activate the correct Platform button
+    if (['mweb-feed', 'mweb-start-login', 'mweb-splash', 'astro-contact-screen', 'unifiedGatewayScreen', 'callInterface'].includes(sectionId)) {
+        const btn = document.getElementById('mwebSelectBtn');
+        if (btn) btn.classList.add('active');
+        document.getElementById('mweb-filters').style.display = 'block';
+    } else if (sectionId === 'app-feed') {
+        const btn = document.getElementById('appSelectBtn');
+        if (btn) btn.classList.add('active');
+    }
+
+    // Activate the correct Screen button
+    if (mwebScreenMap[sectionId] !== undefined) {
+        const idx = mwebScreenMap[sectionId];
+        const btn = document.querySelectorAll('#mweb-filters .demo-btn-outline')[idx];
+        if (btn) btn.classList.add('active');
+    } else if (sectionId === 'callInterface') {
+        const btn = document.querySelectorAll('#mweb-filters .demo-btn-outline')[5];
+        if (btn) btn.classList.add('active');
+    }
+}
+
 function showSection(sectionId, btnElement) {
     document.querySelectorAll('.view-section').forEach(s => s.classList.add('hidden'));
     document.getElementById('callInterface').classList.add('hidden');
     stopCallTimer();
     closeSidebar();
+
+    // Reset start screen to fresh login state whenever we navigate
+    const sliderContainer = document.querySelector('.login-slider-container');
+    if (sliderContainer) sliderContainer.style.display = '';
+    const bottomSheet = document.querySelector('#mweb-start-login .bottom-sheet');
+    if (bottomSheet) {
+        bottomSheet.style.position = '';
+        bottomSheet.style.top = '';
+        bottomSheet.style.left = '';
+        bottomSheet.style.right = '';
+        bottomSheet.style.bottom = '';
+        bottomSheet.style.borderRadius = '';
+        bottomSheet.style.padding = '';
+        bottomSheet.style.overflowY = '';
+    }
+    const formContainer = document.querySelector('.login-form-container');
+    if (formContainer) { formContainer.style.padding = ''; formContainer.style.margin = ''; }
+    const loggedInSection = document.getElementById('loggedInCallSection');
+    if (loggedInSection) loggedInSection.classList.add('hidden');
+    const loginInput = document.getElementById('loginInputSection');
+    if (loginInput) loginInput.classList.remove('hidden');
+    const otpInput = document.getElementById('otpInputSection');
+    if (otpInput) otpInput.classList.add('hidden');
+    const loginText = document.getElementById('loginMainText');
+    if (loginText) loginText.classList.remove('hidden');
+    const trustBadges = document.getElementById('loginTrustBadges');
+    if (trustBadges) trustBadges.classList.remove('hidden');
 
     // Desktop mode only for web-feed
     if (sectionId === 'web-feed') {
@@ -72,8 +154,34 @@ function showSection(sectionId, btnElement) {
     const target = document.getElementById(sectionId);
     if (target) target.classList.remove('hidden');
 
-    document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
-    if (btnElement) btnElement.classList.add('active');
+    if (sectionId === 'mweb-splash' || sectionId === 'app-splash') {
+        setTimeout(startSplashSlider, 50); // Small delay to ensure display:block before calculating widths
+    }
+    
+    if (sectionId === 'mweb-start-login' || sectionId === 'app-start-login') {
+        setTimeout(startSlider, 50);
+    }
+
+    // Properly mark the clicked button as active
+    if (btnElement && btnElement.classList.contains('demo-btn-outline')) {
+        // Clear other outline buttons
+        const group = btnElement.closest('.demo-btn-group');
+        if (group) {
+            group.querySelectorAll('.demo-btn-outline').forEach(b => b.classList.remove('active'));
+        } else {
+            document.querySelectorAll('.demo-btn-outline').forEach(b => b.classList.remove('active'));
+        }
+        btnElement.classList.add('active');
+    }
+
+    // Sync platform buttons if needed (Mweb vs Native)
+    if (['mweb-feed', 'mweb-start-login', 'mweb-splash', 'astro-contact-screen', 'mweb-dialing', 'mweb-active-call', 'mweb-toast-test-screen', 'mweb-time-over-screen'].includes(sectionId)) {
+        document.getElementById('mwebSelectBtn')?.classList.add('active');
+        document.getElementById('appSelectBtn')?.classList.remove('active');
+    } else if (sectionId.startsWith('app-')) {
+        document.getElementById('mwebSelectBtn')?.classList.remove('active');
+        document.getElementById('appSelectBtn')?.classList.add('active');
+    }
 
     // Track where user came from for "back" navigation
     if (['mweb-feed','app-feed','web-feed'].includes(sectionId)) {
@@ -223,79 +331,97 @@ function openGatewayScreen() {
     if (!isLoggedIn) {
         // STATE A: GUEST (NOT LOGGED IN)
         container.innerHTML = `
-            <div style="margin-bottom: 24px;">
-                <h3 style="color:#FFF; font-size:20px; font-weight:800; margin-bottom:8px;">अपने भविष्य की बातें करें 🌟</h3>
-                <p style="color:#FFD700; font-size:14px; font-weight:700; margin-bottom:12px;">विशेषज्ञता: करियर • विवाह • प्रेम • धन</p>
-                <p style="color:rgba(255,255,255,0.7); font-size:14px; line-height: 1.5;">डॉ. प्रिया आपकी कुंडली का सटीक विश्लेषण कर हर सवाल का जवाब देंगी।</p>
-            </div>
-            
-            <div class="trust-chips mb-20" style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); justify-content: space-between;">
-                <span class="trust-chip" style="font-size: 11px;"><i class="fa-solid fa-gift text-gold"></i> ${totalMinStr} मिनट मुफ़्त</span>
-                <span class="trust-chip" style="font-size: 11px;"><i class="fa-solid fa-shield-halved text-gold"></i> 100% सुरक्षित</span>
-                <span class="trust-chip" style="font-size: 11px;"><i class="fa-solid fa-user-shield text-gold"></i> कोई स्पैम नहीं</span>
+            <!-- STATE A: GUEST (NOT LOGGED IN) -->
+            <div class="gateway-form-card" id="gatewayGuestForm">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color:#111; font-size:18px; font-weight:800; margin-bottom:12px;">अपने भविष्य की बातें करें ✨</h3>
+                    <div class="gateway-trust-row">
+                        <span class="gateway-trust-pill" style="background:#FFF9C4; color:#F57F17; border-color:#FFF59D;">🎁 ${totalMinStr} मिनट मुफ़्त</span>
+                        <span class="gateway-trust-pill" style="background:#E8F5E9; color:#2E7D32; border-color:#C8E6C9;">🛡️ 100% सुरक्षित</span>
+                        <span class="gateway-trust-pill" style="background:#E3F2FD; color:#1565C0; border-color:#BBDEFB;">🤖 सटीक AI विश्लेषण</span>
+                    </div>
+                </div>
+
+                <div class="light-input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="loginNameField" placeholder="अपना नाम दर्ज करें *" class="light-input-field" required>
+                </div>
+
+                <div class="light-input-group mb-20">
+                    <div style="padding: 15px 10px 15px 15px; border-right: 1px solid #E5E7EB; display: flex; align-items: center; gap: 5px; color: #1F2937; font-weight: 600;">
+                        <img src="https://flagcdn.com/w20/in.png" style="width:20px;"> +91
+                    </div>
+                    <input type="tel" id="loginPhoneField" placeholder="मोबाइल नंबर दर्ज करें *" class="light-input-field" style="padding-left: 15px;" required>
+                    <i class="fa-solid fa-lock" style="color: #10B981;"></i>
+                </div>
+                
+                <button class="orange-gradient-btn" onclick="simulateOTPStep()">
+                    OTP भेजें और शुरू करें
+                </button>
+                <p style="text-align: center; font-size: 11px; color: #9CA3AF; margin-top: 15px;">लॉगिन करके आप हमारी नियम व शर्तों से सहमत हैं।</p>
             </div>
 
-            <div class="input-group dark-input mb-15">
-                <i class="fa-solid fa-user text-light" style="padding:16px;"></i>
-                <input type="text" id="loginNameField" placeholder="अपना नाम दर्ज करें *" class="input-field" required>
-            </div>
+            <div class="gateway-form-card hidden" id="gatewayOTPForm">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color:#111; font-size:18px; font-weight:800; margin-bottom:8px;">OTP दर्ज करें 🔐</h3>
+                    <p style="color:#6B7280; font-size:13px;">आपके मोबाइल नंबर पर भेजा गया 4 अंकों का कोड दर्ज करें।</p>
+                </div>
 
-            <div class="input-group dark-input mb-20">
-                <span class="country-code"><img src="https://flagcdn.com/w20/in.png" style="width:16px; margin-right:5px; vertical-align:middle;"> +91</span>
-                <input type="tel" id="loginPhoneField" placeholder="मोबाइल नंबर दर्ज करें *" class="input-field" required>
-                <i class="fa-solid fa-lock text-light" style="padding:16px;"></i>
+                <div class="otp-boxes">
+                    <input type="tel" maxlength="1" class="otp-box">
+                    <input type="tel" maxlength="1" class="otp-box">
+                    <input type="tel" maxlength="1" class="otp-box">
+                    <input type="tel" maxlength="1" class="otp-box">
+                </div>
+                
+                <button class="orange-gradient-btn" onclick="simulateLogin()">
+                    सत्यापित करें और शुरू करें
+                </button>
+                <button class="cta-btn text-btn full-width mt-10" style="color: #9CA3AF;" onclick="goBackToFeed()">
+                    वापस जाएं
+                </button>
             </div>
-            
-            <button class="cta-btn yellow-btn full-width" onclick="simulateLogin()">
-                OTP भेजें और शुरू करें
-            </button>
         `;
     } else {
         if (remaining > 0) {
             // STATE B: LOGGED IN (TIME REMAINING)
-            // STATE B: LOGGED IN (TIME REMAINING)
             const isReturning = minutesUsedSeconds > 0;
             const badgeText = isReturning ? `⏱ ${remStr} मिनट अभी बाकी हैं` : `⏱ ${totalMinStr} मिनट बिल्कुल मुफ़्त`;
+            const headlineText = 'अपने भविष्य के हर सवाल का जवाब जानें 🌟';
             const btnText = isReturning ? 'सेशन जारी रखें' : 'सेशन शुरू करें';
 
             container.innerHTML = `
-                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 20px;">
-                    <h3 style="color:#FFF; font-size:24px; font-weight:900; margin-bottom:12px; line-height: 1.3;">अपने भविष्य के हर सवाल का जवाब जानें 🌟</h3>
-                    <p style="color:rgba(255,255,255,0.7); font-size:15px; margin-bottom:24px; line-height: 1.6;">डॉ. प्रिया आपकी कुंडली का सटीक विश्लेषण कर हर सवाल का जवाब देंगी।</p>
-                    
-                    <div class="start-timer-badge" style="margin-bottom:24px; align-self: flex-start; border: 1px solid rgba(255,215,0,0.3); background: rgba(255,215,0,0.1);">
-                        <span style="color:#FFD700; font-weight: 700;">${badgeText}</span>
-                    </div>
-
-                    <div style="text-align: center; margin-bottom: 12px; color: rgba(255,255,255,0.6); font-size: 13px; background: rgba(255,255,255,0.05); padding: 8px; border-radius: 6px;">
-                        <i class="fa-solid fa-lock text-green"></i> आप सुरक्षित रूप से लॉग इन हैं। आपकी जानकारी 100% सुरक्षित है।
-                    </div>
-
-                    <button class="cta-btn yellow-btn full-width mb-10" onclick="startSessionNow()">
-                        <i class="fa-solid fa-phone-volume call-ring-anim"></i> ${btnText}
-                    </button>
-                    <button class="cta-btn text-btn full-width" style="color:rgba(255,255,255,0.6);" onclick="goBackToFeed()">
-                        वापस जाएं
-                    </button>
+            <div class="gateway-form-card" style="text-align: center;">
+                <h3 style="color:#111; font-size:18px; font-weight:800; margin-bottom:15px;">${headlineText}</h3>
+                
+                <div class="mb-20">
+                    <span style="background:#FFF9C4; color:#F57F17; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 20px; border: 1px solid #FFF59D; display: inline-block; margin-bottom: 15px;">${badgeText}</span>
+                    <p style="color:#2E7D32; font-size: 13px; font-weight: 600;"><i class="fa-solid fa-shield-check"></i> आप सुरक्षित रूप से लॉग इन हैं।</p>
                 </div>
-            `;
+
+                <button class="orange-gradient-btn mb-15" onclick="startSessionNow()">
+                    ${btnText} <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button class="cta-btn text-btn full-width" style="color: #6B7280;" onclick="goBackToFeed()">
+                    वापस जाएं (Back)
+                </button>
+            </div>
+        `;
         } else {
             // STATE C: LOGGED IN (TIME OVER)
             if (!isAppFlow) {
-                // If MWeb and time is over, force the Download App bottom sheet instead of Gateway State C
                 document.getElementById('mwebAppDownloadSheet').classList.remove('hidden');
-                return; // Stop execution here, don't show the gateway screen
+                return;
             } else {
-                // If App and time is over, force the Feedback bottom sheet instead of Gateway State C
                 document.getElementById('appTimeOverFeedbackSheet').classList.remove('hidden');
-                return; // Stop execution here, don't show the gateway screen
+                return;
             }
 
             container.innerHTML = `
-                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 20px; text-align: center;">
+                <div class="gateway-form-card" style="text-align: center;">
                     <i class="fa-solid fa-hourglass-end" style="font-size: 48px; color: #EF4444; margin-bottom: 20px;"></i>
-                    <h3 style="color:#FFF; font-size:24px; font-weight:900; margin-bottom:12px;">आज का समय समाप्त हुआ! 🌅</h3>
-                    <p style="color:rgba(255,255,255,0.7); font-size:15px; margin-bottom:24px;">आपकी ${totalMinStr} मिनट की फ्री कॉल लिमिट पूरी हो चुकी है। कल फिर से आएं और अपने भविष्य के बारे में जानें।</p>
+                    <h3 style="color:#111; font-size:24px; font-weight:900; margin-bottom:12px;">आज का समय समाप्त हुआ! 🌅</h3>
+                    <p style="color:#6B7280; font-size:15px; margin-bottom:24px;">आपकी ${totalMinStr} मिनट की फ्री कॉल लिमिट पूरी हो चुकी है। कल फिर से आएं और अपने भविष्य के बारे में जानें।</p>
                     
                     <button class="cta-btn dark-btn full-width mt-auto" onclick="goBackToFeed()">
                         वापस जाएं (Back to Home)
@@ -321,8 +447,8 @@ let secondsElapsed = 0;
 
 function openCall() {
     document.querySelectorAll('.view-section').forEach(s => s.classList.add('hidden'));
-    document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('callInterface').classList.remove('hidden');
+    setActiveFilter('callInterface');
     
     // Check if user is returning
     const isReturning = minutesUsedSeconds > 0;
@@ -627,17 +753,27 @@ function simulatePush(segment) {
 // TYPEWRITER ANIMATION FOR BANNERS
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    const words = ["करियर", "धन", "प्रेम", "विवाह", "भविष्य"];
+    // These words all fit after "जानिए अपना ___" grammatically
+    const words = [
+        'करियर भविष्य',   // जानिए अपना करियर भविष्य
+        'प्रेम का राज',     // जानिए अपना प्रेम का राज
+        'धन का योग',      // जानिए अपना धन का योग
+        'विवाह मुहूर्त', // जानिए अपना विवाह मुहूर्त
+        'संतान सुख',      // जानिए अपना संतान सुख
+        'ग्रह दोष',         // जानिए अपना ग्रह दोष
+        'शत्रु से बचाव',   // जानिए अपना शत्रु से बचाव
+        'भाग्य का रहस्य',  // जानिए अपना भाग्य का रहस्य
+    ];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
 
-    function type() {
-        const elements = document.querySelectorAll('.typewriter-text');
-        if (!elements.length) return;
+    function typeWord() {
+        const els = document.querySelectorAll('.tw-glow-word');
+        if (!els.length) return;
 
         const currentWord = words[wordIndex];
-        
+
         if (isDeleting) {
             charIndex--;
         } else {
@@ -645,26 +781,595 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const textToDisplay = currentWord.substring(0, charIndex);
-        
-        elements.forEach(el => {
-            el.textContent = textToDisplay;
-        });
+        els.forEach(el => { el.textContent = textToDisplay; });
 
-        let typeSpeed = isDeleting ? 50 : 100;
+        let speed = isDeleting ? 45 : 85;
 
         if (!isDeleting && charIndex === currentWord.length) {
-            // Pause at the end of a word
-            typeSpeed = 1500;
+            speed = 2000; // Hold at full word
             isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             wordIndex = (wordIndex + 1) % words.length;
-            typeSpeed = 500; // Pause before typing next word
+            speed = 400;
         }
 
-        setTimeout(type, typeSpeed);
+        setTimeout(typeWord, speed);
     }
 
-    // Start typewriter
-    setTimeout(type, 1000);
+    setTimeout(typeWord, 1000);
 });
+
+/* ==========================================
+   NEW MWEB REDESIGN LOGIC
+   ========================================== */
+
+function selectPlatform(platform) {
+    if (platform === 'mweb') {
+        document.getElementById('mweb-filters').style.display = 'block';
+        document.getElementById('app-filters').style.display = 'none';
+        showSection('mweb-feed', document.querySelector('#mweb-filters .demo-btn-outline'));
+    } else {
+        document.getElementById('mweb-filters').style.display = 'none';
+        document.getElementById('app-filters').style.display = 'block';
+        showSection('app-feed', document.querySelector('#app-filters .demo-btn-outline'));
+    }
+}
+
+function startDemoFlow() {
+    selectPlatform('mweb');
+}
+
+// Override banner click to go to start screen for Mweb
+function handleBannerClick(source) {
+    if (source === 'mweb') {
+        showSection('mweb-start-login');
+        // startSlider is now called automatically by showSection
+    } else if (source === 'app') {
+        showSection('app-splash');
+    } else if (source === 'desktop') {
+        openGatewayScreen();
+    }
+}
+
+let currentAstro = 'priya';
+
+const astroDetails = {
+    priya: { name: 'डॉ. प्रिया वर्मा', image: 'assets/dr_priya_verma.png', specialty: 'करियर · प्रेम · रिश्ते विशेषज्ञ', tagline: '⭐ 4.9 · 10,000+ सेशन' },
+    ajay: { name: 'डॉ. अजय शर्मा', image: 'assets/dr_ajay.png', specialty: 'व्यापार · धन · भविष्य विशेषज्ञ', tagline: '⭐ 4.8 · 8,500+ सेशन' },
+    kirti: { name: 'डॉ. कीर्ति सिंह', image: 'assets/dr_kirti.png', specialty: 'विवाह · परिवार · संतान विशेषज्ञ', tagline: '⭐ 4.9 · 12,000+ सेशन' }
+};
+
+// Syncs the Ready-to-Call card in loggedInCallSection with the current slider
+const sliderAstroOrder = ['priya', 'ajay', 'kirti'];
+function syncReadyCallCard() {
+    const astroId = sliderAstroOrder[sliderIndex] || 'priya';
+    const details = astroDetails[astroId];
+    if (!details) return;
+
+    const avatarEl = document.getElementById('readyCallAstroAvatar');
+    const nameEl = document.getElementById('readyCallAstroName');
+    const specialtyEl = document.getElementById('readyCallAstroSpecialty');
+    const taglineEl = document.getElementById('readyCallAstroTagline');
+
+    if (avatarEl) avatarEl.src = details.image;
+    if (nameEl) nameEl.textContent = details.name;
+    if (specialtyEl) specialtyEl.textContent = details.specialty;
+    if (taglineEl) taglineEl.textContent = details.tagline;
+}
+
+let sliderIndex = 0;
+let sliderInterval;
+let sliderTouchStartX = 0;
+let sliderMouseStartX = 0;
+let sliderIsDragging = false;
+
+function getActiveSlider() {
+    return document.querySelector('.view-section:not(.hidden) .login-slider');
+}
+
+function startSlider() {
+    const slider = getActiveSlider();
+    if (!slider) return;
+
+    slider.scrollTo({ left: 0, behavior: 'instant' });
+    sliderIndex = 0;
+
+    clearInterval(sliderInterval);
+    sliderInterval = setInterval(() => scrollSlider(1), 5000);
+
+    // Remove old listeners to avoid duplicates
+    slider.removeEventListener('touchstart', sliderTouchStart);
+    slider.removeEventListener('touchend', sliderTouchEnd);
+    slider.removeEventListener('mousedown', sliderMouseDown);
+    slider.removeEventListener('mouseup', sliderMouseUp);
+
+    // Touch (mobile)
+    slider.addEventListener('touchstart', sliderTouchStart, { passive: true });
+    slider.addEventListener('touchend', sliderTouchEnd, { passive: true });
+
+    // Mouse drag (desktop)
+    slider.addEventListener('mousedown', sliderMouseDown);
+    slider.addEventListener('mouseup', sliderMouseUp);
+}
+
+function sliderTouchStart(e) {
+    sliderTouchStartX = e.changedTouches[0].screenX;
+}
+function sliderTouchEnd(e) {
+    const diff = sliderTouchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 30) scrollSlider(diff > 0 ? 1 : -1);
+}
+function sliderMouseDown(e) {
+    sliderMouseStartX = e.clientX;
+    sliderIsDragging = true;
+}
+function sliderMouseUp(e) {
+    if (!sliderIsDragging) return;
+    sliderIsDragging = false;
+    const diff = sliderMouseStartX - e.clientX;
+    if (Math.abs(diff) > 30) scrollSlider(diff > 0 ? 1 : -1);
+}
+
+
+function scrollSlider(dir) {
+    const slider = getActiveSlider();
+    if (!slider) return;
+    const cards = slider.querySelectorAll('.slider-card');
+    const scrollAmount = slider.clientWidth;
+    
+    sliderIndex += dir;
+    if (sliderIndex >= cards.length) {
+        sliderIndex = 0;
+    } else if (sliderIndex < 0) {
+        sliderIndex = cards.length - 1;
+    }
+    
+    // Reset interval when manual arrow is clicked
+    clearInterval(sliderInterval);
+    sliderInterval = setInterval(() => {
+        scrollSlider(1);
+    }, 5000);
+    
+    slider.scrollTo({ left: sliderIndex * scrollAmount, behavior: 'smooth' });
+    syncReadyCallCard();
+}
+
+function onSliderScroll(event) {
+    const slider = event ? event.target : getActiveSlider();
+    if (!slider) return;
+    
+    // Check if slider is visible before doing math
+    if (slider.clientWidth === 0) return;
+    
+    const index = Math.round(slider.scrollLeft / slider.clientWidth);
+    if (index !== sliderIndex) {
+        sliderIndex = index;
+        updateSliderDots();
+        syncReadyCallCard();
+        // Reset auto-slide timer on manual swipe
+        clearInterval(sliderInterval);
+        sliderInterval = setInterval(() => scrollSlider(1), 5000);
+    }
+}
+
+function updateSliderDots() {
+    const activeDotsContainer = document.querySelector('.view-section:not(.hidden) .slider-dots');
+    if (!activeDotsContainer) return;
+    const dots = activeDotsContainer.querySelectorAll('.dot');
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === sliderIndex);
+    });
+}
+
+function selectAstrologer(astroId) {
+    currentAstro = astroId;
+    
+    const details = astroDetails[astroId];
+    if (details) {
+        document.querySelectorAll('img').forEach(img => {
+            if (img.src.includes('dr_priya_verma') || img.src.includes('dr_ajay') || img.src.includes('dr_kirti')) {
+                // Update all astrologer images across the app, except in the slider and contact list
+                if(!img.closest('.slider-image-box') && !img.closest('#astro-contact-screen')) { 
+                    img.src = details.image;
+                }
+            }
+        });
+        
+        document.querySelectorAll('.bubble-header, #appBannerTitle').forEach(el => {
+            if (el.classList.contains('bubble-header')) {
+                el.textContent = details.name;
+            }
+        });
+    }
+
+    // Removed scrollIntoView to prevent breaking fixed layout
+    const nameField = document.querySelector('.login-input');
+    if(nameField) setTimeout(() => nameField.focus(), 100);
+}
+
+// New function: select astrologer from contact list and go straight to call screen
+let currentCallTimer = null;
+let currentCallSeconds = 0;
+
+function selectAndCallAstrologer(astroId) {
+    if (astroId === 'ajay') return; // Do nothing if offline
+
+    selectAstrologer(astroId);
+    
+    const details = astroDetails[astroId];
+    if (!details) return;
+
+    // Populate Dialing screen
+    const dialingAvatar = document.getElementById('dialing-avatar');
+    const dialingName = document.getElementById('dialing-name');
+    if (dialingAvatar) dialingAvatar.src = details.image;
+    if (dialingName) dialingName.textContent = details.name;
+    
+    // Populate Active Call screen
+    const activeCallAvatar = document.getElementById('active-call-avatar');
+    const activeCallName = document.getElementById('active-call-name');
+    const activeCallExpertise = document.getElementById('active-call-expertise');
+    const chatAvatar1 = document.getElementById('active-call-chat-avatar-1');
+    const chatAvatar2 = document.getElementById('active-call-chat-avatar-2');
+
+    if (activeCallAvatar) activeCallAvatar.src = details.image;
+    if (activeCallName) activeCallName.textContent = details.name;
+    if (activeCallExpertise) activeCallExpertise.textContent = details.specialty;
+    if (chatAvatar1) chatAvatar1.src = details.image;
+    if (chatAvatar2) chatAvatar2.src = details.image;
+
+    // Reset UI state
+    isMuted = false;
+    isSpeaker = true;
+    updateMuteUI();
+    updateInterruptUI();
+
+    showSection('mweb-dialing');
+    
+    // Simulate connection delay
+    setTimeout(() => {
+        if (!document.getElementById('mweb-dialing').classList.contains('hidden')) {
+            showSection('mweb-active-call');
+            startCallTimer();
+            if (!isMuted) {
+                const visualizer = document.getElementById('audio-visualizer');
+                if (visualizer) visualizer.classList.add('active');
+            }
+        }
+    }, 3000);
+}
+
+function endCall() {
+    clearInterval(currentCallTimer);
+    const visualizer = document.getElementById('audio-visualizer');
+    if (visualizer) visualizer.classList.remove('active');
+    showSection('astro-contact-screen');
+}
+
+function startCallTimer() {
+    clearInterval(currentCallTimer);
+    currentCallSeconds = 0;
+    const timerDisplay = document.getElementById('call-timer');
+    if (timerDisplay) timerDisplay.textContent = "00:00";
+    
+    currentCallTimer = setInterval(() => {
+        currentCallSeconds++;
+        const mins = String(Math.floor(currentCallSeconds / 60)).padStart(2, '0');
+        const secs = String(currentCallSeconds % 60).padStart(2, '0');
+        if (timerDisplay) timerDisplay.textContent = `${mins}:${secs}`;
+        
+        // Show toast at 4 minutes (240 seconds)
+        if (currentCallSeconds === 240) {
+            showOneMinToast();
+        }
+    }, 1000);
+}
+
+function showOneMinToast() {
+    try {
+        const container = document.getElementById('mweb-active-call');
+        if (!container) return;
+        
+        // Try to play sound
+        try {
+            const audio = document.getElementById('toast-sound');
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play().catch(e => console.log('Audio error:', e));
+            }
+        } catch(e) {}
+        
+        // Remove existing if any
+        const existing = document.getElementById('dynamic-call-toast');
+        if (existing) existing.remove();
+        
+        // Create new toast
+        const toast = document.createElement('div');
+        toast.id = 'dynamic-call-toast';
+        toast.style.cssText = `
+            position: absolute;
+            left: 5%;
+            width: 90%;
+            background: linear-gradient(135deg, #FF9800 0%, #FF5722 100%);
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            z-index: 2147483647;
+            top: 50%;
+            transform: translateY(-50%) scale(0.8);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        `;
+        
+        toast.innerHTML = `
+            <div style="background: rgba(255,255,255,0.2); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i class="fa-solid fa-hourglass-half" style="color: #FFF; font-size: 16px;"></i>
+            </div>
+            <div style="flex: 1;">
+                <h4 style="color: #FFF; font-size: 14px; font-weight: 800; margin: 0 0 2px;">1 मिनट शेष</h4>
+                <p style="color: rgba(255,255,255,0.9); font-size: 11px; margin: 0;">आपके फ्री परामर्श में केवल 1 मिनट शेष है।</p>
+            </div>
+        `;
+        
+        container.appendChild(toast);
+        
+        // Trigger animation (fade and scale in at center)
+        setTimeout(() => {
+            toast.style.transform = 'translateY(-50%) scale(1)';
+            toast.style.opacity = '1';
+        }, 50);
+        
+        // Hide and remove after 5s
+        setTimeout(() => {
+            toast.style.transform = 'translateY(-50%) scale(0.8)';
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 500);
+        }, 5000);
+    } catch(err) {
+        console.error('Toast Error:', err);
+    }
+}
+
+let isMuted = false;
+function toggleMute() {
+    isMuted = !isMuted;
+    updateMuteUI();
+}
+function updateMuteUI() {
+    const btn = document.getElementById('mute-btn');
+    const icon = document.getElementById('mute-icon');
+    const visualizer = document.getElementById('audio-visualizer');
+    if (!btn || !icon || !visualizer) return;
+    
+    if (isMuted) {
+        btn.style.background = '#EF4444'; // Red when muted
+        btn.style.boxShadow = '0 4px 10px rgba(239,68,68,0.3)';
+        icon.className = 'fa-solid fa-microphone-slash';
+        btn.classList.remove('mic-ripple');
+        visualizer.classList.remove('active');
+    } else {
+        btn.style.background = '#10B981';
+        btn.style.boxShadow = '0 4px 10px rgba(16,185,129,0.4)';
+        icon.className = 'fa-solid fa-microphone';
+        btn.classList.add('mic-ripple');
+        visualizer.classList.add('active');
+    }
+}
+
+let isSpeaker = true;
+function toggleInterrupt() {
+    isSpeaker = !isSpeaker;
+    updateInterruptUI();
+}
+function updateInterruptUI() {
+    const btn = document.getElementById('interrupt-btn');
+    const icon = document.getElementById('interrupt-icon');
+    if (!btn || !icon) return;
+    
+    if (isSpeaker) {
+        btn.style.background = '#10B981';
+        btn.style.boxShadow = '0 4px 10px rgba(16,185,129,0.4)';
+        icon.className = 'fa-solid fa-volume-high';
+    } else {
+        btn.style.background = '#444';
+        btn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
+        icon.className = 'fa-solid fa-volume-xmark';
+    }
+}
+
+const originalShowSection = window.showSection;
+window.showSection = function(sectionId, btn) {
+    if(originalShowSection) originalShowSection(sectionId, btn);
+    if (sectionId === 'mweb-start-login') {
+        startSlider();
+    } else {
+        clearInterval(sliderInterval);
+    }
+};
+
+function showOtpSection() {
+    document.getElementById('loginInputSection').classList.add('hidden');
+    
+    const trustBadges = document.getElementById('loginTrustBadges');
+    if (trustBadges) trustBadges.classList.add('hidden');
+    
+    const mainText = document.getElementById('loginMainText');
+    if (mainText) mainText.classList.add('hidden');
+
+    document.getElementById('otpInputSection').classList.remove('hidden');
+
+    // Simulate auto-reading SMS and filling OTP
+    setTimeout(() => {
+        const boxes = document.querySelectorAll('.otp-box');
+        if (boxes.length === 4) {
+            boxes[0].value = '8';
+            boxes[1].value = '5';
+            boxes[2].value = '2';
+            boxes[3].value = '9';
+            
+            // Auto-submit after filling
+            setTimeout(() => {
+                verifyOtpAndProceed();
+            }, 800);
+        }
+    }, 1500);
+}
+
+// Jump directly to showing the Login input fields (used by filter button '3. Login Screen')
+function showLoginStep() {
+    // Make sure the login screen is visible and reset to login input state
+    const loginInput = document.getElementById('loginInputSection');
+    const otpInput = document.getElementById('otpInputSection');
+    const trustBadges = document.getElementById('loginTrustBadges');
+    const mainText = document.getElementById('loginMainText');
+    const callSection = document.getElementById('loggedInCallSection');
+
+    if (loginInput) loginInput.classList.remove('hidden');
+    if (otpInput) otpInput.classList.add('hidden');
+    if (trustBadges) trustBadges.classList.remove('hidden');
+    if (mainText) mainText.classList.remove('hidden');
+    if (callSection) callSection.classList.add('hidden');
+
+    // Update filter to show '3. Login Screen'
+    document.querySelectorAll('.demo-btn, .demo-btn-outline').forEach(b => b.classList.remove('active'));
+    const mwebBtn = document.getElementById('mwebSelectBtn');
+    if (mwebBtn) mwebBtn.classList.add('active');
+    const loginFilterBtn = document.querySelectorAll('#mweb-filters .demo-btn-outline')[1];
+    if (loginFilterBtn) loginFilterBtn.classList.add('active');
+}
+
+function moveToNextOtp(current, nextFieldID) {
+    if (current.value.length >= current.maxLength) {
+        if(nextFieldID) {
+            document.getElementById(nextFieldID).focus();
+        }
+    }
+}
+
+function verifyOtpAndProceed() {
+    // Navigate to the brand new separate Start Screen
+    showSection('astro-contact-screen', null);
+    // Mark the Start Screen filter button as active
+    setActiveFilter('astro-contact-screen');
+}
+
+// Device Mockup Toggle
+function toggleMockup(os) {
+    const noMockupBtn = document.getElementById('btn-no-mockup');
+    const iosMockupBtn = document.getElementById('btn-ios-mockup');
+    const androidMockupBtn = document.getElementById('btn-android-mockup');
+    
+    if(noMockupBtn) noMockupBtn.classList.remove('active');
+    if(iosMockupBtn) iosMockupBtn.classList.remove('active');
+    if(androidMockupBtn) androidMockupBtn.classList.remove('active');
+    
+    // Apply to phone-stage wrapper so chrome renders OUTSIDE overflow:hidden
+    const stage = document.getElementById('phoneStage');
+    if (stage) {
+        stage.classList.remove('device-ios', 'device-android');
+        if (os === 'ios') stage.classList.add('device-ios');
+        else if (os === 'android') stage.classList.add('device-android');
+    }
+
+    if (os === 'none' && noMockupBtn) noMockupBtn.classList.add('active');
+    else if (os === 'ios' && iosMockupBtn) iosMockupBtn.classList.add('active');
+    else if (os === 'android' && androidMockupBtn) androidMockupBtn.classList.add('active');
+}
+
+// ==========================================
+// MWEB SPLASH SCREEN LOGIC
+// ==========================================
+let splashIndex = 0;
+let splashInterval;
+let splashTouchStartX = 0;
+let splashMouseStartX = 0;
+let splashIsDragging = false;
+
+function getActiveSplashSlider() {
+    return document.querySelector('.view-section:not(.hidden) .splash-slider');
+}
+
+function startSplashSlider() {
+    const slider = getActiveSplashSlider();
+    if (!slider) return;
+
+    slider.scrollTo({ left: 0, behavior: 'instant' });
+    splashIndex = 0;
+    updateSplashDots();
+
+    // Manual swipe disabled per user request
+}
+
+function splashTouchStart(e) {
+    splashTouchStartX = e.changedTouches[0].screenX;
+}
+function splashTouchEnd(e) {
+    const diff = splashTouchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 30) scrollSplash(diff > 0 ? 1 : -1);
+}
+function splashMouseDown(e) {
+    splashMouseStartX = e.clientX;
+    splashIsDragging = true;
+}
+function splashMouseUp(e) {
+    if (!splashIsDragging) return;
+    splashIsDragging = false;
+    const diff = splashMouseStartX - e.clientX;
+    if (Math.abs(diff) > 30) scrollSplash(diff > 0 ? 1 : -1);
+}
+
+function scrollSplash(dir) {
+    const slider = getActiveSplashSlider();
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.splash-slide');
+    const scrollAmount = slider.clientWidth;
+    
+    splashIndex += dir;
+    if (splashIndex >= slides.length) {
+        splashIndex = 0;
+    } else if (splashIndex < 0) {
+        splashIndex = slides.length - 1;
+    }
+    
+    slider.scrollTo({ left: splashIndex * scrollAmount, behavior: 'smooth' });
+}
+
+function onSplashScroll(event) {
+    const slider = event ? event.target : getActiveSplashSlider();
+    if (!slider || slider.clientWidth === 0) return;
+    const index = Math.round(slider.scrollLeft / slider.clientWidth);
+    if (index !== splashIndex) {
+        splashIndex = index;
+        updateSplashDots();
+    }
+}
+
+function updateSplashDots() {
+    const activeDotsContainer = document.querySelector('.view-section:not(.hidden) .splash-dots');
+    if (!activeDotsContainer) return;
+    const dots = activeDotsContainer.querySelectorAll('.splash-dot');
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === splashIndex);
+    });
+}
+
+function splashGoBack() {
+    if (splashIndex > 0) {
+        scrollSplash(-1);
+    } else {
+        goBackToFeed();
+    }
+}
+
+function skipSplash() {
+    if (document.getElementById('mwebSelectBtn').classList.contains('active')) {
+        showSection('mweb-start-login');
+    } else {
+        showSection('app-start-login');
+    }
+}
