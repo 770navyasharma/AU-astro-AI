@@ -802,17 +802,18 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 55%;
+    height: auto;
+    min-height: 45%;
     background: linear-gradient(180deg, #1A1A2E 0%, #0B0B1A 100%);
     border-radius: 35px 35px 0 0;
     z-index: 10;
-    padding: 20px 15px 10px;
+    padding: 25px 24px 35px;
     box-shadow: 0 -15px 40px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
     border-top: 1px solid rgba(255,215,0,0.2);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .slider-dots {
@@ -872,7 +873,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 
 .hanging-cta {
     position: absolute;
-    bottom: 110px;
+    bottom: 75px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -917,7 +918,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 
 .slider-overlay-text {
     position: absolute;
-    bottom: 165px;
+    bottom: 125px;
     left: 0;
     width: 100%;
     text-align: center;
@@ -944,7 +945,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     justify-content: center;
     gap: 8px;
     position: absolute;
-    bottom: 25px;
+    bottom: 15px;
     width: 100%;
     z-index: 10;
 }
@@ -1598,4 +1599,49 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 .no-scrollbar {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+}
+
+#mweb-start-login .hanging-cta,
+#app-start-login .hanging-cta {
+    bottom: 120px;
+}
+#mweb-start-login .slider-overlay-text,
+#app-start-login .slider-overlay-text {
+    bottom: 170px;
+}
+
+/* ==========================================
+   APP FEEDBACK SHEET STYLES
+   ========================================== */
+.emoji-btn {
+    font-size: 38px;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+    opacity: 0.6;
+    user-select: none;
+    padding: 5px;
+    border-radius: 50%;
+    transform: scale(0.9);
+}
+.emoji-btn.active {
+    transform: scale(1.3);
+    opacity: 1;
+    background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,215,0,0) 70%);
+}
+.feedback-tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+.feedback-tag.active {
+    color: #111827;
+    background: #FFD700;
+    border-color: #FFD700;
+    font-weight: 800;
 }

@@ -158,7 +158,7 @@ function showSection(sectionId, btnElement) {
         setTimeout(startSplashSlider, 50); // Small delay to ensure display:block before calculating widths
     }
     
-    if (sectionId === 'mweb-start-login' || sectionId === 'app-start-login') {
+    if (sectionId === 'mweb-start-login' || sectionId === 'app-start-login' || sectionId === 'mweb-logged-in-splash') {
         setTimeout(startSlider, 50);
     }
 
@@ -516,13 +516,33 @@ function confirmEndCall() {
 }
 
 function startCallTimer() {
-    secondsElapsed = 0;
-    updateTimerDisplay();
-
-    callTimerInterval = setInterval(() => {
-        secondsElapsed++;
-        updateTimerDisplay();
-        checkTimeLimits();
+    clearInterval(currentCallTimer);
+    currentCallSeconds = 0;
+    
+    // Check if on app
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const maxTime = isApp ? 600 : 300;
+    
+    updateCallTimerUI();
+    
+    currentCallTimer = setInterval(() => {
+        currentCallSeconds++;
+        updateCallTimerUI();
+        
+        // 1 Minute Warning
+        if (currentCallSeconds === maxTime - 60) {
+            showWarning4MinModal(); // Reusing the same 1-min warning modal UI
+        }
+        
+        // End of call
+        if (currentCallSeconds >= maxTime) {
+            clearInterval(currentCallTimer);
+            if (isApp) {
+                showAppFeedbackSheet();
+            } else {
+                showStop5MinModal();
+            }
+        }
     }, 1000);
 }
 
@@ -805,6 +825,16 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================== */
 
 function selectPlatform(platform) {
+    const mwebBtn = document.getElementById('mwebSelectBtn');
+    const appBtn = document.getElementById('appSelectBtn');
+    
+    if (mwebBtn && appBtn) {
+        mwebBtn.classList.remove('active');
+        appBtn.classList.remove('active');
+        if (platform === 'mweb') mwebBtn.classList.add('active');
+        if (platform === 'app') appBtn.classList.add('active');
+    }
+
     if (platform === 'mweb') {
         document.getElementById('mweb-filters').style.display = 'block';
         document.getElementById('app-filters').style.display = 'none';
@@ -993,48 +1023,57 @@ let currentCallTimer = null;
 let currentCallSeconds = 0;
 
 function selectAndCallAstrologer(astroId) {
-    if (astroId === 'ajay') return; // Do nothing if offline
+    if (astroId === "ajay") return;
 
     selectAstrologer(astroId);
     
     const details = astroDetails[astroId];
     if (!details) return;
 
-    // Populate Dialing screen
-    const dialingAvatar = document.getElementById('dialing-avatar');
-    const dialingName = document.getElementById('dialing-name');
-    if (dialingAvatar) dialingAvatar.src = details.image;
-    if (dialingName) dialingName.textContent = details.name;
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
+
+    const dialingScreen = document.getElementById(prefix + "dialing");
+    const callScreen = document.getElementById(prefix + "active-call");
+
+    if (dialingScreen) {
+        const avatar = dialingScreen.querySelector("#dialing-avatar");
+        const name = dialingScreen.querySelector("#dialing-name");
+        if (avatar) avatar.src = details.image;
+        if (name) name.textContent = details.name;
+    }
     
-    // Populate Active Call screen
-    const activeCallAvatar = document.getElementById('active-call-avatar');
-    const activeCallName = document.getElementById('active-call-name');
-    const activeCallExpertise = document.getElementById('active-call-expertise');
-    const chatAvatar1 = document.getElementById('active-call-chat-avatar-1');
-    const chatAvatar2 = document.getElementById('active-call-chat-avatar-2');
+    if (callScreen) {
+        const activeCallAvatar = callScreen.querySelector("#active-call-avatar");
+        const activeCallName = callScreen.querySelector("#active-call-name");
+        const activeCallExpertise = callScreen.querySelector("#active-call-expertise");
+        const chatAvatar1 = callScreen.querySelector("#active-call-chat-avatar-1");
+        const chatAvatar2 = callScreen.querySelector("#active-call-chat-avatar-2");
 
-    if (activeCallAvatar) activeCallAvatar.src = details.image;
-    if (activeCallName) activeCallName.textContent = details.name;
-    if (activeCallExpertise) activeCallExpertise.textContent = details.specialty;
-    if (chatAvatar1) chatAvatar1.src = details.image;
-    if (chatAvatar2) chatAvatar2.src = details.image;
+        if (activeCallAvatar) activeCallAvatar.src = details.image;
+        if (activeCallName) activeCallName.textContent = details.name;
+        if (activeCallExpertise) activeCallExpertise.textContent = details.specialty;
+        if (chatAvatar1) chatAvatar1.src = details.image;
+        if (chatAvatar2) chatAvatar2.src = details.image;
+    }
 
-    // Reset UI state
     isMuted = false;
     isSpeaker = true;
     updateMuteUI();
     updateInterruptUI();
 
-    showSection('mweb-dialing');
+    showSection(prefix + "dialing");
     
-    // Simulate connection delay
     setTimeout(() => {
-        if (!document.getElementById('mweb-dialing').classList.contains('hidden')) {
-            showSection('mweb-active-call');
+        const d = document.getElementById(prefix + "dialing");
+        if (d && !d.classList.contains("hidden")) {
+            showSection(prefix + "active-call");
             startCallTimer();
             if (!isMuted) {
-                const visualizer = document.getElementById('audio-visualizer');
-                if (visualizer) visualizer.classList.add('active');
+                if (callScreen) {
+                    const visualizer = callScreen.querySelector("#audio-visualizer");
+                    if (visualizer) visualizer.classList.add("active");
+                }
             }
         }
     }, 3000);
@@ -1042,26 +1081,43 @@ function selectAndCallAstrologer(astroId) {
 
 function endCall() {
     clearInterval(currentCallTimer);
-    const visualizer = document.getElementById('audio-visualizer');
-    if (visualizer) visualizer.classList.remove('active');
-    showSection('astro-contact-screen');
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
+    const callScreen = document.getElementById(prefix + "active-call");
+    if (callScreen) {
+        const visualizer = callScreen.querySelector("#audio-visualizer");
+        if (visualizer) visualizer.classList.remove("active");
+    }
+    showSection("astro-contact-screen");
 }
 
 function startCallTimer() {
     clearInterval(currentCallTimer);
     currentCallSeconds = 0;
-    const timerDisplay = document.getElementById('call-timer');
-    if (timerDisplay) timerDisplay.textContent = "00:00";
+    
+    // Check if on app
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const maxTime = isApp ? 600 : 300;
+    
+    updateCallTimerUI();
     
     currentCallTimer = setInterval(() => {
         currentCallSeconds++;
-        const mins = String(Math.floor(currentCallSeconds / 60)).padStart(2, '0');
-        const secs = String(currentCallSeconds % 60).padStart(2, '0');
-        if (timerDisplay) timerDisplay.textContent = `${mins}:${secs}`;
+        updateCallTimerUI();
         
-        // Show toast at 4 minutes (240 seconds)
-        if (currentCallSeconds === 240) {
-            showOneMinToast();
+        // 1 Minute Warning
+        if (currentCallSeconds === maxTime - 60) {
+            showWarning4MinModal(); // Reusing the same 1-min warning modal UI
+        }
+        
+        // End of call
+        if (currentCallSeconds >= maxTime) {
+            clearInterval(currentCallTimer);
+            if (isApp) {
+                showAppFeedbackSheet();
+            } else {
+                showStop5MinModal();
+            }
         }
     }, 1000);
 }
@@ -1141,23 +1197,29 @@ function toggleMute() {
     updateMuteUI();
 }
 function updateMuteUI() {
-    const btn = document.getElementById('mute-btn');
-    const icon = document.getElementById('mute-icon');
-    const visualizer = document.getElementById('audio-visualizer');
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
+    const activeCallScreen = document.getElementById(prefix + "active-call");
+    
+    if (!activeCallScreen) return;
+    
+    const btn = activeCallScreen.querySelector("#mute-btn");
+    const icon = activeCallScreen.querySelector("#mute-icon");
+    const visualizer = activeCallScreen.querySelector("#audio-visualizer");
     if (!btn || !icon || !visualizer) return;
     
     if (isMuted) {
-        btn.style.background = '#EF4444'; // Red when muted
-        btn.style.boxShadow = '0 4px 10px rgba(239,68,68,0.3)';
-        icon.className = 'fa-solid fa-microphone-slash';
-        btn.classList.remove('mic-ripple');
-        visualizer.classList.remove('active');
+        btn.style.background = "#EF4444";
+        btn.style.boxShadow = "0 4px 10px rgba(239,68,68,0.3)";
+        icon.className = "fa-solid fa-microphone-slash";
+        btn.classList.remove("mic-ripple");
+        visualizer.classList.remove("active");
     } else {
-        btn.style.background = '#10B981';
-        btn.style.boxShadow = '0 4px 10px rgba(16,185,129,0.4)';
-        icon.className = 'fa-solid fa-microphone';
-        btn.classList.add('mic-ripple');
-        visualizer.classList.add('active');
+        btn.style.background = "#10B981";
+        btn.style.boxShadow = "0 4px 10px rgba(16,185,129,0.4)";
+        icon.className = "fa-solid fa-microphone";
+        btn.classList.add("mic-ripple");
+        visualizer.classList.add("active");
     }
 }
 
@@ -1167,18 +1229,24 @@ function toggleInterrupt() {
     updateInterruptUI();
 }
 function updateInterruptUI() {
-    const btn = document.getElementById('interrupt-btn');
-    const icon = document.getElementById('interrupt-icon');
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
+    const activeCallScreen = document.getElementById(prefix + "active-call");
+    
+    if (!activeCallScreen) return;
+    
+    const btn = activeCallScreen.querySelector("#interrupt-btn");
+    const icon = activeCallScreen.querySelector("#interrupt-icon");
     if (!btn || !icon) return;
     
     if (isSpeaker) {
-        btn.style.background = '#10B981';
-        btn.style.boxShadow = '0 4px 10px rgba(16,185,129,0.4)';
-        icon.className = 'fa-solid fa-volume-high';
+        btn.style.background = "#10B981";
+        btn.style.boxShadow = "0 4px 10px rgba(16,185,129,0.4)";
+        icon.className = "fa-solid fa-volume-high";
     } else {
-        btn.style.background = '#444';
-        btn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
-        icon.className = 'fa-solid fa-volume-xmark';
+        btn.style.background = "#444";
+        btn.style.boxShadow = "0 4px 10px rgba(0,0,0,0.3)";
+        icon.className = "fa-solid fa-volume-xmark";
     }
 }
 
@@ -1193,24 +1261,30 @@ window.showSection = function(sectionId, btn) {
 };
 
 function showOtpSection() {
-    document.getElementById('loginInputSection').classList.add('hidden');
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const activeSection = document.getElementById(isApp ? "app-start-login" : "mweb-start-login");
+    if (!activeSection) return;
     
-    const trustBadges = document.getElementById('loginTrustBadges');
-    if (trustBadges) trustBadges.classList.add('hidden');
+    const loginInput = activeSection.querySelector("#loginInputSection");
+    if (loginInput) loginInput.classList.add("hidden");
     
-    const mainText = document.getElementById('loginMainText');
-    if (mainText) mainText.classList.add('hidden');
+    const trustBadges = activeSection.querySelector("#loginTrustBadges");
+    if (trustBadges) trustBadges.classList.add("hidden");
+    
+    const mainText = activeSection.querySelector("#loginMainText");
+    if (mainText) mainText.classList.add("hidden");
 
-    document.getElementById('otpInputSection').classList.remove('hidden');
+    const otpInput = activeSection.querySelector("#otpInputSection");
+    if (otpInput) otpInput.classList.remove("hidden");
 
     // Simulate auto-reading SMS and filling OTP
     setTimeout(() => {
-        const boxes = document.querySelectorAll('.otp-box');
-        if (boxes.length === 4) {
-            boxes[0].value = '8';
-            boxes[1].value = '5';
-            boxes[2].value = '2';
-            boxes[3].value = '9';
+        const boxes = activeSection.querySelectorAll(".otp-box");
+        if (boxes.length >= 4) {
+            boxes[0].value = "8";
+            boxes[1].value = "5";
+            boxes[2].value = "2";
+            boxes[3].value = "9";
             
             // Auto-submit after filling
             setTimeout(() => {
@@ -1252,10 +1326,8 @@ function moveToNextOtp(current, nextFieldID) {
 }
 
 function verifyOtpAndProceed() {
-    // Navigate to the brand new separate Start Screen
-    showSection('astro-contact-screen', null);
-    // Mark the Start Screen filter button as active
-    setActiveFilter('astro-contact-screen');
+    showSection("astro-contact-screen", null);
+    setActiveFilter("astro-contact-screen");
 }
 
 // Device Mockup Toggle
@@ -1372,4 +1444,27 @@ function skipSplash() {
     } else {
         showSection('app-start-login');
     }
+}
+
+
+// ==========================================
+// APP FEEDBACK SHEET LOGIC
+// ==========================================
+function selectEmoji(el) {
+    const row = el.closest(".emoji-rating-row");
+    row.querySelectorAll(".emoji-btn").forEach(btn => btn.classList.remove("active"));
+    el.classList.add("active");
+}
+
+function toggleTag(el) {
+    el.classList.toggle("active");
+}
+
+function submitFeedback() {
+    document.getElementById("appFeedbackSheet").classList.add("hidden");
+    goBackToFeed();
+}
+
+function showAppFeedbackSheet() {
+    showSection('app-time-over-screen');
 }
