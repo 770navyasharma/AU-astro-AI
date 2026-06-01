@@ -581,7 +581,7 @@ function checkTimeLimits() {
         document.getElementById('callInterface').classList.add('hidden');
         minutesUsedSeconds = 300;
         sessionStorage.setItem('minutesUsed', minutesUsedSeconds);
-        showSection('mweb-waitlist-screen');
+        openSheet('mwebAppDownloadSheet');
     }
 
     // App Free: 9-min warning (at 540s total)
@@ -1470,17 +1470,24 @@ function showAppFeedbackSheet() {
 }
 
 // ==========================================
-// WAITLIST LOGIC
+// WAITLIST FUNCTIONALITY
 // ==========================================
-function joinWaitlist() {
-    // Silently tag mobile number in database
-    console.log("Database update: { mobile: 'current_user', astro_waitlist: true }");
+function joinWaitlist(btn) {
+    // Prevent multiple clicks
+    if (btn.disabled) return;
     
-    // Show success toast
-    showSuccessToast("बधाई हो! आप लिस्ट में हैं।");
+    // Loading state
+    btn.innerText = "Processing...";
+    btn.disabled = true;
     
-    // Optional: Return to feed after a short delay
     setTimeout(() => {
-        goBackToFeed();
-    }, 2500);
+        // Success state
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> जॉइन्ड';
+        btn.style.background = '#10B981'; // Success Green
+        btn.style.color = '#FFF';
+        btn.style.boxShadow = '0 4px 15px rgba(16, 185, 129, 0.4)';
+        
+        // Show success toast
+        showToast("बधाई हो! आप लिस्ट में हैं।");
+    }, 800);
 }

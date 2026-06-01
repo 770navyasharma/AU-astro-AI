@@ -52,6 +52,7 @@
                 <button class="demo-btn-outline" onclick="showSection('mweb-active-call', this)">6. Active Call Screen</button>
                 <button class="demo-btn-outline" style="border-color: #FF9800; color: #FF9800;" onclick="showSection('mweb-toast-test-screen', this)">🔔 1 min left</button>
                 <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('mweb-time-over-screen', this)">⌛ 5 Mins End</button>
+                <button class="demo-btn-outline" style="border-color: #10B981; color: #10B981;" onclick="showSection('mweb-waitlist-screen', this)">📋 VIP Waitlist</button>
             </div>
         </div>
 
@@ -888,7 +889,7 @@
             <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 50000; backdrop-filter: blur(4px);"></div>
             
             <!-- Bottom Sheet -->
-            <div style="position: absolute; bottom: 0; left: 0; width: 100%; max-height: 60%; background: linear-gradient(180deg, #1C2438 0%, #0B0E1A 100%); border-radius: 32px 32px 0 0; padding: 16px 45px 30px; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); z-index: 50001; display: flex; flex-direction: column; align-items: center; text-align: center; border-top: 1px solid rgba(255,215,0,0.2);">
+            <div style="position: absolute; bottom: 0; left: 0; width: 100%; max-height: 55%; background: linear-gradient(180deg, #1C2438 0%, #0B0E1A 100%); border-radius: 32px 32px 0 0; padding: 16px 45px 30px; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); z-index: 50001; display: flex; flex-direction: column; align-items: center; text-align: center; border-top: 1px solid rgba(255,215,0,0.2);">
                 
                 <!-- Nudge Handle -->
                 <div style="width: 40px; height: 5px; background: rgba(255,255,255,0.2); border-radius: 3px; margin: 0 auto 16px;"></div>
@@ -900,24 +901,17 @@
                     </div>
                 </div>
                 
-                <!-- Stats Pill -->
-                <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); padding: 6px 16px; border-radius: 20px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px;">
-                    <span style="color: #FFD700; font-size: 11px; letter-spacing: 1px;">⭐⭐⭐⭐⭐</span>
-                    <span style="color: rgba(255,255,255,0.7); font-size: 12px;">4.9</span>
-                    <span style="color: rgba(255,255,255,0.3); font-size: 10px;">|</span>
-                    <span style="color: rgba(255,255,255,0.9); font-size: 12px; font-weight: 600;">10M+ Installs</span>
-                </div>
-                
                 <!-- Text Content -->
                 <h3 style="color: #FFF; font-size: 20px; font-weight: 900; margin: 0 0 10px; line-height: 1.3;">आपकी फ्री टॉक लिमिट खत्म हो चुकी है!</h3>
                 <p style="color: rgba(255,255,255,0.7); font-size: 13px; margin: 0 0 24px; line-height: 1.5;">रोज़ाना 10 मिनट मुफ़्त बात करने का फीचर हमारे ऐप पर जल्द आ रहा है। सबसे पहले यह सुविधा पाने के लिए वीआईपी वेटलिस्ट में शामिल हों।</p>
                 
                 <!-- CTAs -->
-                <button onclick="joinWaitlist()" style="width: 90%; min-width: 180px; background: #FBBF24; color: #111827; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); margin-bottom: 12px;">वेटलिस्ट ज्वाइन करें</button>
-                <button style="width: 90%; min-width: 180px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.3s;">ऐप डाउनलोड करें</button>
+                <button onclick="joinWaitlist(this)" style="width: 80%; min-width: 180px; background: #FBBF24; color: #111827; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); margin-bottom: 12px;">वेटलिस्ट ज्वाइन करें</button>
+                <button onclick="goBackToFeed()" style="width: 80%; min-width: 180px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.3s;">होम पर वापस जाएं</button>
                 
             </div>
         </div>
+
         <!-- ==========================================
              ========================================== -->
         
