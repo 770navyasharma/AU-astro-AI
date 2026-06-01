@@ -1618,7 +1618,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 }
 #mweb-start-login .slider-overlay-text,
 #app-start-login .slider-overlay-text {
-    bottom: 175px;
+    bottom: 185px;
 }
 
 /* ==========================================
