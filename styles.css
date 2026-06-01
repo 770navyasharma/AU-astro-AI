@@ -1486,7 +1486,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     background: #111524;
     border-radius: 35px 35px 0 0;
     z-index: 10;
-    padding: 30px 24px 30px; /* Reset padding to be more balanced */
+    padding: 30px 35px 30px; /* Reset padding to be more balanced */
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Evenly distribute content */
