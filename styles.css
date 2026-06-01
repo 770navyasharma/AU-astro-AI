@@ -1478,7 +1478,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 
 .splash-content-sheet {
     position: absolute;
-    top: 57%; /* Overlaps the image slightly */
+    top: 50%; /* Match login screen height approximately */
     bottom: 0;
     left: 0;
     width: 100%;
@@ -1510,16 +1510,16 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 
 .splash-title {
     color: #FFF;
-    font-size: 26px; /* Increased back to a large, prominent size */
+    font-size: 30px; /* Increased for prominence */
     font-weight: 800;
     margin-top: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     line-height: 1.3;
 }
 
 .splash-desc {
     color: rgba(255,255,255,0.7);
-    font-size: 16px; /* Larger text for readability and filling space */
+    font-size: 18px; /* Larger text for readability and filling space */
     line-height: 1.6;
     margin-bottom: auto; /* Pushes CTA down naturally */
     padding: 0 16px; /* Good margins from edges */
