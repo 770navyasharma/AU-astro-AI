@@ -175,7 +175,7 @@ function showSection(sectionId, btnElement) {
     }
 
     // Sync platform buttons if needed (Mweb vs Native)
-    if (['mweb-feed', 'mweb-start-login', 'mweb-splash', 'astro-contact-screen', 'mweb-dialing', 'mweb-active-call', 'mweb-toast-test-screen', 'mweb-time-over-screen'].includes(sectionId)) {
+    if (['mweb-feed', 'mweb-start-login', 'mweb-splash', 'astro-contact-screen', 'mweb-dialing', 'mweb-active-call', 'mweb-toast-test-screen', 'mweb-time-over-screen', 'mweb-waitlist-screen'].includes(sectionId)) {
         document.getElementById('mwebSelectBtn')?.classList.add('active');
         document.getElementById('appSelectBtn')?.classList.remove('active');
     } else if (sectionId.startsWith('app-')) {
@@ -581,7 +581,7 @@ function checkTimeLimits() {
         document.getElementById('callInterface').classList.add('hidden');
         minutesUsedSeconds = 300;
         sessionStorage.setItem('minutesUsed', minutesUsedSeconds);
-        openSheet('mwebAppDownloadSheet');
+        showSection('mweb-waitlist-screen');
     }
 
     // App Free: 9-min warning (at 540s total)
@@ -1467,4 +1467,20 @@ function submitFeedback() {
 
 function showAppFeedbackSheet() {
     showSection('app-time-over-screen');
+}
+
+// ==========================================
+// WAITLIST LOGIC
+// ==========================================
+function joinWaitlist() {
+    // Silently tag mobile number in database
+    console.log("Database update: { mobile: 'current_user', astro_waitlist: true }");
+    
+    // Show success toast
+    showSuccessToast("बधाई हो! आप लिस्ट में हैं।");
+    
+    // Optional: Return to feed after a short delay
+    setTimeout(() => {
+        goBackToFeed();
+    }, 2500);
 }
