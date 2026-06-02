@@ -173,7 +173,7 @@ function showSection(sectionId, btnElement) {
     }
 
     // Sync platform buttons if needed (Mweb vs Native)
-    if (['mweb-feed', 'mweb-start-login', 'astro-contact-screen', 'mweb-dialing', 'mweb-active-call', 'mweb-toast-test-screen', 'mweb-time-over-screen', 'mweb-waitlist-screen'].includes(sectionId)) {
+    if (['mweb-feed', 'mweb-start-login', 'astro-contact-screen', 'mweb-dialing', 'mweb-active-call', 'mweb-toast-test-screen', 'mweb-time-over-screen'].includes(sectionId)) {
         document.getElementById('mwebSelectBtn')?.classList.add('active');
         document.getElementById('appSelectBtn')?.classList.remove('active');
     } else if (sectionId.startsWith('app-')) {
@@ -1466,25 +1466,4 @@ function showAppFeedbackSheet() {
     showSection('app-time-over-screen');
 }
 
-// ==========================================
-// WAITLIST FUNCTIONALITY
-// ==========================================
-function joinWaitlist(btn) {
-    // Prevent multiple clicks
-    if (btn.disabled) return;
-    
-    // Loading state
-    btn.innerText = "Processing...";
-    btn.disabled = true;
-    
-    setTimeout(() => {
-        // Success state
-        btn.innerHTML = '<i class="fa-solid fa-check"></i> जॉइन्ड';
-        btn.style.background = '#10B981'; // Success Green
-        btn.style.color = '#FFF';
-        btn.style.boxShadow = '0 4px 15px rgba(16, 185, 129, 0.4)';
-        
-        // Show success toast
-        showToast("बधाई हो! आप लिस्ट में हैं।");
-    }, 800);
-}
+
