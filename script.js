@@ -1741,7 +1741,10 @@ function renderSplashState(state, btn) {
         bottomCta.innerHTML = '';
         
         callBtns.forEach(b => b.style.display = 'flex');
-        chatBtns.forEach(b => b.style.display = 'flex');
+        chatBtns.forEach(b => {
+            b.style.display = 'flex';
+            b.style.fontSize = '11px';
+        });
     } 
     else if (state === 'ended_basic') {
         headerTitle.innerHTML = 'आज का समय समाप्त';
@@ -1760,7 +1763,7 @@ function renderSplashState(state, btn) {
         `;
         
         callBtns.forEach(b => b.style.display = 'none');
-        chatBtns.forEach(b => b.style.display = 'none');
+        chatBtns.forEach(b => { b.style.display = 'flex'; b.style.fontSize = '14px'; });
     }
     else if (state === 'ended_app') {
         headerTitle.innerHTML = 'आज का समय समाप्त';
@@ -1782,7 +1785,7 @@ function renderSplashState(state, btn) {
         `;
         
         callBtns.forEach(b => b.style.display = 'none');
-        chatBtns.forEach(b => b.style.display = 'none');
+        chatBtns.forEach(b => { b.style.display = 'flex'; b.style.fontSize = '14px'; });
     }
 }
 
