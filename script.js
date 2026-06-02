@@ -1530,7 +1530,7 @@ function renderFeedbackMessage(sender, text) {
 
 function scrollFeedbackChat() {
     const chatContainer = document.getElementById('feedback-chat-container');
-    chatContainer.scrollTop = chatContainer.scrollHeight;
+    chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' });
 }
 
 function renderFeedbackOptions(options) {
