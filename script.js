@@ -173,7 +173,7 @@ function showSection(sectionId, btnElement) {
     }
 
     // Sync platform buttons if needed (Mweb vs Native)
-    if (['mweb-feed', 'mweb-start-login', 'astro-contact-screen', 'mweb-dialing', 'mweb-active-call', 'mweb-toast-test-screen', 'mweb-time-over-screen'].includes(sectionId)) {
+    if (['mweb-feed', 'mweb-start-login', 'astro-contact-screen', 'mweb-dialing', 'mweb-active-call', 'mweb-toast-test-screen', 'mweb-time-over-screen', 'mweb-chat-feedback-screen'].includes(sectionId)) {
         document.getElementById('mwebSelectBtn')?.classList.add('active');
         document.getElementById('appSelectBtn')?.classList.remove('active');
     } else if (sectionId.startsWith('app-')) {
@@ -1466,4 +1466,235 @@ function showAppFeedbackSheet() {
     showSection('app-time-over-screen');
 }
 
+// ==========================================
+// IN-CHAT FEEDBACK LOGIC
+// ==========================================
+let feedbackStep = 0;
 
+function startFeedbackFlow(btn) {
+    if(btn) {
+        showSection('mweb-chat-feedback-screen', btn);
+    } else {
+        showSection('mweb-chat-feedback-screen');
+    }
+    
+    const chatContainer = document.getElementById('feedback-chat-container');
+    const optionsContainer = document.getElementById('feedback-options-container');
+    
+    // Reset state
+    feedbackStep = 0;
+    chatContainer.innerHTML = '';
+    optionsContainer.innerHTML = '';
+    
+    // Initial greeting from AI
+    setTimeout(() => {
+        renderFeedbackMessage('ai', 'आपके 5 मिनट समाप्त हो गए हैं। आपसे बात करके बहुत अच्छा लगा। और बात करने के लिए कल वापस आएं। कृपया अपना फीडबैक शेयर करें।');
+        
+        setTimeout(() => {
+            renderFeedbackOptions([
+                { text: 'फीडबैक दें', action: 'start_questions' },
+                { text: 'वापस अमर उजाला पर जाएं', action: 'go_home' }
+            ]);
+        }, 800);
+    }, 500);
+}
+
+function renderFeedbackMessage(sender, text) {
+    const chatContainer = document.getElementById('feedback-chat-container');
+    const msgDiv = document.createElement('div');
+    msgDiv.style.display = 'flex';
+    msgDiv.style.gap = '10px';
+    msgDiv.style.maxWidth = '85%';
+    
+    if (sender === 'ai') {
+        msgDiv.style.alignSelf = 'flex-start';
+        msgDiv.innerHTML = `
+            <img src="assets/dr_priya_verma.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="Astro">
+            <div style="background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 20px 20px 20px 0; border: 1px solid rgba(255,255,255,0.05);">
+                <p style="color: #FFF; font-size: 14px; margin: 0; line-height: 1.5;">${text}</p>
+            </div>
+        `;
+    } else {
+        msgDiv.style.alignSelf = 'flex-end';
+        msgDiv.innerHTML = `
+            <div style="background: rgba(255,215,0,0.9); padding: 12px 16px; border-radius: 20px 20px 0 20px; box-shadow: 0 4px 12px rgba(255,215,0,0.15);">
+                <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0; line-height: 1.4;">${text}</p>
+            </div>
+            <img src="assets/user_avatar.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="User">
+        `;
+    }
+    
+    chatContainer.appendChild(msgDiv);
+    scrollFeedbackChat();
+}
+
+function scrollFeedbackChat() {
+    const chatContainer = document.getElementById('feedback-chat-container');
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function renderFeedbackOptions(options) {
+    const optionsContainer = document.getElementById('feedback-options-container');
+    optionsContainer.innerHTML = '';
+    
+    options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.innerText = opt.text;
+        btn.style.width = '100%';
+        
+        if (opt.action === 'go_home') {
+            btn.style.background = 'rgba(255,255,255,0.05)';
+            btn.style.color = 'rgba(255,255,255,0.8)';
+            btn.style.border = '1px solid rgba(255,255,255,0.1)';
+        } else {
+            btn.style.background = '#FBBF24';
+            btn.style.color = '#111827';
+            btn.style.border = 'none';
+        }
+        
+        btn.style.padding = '12px';
+        btn.style.borderRadius = '12px';
+        btn.style.fontSize = '14px';
+        btn.style.fontWeight = '700';
+        btn.style.cursor = 'pointer';
+        
+        if (opt.action !== 'go_home') {
+            btn.style.boxShadow = '0 4px 15px rgba(251, 191, 36, 0.25)';
+        }
+        
+        btn.onclick = () => handleFeedbackAction(opt);
+        optionsContainer.appendChild(btn);
+    });
+}
+
+function renderStarRating() {
+    const optionsContainer = document.getElementById('feedback-options-container');
+    optionsContainer.innerHTML = '';
+    
+    const starContainer = document.createElement('div');
+    starContainer.style.display = 'flex';
+    starContainer.style.justifyContent = 'center';
+    starContainer.style.gap = '15px';
+    starContainer.style.width = '100%';
+    starContainer.style.padding = '10px 0';
+    
+    for(let i=1; i<=5; i++) {
+        const star = document.createElement('i');
+        star.className = 'fa-solid fa-star';
+        star.style.color = 'rgba(255,255,255,0.2)';
+        star.style.fontSize = '28px';
+        star.style.cursor = 'pointer';
+        star.style.transition = 'color 0.2s';
+        
+        star.onmouseover = () => {
+            const stars = starContainer.children;
+            for(let j=0; j<stars.length; j++) {
+                if(j < i) stars[j].style.color = '#FFD700';
+                else stars[j].style.color = 'rgba(255,255,255,0.2)';
+            }
+        };
+        
+        starContainer.onmouseleave = () => {
+            const stars = starContainer.children;
+            for(let j=0; j<stars.length; j++) {
+                stars[j].style.color = 'rgba(255,255,255,0.2)';
+            }
+        };
+        
+        star.onclick = () => {
+            handleFeedbackAction({ text: `${i} स्टार`, action: 'rate' });
+        };
+        
+        starContainer.appendChild(star);
+    }
+    
+    optionsContainer.appendChild(starContainer);
+}
+
+function handleFeedbackAction(opt) {
+    renderFeedbackMessage('user', opt.text);
+    
+    const optionsContainer = document.getElementById('feedback-options-container');
+    optionsContainer.innerHTML = '';
+    
+    setTimeout(() => {
+        if (opt.action === 'go_home') {
+            renderFeedbackMessage('ai', 'धन्यवाद! आपका दिन शुभ हो।');
+            setTimeout(() => {
+                goBackToFeed();
+            }, 1500);
+            return;
+        }
+        
+        if (opt.action === 'start_questions') {
+            feedbackStep = 1;
+            askNextQuestion();
+            return;
+        }
+        
+        if (opt.action === 'answer' || opt.action === 'rate') {
+            feedbackStep++;
+            askNextQuestion();
+        }
+    }, 500);
+}
+
+function askNextQuestion() {
+    switch(feedbackStep) {
+        case 1:
+            renderFeedbackMessage('ai', 'क्या आपको ज्योतिषी से बात करके अच्छा लगा?');
+            setTimeout(() => {
+                renderFeedbackOptions([
+                    { text: 'हाँ, बहुत अच्छा', action: 'answer' },
+                    { text: 'ठीक-ठाक', action: 'answer' },
+                    { text: 'नहीं', action: 'answer' }
+                ]);
+            }, 600);
+            break;
+        case 2:
+            renderFeedbackMessage('ai', 'क्या ज्योतिषी ने आपकी समस्या को सही ढंग से समझा?');
+            setTimeout(() => {
+                renderFeedbackOptions([
+                    { text: 'बिल्कुल', action: 'answer' },
+                    { text: 'थोड़ा बहुत', action: 'answer' },
+                    { text: 'नहीं', action: 'answer' }
+                ]);
+            }, 600);
+            break;
+        case 3:
+            renderFeedbackMessage('ai', 'क्या आपको दिए गए उपाय उपयोगी लगे?');
+            setTimeout(() => {
+                renderFeedbackOptions([
+                    { text: 'हाँ, बहुत उपयोगी', action: 'answer' },
+                    { text: 'शायद', action: 'answer' },
+                    { text: 'नहीं', action: 'answer' }
+                ]);
+            }, 600);
+            break;
+        case 4:
+            renderFeedbackMessage('ai', 'क्या आप भविष्य में फिर से इस सेवा का उपयोग करेंगे?');
+            setTimeout(() => {
+                renderFeedbackOptions([
+                    { text: 'जरूर', action: 'answer' },
+                    { text: 'शायद', action: 'answer' },
+                    { text: 'नहीं', action: 'answer' }
+                ]);
+            }, 600);
+            break;
+        case 5:
+            renderFeedbackMessage('ai', 'कृपया अपने अनुभव को रेटिंग दें:');
+            setTimeout(() => {
+                renderStarRating();
+            }, 600);
+            break;
+        case 6:
+            renderFeedbackMessage('ai', 'आपके कीमती समय और फीडबैक के लिए बहुत-बहुत धन्यवाद! 🙏');
+            setTimeout(() => {
+                renderFeedbackOptions([
+                    { text: 'होम पर जाएं', action: 'go_home' },
+                    { text: 'वापस अमर उजाला पर जाएं', action: 'go_home' }
+                ]);
+            }, 800);
+            break;
+    }
+}
