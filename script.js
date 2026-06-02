@@ -990,6 +990,27 @@ function updateSliderDots() {
     });
 }
 
+function openChatHistory(btn) {
+    if (window.event) window.event.stopPropagation();
+    let astroId = 'priya';
+    const parent = btn.closest('.astrologer-list-item');
+    if (parent) {
+        const match = parent.getAttribute('onclick').match(/'(.*?)'/);
+        if (match) astroId = match[1];
+    }
+    
+    const astro = astroDetails[astroId] || astroDetails['priya'];
+    
+    document.getElementById('history-name').textContent = astro.name;
+    document.getElementById('history-expertise').textContent = astro.specialty;
+    document.getElementById('history-avatar').src = astro.image;
+    document.getElementById('history-chat-avatar-1').src = astro.image;
+    document.getElementById('history-chat-avatar-2').src = astro.image;
+    document.getElementById('history-chat-avatar-3').src = astro.image;
+    
+    showSection('mweb-chat-history');
+}
+
 function selectAstrologer(astroId) {
     currentAstro = astroId;
     
