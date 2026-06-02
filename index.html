@@ -483,7 +483,7 @@
                             <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (12.4k)</div>
                         </div>
                         <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
-                            <button class="call-btn-small hybrid-call-btn" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
                                 <i class="fa-solid fa-phone"></i> Call
                             </button>
                             <button class="hybrid-chat-btn" onclick="openChatHistory(this)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
@@ -503,7 +503,7 @@
                             <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.8 (8.1k)</div>
                         </div>
                         <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
-                            <button class="call-btn-small hybrid-call-btn" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
                                 <i class="fa-solid fa-phone"></i> Call
                             </button>
                             <button class="hybrid-chat-btn" onclick="openChatHistory(this)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
@@ -523,7 +523,7 @@
                             <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (9.3k)</div>
                         </div>
                         <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
-                            <button class="call-btn-small hybrid-call-btn" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
                                 <i class="fa-solid fa-phone"></i> Call
                             </button>
                             <button class="hybrid-chat-btn" onclick="openChatHistory(this)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
@@ -574,53 +574,63 @@
                 </button>
             </div>
             
+            
             <!-- Chat Transcript (Scrollable) -->
             <div class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 140px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
                 
-                <div style="display: flex; gap: 10px; align-self: flex-end; max-width: 85%;">
-                    <div style="background: rgba(255,215,0,0.9); padding: 12px 16px; border-radius: 20px 20px 0 20px; box-shadow: 0 4px 12px rgba(255,215,0,0.15);">
-                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था... करियर और जीवन दोनों के बारे में।</p>
-                    </div>
-                    <img src="assets/user_avatar.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="User">
-                </div>
-                
-                <div style="display: flex; gap: 10px; align-self: flex-start; max-width: 85%;">
-                    <img id="history-chat-avatar-1" src="assets/dr_priya_verma.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="Astro">
-                    <div style="background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 20px 20px 20px 0; border: 1px solid rgba(255,255,255,0.05);">
-                        <p style="color: #FFF; font-size: 14px; margin: 0; line-height: 1.5;">बिल्कुल बताऊंगी। पहले एक बात याद रखिये — एस्ट्रोलॉजी दिशा देती है, भाग्य लॉक नहीं करती। आपकी मेहनत सबसे बड़ा ग्रह होती है। अपना नाम और जन्म तिथि बता दीजिये।</p>
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था... करियर और जीवन दोनों के बारे में।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:45 AM</span>
                     </div>
                 </div>
                 
-                <div style="display: flex; gap: 10px; align-self: flex-end; max-width: 85%;">
-                    <div style="background: rgba(255,215,0,0.9); padding: 12px 16px; border-radius: 20px 20px 0 20px; box-shadow: 0 4px 12px rgba(255,215,0,0.15);">
-                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0; line-height: 1.4;">मेरा नाम राहुल है। जन्म तिथि 14 अगस्त 1997।</p>
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">बिल्कुल बताऊंगी। पहले एक बात याद रखिये — एस्ट्रोलॉजी दिशा देती है, भाग्य लॉक नहीं करती। आपकी मेहनत सबसे बड़ा ग्रह होती है। अपना नाम और जन्म तिथि बता दीजिये।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
                     </div>
-                    <img src="assets/user_avatar.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="User">
                 </div>
                 
-                <div style="display: flex; gap: 10px; align-self: flex-start; max-width: 85%;">
-                    <img id="history-chat-avatar-2" src="assets/dr_priya_verma.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="Astro">
-                    <div style="background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 20px 20px 20px 0; border: 1px solid rgba(255,255,255,0.05);">
-                        <p style="color: #FFF; font-size: 14px; margin: 0; line-height: 1.5;">राहुल, आपका पर्सनैलिटी चार्ट काफी दिलचस्प एनर्जी दिखा रहा है ✨ आप स्वभाव से क्रिएटिव और इंडिपेंडेंट थिंकर हैं। लेकिन एक प्रॉब्लम है — आप बहुत ओवरथिंक करते हैं और कभी-कभी डिसीजन्स डिले कर देते हैं। 2026 के मिडिल के बाद करियर में स्ट्रॉन्ग ग्रोथ दिख रही है। स्पेशली डिजिटल, टेक, मीडिया, डिजाइन, या कम्युनिकेशन फील्ड में लक स्ट्रॉन्ग रहेगा।</p>
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">मेरा नाम राहुल है। जन्म तिथि 14 अगस्त 1997।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
+                    </div>
+                </div>
+                
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">राहुल, आपका पर्सनैलिटी चार्ट काफी दिलचस्प एनर्जी दिखा रहा है ✨ आप स्वभाव से क्रिएटिव और इंडिपेंडेंट थिंकर हैं। लेकिन एक प्रॉब्लम है — आप बहुत ओवरथिंक करते हैं और कभी-कभी डिसीजन्स डिले कर देते हैं। 2026 के मिडिल के बाद करियर में स्ट्रॉन्ग ग्रोथ दिख रही है। स्पेशली डिजिटल, टेक, मीडिया, डिजाइन, या कम्युनिकेशन फील्ड में लक स्ट्रॉन्ग रहेगा।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:48 AM</span>
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 10px; align-self: flex-end; max-width: 85%;">
-                    <div style="background: rgba(255,215,0,0.9); padding: 12px 16px; border-radius: 20px 20px 0 20px; box-shadow: 0 4px 12px rgba(255,215,0,0.15);">
-                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0; line-height: 1.4;">धन्यवाद आचार्य जी। क्या प्रेम सम्बंध में कोई अड़चन है?</p>
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">धन्यवाद आचार्य जी। क्या प्रेम सम्बंध में कोई अड़चन है?</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:49 AM</span>
                     </div>
-                    <img src="assets/user_avatar.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="User">
                 </div>
                 
-                <div style="display: flex; gap: 10px; align-self: flex-start; max-width: 85%;">
-                    <img id="history-chat-avatar-3" src="assets/dr_priya_verma.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="Astro">
-                    <div style="background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 20px 20px 20px 0; border: 1px solid rgba(255,255,255,0.05);">
-                        <p style="color: #FFF; font-size: 14px; margin: 0; line-height: 1.5;">अभी शुक्र की स्थिति थोड़ी कमजोर है। धैर्य रखें, साल के अंत तक स्थिति बेहतर होगी।</p>
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">अभी शुक्र की स्थिति थोड़ी कमजोर है। धैर्य रखें, साल के अंत तक स्थिति बेहतर होगी।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:50 AM</span>
                     </div>
                 </div>
                 
                 <!-- End message -->
-                <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 10px;">-- चैट समाप्त --</div>
+                <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 10px;">-- 14 Aug, 10:55 AM पर चैट समाप्त --</div>
 
             </div>
             
@@ -675,38 +685,41 @@
 
 
             
+            
             <!-- Chat Transcript (Scrollable) -->
             <div class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 140px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
                 
                 <!-- User Msg -->
-                <div style="display: flex; gap: 10px; align-self: flex-end; max-width: 85%;">
-                    <div style="background: rgba(255,215,0,0.9); padding: 12px 16px; border-radius: 20px 20px 0 20px; box-shadow: 0 4px 12px rgba(255,215,0,0.15);">
-                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था... करियर और जीवन दोनों के बारे में।</p>
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था... करियर और जीवन दोनों के बारे में।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:45 AM</span>
                     </div>
-                    <img src="assets/user_avatar.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="User">
                 </div>
                 
                 <!-- Astro Msg -->
-                <div style="display: flex; gap: 10px; align-self: flex-start; max-width: 85%;">
-                    <img id="active-call-chat-avatar-1" src="assets/dr_priya_verma.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="Astro">
-                    <div style="background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 20px 20px 20px 0; border: 1px solid rgba(255,255,255,0.05);">
-                        <p style="color: #FFF; font-size: 14px; margin: 0; line-height: 1.5;">बिल्कुल बताऊंगी। पहले एक बात याद रखिये — एस्ट्रोलॉजी दिशा देती है, भाग्य लॉक नहीं करती। आपकी मेहनत सबसे बड़ा ग्रह होती है। अपना नाम और जन्म तिथि बता दीजिये।</p>
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">बिल्कुल बताऊंगी। पहले एक बात याद रखिये — एस्ट्रोलॉजी दिशा देती है, भाग्य लॉक नहीं करती। आपकी मेहनत सबसे बड़ा ग्रह होती है। अपना नाम और जन्म तिथि बता दीजिये।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
                     </div>
                 </div>
                 
                 <!-- User Msg -->
-                <div style="display: flex; gap: 10px; align-self: flex-end; max-width: 85%;">
-                    <div style="background: rgba(255,215,0,0.9); padding: 12px 16px; border-radius: 20px 20px 0 20px; box-shadow: 0 4px 12px rgba(255,215,0,0.15);">
-                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0; line-height: 1.4;">मेरा नाम राहुल है। जन्म तिथि 14 अगस्त 1997।</p>
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">मेरा नाम राहुल है। जन्म तिथि 14 अगस्त 1997।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
                     </div>
-                    <img src="assets/user_avatar.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="User">
                 </div>
                 
                 <!-- Astro Msg -->
-                <div style="display: flex; gap: 10px; align-self: flex-start; max-width: 85%;">
-                    <img id="active-call-chat-avatar-2" src="assets/dr_priya_verma.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="Astro">
-                    <div style="background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 20px 20px 20px 0; border: 1px solid rgba(255,255,255,0.05);">
-                        <p style="color: #FFF; font-size: 14px; margin: 0; line-height: 1.5;">राहुल, आपका पर्सनैलिटी चार्ट काफी दिलचस्प एनर्जी दिखा रहा है ✨ आप स्वभाव से क्रिएटिव और इंडिपेंडेंट थिंकर हैं। लेकिन एक प्रॉब्लम है — आप बहुत ओवरथिंक करते हैं और कभी-कभी डिसीजन्स डिले कर देते हैं। 2026 के मिडिल के बाद करियर में स्ट्रॉन्ग ग्रोथ दिख रही है। स्पेशली डिजिटल, टेक, मीडिया, डिजाइन, या कम्युनिकेशन फील्ड में लक स्ट्रॉन्ग रहेगा।</p>
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">राहुल, आपका पर्सनैलिटी चार्ट काफी दिलचस्प एनर्जी दिखा रहा है ✨ आप स्वभाव से क्रिएटिव और इंडिपेंडेंट थिंकर हैं। लेकिन एक प्रॉब्लम है — आप बहुत ओवरथिंक करते हैं और कभी-कभी डिसीजन्स डिले कर देते हैं। 2026 के मिडिल के बाद करियर में स्ट्रॉन्ग ग्रोथ दिख रही है। स्पेशली डिजिटल, टेक, मीडिया, डिजाइन, या कम्युनिकेशन फील्ड में लक स्ट्रॉन्ग रहेगा।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:48 AM</span>
                     </div>
                 </div>
 
@@ -1154,38 +1167,41 @@
 
 
             
+            
             <!-- Chat Transcript (Scrollable) -->
             <div class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 140px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
                 
                 <!-- User Msg -->
-                <div style="display: flex; gap: 10px; align-self: flex-end; max-width: 85%;">
-                    <div style="background: rgba(255,215,0,0.9); padding: 12px 16px; border-radius: 20px 20px 0 20px; box-shadow: 0 4px 12px rgba(255,215,0,0.15);">
-                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था... करियर और जीवन दोनों के बारे में।</p>
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था... करियर और जीवन दोनों के बारे में।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:45 AM</span>
                     </div>
-                    <img src="assets/user_avatar.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="User">
                 </div>
                 
                 <!-- Astro Msg -->
-                <div style="display: flex; gap: 10px; align-self: flex-start; max-width: 85%;">
-                    <img id="active-call-chat-avatar-1" src="assets/dr_priya_verma.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="Astro">
-                    <div style="background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 20px 20px 20px 0; border: 1px solid rgba(255,255,255,0.05);">
-                        <p style="color: #FFF; font-size: 14px; margin: 0; line-height: 1.5;">बिल्कुल बताऊंगी। पहले एक बात याद रखिये — एस्ट्रोलॉजी दिशा देती है, भाग्य लॉक नहीं करती। आपकी मेहनत सबसे बड़ा ग्रह होती है। अपना नाम और जन्म तिथि बता दीजिये।</p>
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">बिल्कुल बताऊंगी। पहले एक बात याद रखिये — एस्ट्रोलॉजी दिशा देती है, भाग्य लॉक नहीं करती। आपकी मेहनत सबसे बड़ा ग्रह होती है। अपना नाम और जन्म तिथि बता दीजिये।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
                     </div>
                 </div>
                 
                 <!-- User Msg -->
-                <div style="display: flex; gap: 10px; align-self: flex-end; max-width: 85%;">
-                    <div style="background: rgba(255,215,0,0.9); padding: 12px 16px; border-radius: 20px 20px 0 20px; box-shadow: 0 4px 12px rgba(255,215,0,0.15);">
-                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0; line-height: 1.4;">मेरा नाम राहुल है। जन्म तिथि 14 अगस्त 1997।</p>
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">मेरा नाम राहुल है। जन्म तिथि 14 अगस्त 1997।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
                     </div>
-                    <img src="assets/user_avatar.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="User">
                 </div>
                 
                 <!-- Astro Msg -->
-                <div style="display: flex; gap: 10px; align-self: flex-start; max-width: 85%;">
-                    <img id="active-call-chat-avatar-2" src="assets/dr_priya_verma.png" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="Astro">
-                    <div style="background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 20px 20px 20px 0; border: 1px solid rgba(255,255,255,0.05);">
-                        <p style="color: #FFF; font-size: 14px; margin: 0; line-height: 1.5;">राहुल, आपका पर्सनैलिटी चार्ट काफी दिलचस्प एनर्जी दिखा रहा है ✨ आप स्वभाव से क्रिएटिव और इंडिपेंडेंट थिंकर हैं। लेकिन एक प्रॉब्लम है — आप बहुत ओवरथिंक करते हैं और कभी-कभी डिसीजन्स डिले कर देते हैं। 2026 के मिडिल के बाद करियर में स्ट्रॉन्ग ग्रोथ दिख रही है। स्पेशली डिजिटल, टेक, मीडिया, डिजाइन, या कम्युनिकेशन फील्ड में लक स्ट्रॉन्ग रहेगा।</p>
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">राहुल, आपका पर्सनैलिटी चार्ट काफी दिलचस्प एनर्जी दिखा रहा है ✨ आप स्वभाव से क्रिएटिव और इंडिपेंडेंट थिंकर हैं। लेकिन एक प्रॉब्लम है — आप बहुत ओवरथिंक करते हैं और कभी-कभी डिसीजन्स डिले कर देते हैं। 2026 के मिडिल के बाद करियर में स्ट्रॉन्ग ग्रोथ दिख रही है। स्पेशली डिजिटल, टेक, मीडिया, डिजाइन, या कम्युनिकेशन फील्ड में लक स्ट्रॉन्ग रहेगा।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:48 AM</span>
                     </div>
                 </div>
 

@@ -990,6 +990,23 @@ function updateSliderDots() {
     });
 }
 
+function initiateCallFlow(btn) {
+    if (window.event) window.event.stopPropagation();
+    let astroId = 'priya';
+    const parent = btn.closest('.astrologer-list-item');
+    if (parent) {
+        const match = parent.getAttribute('onclick').match(/'(.*?)'/);
+        if (match) astroId = match[1];
+    }
+    selectAstrologer(astroId);
+    
+    // Rotate through mic permissions or pick randomly
+    const types = ['ios-chrome', 'android', 'ios-safari'];
+    const type = types[Math.floor(Math.random() * types.length)];
+    
+    showMicPermission(type, btn);
+}
+
 function openChatHistory(btn) {
     if (window.event) window.event.stopPropagation();
     let astroId = 'priya';
