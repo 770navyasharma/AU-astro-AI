@@ -887,8 +887,8 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     padding: 10px 24px;
     font-weight: 800;
     font-size: 24px;
-    color: #FFD700;
-    text-shadow: 0 4px 10px rgba(0,0,0,1), 0 1px 3px rgba(0,0,0,0.8);
+    color: #FFF;
+    text-shadow: 0 4px 12px rgba(0,0,0,1), 0 1px 5px rgba(0,0,0,1), 0 0 8px rgba(0,0,0,0.5);
     z-index: 20;
     cursor: default;
     white-space: nowrap;
