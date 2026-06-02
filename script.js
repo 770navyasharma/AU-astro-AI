@@ -1790,11 +1790,69 @@ function renderSplashState(state, btn) {
         `;
         ctaContainer.innerHTML = `
             <button style="width: 100%; background: #FBBF24; color: #111827; border: none; padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); display: flex; align-items: center; justify-content: center; gap: 8px;">
-                <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> ऐप डाउनलोड करें <i class="fa-solid fa-download" style="margin-left: 4px;"></i>
+                <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> अमर उजाला ऐप डाउनलोड करें <i class="fa-solid fa-download" style="margin-left: 4px;"></i>
             </button>
             <button onclick="goBackToFeed()" style="width: 100%; background: transparent; color: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer;">
                 वापस अमर उजाला पर जाएं
             </button>
         `;
     }
+}
+
+// ==========================================
+// IN-CHAT TOAST TEST LOGIC
+// ==========================================
+function showInChatToast(btn) {
+    showSection('mweb-toast-test-screen', btn);
+    
+    const chatBox = document.getElementById('toast-test-chat-box');
+    if (!chatBox) return;
+    
+    // Create the in-chat toast bubble
+    const toastElem = document.createElement('div');
+    toastElem.style.alignSelf = 'center';
+    toastElem.style.width = '100%';
+    toastElem.style.maxWidth = '320px';
+    toastElem.style.background = 'linear-gradient(135deg, #FF9800 0%, #FF5722 100%)';
+    toastElem.style.borderRadius = '12px';
+    toastElem.style.padding = '12px 16px';
+    toastElem.style.display = 'flex';
+    toastElem.style.alignItems = 'center';
+    toastElem.style.gap = '12px';
+    toastElem.style.boxShadow = '0 4px 15px rgba(255, 152, 0, 0.3)';
+    toastElem.style.marginTop = '10px';
+    toastElem.style.marginBottom = '10px';
+    toastElem.style.opacity = '0';
+    toastElem.style.transform = 'translateY(15px)';
+    toastElem.style.transition = 'all 0.4s ease-out';
+    
+    toastElem.innerHTML = `
+        <div style="background: rgba(255,255,255,0.2); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <i class="fa-solid fa-hourglass-half" style="color: #FFF; font-size: 16px;"></i>
+        </div>
+        <div style="flex: 1;">
+            <h4 style="color: #FFF; font-size: 14px; font-weight: 800; margin: 0 0 2px;">1 मिनट शेष</h4>
+            <p style="color: rgba(255,255,255,0.9); font-size: 11px; margin: 0;">आपके फ्री परामर्श में केवल 1 मिनट शेष है।</p>
+        </div>
+    `;
+    
+    chatBox.appendChild(toastElem);
+    
+    // Animate in and scroll down
+    setTimeout(() => {
+        toastElem.style.opacity = '1';
+        toastElem.style.transform = 'translateY(0)';
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }, 100);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        toastElem.style.opacity = '0';
+        toastElem.style.transform = 'translateY(15px)';
+        setTimeout(() => {
+            if(chatBox.contains(toastElem)) {
+                chatBox.removeChild(toastElem);
+            }
+        }, 400);
+    }, 5000);
 }
