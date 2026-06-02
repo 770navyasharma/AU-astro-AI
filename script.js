@@ -1726,6 +1726,7 @@ function renderSplashState(state, btn) {
     const headerTimer = document.getElementById('hybrid-header-timer');
     const bottomCta = document.getElementById('hybrid-bottom-cta');
     const callBtns = document.querySelectorAll('.hybrid-call-btn');
+    const chatBtns = document.querySelectorAll('.hybrid-chat-btn');
 
     if (state === 'active') {
         headerTitle.innerHTML = 'अपना ज्योतिषी चुनें';
@@ -1740,14 +1741,15 @@ function renderSplashState(state, btn) {
         bottomCta.innerHTML = '';
         
         callBtns.forEach(b => b.style.display = 'flex');
+        chatBtns.forEach(b => b.style.display = 'flex');
     } 
     else if (state === 'ended_basic') {
         headerTitle.innerHTML = 'आज का समय समाप्त';
-        headerSubtitle.innerHTML = 'आज का फ्री सेशन समाप्त हुआ। कल फिर से जुड़ें और जानें अपने सवालों के जवाब!';
+        headerSubtitle.innerHTML = 'आज का समय समाप्त। कल पुनः आएं!';
         headerSubtitle.className = '';
         headerSubtitle.style.color = '#EF4444';
         
-        headerTimer.innerHTML = '<i class="fa-regular fa-clock"></i> समय समाप्त: 05:00';
+        headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> समय समाप्त: 05:00</div>';
         headerTimer.style.color = '#EF4444';
         
         bottomCta.style.display = 'flex';
@@ -1758,14 +1760,15 @@ function renderSplashState(state, btn) {
         `;
         
         callBtns.forEach(b => b.style.display = 'none');
+        chatBtns.forEach(b => b.style.display = 'none');
     }
     else if (state === 'ended_app') {
         headerTitle.innerHTML = 'आज का समय समाप्त';
-        headerSubtitle.innerHTML = 'आज का फ्री सेशन समाप्त हुआ। कल फिर से जुड़ें और जानें अपने सवालों के जवाब!';
+        headerSubtitle.innerHTML = 'आज का समय समाप्त। कल पुनः आएं!';
         headerSubtitle.className = '';
         headerSubtitle.style.color = '#EF4444';
         
-        headerTimer.innerHTML = '<i class="fa-regular fa-clock"></i> समय समाप्त: 05:00';
+        headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> समय समाप्त: 05:00</div>';
         headerTimer.style.color = '#EF4444';
         
         bottomCta.style.display = 'flex';
@@ -1779,6 +1782,7 @@ function renderSplashState(state, btn) {
         `;
         
         callBtns.forEach(b => b.style.display = 'none');
+        chatBtns.forEach(b => b.style.display = 'none');
     }
 }
 
