@@ -1710,3 +1710,76 @@ function askNextQuestion() {
             break;
     }
 }
+
+// ==========================================
+// SPLASH SCREEN STATES LOGIC
+// ==========================================
+function renderSplashState(state, btn) {
+    if(btn) {
+        showSection('mweb-logged-in-splash', btn);
+    } else {
+        showSection('mweb-logged-in-splash');
+    }
+    
+    const timerContainer = document.getElementById('splash-timer-container');
+    const subtext = document.getElementById('splash-subtext');
+    const ctaContainer = document.getElementById('splash-cta-container');
+    
+    if (state === 'active') {
+        // State 1: Active Time Remaining
+        subtext.innerHTML = 'अपने पर्सनल AI ज्योतिषी से जुड़ें और अपने हर सवाल का तुरंत जवाब पाएं।';
+        subtext.style.color = '#FFF';
+        subtext.style.fontWeight = 'normal';
+        
+        timerContainer.innerHTML = `
+            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); padding: 12px 24px; border-radius: 50px;">
+                <i class="fa-regular fa-clock" style="color: #FFD700; font-size: 22px;"></i>
+                <span style="color: #FFD700; font-size: 18px; font-weight: 800; letter-spacing: 0.5px;">शेष समय: 5 मिनट</span>
+            </div>
+        `;
+        ctaContainer.innerHTML = `
+            <button class="cta-btn yellow-btn full-width" style="height: 52px; padding: 0; display: flex; align-items: center; justify-content: center; font-weight:800; font-size:18px;" onclick="selectAstrologer('priya');">
+                <i class="fa-solid fa-phone" style="margin-right: 10px; font-size: 16px;"></i> बात शुरू करें
+            </button>
+        `;
+    } 
+    else if (state === 'ended_basic') {
+        // State 2: Time Ended - No App Promo
+        subtext.innerHTML = 'आपका आज का फ्री समय समाप्त हो गया है। कृपया कल वापस आएं!';
+        subtext.style.color = '#EF4444';
+        subtext.style.fontWeight = '600';
+        
+        timerContainer.innerHTML = `
+            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px 24px; border-radius: 50px;">
+                <i class="fa-solid fa-hourglass-end" style="color: #EF4444; font-size: 22px;"></i>
+                <span style="color: #EF4444; font-size: 18px; font-weight: 800; letter-spacing: 0.5px;">5 मिनट समाप्त!</span>
+            </div>
+        `;
+        ctaContainer.innerHTML = `
+            <button onclick="goBackToFeed()" style="width: 100%; background: transparent; color: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.3s;">
+                वापस अमर उजाला पर जाएं
+            </button>
+        `;
+    }
+    else if (state === 'ended_app') {
+        // State 3: Time Ended - Promote App
+        subtext.innerHTML = 'आपका आज का फ्री समय समाप्त हो गया है। कृपया कल वापस आएं!';
+        subtext.style.color = '#EF4444';
+        subtext.style.fontWeight = '600';
+        
+        timerContainer.innerHTML = `
+            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px 24px; border-radius: 50px;">
+                <i class="fa-solid fa-hourglass-end" style="color: #EF4444; font-size: 22px;"></i>
+                <span style="color: #EF4444; font-size: 18px; font-weight: 800; letter-spacing: 0.5px;">5 मिनट समाप्त!</span>
+            </div>
+        `;
+        ctaContainer.innerHTML = `
+            <button style="width: 100%; background: linear-gradient(135deg, #EF4444 0%, #D32F2F 100%); color: #FFF; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); margin-bottom: 4px;">
+                <i class="fa-solid fa-download" style="margin-right: 8px;"></i> ऐप डाउनलोड करें
+            </button>
+            <button onclick="goBackToFeed()" style="width: 100%; background: transparent; color: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer;">
+                वापस अमर उजाला पर जाएं
+            </button>
+        `;
+    }
+}
