@@ -1750,13 +1750,13 @@ function renderSplashState(state, btn) {
         subtext.style.fontWeight = '600';
         
         timerContainer.innerHTML = `
-            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px 24px; border-radius: 50px;">
-                <i class="fa-solid fa-hourglass-end" style="color: #EF4444; font-size: 22px;"></i>
-                <span style="color: #EF4444; font-size: 18px; font-weight: 800; letter-spacing: 0.5px;">5 मिनट समाप्त!</span>
+            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 10px 20px; border-radius: 50px;">
+                <i class="fa-solid fa-hourglass-end" style="color: #EF4444; font-size: 20px;"></i>
+                <span style="color: #EF4444; font-size: 16px; font-weight: 800; letter-spacing: 0.5px;">5 मिनट समाप्त!</span>
             </div>
         `;
         ctaContainer.innerHTML = `
-            <button onclick="goBackToFeed()" style="width: 100%; background: transparent; color: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.3s;">
+            <button onclick="goBackToFeed()" style="width: 100%; background: transparent; color: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.3s;">
                 वापस अमर उजाला पर जाएं
             </button>
         `;
@@ -1768,16 +1768,16 @@ function renderSplashState(state, btn) {
         subtext.style.fontWeight = '600';
         
         timerContainer.innerHTML = `
-            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px 24px; border-radius: 50px;">
-                <i class="fa-solid fa-hourglass-end" style="color: #EF4444; font-size: 22px;"></i>
-                <span style="color: #EF4444; font-size: 18px; font-weight: 800; letter-spacing: 0.5px;">5 मिनट समाप्त!</span>
+            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 10px 20px; border-radius: 50px;">
+                <i class="fa-solid fa-hourglass-end" style="color: #EF4444; font-size: 20px;"></i>
+                <span style="color: #EF4444; font-size: 16px; font-weight: 800; letter-spacing: 0.5px;">5 मिनट समाप्त!</span>
             </div>
         `;
         ctaContainer.innerHTML = `
-            <button style="width: 100%; background: linear-gradient(135deg, #EF4444 0%, #D32F2F 100%); color: #FFF; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); margin-bottom: 4px;">
-                <i class="fa-solid fa-download" style="margin-right: 8px;"></i> ऐप डाउनलोड करें
+            <button style="width: 100%; background: #FBBF24; color: #111827; border: none; padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> ऐप डाउनलोड करें
             </button>
-            <button onclick="goBackToFeed()" style="width: 100%; background: transparent; color: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer;">
+            <button onclick="goBackToFeed()" style="width: 100%; background: transparent; color: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer;">
                 वापस अमर उजाला पर जाएं
             </button>
         `;
