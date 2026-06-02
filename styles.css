@@ -876,7 +876,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 
 .hanging-cta {
     position: absolute;
-    bottom: 140px;
+    bottom: 90px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -884,10 +884,11 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     gap: 15px;
     padding: 8px 10px 8px 24px;
     font-weight: 800;
-    font-size: 16px;
-    color: #FFF;
+    font-size: 22px;
+    color: #FFD700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     z-index: 20;
-    cursor: pointer;
+    cursor: default;
     white-space: nowrap;
     opacity: 1;
 }
