@@ -1727,6 +1727,11 @@ function renderSplashState(state, btn) {
     
     if (state === 'active') {
         // State 1: Active Time Remaining
+        document.getElementById('loginMainText').style.marginTop = '15px';
+        timerContainer.style.marginTop = '25px';
+        timerContainer.style.marginBottom = '10px';
+        ctaContainer.style.marginTop = '20px';
+        
         subtext.innerHTML = 'अपने पर्सनल AI ज्योतिषी से जुड़ें और अपने हर सवाल का तुरंत जवाब पाएं।';
         subtext.style.color = '#FFF';
         subtext.style.fontWeight = 'normal';
@@ -1745,6 +1750,11 @@ function renderSplashState(state, btn) {
     } 
     else if (state === 'ended_basic') {
         // State 2: Time Ended - No App Promo
+        document.getElementById('loginMainText').style.marginTop = '15px';
+        timerContainer.style.marginTop = '25px';
+        timerContainer.style.marginBottom = '10px';
+        ctaContainer.style.marginTop = '20px';
+        
         subtext.innerHTML = 'आपका आज का फ्री समय समाप्त हो गया है। कृपया कल वापस आएं!';
         subtext.style.color = '#EF4444';
         subtext.style.fontWeight = '600';
@@ -1763,6 +1773,11 @@ function renderSplashState(state, btn) {
     }
     else if (state === 'ended_app') {
         // State 3: Time Ended - Promote App
+        document.getElementById('loginMainText').style.marginTop = '5px';
+        timerContainer.style.marginTop = '10px';
+        timerContainer.style.marginBottom = '5px';
+        ctaContainer.style.marginTop = '10px';
+        
         subtext.innerHTML = 'आपका आज का फ्री समय समाप्त हो गया है। कृपया कल वापस आएं!';
         subtext.style.color = '#EF4444';
         subtext.style.fontWeight = '600';
@@ -1775,7 +1790,7 @@ function renderSplashState(state, btn) {
         `;
         ctaContainer.innerHTML = `
             <button style="width: 100%; background: #FBBF24; color: #111827; border: none; padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); display: flex; align-items: center; justify-content: center; gap: 8px;">
-                <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> ऐप डाउनलोड करें
+                <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> ऐप डाउनलोड करें <i class="fa-solid fa-download" style="margin-left: 4px;"></i>
             </button>
             <button onclick="goBackToFeed()" style="width: 100%; background: transparent; color: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer;">
                 वापस अमर उजाला पर जाएं
