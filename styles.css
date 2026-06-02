@@ -876,19 +876,17 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 
 .hanging-cta {
     position: absolute;
-    bottom: 75px;
+    bottom: 140px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
     gap: 15px;
-    border-radius: 30px;
     padding: 8px 10px 8px 24px;
     font-weight: 800;
     font-size: 16px;
     color: #FFF;
     z-index: 20;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     cursor: pointer;
     white-space: nowrap;
     opacity: 1;
@@ -900,9 +898,9 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     display: flex; justify-content: center; align-items: center;
     color: #000;
 }
-.hanging-cta.theme-priya { background: linear-gradient(135deg, #FFD700, #F59E0B); }
-.hanging-cta.theme-ajay { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
-.hanging-cta.theme-kirti { background: linear-gradient(135deg, #EC4899, #BE185D); }
+.hanging-cta.theme-priya { background: none; }
+.hanging-cta.theme-ajay { background: none; }
+.hanging-cta.theme-kirti { background: none; }
 
 .slider-image-box {
     width: 100%;
