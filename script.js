@@ -1251,7 +1251,7 @@ function updateInterruptUI() {
 const originalShowSection = window.showSection;
 window.showSection = function(sectionId, btn) {
     if(originalShowSection) originalShowSection(sectionId, btn);
-    if (sectionId === 'mweb-start-login') {
+    if (sectionId === 'mweb-start-login' || sectionId === 'app-start-login' || sectionId === 'mweb-logged-in-splash' || sectionId === 'mweb-splash-hybrid') {
         startSlider();
     } else {
         clearInterval(sliderInterval);
@@ -1748,11 +1748,11 @@ function renderSplashState(state, btn) {
     } 
     else if (state === 'ended_basic') {
         headerTitle.innerHTML = 'आज का समय समाप्त';
-        headerSubtitle.innerHTML = 'आज का समय समाप्त। कल पुनः आएं!';
+        headerSubtitle.innerHTML = 'आपका आज का बात करने का समय समाप्त हो गया है। आप अपनी चैट हिस्ट्री देख सकते हैं।';
         headerSubtitle.className = '';
         headerSubtitle.style.color = '#EF4444';
         
-        headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> समय समाप्त: 05:00</div>';
+        headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> 5 मिनट पूरे हुए। कल वापस आएं</div>';
         headerTimer.style.color = '#EF4444';
         
         bottomCta.style.display = 'flex';
@@ -1767,11 +1767,11 @@ function renderSplashState(state, btn) {
     }
     else if (state === 'ended_app') {
         headerTitle.innerHTML = 'आज का समय समाप्त';
-        headerSubtitle.innerHTML = 'आज का समय समाप्त। कल पुनः आएं!';
+        headerSubtitle.innerHTML = 'आपका आज का बात करने का समय समाप्त हो गया है। आप अपनी चैट हिस्ट्री देख सकते हैं।';
         headerSubtitle.className = '';
         headerSubtitle.style.color = '#EF4444';
         
-        headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> समय समाप्त: 05:00</div>';
+        headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> 5 मिनट पूरे हुए। कल वापस आएं</div>';
         headerTimer.style.color = '#EF4444';
         
         bottomCta.style.display = 'flex';
