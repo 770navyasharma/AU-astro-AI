@@ -1543,17 +1543,10 @@ function renderFeedbackOptions(options) {
         btn.style.width = '100%';
         
         if (opt.action === 'go_home') {
-            if (opt.text.includes('अमर उजाला')) {
-                btn.style.background = 'linear-gradient(135deg, #EF4444 0%, #D32F2F 100%)'; // Amar Ujala red
-                btn.style.color = '#FFF';
-                btn.style.border = 'none';
-                btn.style.boxShadow = '0 4px 15px rgba(239, 68, 68, 0.4)';
-            } else {
-                btn.style.background = 'rgba(255, 255, 255, 0.1)';
-                btn.style.color = '#FFF';
-                btn.style.border = '1px solid rgba(255, 255, 255, 0.2)';
-                btn.style.backdropFilter = 'blur(10px)';
-            }
+            btn.style.background = 'transparent';
+            btn.style.color = 'rgba(255, 255, 255, 0.8)';
+            btn.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+            btn.style.boxShadow = 'none';
         } else {
             btn.style.background = '#FBBF24';
             btn.style.color = '#111827';
