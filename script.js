@@ -1543,9 +1543,17 @@ function renderFeedbackOptions(options) {
         btn.style.width = '100%';
         
         if (opt.action === 'go_home') {
-            btn.style.background = 'rgba(255,255,255,0.05)';
-            btn.style.color = 'rgba(255,255,255,0.8)';
-            btn.style.border = '1px solid rgba(255,255,255,0.1)';
+            if (opt.text.includes('अमर उजाला')) {
+                btn.style.background = 'linear-gradient(135deg, #EF4444 0%, #D32F2F 100%)'; // Amar Ujala red
+                btn.style.color = '#FFF';
+                btn.style.border = 'none';
+                btn.style.boxShadow = '0 4px 15px rgba(239, 68, 68, 0.4)';
+            } else {
+                btn.style.background = 'rgba(255, 255, 255, 0.1)';
+                btn.style.color = '#FFF';
+                btn.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                btn.style.backdropFilter = 'blur(10px)';
+            }
         } else {
             btn.style.background = '#FBBF24';
             btn.style.color = '#111827';
@@ -1642,52 +1650,63 @@ function handleFeedbackAction(opt) {
 function askNextQuestion() {
     switch(feedbackStep) {
         case 1:
-            renderFeedbackMessage('ai', 'क्या आपको ज्योतिषी से बात करके अच्छा लगा?');
+            renderFeedbackMessage('ai', 'आपने ज्योतिषी से मुख्य रूप से किस विषय पर बात की?');
             setTimeout(() => {
                 renderFeedbackOptions([
-                    { text: 'हाँ, बहुत अच्छा', action: 'answer' },
-                    { text: 'ठीक-ठाक', action: 'answer' },
-                    { text: 'नहीं', action: 'answer' }
+                    { text: 'करियर / नौकरी', action: 'answer' },
+                    { text: 'प्रेम / विवाह', action: 'answer' },
+                    { text: 'धन / संपत्ति', action: 'answer' },
+                    { text: 'अन्य', action: 'answer' }
                 ]);
             }, 600);
             break;
         case 2:
-            renderFeedbackMessage('ai', 'क्या ज्योतिषी ने आपकी समस्या को सही ढंग से समझा?');
+            renderFeedbackMessage('ai', 'ज्योतिषी के उत्तर से आप कितने प्रतिशत संतुष्ट हैं?');
             setTimeout(() => {
                 renderFeedbackOptions([
-                    { text: 'बिल्कुल', action: 'answer' },
-                    { text: 'थोड़ा बहुत', action: 'answer' },
-                    { text: 'नहीं', action: 'answer' }
+                    { text: '100% (पूरी तरह)', action: 'answer' },
+                    { text: 'लगभग 75%', action: 'answer' },
+                    { text: '50% से कम', action: 'answer' }
                 ]);
             }, 600);
             break;
         case 3:
-            renderFeedbackMessage('ai', 'क्या आपको दिए गए उपाय उपयोगी लगे?');
+            renderFeedbackMessage('ai', 'क्या ज्योतिषी ने आपके मुख्य प्रश्न का स्पष्ट उत्तर दिया?');
             setTimeout(() => {
                 renderFeedbackOptions([
-                    { text: 'हाँ, बहुत उपयोगी', action: 'answer' },
-                    { text: 'शायद', action: 'answer' },
+                    { text: 'हाँ, बिल्कुल स्पष्ट', action: 'answer' },
+                    { text: 'आंशिक रूप से', action: 'answer' },
                     { text: 'नहीं', action: 'answer' }
                 ]);
             }, 600);
             break;
         case 4:
-            renderFeedbackMessage('ai', 'क्या आप भविष्य में फिर से इस सेवा का उपयोग करेंगे?');
+            renderFeedbackMessage('ai', 'आप इस सेवा को अपने दोस्तों को रिकमेंड करने की कितनी संभावना रखते हैं (1-10)?');
             setTimeout(() => {
                 renderFeedbackOptions([
-                    { text: 'जरूर', action: 'answer' },
-                    { text: 'शायद', action: 'answer' },
-                    { text: 'नहीं', action: 'answer' }
+                    { text: '10 (ज़रूर करेंगे)', action: 'answer' },
+                    { text: '5 (शायद करें)', action: 'answer' },
+                    { text: '1 (बिल्कुल नहीं)', action: 'answer' }
                 ]);
             }, 600);
             break;
         case 5:
-            renderFeedbackMessage('ai', 'कृपया अपने अनुभव को रेटिंग दें:');
+            renderFeedbackMessage('ai', 'क्या आप भविष्य में पेड (Paid) सर्विस के लिए 10-20 रुपये/मिनट देना चाहेंगे?');
+            setTimeout(() => {
+                renderFeedbackOptions([
+                    { text: 'हाँ, बिल्कुल', action: 'answer' },
+                    { text: 'शायद, अगर ज़रूरत पड़ी', action: 'answer' },
+                    { text: 'नहीं', action: 'answer' }
+                ]);
+            }, 600);
+            break;
+        case 6:
+            renderFeedbackMessage('ai', 'अंत में, कृपया अपने अनुभव को रेटिंग दें:');
             setTimeout(() => {
                 renderStarRating();
             }, 600);
             break;
-        case 6:
+        case 7:
             renderFeedbackMessage('ai', 'आपके कीमती समय और फीडबैक के लिए बहुत-बहुत धन्यवाद! 🙏');
             setTimeout(() => {
                 renderFeedbackOptions([
