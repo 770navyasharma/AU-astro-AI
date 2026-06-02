@@ -47,7 +47,7 @@
                 <button class="demo-btn-outline" onclick="showSection('mweb-start-login', this)">2. Login Screen</button>
                 <button class="demo-btn-outline" onclick="showSection('mweb-logged-in-splash', this)">2b. Logged-in Splash</button>
 
-                <button class="demo-btn-outline" onclick="showSection('astro-contact-screen', this)">4. Start Screen</button>
+
                 <button class="demo-btn-outline" onclick="showSection('mweb-dialing', this)">5. Dialing Screen</button>
                 <button class="demo-btn-outline" onclick="showSection('mweb-active-call', this)">6. Active Call Screen</button>
                 <button class="demo-btn-outline" style="border-color: #FF9800; color: #FF9800;" onclick="showSection('mweb-toast-test-screen', this)">🔔 1 min left</button>
@@ -63,7 +63,7 @@
                 <button class="demo-btn-outline active" onclick="showSection('app-feed', this)">1. App Banner</button>
                 <button class="demo-btn-outline" onclick="showSection('app-start-login', this)">2. Login Screen</button>
                 <button class="demo-btn-outline" onclick="showSection('app-splash', this)">3. Splash Screen</button>
-                <button class="demo-btn-outline" onclick="showSection('app-astro-contact-screen', this)">4. Start Screen</button>
+
                 <button class="demo-btn-outline" onclick="showSection('app-dialing', this)">5. Dialing Screen</button>
                 <button class="demo-btn-outline" onclick="showSection('app-active-call', this)">6. Active Call Screen</button>
                 <button class="demo-btn-outline" style="border-color: #FF9800; color: #FF9800;" onclick="showSection('app-toast-test-screen', this)">🔔 1 min left</button>
@@ -410,88 +410,10 @@
             
             <!-- Action Button -->
             <div style="width: 100%; padding: 0 15px; box-sizing: border-box; margin-top: 20px;">
-                <button class="cta-btn yellow-btn full-width" style="height: 52px; padding: 0; display: flex; align-items: center; justify-content: center; font-weight:800; font-size:18px;" onclick="showSection('astro-contact-screen'); setActiveFilter('astro-contact-screen');">आगे बढ़ें</button>
+                <button class="cta-btn yellow-btn full-width" style="height: 52px; padding: 0; display: flex; align-items: center; justify-content: center; font-weight:800; font-size:18px;" onclick="selectAstrologer('priya');">आगे बढ़ें</button>
             </div>
             </div>
         </div>
-<!-- ==========================================
-             2b. ASTRO START SCREEN (After Login — Contact List)
-             ========================================== -->
-        <div id="astro-contact-screen" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column;">
-            <div class="ios-home-indicator"></div>
-            <!-- Standard back button -->
-
-
-            <!-- Top header: title + timer -->
-            <div style="flex-shrink: 0; padding: 70px 20px 18px; background: rgba(11,14,26,0.95); border-bottom: 1px solid rgba(255,215,0,0.12); backdrop-filter: blur(10px); text-align: center;">
-                <h2 style="color: #FFF; font-size: 18px; font-weight: 800; margin: 0 0 16px;">अपना ज्योतिषी चुनें</h2>
-
-                <!-- Timer pill -->
-                <div style="display: flex; justify-content: center;">
-                    <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.35); padding: 10px 22px; border-radius: 50px;">
-                        <i class="fa-regular fa-clock" style="font-size: 17px; color: #FFD700;"></i>
-                        <span style="color: #FFF; font-size: 20px; font-weight: 900; letter-spacing: 2px; font-variant-numeric: tabular-nums;">05:00</span>
-                        <span style="color: #FFD700; font-size: 12px; font-weight: 700; letter-spacing: 0.5px;">परामर्श समय शेष</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scrollable contact list -->
-            <div style="flex: 1; padding: 20px 16px; display: flex; flex-direction: column; gap: 12px;">
-
-                <!-- Row: Priya -->
-                <div style="display: flex; align-items: center; gap: 14px; background: linear-gradient(145deg, rgba(32,41,64,0.85), rgba(17,24,39,0.85)); border: 1px solid rgba(255,215,0,0.15); border-radius: 20px; padding: 14px 16px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 24px rgba(0,0,0,0.25);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 28px rgba(0,0,0,0.4)'; this.style.borderColor='rgba(255,215,0,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 24px rgba(0,0,0,0.25)'; this.style.borderColor='rgba(255,215,0,0.15)';">
-                    <div style="position: relative; flex-shrink: 0;">
-                        <img src="assets/dr_priya_verma.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5); box-shadow: 0 0 14px rgba(255,215,0,0.25);" alt="Priya">
-                        <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #10B981; border-radius: 50%; border: 2px solid #0B0E1A; box-shadow: 0 0 6px rgba(16,185,129,0.8);"></span>
-                    </div>
-                    <div style="flex: 1; min-width: 0;">
-                        <p style="color: #FFF; font-weight: 800; font-size: 15px; margin: 0 0 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">डॉ. प्रिया वर्मा</p>
-                        <p style="color: #FFD700; font-size: 12px; font-weight: 600; margin: 0 0 2px;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
-                        <p style="color: rgba(255,255,255,0.45); font-size: 11px; margin: 0;">⭐ 4.9 &nbsp;·&nbsp; 10,000+ सेशन</p>
-                    </div>
-                    <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                        <button onclick="event.stopPropagation(); selectAndCallAstrologer('priya')" style="background: linear-gradient(135deg, #10B981, #059669); border: none; border-radius: 50px; padding: 10px 18px; color: #FFF; font-size: 14px; cursor: pointer;"><i class="fa-solid fa-phone"></i></button>
-                    </div>
-                </div>
-
-                <!-- Row: Ajay (Offline/Busy) -->
-                <div style="display: flex; align-items: center; gap: 14px; background: linear-gradient(145deg, rgba(20,25,35,0.6), rgba(10,12,18,0.6)); border: 1px solid rgba(255,255,255,0.04); border-radius: 20px; padding: 14px 16px; cursor: default;">
-                    <div style="position: relative; flex-shrink: 0; opacity: 0.8;">
-                        <img src="assets/dr_ajay.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.2);" alt="Ajay">
-                        <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #666; border-radius: 50%; border: 2px solid #0B0E1A;"></span>
-                    </div>
-                    <div style="flex: 1; min-width: 0; opacity: 0.8;">
-                        <p style="color: #FFF; font-weight: 800; font-size: 15px; margin: 0 0 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">डॉ. अजय शर्मा</p>
-                        <p style="color: #FFD700; font-size: 12px; font-weight: 600; margin: 0 0 2px;">व्यापार · धन · भाग्य विशेषज्ञ</p>
-                        <p style="color: rgba(255,255,255,0.45); font-size: 11px; margin: 0;">⭐ 4.8 &nbsp;·&nbsp; 8,500+ सेशन</p>
-                    </div>
-                    <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px;">
-                        <button style="background: #444; border: none; border-radius: 50px; padding: 10px 18px; color: #888; font-size: 14px; cursor: not-allowed;"><i class="fa-solid fa-phone"></i></button>
-                        <span style="color: #888; font-size: 10px; font-weight: 600; white-space: nowrap;">उपलब्ध नहीं है</span>
-                    </div>
-                </div>
-
-                <!-- Row: Kirti -->
-                <div style="display: flex; align-items: center; gap: 14px; background: linear-gradient(145deg, rgba(32,41,64,0.85), rgba(17,24,39,0.85)); border: 1px solid rgba(255,215,0,0.15); border-radius: 20px; padding: 14px 16px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 24px rgba(0,0,0,0.25);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 28px rgba(0,0,0,0.4)'; this.style.borderColor='rgba(255,215,0,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 24px rgba(0,0,0,0.25)'; this.style.borderColor='rgba(255,215,0,0.15)';">
-                    <div style="position: relative; flex-shrink: 0;">
-                        <img src="assets/dr_kirti.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5); box-shadow: 0 0 14px rgba(255,215,0,0.25);" alt="Kirti">
-                        <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #10B981; border-radius: 50%; border: 2px solid #0B0E1A; box-shadow: 0 0 6px rgba(16,185,129,0.8);"></span>
-                    </div>
-                    <div style="flex: 1; min-width: 0;">
-                        <p style="color: #FFF; font-weight: 800; font-size: 15px; margin: 0 0 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">डॉ. कीर्ति जोशी</p>
-                        <p style="color: #FFD700; font-size: 12px; font-weight: 600; margin: 0 0 2px;">प्रेम · विवाह · संतान विशेषज्ञ</p>
-                        <p style="color: rgba(255,255,255,0.45); font-size: 11px; margin: 0;">⭐ 4.7 &nbsp;·&nbsp; 6,200+ सेशन</p>
-                    </div>
-                    <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                        <button onclick="event.stopPropagation(); selectAndCallAstrologer('kirti')" style="background: linear-gradient(135deg, #10B981, #059669); border: none; border-radius: 50px; padding: 10px 18px; color: #FFF; font-size: 14px; cursor: pointer;"><i class="fa-solid fa-phone"></i></button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
         <!-- New Dialing Screen -->
         <div id="mweb-dialing" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div class="ios-home-indicator"></div>
@@ -1005,148 +927,7 @@
                     <button class="cta-btn yellow-btn" style="width: 60%; height: 48px; padding: 0; margin: 0 auto; display: flex; align-items: center; justify-content: center;" onclick="verifyOtpAndProceed()">कन्फर्म करें</button>
                 </div>
 
-                <div id="loggedInCallSection" class="hidden" style="width: 100%; height: 100%; background: linear-gradient(180deg, #0B0E1A 0%, #111827 100%);">
 
-                    <!-- Timer Pill -->
-                    <div style="padding: 52px 20px 20px; text-align: center;">
-                        <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); padding: 10px 24px; border-radius: 50px;">
-                            <i class="fa-regular fa-clock" style="font-size: 18px; color: #FFD700;"></i>
-                            <span style="color: #FFF; font-size: 22px; font-weight: 900; letter-spacing: 1.5px;">05:00</span>
-                            <span style="color: #FFD700; font-size: 13px; font-weight: 700;">परामर्श समय शेष</span>
-                        </div>
-                        <p style="color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin: 18px 0 0;">ज्योतिषी चुनें</p>
-                    </div>
-
-                    <!-- Contact List -->
-                    <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 12px;">
-
-                        <!-- Row 1: Priya -->
-                        <div class="astro-contact-row" onclick="selectAndCallAstrologer('priya')" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; padding: 16px 14px;">
-                            <div style="position: relative; flex-shrink: 0;">
-                                <img src="assets/dr_priya_verma.png" class="astro-contact-avatar" alt="Priya">
-                                <span class="astro-online-dot"></span>
-                            </div>
-                            <div class="astro-contact-info">
-                                <p class="astro-contact-name">डॉ. प्रिया वर्मा</p>
-                                <p class="astro-contact-spec">करियर · प्रेम · रिश्ते</p>
-                                <p class="astro-contact-meta">⭐ 4.9 &nbsp;·&nbsp; 10,000+ सेशन</p>
-                            </div>
-                            <button class="astro-call-btn" onclick="event.stopPropagation(); selectAndCallAstrologer('priya')">
-                                <i class="fa-solid fa-phone"></i>
-                            </button>
-                        </div>
-
-                        <!-- Row 2: Ajay -->
-                        <div class="astro-contact-row" onclick="selectAndCallAstrologer('ajay')" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; padding: 16px 14px;">
-                            <div style="position: relative; flex-shrink: 0;">
-                                <img src="assets/dr_ajay.png" class="astro-contact-avatar" alt="Ajay">
-                                <span class="astro-online-dot"></span>
-                            </div>
-                            <div class="astro-contact-info">
-                                <p class="astro-contact-name">डॉ. अजय शर्मा</p>
-                                <p class="astro-contact-spec">व्यापार · धन · भाग्य</p>
-                                <p class="astro-contact-meta">⭐ 4.8 &nbsp;·&nbsp; 8,500+ सेशन</p>
-                            </div>
-                            <button class="astro-call-btn" onclick="event.stopPropagation(); selectAndCallAstrologer('ajay')">
-                                <i class="fa-solid fa-phone"></i>
-                            </button>
-                        </div>
-
-                        <!-- Row 3: Kirti -->
-                        <div class="astro-contact-row" onclick="selectAndCallAstrologer('kirti')" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; padding: 16px 14px;">
-                            <div style="position: relative; flex-shrink: 0;">
-                                <img src="assets/dr_kirti.png" class="astro-contact-avatar" alt="Kirti">
-                                <span class="astro-online-dot"></span>
-                            </div>
-                            <div class="astro-contact-info">
-                                <p class="astro-contact-name">डॉ. कीर्ति जोशी</p>
-                                <p class="astro-contact-spec">प्रेम · विवाह · संतान</p>
-                                <p class="astro-contact-meta">⭐ 4.7 &nbsp;·&nbsp; 6,200+ सेशन</p>
-                            </div>
-                            <button class="astro-call-btn" onclick="event.stopPropagation(); selectAndCallAstrologer('kirti')">
-                                <i class="fa-solid fa-phone"></i>
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-
-<div id="app-astro-contact-screen" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column;">
-            <div class="ios-home-indicator"></div>
-            <!-- Standard back button -->
-            <button class="back-btn" onclick="goBackToFeed()"><i class="fa-solid fa-arrow-left"></i></button>
-
-            <!-- Top header: title + timer -->
-            <div style="flex-shrink: 0; padding: 70px 20px 18px; background: rgba(11,14,26,0.95); border-bottom: 1px solid rgba(255,215,0,0.12); backdrop-filter: blur(10px); text-align: center;">
-                <h2 style="color: #FFF; font-size: 18px; font-weight: 800; margin: 0 0 16px;">अपना ज्योतिषी चुनें</h2>
-
-                <!-- Timer pill -->
-                <div style="display: flex; justify-content: center;">
-                    <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.35); padding: 10px 22px; border-radius: 50px;">
-                        <i class="fa-regular fa-clock" style="font-size: 17px; color: #FFD700;"></i>
-                        <span style="color: #FFF; font-size: 20px; font-weight: 900; letter-spacing: 2px; font-variant-numeric: tabular-nums;">05:00</span>
-                        <span style="color: #FFD700; font-size: 12px; font-weight: 700; letter-spacing: 0.5px;">परामर्श समय शेष</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scrollable contact list -->
-            <div style="flex: 1; padding: 20px 16px; display: flex; flex-direction: column; gap: 12px;">
-
-                <!-- Row: Priya -->
-                <div style="display: flex; align-items: center; gap: 14px; background: linear-gradient(145deg, rgba(32,41,64,0.85), rgba(17,24,39,0.85)); border: 1px solid rgba(255,215,0,0.15); border-radius: 20px; padding: 14px 16px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 24px rgba(0,0,0,0.25);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 28px rgba(0,0,0,0.4)'; this.style.borderColor='rgba(255,215,0,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 24px rgba(0,0,0,0.25)'; this.style.borderColor='rgba(255,215,0,0.15)';">
-                    <div style="position: relative; flex-shrink: 0;">
-                        <img src="assets/dr_priya_verma.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5); box-shadow: 0 0 14px rgba(255,215,0,0.25);" alt="Priya">
-                        <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #10B981; border-radius: 50%; border: 2px solid #0B0E1A; box-shadow: 0 0 6px rgba(16,185,129,0.8);"></span>
-                    </div>
-                    <div style="flex: 1; min-width: 0;">
-                        <p style="color: #FFF; font-weight: 800; font-size: 15px; margin: 0 0 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">डॉ. प्रिया वर्मा</p>
-                        <p style="color: #FFD700; font-size: 12px; font-weight: 600; margin: 0 0 2px;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
-                        <p style="color: rgba(255,255,255,0.45); font-size: 11px; margin: 0;">⭐ 4.9 &nbsp;·&nbsp; 10,000+ सेशन</p>
-                    </div>
-                    <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                        <button onclick="event.stopPropagation(); selectAndCallAstrologer('priya')" style="background: linear-gradient(135deg, #10B981, #059669); border: none; border-radius: 50px; padding: 10px 18px; color: #FFF; font-size: 14px; cursor: pointer;"><i class="fa-solid fa-phone"></i></button>
-                    </div>
-                </div>
-
-                <!-- Row: Ajay (Offline/Busy) -->
-                <div style="display: flex; align-items: center; gap: 14px; background: linear-gradient(145deg, rgba(20,25,35,0.6), rgba(10,12,18,0.6)); border: 1px solid rgba(255,255,255,0.04); border-radius: 20px; padding: 14px 16px; cursor: default;">
-                    <div style="position: relative; flex-shrink: 0; opacity: 0.8;">
-                        <img src="assets/dr_ajay.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.2);" alt="Ajay">
-                        <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #666; border-radius: 50%; border: 2px solid #0B0E1A;"></span>
-                    </div>
-                    <div style="flex: 1; min-width: 0; opacity: 0.8;">
-                        <p style="color: #FFF; font-weight: 800; font-size: 15px; margin: 0 0 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">डॉ. अजय शर्मा</p>
-                        <p style="color: #FFD700; font-size: 12px; font-weight: 600; margin: 0 0 2px;">व्यापार · धन · भाग्य विशेषज्ञ</p>
-                        <p style="color: rgba(255,255,255,0.45); font-size: 11px; margin: 0;">⭐ 4.8 &nbsp;·&nbsp; 8,500+ सेशन</p>
-                    </div>
-                    <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px;">
-                        <button style="background: #444; border: none; border-radius: 50px; padding: 10px 18px; color: #888; font-size: 14px; cursor: not-allowed;"><i class="fa-solid fa-phone"></i></button>
-                        <span style="color: #888; font-size: 10px; font-weight: 600; white-space: nowrap;">उपलब्ध नहीं है</span>
-                    </div>
-                </div>
-
-                <!-- Row: Kirti -->
-                <div style="display: flex; align-items: center; gap: 14px; background: linear-gradient(145deg, rgba(32,41,64,0.85), rgba(17,24,39,0.85)); border: 1px solid rgba(255,215,0,0.15); border-radius: 20px; padding: 14px 16px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 24px rgba(0,0,0,0.25);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 28px rgba(0,0,0,0.4)'; this.style.borderColor='rgba(255,215,0,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 24px rgba(0,0,0,0.25)'; this.style.borderColor='rgba(255,215,0,0.15)';">
-                    <div style="position: relative; flex-shrink: 0;">
-                        <img src="assets/dr_kirti.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5); box-shadow: 0 0 14px rgba(255,215,0,0.25);" alt="Kirti">
-                        <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #10B981; border-radius: 50%; border: 2px solid #0B0E1A; box-shadow: 0 0 6px rgba(16,185,129,0.8);"></span>
-                    </div>
-                    <div style="flex: 1; min-width: 0;">
-                        <p style="color: #FFF; font-weight: 800; font-size: 15px; margin: 0 0 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">डॉ. कीर्ति जोशी</p>
-                        <p style="color: #FFD700; font-size: 12px; font-weight: 600; margin: 0 0 2px;">प्रेम · विवाह · संतान विशेषज्ञ</p>
-                        <p style="color: rgba(255,255,255,0.45); font-size: 11px; margin: 0;">⭐ 4.7 &nbsp;·&nbsp; 6,200+ सेशन</p>
-                    </div>
-                    <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                        <button onclick="event.stopPropagation(); selectAndCallAstrologer('kirti')" style="background: linear-gradient(135deg, #10B981, #059669); border: none; border-radius: 50px; padding: 10px 18px; color: #FFF; font-size: 14px; cursor: pointer;"><i class="fa-solid fa-phone"></i></button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
 
 <div id="app-dialing" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div class="ios-home-indicator"></div>

@@ -1324,8 +1324,7 @@ function moveToNextOtp(current, nextFieldID) {
 }
 
 function verifyOtpAndProceed() {
-    showSection("astro-contact-screen", null);
-    setActiveFilter("astro-contact-screen");
+    selectAndCallAstrologer('priya');
 }
 
 // Device Mockup Toggle
