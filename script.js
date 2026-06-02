@@ -1027,9 +1027,14 @@ function openChatHistory(btn, ev) {
     document.getElementById('history-name').textContent = astro.name;
     document.getElementById('history-expertise').textContent = astro.specialty;
     document.getElementById('history-avatar').src = astro.image;
-    document.getElementById('history-chat-avatar-1').src = astro.image;
-    document.getElementById('history-chat-avatar-2').src = astro.image;
-    document.getElementById('history-chat-avatar-3').src = astro.image;
+    
+    // Update chat bubble names
+    const historySection = document.getElementById('mweb-chat-history');
+    if (historySection) {
+        historySection.querySelectorAll('.bubble-header').forEach(el => {
+            el.textContent = astro.name;
+        });
+    }
     
     showSection('mweb-chat-history');
 }
