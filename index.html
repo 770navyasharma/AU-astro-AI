@@ -149,69 +149,6 @@
             </div>
         </div>
 
-
-        <!-- ==========================================
-             1b. MWEB SPLASH SCREEN (After Login for Web Users)
-             ========================================== -->
-        <div id="mweb-splash" class="view-section hidden mobile-frame starry-theme astro-premium-bg">
-            <div class="ios-home-indicator"></div>
-            <!-- Top Controls -->
-
-            <button class="skip-btn" onclick="skipSplash()">स्किप <i class="fa-solid fa-caret-right"></i></button>
-
-            <!-- Splash Slider Area -->
-            <div class="splash-slider-container">
-                <div class="splash-slider" id="splashSlider" onscroll="onSplashScroll()">
-                    
-                    <!-- Slide 1: Secure AI -->
-                    <div class="splash-slide">
-                        <div class="splash-img-wrapper">
-                            <img src="assets/splash_secure_ai.png" alt="Secure AI">
-                        </div>
-                        <div class="splash-content-sheet">
-                            <div class="splash-indicator-line"></div>
-                            <h2 class="splash-title">सटीक AI विश्लेषण, 100% सुरक्षित 💵 ⚡</h2>
-                            <p class="splash-desc">करियर, प्रेम या धन... अपने पर्सनल AI ज्योतिषी से बात करें और अपने हर सवाल का तुरंत जवाब पाएं।</p>
-                            <button class="splash-cta" onclick="scrollSplash(1)">आगे बढ़ें</button>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2: Live Tracking -->
-                    <div class="splash-slide">
-                        <div class="splash-img-wrapper">
-                            <img src="assets/splash_live_tracking.png" alt="Live Tracking">
-                        </div>
-                        <div class="splash-content-sheet">
-                            <div class="splash-indicator-line"></div>
-                            <h2 class="splash-title">रियल-टाइम कुंडली विश्लेषण 🃏</h2>
-                            <p class="splash-desc">बातचीत के दौरान अपनी स्क्रीन पर लाइव चार्ट्स और ग्रहों की सटीक AI कैलकुलेशन अपनी आँखों से देखें।</p>
-                            <button class="splash-cta" onclick="scrollSplash(1)">आगे बढ़ें</button>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3: Free Offer -->
-                    <div class="splash-slide">
-                        <div class="splash-img-wrapper">
-                            <img src="assets/splash_free_offer.png" alt="Free Offer">
-                        </div>
-                        <div class="splash-content-sheet">
-                            <div class="splash-indicator-line"></div>
-                            <h2 class="splash-title">5 मिनट बिल्कुल मुफ़्त! 🎁</h2>
-                            <p class="splash-desc">"क्या कहते हैं आपके सितारे? आएं और बिना किसी खर्च के अपने भविष्य के बारे में जानें।"</p>
-                            <button class="splash-cta primary-cta" onclick="skipSplash()">अभी शुरू करें</button>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- Splash Dots -->
-                <div class="splash-dots" style="position: absolute; top: 47%; z-index: 100; width: 100%; display: flex; justify-content: center; gap: 6px; pointer-events: none;">
-                    <span class="splash-dot active"></span>
-                    <span class="splash-dot"></span>
-                    <span class="splash-dot"></span>
-                </div>
-            </div>
-        </div>
-
         <!-- ==========================================
              2. NEW MWEB START / LOGIN SCREEN
              ========================================== -->
@@ -288,12 +225,6 @@
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
                     <p class="trust-stamp-text">100% सुरक्षित</p>
-                </div>
-                <div class="trust-stamp">
-                    <div class="icon-glow-wrapper green-glow">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
-                    <p class="trust-stamp-text">सर्टिफाइड एस्ट्रो</p>
                 </div>
                 <div class="trust-stamp">
                     <div class="icon-glow-wrapper gold-glow">
@@ -1040,12 +971,6 @@
                     <p class="trust-stamp-text">100% सुरक्षित</p>
                 </div>
                 <div class="trust-stamp">
-                    <div class="icon-glow-wrapper green-glow">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
-                    <p class="trust-stamp-text">सर्टिफाइड एस्ट्रो</p>
-                </div>
-                <div class="trust-stamp">
                     <div class="icon-glow-wrapper gold-glow">
                         <i class="fa-solid fa-lock"></i>
                     </div>
@@ -1146,65 +1071,6 @@
                     </div>
                 </div>
             </div>
-            </div>
-        </div>
-
-<div id="app-splash" class="view-section hidden mobile-frame starry-theme astro-premium-bg">
-            <div class="ios-home-indicator"></div>
-            <!-- Top Controls -->
-            <button class="back-btn" onclick="splashGoBack()"><i class="fa-solid fa-arrow-left"></i></button>
-            <button class="skip-btn" onclick="skipSplash()">स्किप <i class="fa-solid fa-caret-right"></i></button>
-
-            <!-- Splash Slider Area -->
-            <div class="splash-slider-container">
-                <div class="splash-slider" id="splashSlider" onscroll="onSplashScroll()">
-                    
-                    <!-- Slide 1: Secure AI -->
-                    <div class="splash-slide">
-                        <div class="splash-img-wrapper">
-                            <img src="assets/app_splash_1.png" alt="Secure AI">
-                        </div>
-                        <div class="splash-content-sheet">
-                            <div class="splash-indicator-line"></div>
-                            <h2 class="splash-title">सटीक AI विश्लेषण, 100% सुरक्षित 💵 ⚡</h2>
-                            <p class="splash-desc">करियर, प्रेम या धन... अपने पर्सनल AI ज्योतिषी से बात करें और अपने हर सवाल का तुरंत जवाब पाएं।</p>
-                            <button class="splash-cta" onclick="scrollSplash(1)">आगे बढ़ें</button>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2: Live Tracking -->
-                    <div class="splash-slide">
-                        <div class="splash-img-wrapper">
-                            <img src="assets/app_splash_2.png" alt="Live Tracking">
-                        </div>
-                        <div class="splash-content-sheet">
-                            <div class="splash-indicator-line"></div>
-                            <h2 class="splash-title">रियल-टाइम कुंडली विश्लेषण 🃏</h2>
-                            <p class="splash-desc">बातचीत के दौरान अपनी स्क्रीन पर लाइव चार्ट्स और ग्रहों की सटीक AI कैलकुलेशन अपनी आँखों से देखें।</p>
-                            <button class="splash-cta" onclick="scrollSplash(1)">आगे बढ़ें</button>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3: Free Offer -->
-                    <div class="splash-slide">
-                        <div class="splash-img-wrapper">
-                            <img src="assets/app_splash_3.png" alt="Free Offer">
-                        </div>
-                        <div class="splash-content-sheet">
-                            <div class="splash-indicator-line"></div>
-                            <h2 class="splash-title">रोज़ 10 मिनट बिल्कुल मुफ़्त! 🎁</h2>
-                            <p class="splash-desc">"क्या कहते हैं आपके सितारे? आएं और बिना किसी खर्च के अपने भविष्य के बारे में जानें।"</p>
-                            <button class="splash-cta primary-cta" onclick="skipSplash()">अभी शुरू करें</button>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- Splash Dots -->
-                <div class="splash-dots" style="position: absolute; top: 47%; z-index: 100; width: 100%; display: flex; justify-content: center; gap: 6px; pointer-events: none;">
-                    <span class="splash-dot active"></span>
-                    <span class="splash-dot"></span>
-                    <span class="splash-dot"></span>
-                </div>
             </div>
         </div>
 

@@ -82,14 +82,14 @@ function setActiveFilter(sectionId) {
     const filterMap = {
         'mweb-feed': 0,
         'mweb-start-login': 1,
-        'mweb-splash': 2,
+
         'astro-contact-screen': 3,
         'unifiedGatewayScreen': 4,
         'callInterface': 5
     };
 
     // Activate the correct Platform button
-    if (['mweb-feed', 'mweb-start-login', 'mweb-splash', 'astro-contact-screen', 'unifiedGatewayScreen', 'callInterface'].includes(sectionId)) {
+    if (['mweb-feed', 'mweb-start-login', 'astro-contact-screen', 'unifiedGatewayScreen', 'callInterface'].includes(sectionId)) {
         const btn = document.getElementById('mwebSelectBtn');
         if (btn) btn.classList.add('active');
         document.getElementById('mweb-filters').style.display = 'block';
@@ -154,9 +154,7 @@ function showSection(sectionId, btnElement) {
     const target = document.getElementById(sectionId);
     if (target) target.classList.remove('hidden');
 
-    if (sectionId === 'mweb-splash' || sectionId === 'app-splash') {
-        setTimeout(startSplashSlider, 50); // Small delay to ensure display:block before calculating widths
-    }
+
     
     if (sectionId === 'mweb-start-login' || sectionId === 'app-start-login' || sectionId === 'mweb-logged-in-splash') {
         setTimeout(startSlider, 50);
@@ -175,7 +173,7 @@ function showSection(sectionId, btnElement) {
     }
 
     // Sync platform buttons if needed (Mweb vs Native)
-    if (['mweb-feed', 'mweb-start-login', 'mweb-splash', 'astro-contact-screen', 'mweb-dialing', 'mweb-active-call', 'mweb-toast-test-screen', 'mweb-time-over-screen', 'mweb-waitlist-screen'].includes(sectionId)) {
+    if (['mweb-feed', 'mweb-start-login', 'astro-contact-screen', 'mweb-dialing', 'mweb-active-call', 'mweb-toast-test-screen', 'mweb-time-over-screen', 'mweb-waitlist-screen'].includes(sectionId)) {
         document.getElementById('mwebSelectBtn')?.classList.add('active');
         document.getElementById('appSelectBtn')?.classList.remove('active');
     } else if (sectionId.startsWith('app-')) {

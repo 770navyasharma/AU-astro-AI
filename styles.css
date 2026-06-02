@@ -410,7 +410,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 18px;
 }
 .blue-glow {
     color: #60A5FA;
@@ -996,7 +996,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 }
 
 .trust-stamp p {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     color: rgba(255,255,255,0.9);
     margin: 0;
