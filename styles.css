@@ -930,6 +930,10 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     padding: 0 15px;
 }
 
+#mweb-logged-in-splash .slider-overlay-text {
+    bottom: 145px;
+}
+
 .slide-in-text {
     color: #FFF;
     font-size: 24px;
