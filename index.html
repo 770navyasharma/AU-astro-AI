@@ -676,33 +676,33 @@
             <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 50000; backdrop-filter: blur(4px);"></div>
             
             <!-- Bottom Sheet -->
-            <div style="position: absolute; bottom: 0; left: 0; width: 100%; max-height: 55%; background: linear-gradient(180deg, #1C2438 0%, #0B0E1A 100%); border-radius: 32px 32px 0 0; padding: 16px 45px 30px; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); z-index: 50001; display: flex; flex-direction: column; align-items: center; text-align: center; border-top: 1px solid rgba(255,215,0,0.2);">
+            <div style="position: absolute; bottom: 0; left: 0; width: 100%; max-height: 55%; background: linear-gradient(180deg, #1C2438 0%, #0B0E1A 100%); border-radius: 32px 32px 0 0; padding: 16px 20px 30px; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); z-index: 50001; display: flex; flex-direction: column; align-items: center; border-top: 1px solid rgba(255,215,0,0.2);">
                 
                 <!-- Nudge Handle -->
                 <div style="width: 40px; height: 5px; background: rgba(255,255,255,0.2); border-radius: 3px; margin: 0 auto 16px;"></div>
                 
-                <!-- Icon Group -->
-                <div style="position: relative; margin-bottom: 16px;">
-                    <div style="background: #FFF; width: 64px; height: 64px; border-radius: 14px; padding: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 2px solid rgba(255,255,255,0.1);">
-                        <img src="assets/au_logo.png" style="width: 100%; height: auto; object-fit: contain;" alt="AU App">
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 15px; width: 100%; margin-bottom: 24px;">
+                    <!-- LEFT SIDE -->
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0; width: 90px;">
+                        <div style="background: #FFF; width: 64px; height: 64px; border-radius: 14px; padding: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 2px solid rgba(255,255,255,0.1);">
+                            <img src="assets/au_logo.png" style="width: 100%; height: auto; object-fit: contain;" alt="AU App">
+                        </div>
+                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%;">
+                            <span style="color: #FFD700; font-size: 9px; letter-spacing: 0.5px;">⭐⭐⭐⭐⭐ 4.9</span>
+                            <span style="color: rgba(255,255,255,0.9); font-size: 10px; font-weight: 600;">10M+ Installs</span>
+                        </div>
+                    </div>
+                    
+                    <!-- RIGHT SIDE -->
+                    <div style="text-align: left; display: flex; flex-direction: column; justify-content: center; flex: 1;">
+                        <h3 style="color: #FFF; font-size: 18px; font-weight: 900; margin: 0 0 8px; line-height: 1.3;">रोज़ ऐप में 10 मिनट फ्री बात करें</h3>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 13px; margin: 0; line-height: 1.5;">समय समाप्त! आगे बात जारी रखने और डेली फ्री मिनट्स पाने के लिए अभी अमर उजाला ऐप डाउनलोड करें।</p>
                     </div>
                 </div>
                 
-                <!-- Stats Pill -->
-                <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); padding: 6px 16px; border-radius: 20px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px;">
-                    <span style="color: #FFD700; font-size: 11px; letter-spacing: 1px;">⭐⭐⭐⭐⭐</span>
-                    <span style="color: rgba(255,255,255,0.7); font-size: 12px;">4.9</span>
-                    <span style="color: rgba(255,255,255,0.3); font-size: 10px;">|</span>
-                    <span style="color: rgba(255,255,255,0.9); font-size: 12px; font-weight: 600;">10M+ Installs</span>
-                </div>
-                
-                <!-- Text Content -->
-                <h3 style="color: #FFF; font-size: 20px; font-weight: 900; margin: 0 0 10px; line-height: 1.3;">रोज़ ऐप में 10 मिनट फ्री बात करें</h3>
-                <p style="color: rgba(255,255,255,0.7); font-size: 13px; margin: 0 0 24px; line-height: 1.5;">समय समाप्त! आगे बात जारी रखने और डेली फ्री मिनट्स पाने के लिए अभी अमर उजाला ऐप डाउनलोड करें।</p>
-                
                 <!-- CTAs -->
-                <button style="width: 80%; min-width: 180px; background: #FBBF24; color: #111827; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); margin-bottom: 12px;">ऐप डाउनलोड करें</button>
-                <button onclick="goBackToFeed()" style="width: 80%; min-width: 180px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.3s;">होम पर वापस जाएं</button>
+                <button style="width: 90%; min-width: 180px; background: #FBBF24; color: #111827; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); margin-bottom: 12px;">ऐप डाउनलोड करें</button>
+                <button onclick="goBackToFeed()" style="width: 90%; min-width: 180px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.3s;">वापस जाएं</button>
                 
             </div>
         </div>
@@ -1108,33 +1108,33 @@
             <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 50000; backdrop-filter: blur(4px);"></div>
             
             <!-- Bottom Sheet -->
-            <div style="position: absolute; bottom: 0; left: 0; width: 100%; max-height: 55%; background: linear-gradient(180deg, #1C2438 0%, #0B0E1A 100%); border-radius: 32px 32px 0 0; padding: 16px 45px 30px; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); z-index: 50001; display: flex; flex-direction: column; align-items: center; text-align: center; border-top: 1px solid rgba(255,215,0,0.2);">
+            <div style="position: absolute; bottom: 0; left: 0; width: 100%; max-height: 55%; background: linear-gradient(180deg, #1C2438 0%, #0B0E1A 100%); border-radius: 32px 32px 0 0; padding: 16px 20px 30px; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); z-index: 50001; display: flex; flex-direction: column; align-items: center; border-top: 1px solid rgba(255,215,0,0.2);">
                 
                 <!-- Nudge Handle -->
                 <div style="width: 40px; height: 5px; background: rgba(255,255,255,0.2); border-radius: 3px; margin: 0 auto 16px;"></div>
                 
-                <!-- Icon Group -->
-                <div style="position: relative; margin-bottom: 16px;">
-                    <div style="background: #FFF; width: 64px; height: 64px; border-radius: 14px; padding: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 2px solid rgba(255,255,255,0.1);">
-                        <img src="assets/au_logo.png" style="width: 100%; height: auto; object-fit: contain;" alt="AU App">
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 15px; width: 100%; margin-bottom: 24px;">
+                    <!-- LEFT SIDE -->
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0; width: 90px;">
+                        <div style="background: #FFF; width: 64px; height: 64px; border-radius: 14px; padding: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 2px solid rgba(255,255,255,0.1);">
+                            <img src="assets/au_logo.png" style="width: 100%; height: auto; object-fit: contain;" alt="AU App">
+                        </div>
+                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%;">
+                            <span style="color: #FFD700; font-size: 9px; letter-spacing: 0.5px;">⭐⭐⭐⭐⭐ 4.9</span>
+                            <span style="color: rgba(255,255,255,0.9); font-size: 10px; font-weight: 600;">10M+ Installs</span>
+                        </div>
+                    </div>
+                    
+                    <!-- RIGHT SIDE -->
+                    <div style="text-align: left; display: flex; flex-direction: column; justify-content: center; flex: 1;">
+                        <h3 style="color: #FFF; font-size: 18px; font-weight: 900; margin: 0 0 8px; line-height: 1.3;">रोज़ ऐप में 10 मिनट फ्री बात करें</h3>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 13px; margin: 0; line-height: 1.5;">समय समाप्त! आगे बात जारी रखने और डेली फ्री मिनट्स पाने के लिए अभी अमर उजाला ऐप डाउनलोड करें।</p>
                     </div>
                 </div>
                 
-                <!-- Stats Pill -->
-                <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); padding: 6px 16px; border-radius: 20px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px;">
-                    <span style="color: #FFD700; font-size: 11px; letter-spacing: 1px;">⭐⭐⭐⭐⭐</span>
-                    <span style="color: rgba(255,255,255,0.7); font-size: 12px;">4.9</span>
-                    <span style="color: rgba(255,255,255,0.3); font-size: 10px;">|</span>
-                    <span style="color: rgba(255,255,255,0.9); font-size: 12px; font-weight: 600;">10M+ Installs</span>
-                </div>
-                
-                <!-- Text Content -->
-                <h3 style="color: #FFF; font-size: 20px; font-weight: 900; margin: 0 0 10px; line-height: 1.3;">रोज़ 10 मिनट फ्री बात करें</h3>
-                <p style="color: rgba(255,255,255,0.7); font-size: 13px; margin: 0 0 24px; line-height: 1.5;">समय समाप्त! आगे बात जारी रखने और डेली फ्री मिनट्स पाने के लिए अभी ऐप डाउनलोड करें।</p>
-                
                 <!-- CTAs -->
-                <button style="width: 80%; min-width: 180px; background: #FBBF24; color: #111827; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); margin-bottom: 12px;">ऐप डाउनलोड करें</button>
-                <button onclick="goBackToFeed()" style="width: 80%; min-width: 180px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.3s;">होम पर वापस जाएं</button>
+                <button style="width: 90%; min-width: 180px; background: #FBBF24; color: #111827; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); margin-bottom: 12px;">ऐप डाउनलोड करें</button>
+                <button onclick="goBackToFeed()" style="width: 90%; min-width: 180px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.3s;">वापस जाएं</button>
                 
             </div>
         </div><!-- /phone-stage -->
