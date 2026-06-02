@@ -418,7 +418,7 @@
             </div>
         </div>
         <!-- HYBRID SPLASH ACTIVE -->
-        <div id="mweb-splash-active-hybrid" class="view-section hidden mobile-frame starry-theme astro-premium-bg" style="display: flex; flex-direction: column;">
+        <div id="mweb-splash-hybrid" class="view-section hidden mobile-frame starry-theme astro-premium-bg" style="display: flex; flex-direction: column;">
             <div class="ios-home-indicator"></div>
             
             <!-- Hybrid Slider -->
@@ -466,9 +466,9 @@
             <!-- Listing Section -->
             <div class="hybrid-listing-section">
                 <div class="hybrid-listing-header" style="text-align: center;">
-                    <h1>अपना ज्योतिषी चुनें</h1>
-                    <p class="glow-gold" style="font-size: 17px; text-align: center; margin: 0 0 20px 0; font-weight: 600;">करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।</p>
-                    <h2><i class="fa-regular fa-clock"></i> शेष समय: 05:00</h2>
+                    <h1 id="hybrid-header-title">अपना ज्योतिषी चुनें</h1>
+                    <p id="hybrid-header-subtitle" class="glow-gold" style="font-size: 17px; text-align: center; margin: 0 0 20px 0; font-weight: 600;">करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।</p>
+                    <h2 id="hybrid-header-timer"><i class="fa-regular fa-clock"></i> शेष समय: 05:00</h2>
                 </div>
 
                 <div class="astrologer-list">
@@ -482,7 +482,7 @@
                             <p>Vedic, Tarot, Numerology</p>
                             <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (12.4k)</div>
                         </div>
-                        <button class="call-btn-small" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                        <button class="call-btn-small hybrid-call-btn" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
                             <i class="fa-solid fa-phone"></i> Call
                         </button>
                     </div>
@@ -497,7 +497,7 @@
                             <p>Vedic, Vastu, Prashna</p>
                             <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.8 (8.1k)</div>
                         </div>
-                        <button class="call-btn-small" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                        <button class="call-btn-small hybrid-call-btn" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
                             <i class="fa-solid fa-phone"></i> Call
                         </button>
                     </div>
@@ -512,11 +512,14 @@
                             <p>Tarot, Numerology, KP</p>
                             <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (9.3k)</div>
                         </div>
-                        <button class="call-btn-small" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                        <button class="call-btn-small hybrid-call-btn" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
                             <i class="fa-solid fa-phone"></i> Call
                         </button>
                     </div>
                 </div>
+
+                <!-- Dynamic Bottom CTA Container -->
+                <div id="hybrid-bottom-cta" style="margin-top: 24px; display: none; flex-direction: column; gap: 12px;"></div>
             </div>
         </div>
 

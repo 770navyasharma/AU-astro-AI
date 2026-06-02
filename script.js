@@ -1715,73 +1715,70 @@ function askNextQuestion() {
 // SPLASH SCREEN STATES LOGIC
 // ==========================================
 function renderSplashState(state, btn) {
-    if (state === 'active') {
-        if(btn) {
-            showSection('mweb-splash-active-hybrid', btn);
-        } else {
-            showSection('mweb-splash-active-hybrid');
-        }
-        return; // Return early, hybrid screen is entirely static HTML
-    }
-
     if(btn) {
-        showSection('mweb-logged-in-splash', btn);
+        showSection('mweb-splash-hybrid', btn);
     } else {
-        showSection('mweb-logged-in-splash');
+        showSection('mweb-splash-hybrid');
     }
     
-    const timerContainer = document.getElementById('splash-timer-container');
-    const subtext = document.getElementById('splash-subtext');
-    const ctaContainer = document.getElementById('splash-cta-container');
+    const headerTitle = document.getElementById('hybrid-header-title');
+    const headerSubtitle = document.getElementById('hybrid-header-subtitle');
+    const headerTimer = document.getElementById('hybrid-header-timer');
+    const bottomCta = document.getElementById('hybrid-bottom-cta');
+    const callBtns = document.querySelectorAll('.hybrid-call-btn');
 
-    if (state === 'ended_basic') {
-        // State 2: Time Ended - No App Promo
-        document.getElementById('loginMainText').style.marginTop = '15px';
-        timerContainer.style.marginTop = '25px';
-        timerContainer.style.marginBottom = '10px';
-        ctaContainer.style.marginTop = '20px';
+    if (state === 'active') {
+        headerTitle.innerHTML = 'अपना ज्योतिषी चुनें';
+        headerSubtitle.innerHTML = 'करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।';
+        headerSubtitle.className = 'glow-gold';
+        headerSubtitle.style.color = '#FDE047';
         
-        subtext.innerHTML = 'आपका आज का फ्री समय समाप्त हो गया है। कृपया कल वापस आएं!';
-        subtext.style.color = '#EF4444';
-        subtext.style.fontWeight = '600';
+        headerTimer.innerHTML = '<i class="fa-regular fa-clock"></i> शेष समय: 05:00';
+        headerTimer.style.color = '#FFD700';
         
-        timerContainer.innerHTML = `
-            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 10px 20px; border-radius: 50px;">
-                <i class="fa-solid fa-hourglass-end" style="color: #EF4444; font-size: 20px;"></i>
-                <span style="color: #EF4444; font-size: 16px; font-weight: 800; letter-spacing: 0.5px;">5 मिनट समाप्त!</span>
-            </div>
-        `;
-        ctaContainer.innerHTML = `
-            <button onclick="goBackToFeed()" style="width: 100%; background: transparent; color: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.3s;">
+        bottomCta.style.display = 'none';
+        bottomCta.innerHTML = '';
+        
+        callBtns.forEach(b => b.style.display = 'flex');
+    } 
+    else if (state === 'ended_basic') {
+        headerTitle.innerHTML = 'आज का समय समाप्त';
+        headerSubtitle.innerHTML = 'आज का फ्री सेशन समाप्त हुआ। कल फिर से जुड़ें और जानें अपने सवालों के जवाब!';
+        headerSubtitle.className = '';
+        headerSubtitle.style.color = '#EF4444';
+        
+        headerTimer.innerHTML = '<i class="fa-regular fa-clock"></i> समय समाप्त: 05:00';
+        headerTimer.style.color = '#EF4444';
+        
+        bottomCta.style.display = 'flex';
+        bottomCta.innerHTML = `
+            <button onclick="goBackToFeed()" style="width: 100%; background: rgba(255, 255, 255, 0.05); color: #FFF; border: 1px solid rgba(255, 255, 255, 0.2); padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.3s;">
                 वापस अमर उजाला पर जाएं
             </button>
         `;
+        
+        callBtns.forEach(b => b.style.display = 'none');
     }
     else if (state === 'ended_app') {
-        // State 3: Time Ended - Promote App
-        document.getElementById('loginMainText').style.marginTop = '5px';
-        timerContainer.style.marginTop = '10px';
-        timerContainer.style.marginBottom = '5px';
-        ctaContainer.style.marginTop = '10px';
+        headerTitle.innerHTML = 'आज का समय समाप्त';
+        headerSubtitle.innerHTML = 'आज का फ्री सेशन समाप्त हुआ। कल फिर से जुड़ें और जानें अपने सवालों के जवाब!';
+        headerSubtitle.className = '';
+        headerSubtitle.style.color = '#EF4444';
         
-        subtext.innerHTML = 'आपका आज का फ्री समय समाप्त हो गया है। कृपया कल वापस आएं!';
-        subtext.style.color = '#EF4444';
-        subtext.style.fontWeight = '600';
+        headerTimer.innerHTML = '<i class="fa-regular fa-clock"></i> समय समाप्त: 05:00';
+        headerTimer.style.color = '#EF4444';
         
-        timerContainer.innerHTML = `
-            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 10px 20px; border-radius: 50px;">
-                <i class="fa-solid fa-hourglass-end" style="color: #EF4444; font-size: 20px;"></i>
-                <span style="color: #EF4444; font-size: 16px; font-weight: 800; letter-spacing: 0.5px;">5 मिनट समाप्त!</span>
-            </div>
-        `;
-        ctaContainer.innerHTML = `
-            <button style="width: 100%; background: #FBBF24; color: #111827; border: none; padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); display: flex; align-items: center; justify-content: center; gap: 8px;">
-                <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> अमर उजाला ऐप डाउनलोड करें <i class="fa-solid fa-download" style="margin-left: 4px;"></i>
+        bottomCta.style.display = 'flex';
+        bottomCta.innerHTML = `
+            <button style="width: 100%; background: #FBBF24; color: #111827; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <img src="assets/au_logo.png" style="width: 24px; height: 24px; border-radius: 6px; object-fit: contain;"> अमर उजाला ऐप डाउनलोड करें <i class="fa-solid fa-download" style="margin-left: 4px;"></i>
             </button>
-            <button onclick="goBackToFeed()" style="width: 100%; background: transparent; color: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer;">
+            <button onclick="goBackToFeed()" style="width: 100%; background: rgba(255, 255, 255, 0.05); color: #FFF; border: 1px solid rgba(255, 255, 255, 0.2); padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer;">
                 वापस अमर उजाला पर जाएं
             </button>
         `;
+        
+        callBtns.forEach(b => b.style.display = 'none');
     }
 }
 

@@ -1806,7 +1806,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     object-position: left center;
 }
 .hybrid-slider-container .slider-overlay-text {
-    width: 60%;
+    width: 40%;
     left: auto;
     right: 0;
     top: 50%;
