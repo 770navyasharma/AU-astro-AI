@@ -156,7 +156,7 @@ function showSection(sectionId, btnElement) {
 
 
     
-    if (sectionId === 'mweb-start-login' || sectionId === 'app-start-login' || sectionId === 'mweb-logged-in-splash') {
+    if (sectionId === 'mweb-start-login' || sectionId === 'app-start-login' || sectionId === 'mweb-logged-in-splash' || sectionId === 'mweb-splash-active-hybrid') {
         setTimeout(startSlider, 50);
     }
 
