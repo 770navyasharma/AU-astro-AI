@@ -417,6 +417,105 @@
             </div>
             </div>
         </div>
+        <!-- HYBRID SPLASH ACTIVE -->
+        <div id="mweb-splash-active-hybrid" class="view-section hidden mobile-frame starry-theme astro-premium-bg" style="display: flex; flex-direction: column;">
+            <div class="ios-home-indicator"></div>
+            
+            <!-- Hybrid Slider -->
+            <div class="hybrid-slider-container">
+                <div class="login-slider" id="hybridSlider" onscroll="onSliderScroll()">
+                    <!-- Card 1: Priya -->
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_banner.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2: Ajay -->
+                    <div class="slider-card" data-astro="ajay">
+                        <div class="slider-image-box">
+                            <img src="assets/ajay_banner.png" alt="Dr Ajay">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">व्यापार में घाटा क्यों?</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3: Kirti -->
+                    <div class="slider-card" data-astro="kirti">
+                        <div class="slider-image-box">
+                            <img src="assets/kirti_banner.png" alt="Dr Kirti">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">सच्चा प्यार कब मिलेगा?</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-dots" style="position: absolute; bottom: 10px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+            <!-- Listing Section -->
+            <div class="hybrid-listing-section">
+                <div class="hybrid-listing-header">
+                    <h1>अपना ज्योतिषी चुनें</h1>
+                    <h2><i class="fa-regular fa-clock"></i> शेष समय: 05:00</h2>
+                </div>
+
+                <div class="astrologer-list">
+                    <!-- Priya -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('priya')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/dr_priya_verma.png" alt="Dr Priya">
+                        </div>
+                        <div class="astro-details">
+                            <h3>डॉ. प्रिया वर्मा</h3>
+                            <p>Vedic, Tarot, Numerology</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (12.4k)</div>
+                        </div>
+                        <button class="call-btn-small" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-phone"></i> Call
+                        </button>
+                    </div>
+
+                    <!-- Ajay -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('ajay')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/dr_ajay.png" alt="Dr Ajay">
+                        </div>
+                        <div class="astro-details">
+                            <h3>डॉ. अजय शर्मा</h3>
+                            <p>Vedic, Vastu, Prashna</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.8 (8.1k)</div>
+                        </div>
+                        <button class="call-btn-small" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-phone"></i> Call
+                        </button>
+                    </div>
+
+                    <!-- Kirti -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('kirti')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/dr_kirti.png" alt="Dr Kirti">
+                        </div>
+                        <div class="astro-details">
+                            <h3>डॉ. कीर्ति शुक्ला</h3>
+                            <p>Tarot, Numerology, KP</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (9.3k)</div>
+                        </div>
+                        <button class="call-btn-small" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-phone"></i> Call
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- New Dialing Screen -->
         <div id="mweb-dialing" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div class="ios-home-indicator"></div>

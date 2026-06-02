@@ -1715,6 +1715,15 @@ function askNextQuestion() {
 // SPLASH SCREEN STATES LOGIC
 // ==========================================
 function renderSplashState(state, btn) {
+    if (state === 'active') {
+        if(btn) {
+            showSection('mweb-splash-active-hybrid', btn);
+        } else {
+            showSection('mweb-splash-active-hybrid');
+        }
+        return; // Return early, hybrid screen is entirely static HTML
+    }
+
     if(btn) {
         showSection('mweb-logged-in-splash', btn);
     } else {
@@ -1724,31 +1733,8 @@ function renderSplashState(state, btn) {
     const timerContainer = document.getElementById('splash-timer-container');
     const subtext = document.getElementById('splash-subtext');
     const ctaContainer = document.getElementById('splash-cta-container');
-    
-    if (state === 'active') {
-        // State 1: Active Time Remaining
-        document.getElementById('loginMainText').style.marginTop = '15px';
-        timerContainer.style.marginTop = '25px';
-        timerContainer.style.marginBottom = '10px';
-        ctaContainer.style.marginTop = '20px';
-        
-        subtext.innerHTML = 'अपने पर्सनल AI ज्योतिषी से जुड़ें और अपने हर सवाल का तुरंत जवाब पाएं।';
-        subtext.style.color = '#FFF';
-        subtext.style.fontWeight = 'normal';
-        
-        timerContainer.innerHTML = `
-            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); padding: 12px 24px; border-radius: 50px;">
-                <i class="fa-regular fa-clock" style="color: #FFD700; font-size: 22px;"></i>
-                <span style="color: #FFD700; font-size: 18px; font-weight: 800; letter-spacing: 0.5px;">शेष समय: 5 मिनट</span>
-            </div>
-        `;
-        ctaContainer.innerHTML = `
-            <button class="cta-btn yellow-btn full-width" style="height: 52px; padding: 0; display: flex; align-items: center; justify-content: center; font-weight:800; font-size:18px;" onclick="selectAstrologer('priya');">
-                <i class="fa-solid fa-phone" style="margin-right: 10px; font-size: 16px;"></i> बात शुरू करें
-            </button>
-        `;
-    } 
-    else if (state === 'ended_basic') {
+
+    if (state === 'ended_basic') {
         // State 2: Time Ended - No App Promo
         document.getElementById('loginMainText').style.marginTop = '15px';
         timerContainer.style.marginTop = '25px';
