@@ -403,14 +403,14 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 .trust-chip { font-size: 10px; color: var(--text-light); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 12px; background: rgba(255,255,255,0.05); }
 
 .trust-badges { display: flex; justify-content: space-between; width: 100%; padding: 0 5px; }
-.trust-stamp { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.trust-stamp-text { font-size: 10px; font-weight: 700; margin: 0; }
+.trust-stamp { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.trust-stamp-text { font-size: 9px; font-weight: 700; margin: 0; }
 
 .icon-glow-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 14px;
 }
 .blue-glow {
     color: #60A5FA;
@@ -988,7 +988,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 5px;
+    gap: 3px;
 }
 
 .badge-glow {
@@ -996,7 +996,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 }
 
 .trust-stamp p {
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     color: rgba(255,255,255,0.9);
     margin: 0;
