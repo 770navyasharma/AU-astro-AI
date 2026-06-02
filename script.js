@@ -1041,8 +1041,8 @@ function selectAstrologer(astroId) {
     if (details) {
         document.querySelectorAll('img').forEach(img => {
             if (img.src.includes('dr_priya_verma') || img.src.includes('dr_ajay') || img.src.includes('dr_kirti')) {
-                // Update all astrologer images across the app, except in the slider and contact list
-                if(!img.closest('.slider-image-box') && !img.closest('#astro-contact-screen')) { 
+                // Update all astrologer images across the app, except in the slider, contact list, and hybrid/feed lists
+                if(!img.closest('.slider-image-box') && !img.closest('#astro-contact-screen') && !img.closest('.astrologer-list-item') && !img.closest('.hybrid-listing-section')) { 
                     img.src = details.image;
                 }
             }
