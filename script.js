@@ -990,13 +990,16 @@ function updateSliderDots() {
     });
 }
 
-function initiateCallFlow(btn) {
-    if (window.event) window.event.stopPropagation();
+function initiateCallFlow(btn, ev) {
+    if (ev) ev.stopPropagation();
     let astroId = 'priya';
     const parent = btn.closest('.astrologer-list-item');
     if (parent) {
-        const match = parent.getAttribute('onclick').match(/'(.*?)'/);
-        if (match) astroId = match[1];
+        const onclickAttr = parent.getAttribute('onclick');
+        if (onclickAttr) {
+            const match = onclickAttr.match(/'(.*?)'/);
+            if (match) astroId = match[1];
+        }
     }
     selectAstrologer(astroId);
     
@@ -1007,13 +1010,16 @@ function initiateCallFlow(btn) {
     showMicPermission(type, btn);
 }
 
-function openChatHistory(btn) {
-    if (window.event) window.event.stopPropagation();
+function openChatHistory(btn, ev) {
+    if (ev) ev.stopPropagation();
     let astroId = 'priya';
     const parent = btn.closest('.astrologer-list-item');
     if (parent) {
-        const match = parent.getAttribute('onclick').match(/'(.*?)'/);
-        if (match) astroId = match[1];
+        const onclickAttr = parent.getAttribute('onclick');
+        if (onclickAttr) {
+            const match = onclickAttr.match(/'(.*?)'/);
+            if (match) astroId = match[1];
+        }
     }
     
     const astro = astroDetails[astroId] || astroDetails['priya'];
