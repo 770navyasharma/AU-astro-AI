@@ -53,6 +53,10 @@
                 <button class="demo-btn-outline" style="border-color: #10B981; color: #10B981;" onclick="startFeedbackFlow(this)">💬 Feedback Chat</button>
                 <button class="demo-btn-outline" style="border-color: #FF9800; color: #FF9800;" onclick="showInChatToast(this)">🔔 1 min left</button>
                 <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('mweb-time-over-screen', this)">⌛ 5 Mins End</button>
+                
+                <button class="demo-btn-outline" style="border-color: #3B82F6; color: #3B82F6;" onclick="showMicPermission('ios-chrome', this)">🎙️ iOS Chrome</button>
+                <button class="demo-btn-outline" style="border-color: #3B82F6; color: #3B82F6;" onclick="showMicPermission('android', this)">🎙️ Android</button>
+                <button class="demo-btn-outline" style="border-color: #3B82F6; color: #3B82F6;" onclick="showMicPermission('ios-safari', this)">🎙️ iOS Safari</button>
 
             </div>
         </div>
@@ -1349,7 +1353,47 @@
                 <span class="push-time">अभी</span>
             </div>
             <h4 id="pushTitle">🔮 आपका सवाल अधूरा है</h4>
-            <p id="pushBody">डॉ. प्रिया अभी भी इंतज़ार में हैं। App पर 10 मिनट रोज़ — अभी डाउनलोड करें।</p>
+            <p id="pushBody">डॉ. प्रिया अभी भी इंतज़ार में हैं। App पर 10 मिनट रोज़ — अभी डाउनलोड करें。</p>
+        </div>
+    </div>
+
+    <!-- NATIVE MIC PERMISSION MODALS -->
+    <!-- iOS Chrome -->
+    <div id="modal-ios-chrome" class="native-modal-overlay">
+        <div class="ios-mic-modal">
+            <p>Allow <b>'amarujala.com'</b> to use your microphone?</p>
+            <div class="ios-modal-btns">
+                <button class="ios-modal-btn" onclick="closeMicPermission()">Don't allow</button>
+                <button class="ios-modal-btn" style="color: #0A7AFF; font-weight: 600;" onclick="closeMicPermission()">Allow</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Android Chrome -->
+    <div id="modal-android" class="native-modal-overlay">
+        <div class="android-mic-modal">
+            <div class="android-modal-header">
+                <div class="android-mic-icon">
+                    <i class="fa-solid fa-microphone"></i>
+                </div>
+                <p><b>amarujala.com</b> wants to use your microphone</p>
+            </div>
+            <div class="android-modal-btns">
+                <button class="android-modal-btn" onclick="closeMicPermission()">Allow while visiting the site</button>
+                <button class="android-modal-btn" onclick="closeMicPermission()">Allow this time</button>
+                <button class="android-modal-btn" onclick="closeMicPermission()">Never allow</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- iOS Safari -->
+    <div id="modal-ios-safari" class="native-modal-overlay">
+        <div class="ios-mic-modal ios-safari-modal">
+            <p>"amarujala.com" Would Like to Access the Microphone</p>
+            <div class="ios-modal-btns" style="border-top: 1px solid rgba(0,0,0,0.1); padding-top: 10px; margin-top: -10px; gap: 0;">
+                <button class="ios-modal-btn" style="background: transparent; color: #0A7AFF; font-weight: 400; border-radius: 0; border-right: 1px solid rgba(0,0,0,0.1);" onclick="closeMicPermission()">Cancel</button>
+                <button class="ios-modal-btn" style="background: transparent; color: #0A7AFF; font-weight: 600; border-radius: 0;" onclick="closeMicPermission()">Allow</button>
+            </div>
         </div>
     </div>
 

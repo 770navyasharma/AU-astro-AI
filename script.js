@@ -1856,3 +1856,33 @@ function showInChatToast(btn) {
         }, 400);
     }, 5000);
 }
+
+// ==========================================
+// NATIVE MIC PERMISSION MOCKUPS LOGIC
+// ==========================================
+function showMicPermission(type, btn) {
+    // 1. First ensure we are on the dialing screen since that's where the request happens
+    showSection('mweb-dialing', btn);
+    
+    // 2. Hide all existing native modals first
+    document.querySelectorAll('.native-modal-overlay').forEach(modal => {
+        modal.classList.remove('active');
+    });
+    
+    // 3. Show the requested modal
+    let modalId = '';
+    if (type === 'ios-chrome') modalId = 'modal-ios-chrome';
+    else if (type === 'android') modalId = 'modal-android';
+    else if (type === 'ios-safari') modalId = 'modal-ios-safari';
+    
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.add('active');
+    }
+}
+
+function closeMicPermission() {
+    document.querySelectorAll('.native-modal-overlay').forEach(modal => {
+        modal.classList.remove('active');
+    });
+}
