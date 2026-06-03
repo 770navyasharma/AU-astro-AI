@@ -156,7 +156,7 @@ function showSection(sectionId, btnElement) {
 
 
     
-    if (sectionId === 'mweb-start-login' || sectionId === 'app-start-login' || sectionId === 'mweb-logged-in-splash' || sectionId === 'mweb-splash-active-hybrid') {
+    if (sectionId === 'mweb-start-login' || sectionId === 'app-start-login' || sectionId === 'mweb-logged-in-splash' || sectionId === 'mweb-splash-active-hybrid' || sectionId === 'mweb-login-error-empty' || sectionId === 'mweb-login-error-invalid' || sectionId === 'mweb-otp-timer' || sectionId === 'mweb-otp-error-wrong') {
         setTimeout(startSlider, 50);
     }
 
