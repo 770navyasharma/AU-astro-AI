@@ -2023,4 +2023,25 @@ document.addEventListener('DOMContentLoaded', () => {
             lastHybridScrollY = currentScrollY;
         });
     }
+
+    // ==========================================
+    // GLOBAL MOBILE OS STATUS BAR INJECTOR
+    // ==========================================
+    // Automatically injects time, wifi, and battery icons into every mobile screen
+    const statusBarHTML = `
+        <div class="os-status-bar" style="position: absolute; top: 12px; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 28px; z-index: 9999; pointer-events: none; color: #FFF; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 600; box-sizing: border-box; text-shadow: 0 1px 4px rgba(0,0,0,0.8);">
+            <div class="os-time" style="margin-top: 2px; letter-spacing: 0.5px;">9:41</div>
+            <div class="os-icons" style="display: flex; gap: 6px; align-items: center;">
+                <i class="fa-solid fa-signal" style="font-size: 10px;"></i>
+                <i class="fa-solid fa-wifi" style="font-size: 11px;"></i>
+                <i class="fa-solid fa-battery-full" style="font-size: 15px;"></i>
+            </div>
+        </div>
+    `;
+    
+    document.querySelectorAll('.mobile-frame').forEach(frame => {
+        if (!frame.querySelector('.os-status-bar')) {
+            frame.insertAdjacentHTML('afterbegin', statusBarHTML);
+        }
+    });
 });
