@@ -1875,7 +1875,7 @@ function showInChatToast(btn) {
     // Create the overlay toast bubble
     const toastElem = document.createElement('div');
     toastElem.style.position = 'absolute';
-    toastElem.style.bottom = '100px'; // Positioned just above the bottom pill
+    toastElem.style.bottom = '130px'; // Positioned slightly higher per user request
     toastElem.style.left = '50%';
     toastElem.style.width = '90%';
     toastElem.style.maxWidth = '340px';
@@ -1910,7 +1910,7 @@ function showInChatToast(btn) {
     setTimeout(() => {
         toastElem.style.opacity = '1';
         toastElem.style.transform = 'translate(-50%, 0)';
-        chatBox.style.transform = 'translateY(-75px)';
+        chatBox.style.transform = 'translateY(-85px)';
     }, 100);
     
     // Remove after 5 seconds: slide toast down and chat back to original
