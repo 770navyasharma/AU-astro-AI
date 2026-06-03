@@ -1798,13 +1798,18 @@ function renderSplashState(state, btn) {
     const headerTimer = document.getElementById('hybrid-header-timer');
     const bottomCta = document.getElementById('hybrid-bottom-cta');
     const fixedNudge = document.getElementById('hybrid-fixed-bottom-nudge');
+    const basicNudge = document.getElementById('hybrid-basic-bottom-nudge');
     const callBtns = document.querySelectorAll('.hybrid-call-btn');
     const chatBtns = document.querySelectorAll('.hybrid-chat-btn');
 
     // Reset nudge state
     if (fixedNudge) {
-        fixedNudge.style.display = 'flex'; // ALWAYS SHOW IN ALL STATES
+        fixedNudge.style.display = 'none';
         fixedNudge.style.transform = 'translate(-50%, 0)';
+    }
+    if (basicNudge) {
+        basicNudge.style.display = 'none';
+        basicNudge.style.transform = 'translate(-50%, 0)';
     }
 
     if (state === 'active') {
@@ -1841,6 +1846,10 @@ function renderSplashState(state, btn) {
             bottomCta.innerHTML = '';
         }
         
+        if (basicNudge) {
+            basicNudge.style.display = 'flex';
+        }
+        
         callBtns.forEach(b => b.style.display = 'none');
         chatBtns.forEach(b => { b.style.display = 'flex'; b.style.fontSize = '14px'; });
     }
@@ -1856,6 +1865,10 @@ function renderSplashState(state, btn) {
         if (bottomCta) {
             bottomCta.style.display = 'none';
             bottomCta.innerHTML = '';
+        }
+        
+        if (fixedNudge) {
+            fixedNudge.style.display = 'flex';
         }
         
         callBtns.forEach(b => b.style.display = 'none');
@@ -1987,17 +2000,25 @@ document.addEventListener('DOMContentLoaded', () => {
         let lastHybridScrollY = 0;
         listSection.addEventListener('scroll', function() {
             const currentScrollY = this.scrollTop;
-            const nudge = document.getElementById('hybrid-fixed-bottom-nudge');
+            const fixedNudge = document.getElementById('hybrid-fixed-bottom-nudge');
+            const basicNudge = document.getElementById('hybrid-basic-bottom-nudge');
             
-            // Only apply transform if nudge is active
-            if (!nudge || nudge.style.display === 'none') return;
+            // Determine which nudge is active
+            let activeNudge = null;
+            if (fixedNudge && fixedNudge.style.display === 'flex') {
+                activeNudge = fixedNudge;
+            } else if (basicNudge && basicNudge.style.display === 'flex') {
+                activeNudge = basicNudge;
+            }
+            
+            if (!activeNudge) return;
             
             if (currentScrollY > lastHybridScrollY + 1) {
                 // Scrolling down -> hide
-                nudge.style.transform = 'translate(-50%, 150%)';
+                activeNudge.style.transform = 'translate(-50%, 150%)';
             } else if (currentScrollY < lastHybridScrollY - 1) {
                 // Scrolling up -> show
-                nudge.style.transform = 'translate(-50%, 0)';
+                activeNudge.style.transform = 'translate(-50%, 0)';
             }
             lastHybridScrollY = currentScrollY;
         });
