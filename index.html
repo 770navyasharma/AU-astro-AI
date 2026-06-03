@@ -391,16 +391,16 @@
                 </div>
             </div>
 
-            <div class="bottom-sheet" style="padding-bottom: 14px;">
+            <div class="bottom-sheet">
                 <div class="slider-dots" style="position: absolute; top: -15px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
                     <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
                 </div>
-                <div class="login-main-text mt-15">
+                <div class="login-main-text mt-15" id="loginMainText-empty">
                     <h1>मुफ़्त में 5 मिनट बात करें</h1>
                     <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं。<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
                 </div>
 
-                <div class="trust-badges mt-15">
+                <div class="trust-badges mt-15" id="loginTrustBadges-empty">
                     <div class="trust-stamp">
                         <div class="icon-glow-wrapper blue-glow"><i class="fa-solid fa-shield-halved"></i></div>
                         <p class="trust-stamp-text">100% सुरक्षित</p>
@@ -413,14 +413,14 @@
 
                 <div class="login-form-container mt-15">
                     
-                    <div id="loginInputSection-empty">
+                    <div id="loginInputSection-empty" style="position: relative;">
                         <input type="text" class="login-input input-error" placeholder="आपका शुभ नाम">
                         <div class="phone-input-group mt-10">
                             <span class="country-code">+91</span>
                             <input type="tel" class="login-input input-error" placeholder="मोबाइल नंबर" maxlength="10">
                         </div>
-                        <div class="error-text" style="display: block;">कृपया अपना नाम और मोबाइल नंबर दर्ज करें</div>
-                        <button class="cta-btn yellow-btn full-width mt-15" style="height: 48px; padding: 0; display: flex; align-items: center; justify-content: center;">लॉगिन करें और बात शुरू करें</button>
+                        <div class="error-text" style="display: block; position: absolute; margin-top: 4px;">कृपया अपना नाम और मोबाइल नंबर दर्ज करें</div>
+                        <button class="cta-btn yellow-btn full-width mt-15" style="height: 48px; padding: 0; display: flex; align-items: center; justify-content: center; transform: translateY(22px);">लॉगिन करें और बात शुरू करें</button>
                     </div>
 
                 </div>
@@ -476,16 +476,16 @@
                 </div>
             </div>
 
-            <div class="bottom-sheet" style="padding-bottom: 14px;">
+            <div class="bottom-sheet">
                 <div class="slider-dots" style="position: absolute; top: -15px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
                     <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
                 </div>
-                <div class="login-main-text mt-15">
+                <div class="login-main-text mt-15" id="loginMainText-invalid">
                     <h1>मुफ़्त में 5 मिनट बात करें</h1>
                     <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं。<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
                 </div>
 
-                <div class="trust-badges mt-15">
+                <div class="trust-badges mt-15" id="loginTrustBadges-invalid">
                     <div class="trust-stamp">
                         <div class="icon-glow-wrapper blue-glow"><i class="fa-solid fa-shield-halved"></i></div>
                         <p class="trust-stamp-text">100% सुरक्षित</p>
@@ -498,14 +498,14 @@
 
                 <div class="login-form-container mt-15">
                     
-                    <div id="loginInputSection-invalid">
+                    <div id="loginInputSection-invalid" style="position: relative;">
                         <input type="text" class="login-input" placeholder="आपका शुभ नाम" value="Kavita">
                         <div class="phone-input-group mt-10">
                             <span class="country-code">+91</span>
                             <input type="tel" class="login-input input-error" placeholder="मोबाइल नंबर" value="98765" maxlength="10">
                         </div>
-                        <div class="error-text" style="display: block;">कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें</div>
-                        <button class="cta-btn yellow-btn full-width mt-15" style="height: 48px; padding: 0; display: flex; align-items: center; justify-content: center;">लॉगिन करें और बात शुरू करें</button>
+                        <div class="error-text" style="display: block; position: absolute; margin-top: 4px;">कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें</div>
+                        <button class="cta-btn yellow-btn full-width mt-15" style="height: 48px; padding: 0; display: flex; align-items: center; justify-content: center; transform: translateY(22px);">लॉगिन करें और बात शुरू करें</button>
                     </div>
 
                 </div>
