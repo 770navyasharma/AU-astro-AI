@@ -1803,7 +1803,7 @@ function renderSplashState(state, btn) {
 
     // Reset nudge state
     if (fixedNudge) {
-        fixedNudge.style.display = 'none';
+        fixedNudge.style.display = 'flex'; // ALWAYS SHOW IN ALL STATES
         fixedNudge.style.transform = 'translate(-50%, 0)';
     }
 
@@ -1836,12 +1836,10 @@ function renderSplashState(state, btn) {
         headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> 5 मिनट पूरे हुए। कल वापस आएं</div>';
         headerTimer.style.color = '#EF4444';
         
-        bottomCta.style.display = 'flex';
-        bottomCta.innerHTML = `
-            <button onclick="goBackToFeed()" style="width: 100%; background: rgba(255, 255, 255, 0.05); color: #FFF; border: 1px solid rgba(255, 255, 255, 0.2); padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.3s;">
-                वापस अमर उजाला पर जाएं
-            </button>
-        `;
+        if (bottomCta) {
+            bottomCta.style.display = 'none';
+            bottomCta.innerHTML = '';
+        }
         
         callBtns.forEach(b => b.style.display = 'none');
         chatBtns.forEach(b => { b.style.display = 'flex'; b.style.fontSize = '14px'; });
@@ -1858,10 +1856,6 @@ function renderSplashState(state, btn) {
         if (bottomCta) {
             bottomCta.style.display = 'none';
             bottomCta.innerHTML = '';
-        }
-        
-        if (fixedNudge) {
-            fixedNudge.style.display = 'flex';
         }
         
         callBtns.forEach(b => b.style.display = 'none');
@@ -1998,10 +1992,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Only apply transform if nudge is active
             if (!nudge || nudge.style.display === 'none') return;
             
-            if (currentScrollY > lastHybridScrollY + 5) {
+            if (currentScrollY > lastHybridScrollY + 1) {
                 // Scrolling down -> hide
                 nudge.style.transform = 'translate(-50%, 150%)';
-            } else if (currentScrollY < lastHybridScrollY - 5) {
+            } else if (currentScrollY < lastHybridScrollY - 1) {
                 // Scrolling up -> show
                 nudge.style.transform = 'translate(-50%, 0)';
             }
