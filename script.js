@@ -1037,7 +1037,7 @@ function openChatHistory(btn, ev) {
     }
     
     // Default to showing the feedback prompt for demo purposes
-    renderChatHistoryState('ended_no_feedback');
+    renderChatHistoryState('combined_feedback');
 }
 
 function renderChatHistoryState(state, btn) {
@@ -1045,25 +1045,21 @@ function renderChatHistoryState(state, btn) {
     else showSection('mweb-chat-history');
 
     const activeContainer = document.getElementById('history-active-controls');
-    const noFeedbackContainer = document.getElementById('history-no-feedback');
-    const feedbackDoneContainer = document.getElementById('history-feedback-done');
+    const combinedContainer = document.getElementById('history-feedback-combined');
 
     if(activeContainer) activeContainer.style.display = 'none';
-    if(noFeedbackContainer) noFeedbackContainer.style.display = 'none';
-    if(feedbackDoneContainer) feedbackDoneContainer.style.display = 'none';
+    if(combinedContainer) combinedContainer.style.display = 'none';
 
     if (state === 'active' && activeContainer) {
         activeContainer.style.display = 'flex';
-    } else if (state === 'ended_no_feedback' && noFeedbackContainer) {
-        noFeedbackContainer.style.display = 'flex';
-    } else if (state === 'ended_feedback_done' && feedbackDoneContainer) {
-        feedbackDoneContainer.style.display = 'flex';
+    } else if (state === 'combined_feedback' && combinedContainer) {
+        combinedContainer.style.display = 'flex';
     }
 }
 
 function submitFeedbackFlow() {
-    // Phase 2 implementation. For demo, we just transition to the feedback done state.
-    renderChatHistoryState('ended_feedback_done');
+    // Phase 2 implementation. For demo, we just transition to the splash screen.
+    showSection('mweb-splash-hybrid');
 }
 
 function selectAstrologer(astroId) {
