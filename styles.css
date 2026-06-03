@@ -943,6 +943,50 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     margin: 0;
 }
 
+/* ==========================================
+   ERROR & VALIDATION STATES
+   ========================================== */
+.input-error {
+    border: 1px solid #EF4444 !important;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2) !important;
+}
+
+.error-text {
+    color: #EF4444;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 6px;
+    text-align: left;
+    display: none; /* toggled via inline style or class in static HTML */
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.shake-animation {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Timer text for OTP */
+.otp-timer-text {
+    color: #FFD700;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.resend-link {
+    color: #3B82F6;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 15px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 @keyframes textSlideUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }

@@ -45,6 +45,10 @@
             <div class="demo-btn-group">
                 <button class="demo-btn-outline active" onclick="showSection('mweb-feed', this)">1. Mweb Banner</button>
                 <button class="demo-btn-outline" onclick="showSection('mweb-start-login', this)">2. Login Screen</button>
+                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('mweb-login-error-empty', this)">2.1 Login Error (Empty)</button>
+                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('mweb-login-error-invalid', this)">2.2 Login Error (Invalid)</button>
+                <button class="demo-btn-outline" style="border-color: #FBBF24; color: #F59E0B;" onclick="startDemoOtpTimer(this)">2.3 OTP Timer Running</button>
+                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('mweb-otp-error-wrong', this)">2.4 OTP Wrong (Error)</button>
                 <button class="demo-btn-outline" onclick="renderSplashState('active', this)">2b. Logged-in Splash (Active)</button>
                 <button class="demo-btn-outline" onclick="renderSplashState('ended_basic', this)">2c. Splash (Ended - No App)</button>
                 <button class="demo-btn-outline" onclick="renderSplashState('ended_app', this)">2d. Splash (Ended - App Promo)</button>
@@ -337,6 +341,264 @@
             </div>
         </div>
 
+
+
+        <!-- ==========================================
+             NEW MWEB LOGIN ERROR (EMPTY)
+             ========================================== -->
+        <div id="mweb-login-error-empty" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+            <div class="ios-home-indicator"></div>
+            <div class="app-banner-bg"></div>
+            
+            <div class="login-slider-container">
+                <div class="login-slider" style="pointer-events: none;">
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-priya" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगी नई राह! 🚀</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-sheet">
+                <div class="slider-dots" style="position: absolute; top: -15px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <div class="login-main-text mt-15">
+                    <h1>मुफ़्त में 5 मिनट बात करें</h1>
+                    <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं。<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
+                </div>
+
+                <div class="trust-badges mt-15">
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper blue-glow"><i class="fa-solid fa-shield-halved"></i></div>
+                        <p class="trust-stamp-text">100% सुरक्षित</p>
+                    </div>
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper gold-glow"><i class="fa-solid fa-robot"></i></div>
+                        <p class="trust-stamp-text">पर्सनल AI</p>
+                    </div>
+                </div>
+
+                <div class="login-form-container mt-15">
+                    
+                    <div id="loginInputSection-empty">
+                        <input type="text" class="login-input input-error" placeholder="आपका शुभ नाम">
+                        <div class="phone-input-group mt-10">
+                            <span class="country-code">+91</span>
+                            <input type="tel" class="login-input input-error" placeholder="मोबाइल नंबर" maxlength="10">
+                        </div>
+                        <div class="error-text" style="display: block;">कृपया अपना नाम और मोबाइल नंबर दर्ज करें</div>
+                        <button class="cta-btn yellow-btn full-width mt-15" style="height: 48px; padding: 0; display: flex; align-items: center; justify-content: center;">लॉगिन करें और बात शुरू करें</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ==========================================
+             NEW MWEB LOGIN ERROR (INVALID NUM)
+             ========================================== -->
+        <div id="mweb-login-error-invalid" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+            <div class="ios-home-indicator"></div>
+            <div class="app-banner-bg"></div>
+            
+            <div class="login-slider-container">
+                <div class="login-slider" style="pointer-events: none;">
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-priya" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगी नई राह! 🚀</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-sheet">
+                <div class="slider-dots" style="position: absolute; top: -15px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <div class="login-main-text mt-15">
+                    <h1>मुफ़्त में 5 मिनट बात करें</h1>
+                    <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं。<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
+                </div>
+
+                <div class="trust-badges mt-15">
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper blue-glow"><i class="fa-solid fa-shield-halved"></i></div>
+                        <p class="trust-stamp-text">100% सुरक्षित</p>
+                    </div>
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper gold-glow"><i class="fa-solid fa-robot"></i></div>
+                        <p class="trust-stamp-text">पर्सनल AI</p>
+                    </div>
+                </div>
+
+                <div class="login-form-container mt-15">
+                    
+                    <div id="loginInputSection-invalid">
+                        <input type="text" class="login-input" placeholder="आपका शुभ नाम" value="Kavita">
+                        <div class="phone-input-group mt-10">
+                            <span class="country-code">+91</span>
+                            <input type="tel" class="login-input input-error" placeholder="मोबाइल नंबर" value="98765" maxlength="10">
+                        </div>
+                        <div class="error-text" style="display: block;">कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें</div>
+                        <button class="cta-btn yellow-btn full-width mt-15" style="height: 48px; padding: 0; display: flex; align-items: center; justify-content: center;">लॉगिन करें और बात शुरू करें</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ==========================================
+             NEW MWEB OTP TIMER RUNNING
+             ========================================== -->
+        <div id="mweb-otp-timer" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+            <div class="ios-home-indicator"></div>
+            <div class="app-banner-bg"></div>
+            
+            <div class="login-slider-container">
+                <div class="login-slider" style="pointer-events: none;">
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-priya" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगी नई राह! 🚀</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-sheet">
+                <div class="slider-dots" style="position: absolute; top: -15px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <div class="login-main-text mt-15">
+                    <h1>मुफ़्त में 5 मिनट बात करें</h1>
+                    <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं。<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
+                </div>
+
+                <div class="trust-badges mt-15">
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper blue-glow"><i class="fa-solid fa-shield-halved"></i></div>
+                        <p class="trust-stamp-text">100% सुरक्षित</p>
+                    </div>
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper gold-glow"><i class="fa-solid fa-robot"></i></div>
+                        <p class="trust-stamp-text">पर्सनल AI</p>
+                    </div>
+                </div>
+
+                <div class="login-form-container mt-15">
+                    
+                    <div id="otpInputSection-timer" style="width: 100%;">
+                        <div style="text-align: center; margin-bottom: 25px;">
+                            <h2 style="font-size: 20px; font-weight: 800; color: #FFF; margin-bottom: 8px;">वेरिफिकेशन कोड</h2>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.4;">हमने आपके मोबाइल नंबर पर एक वेरिफिकेशन कोड भेजा है</p>
+                        </div>
+                        <div class="otp-boxes" style="display:flex; gap:10px; justify-content:center; margin-bottom:15px;">
+                            <input type="text" maxlength="1" class="otp-box" value="1" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box" value="4" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box" value="3" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                        </div>
+                        <button class="cta-btn yellow-btn" style="width: 60%; height: 48px; padding: 0; margin: 0 auto; display: flex; align-items: center; justify-content: center;">कन्फर्म करें</button>
+                        
+                        <div style="text-align: center;">
+                            <div class="otp-timer-text" id="demo-otp-timer-display">Resend OTP in <span style="color: #FFF;">00:59</span></div>
+                            <div class="resend-link" id="demo-otp-resend-btn" style="display: none;">Resend OTP</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ==========================================
+             NEW MWEB OTP ERROR WRONG
+             ========================================== -->
+        <div id="mweb-otp-error-wrong" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+            <div class="ios-home-indicator"></div>
+            <div class="app-banner-bg"></div>
+            
+            <div class="login-slider-container">
+                <div class="login-slider" style="pointer-events: none;">
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-priya" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगी नई राह! 🚀</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-sheet">
+                <div class="slider-dots" style="position: absolute; top: -15px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <div class="login-main-text mt-15">
+                    <h1>मुफ़्त में 5 मिनट बात करें</h1>
+                    <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं。<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
+                </div>
+
+                <div class="trust-badges mt-15">
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper blue-glow"><i class="fa-solid fa-shield-halved"></i></div>
+                        <p class="trust-stamp-text">100% सुरक्षित</p>
+                    </div>
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper gold-glow"><i class="fa-solid fa-robot"></i></div>
+                        <p class="trust-stamp-text">पर्सनल AI</p>
+                    </div>
+                </div>
+
+                <div class="login-form-container mt-15">
+                    
+                    <div id="otpInputSection-error" style="width: 100%;">
+                        <div style="text-align: center; margin-bottom: 25px;">
+                            <h2 style="font-size: 20px; font-weight: 800; color: #FFF; margin-bottom: 8px;">वेरिफिकेशन कोड</h2>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.4;">हमने आपके मोबाइल नंबर पर एक वेरिफिकेशन कोड भेजा है</p>
+                        </div>
+                        <div class="otp-boxes shake-animation" style="display:flex; gap:10px; justify-content:center; margin-bottom:5px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                        </div>
+                        <div class="error-text" style="display: block; text-align: center; margin-bottom: 15px;">गलत OTP! कृपया पुनः प्रयास करें</div>
+                        <button class="cta-btn yellow-btn" style="width: 60%; height: 48px; padding: 0; margin: 0 auto; display: flex; align-items: center; justify-content: center;">कन्फर्म करें</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
         <!-- ==========================================
              LOGGED-IN SPLASH

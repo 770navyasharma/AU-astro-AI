@@ -1364,6 +1364,65 @@ function showOtpSection() {
     }, 1500);
 }
 
+let demoOtpInterval = null;
+
+function startDemoOtpTimer(btnElement) {
+    showSection('mweb-otp-timer', btnElement);
+    
+    clearInterval(demoOtpInterval);
+    
+    let secondsLeft = 60;
+    const timerDisplay = document.getElementById('demo-otp-timer-display');
+    const resendBtn = document.getElementById('demo-otp-resend-btn');
+    
+    if (timerDisplay) {
+        timerDisplay.style.display = 'block';
+        timerDisplay.innerHTML = `Resend OTP in <span style="color: #FFF;">00:60</span>`;
+    }
+    if (resendBtn) resendBtn.style.display = 'none';
+    
+    demoOtpInterval = setInterval(() => {
+        secondsLeft--;
+        
+        if (timerDisplay) {
+            let secs = secondsLeft < 10 ? '0' + secondsLeft : secondsLeft;
+            timerDisplay.innerHTML = `Resend OTP in <span style="color: #FFF;">00:${secs}</span>`;
+        }
+        
+        if (secondsLeft <= 0) {
+            clearInterval(demoOtpInterval);
+            if (timerDisplay) timerDisplay.style.display = 'none';
+            if (resendBtn) resendBtn.style.display = 'block';
+            
+            // Redirect after 1.5 seconds to show the resend button briefly
+            setTimeout(simulateTimeoutRedirect, 1500);
+        }
+    }, 1000); // 1-second ticks
+}
+
+function simulateTimeoutRedirect() {
+    // Automatically redirect to the main login screen with fields pre-filled
+    const btn = document.querySelector('button[onclick="showSection(\\\'mweb-start-login\\\', this)"]');
+    if (btn) showSection('mweb-start-login', btn);
+    else showSection('mweb-start-login');
+    
+    const loginSection = document.getElementById('mweb-start-login');
+    if (loginSection) {
+        const nameInput = loginSection.querySelector('input[placeholder="आपका शुभ नाम"]');
+        const phoneInput = loginSection.querySelector('input[placeholder="मोबाइल नंबर"]');
+        
+        if (nameInput) nameInput.value = "Kavita";
+        if (phoneInput) phoneInput.value = "9876543210";
+        
+        const loginInputSection = loginSection.querySelector('#loginInputSection');
+        const otpInputSection = loginSection.querySelector('#otpInputSection');
+        
+        if (loginInputSection) loginInputSection.classList.remove('hidden');
+        if (otpInputSection) otpInputSection.classList.add('hidden');
+    }
+}
+
+
 // Jump directly to showing the Login input fields (used by filter button '3. Login Screen')
 function showLoginStep() {
     // Make sure the login screen is visible and reset to login input state
