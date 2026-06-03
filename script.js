@@ -1797,8 +1797,15 @@ function renderSplashState(state, btn) {
     const headerSubtitle = document.getElementById('hybrid-header-subtitle');
     const headerTimer = document.getElementById('hybrid-header-timer');
     const bottomCta = document.getElementById('hybrid-bottom-cta');
+    const fixedNudge = document.getElementById('hybrid-fixed-bottom-nudge');
     const callBtns = document.querySelectorAll('.hybrid-call-btn');
     const chatBtns = document.querySelectorAll('.hybrid-chat-btn');
+
+    // Reset nudge state
+    if (fixedNudge) {
+        fixedNudge.style.display = 'none';
+        fixedNudge.style.transform = 'translate(-50%, 0)';
+    }
 
     if (state === 'active') {
         headerTitle.innerHTML = 'अपना ज्योतिषी चुनें';
@@ -1809,8 +1816,10 @@ function renderSplashState(state, btn) {
         headerTimer.innerHTML = '<i class="fa-regular fa-clock"></i> शेष समय: 05:00';
         headerTimer.style.color = '#FFD700';
         
-        bottomCta.style.display = 'none';
-        bottomCta.innerHTML = '';
+        if (bottomCta) {
+            bottomCta.style.display = 'none';
+            bottomCta.innerHTML = '';
+        }
         
         callBtns.forEach(b => b.style.display = 'flex');
         chatBtns.forEach(b => {
@@ -1846,15 +1855,14 @@ function renderSplashState(state, btn) {
         headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> 5 मिनट पूरे हुए। कल वापस आएं</div>';
         headerTimer.style.color = '#EF4444';
         
-        bottomCta.style.display = 'flex';
-        bottomCta.innerHTML = `
-            <button style="width: 100%; background: #FBBF24; color: #111827; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); display: flex; align-items: center; justify-content: center; gap: 8px;">
-                <img src="assets/au_logo.png" style="width: 24px; height: 24px; border-radius: 6px; object-fit: contain;"> अमर उजाला ऐप डाउनलोड करें <i class="fa-solid fa-download" style="margin-left: 4px;"></i>
-            </button>
-            <button onclick="goBackToFeed()" style="width: 100%; background: rgba(255, 255, 255, 0.05); color: #FFF; border: 1px solid rgba(255, 255, 255, 0.2); padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer;">
-                वापस अमर उजाला पर जाएं
-            </button>
-        `;
+        if (bottomCta) {
+            bottomCta.style.display = 'none';
+            bottomCta.innerHTML = '';
+        }
+        
+        if (fixedNudge) {
+            fixedNudge.style.display = 'flex';
+        }
         
         callBtns.forEach(b => b.style.display = 'none');
         chatBtns.forEach(b => { b.style.display = 'flex'; b.style.fontSize = '14px'; });
@@ -1975,3 +1983,29 @@ function closeMicPermission() {
         modal.classList.remove('active');
     });
 }
+
+// ==========================================
+// SCROLL LISTENER FOR HYBRID APP PROMO NUDGE
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const listSection = document.querySelector('.hybrid-listing-section');
+    if (listSection) {
+        let lastHybridScrollY = 0;
+        listSection.addEventListener('scroll', function() {
+            const currentScrollY = this.scrollTop;
+            const nudge = document.getElementById('hybrid-fixed-bottom-nudge');
+            
+            // Only apply transform if nudge is active
+            if (!nudge || nudge.style.display === 'none') return;
+            
+            if (currentScrollY > lastHybridScrollY + 5) {
+                // Scrolling down -> hide
+                nudge.style.transform = 'translate(-50%, 150%)';
+            } else if (currentScrollY < lastHybridScrollY - 5) {
+                // Scrolling up -> show
+                nudge.style.transform = 'translate(-50%, 0)';
+            }
+            lastHybridScrollY = currentScrollY;
+        });
+    }
+});
