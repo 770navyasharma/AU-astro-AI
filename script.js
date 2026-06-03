@@ -1931,9 +1931,27 @@ function showInChatToast(btn) {
 // ==========================================
 // NATIVE MIC PERMISSION MOCKUPS LOGIC
 // ==========================================
+function renderDialingState(state, btn) {
+    if (btn) showSection('mweb-dialing', btn);
+    else showSection('mweb-dialing');
+
+    const connectingContainer = document.getElementById('dialing-status-connecting');
+    const noMicContainer = document.getElementById('dialing-status-no-mic');
+
+    if (connectingContainer && noMicContainer) {
+        if (state === 'connecting') {
+            connectingContainer.style.display = 'block';
+            noMicContainer.style.display = 'none';
+        } else if (state === 'no_mic') {
+            connectingContainer.style.display = 'none';
+            noMicContainer.style.display = 'flex';
+        }
+    }
+}
+
 function showMicPermission(type, btn) {
-    // 1. First ensure we are on the dialing screen since that's where the request happens
-    showSection('mweb-dialing', btn);
+    // 1. First ensure we are on the dialing screen in connecting state since that's where the request happens
+    renderDialingState('connecting', btn);
     
     // 2. Hide all existing native modals first
     document.querySelectorAll('.native-modal-overlay').forEach(modal => {
