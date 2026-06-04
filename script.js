@@ -1877,6 +1877,7 @@ function renderSplashState(state, btn) {
         headerSubtitle.className = 'glow-gold';
         headerSubtitle.style.color = '#FDE047';
         headerSubtitle.style.fontSize = '17px';
+        headerSubtitle.style.display = 'block';
         
         headerTimer.innerHTML = '<i class="fa-regular fa-clock"></i> शेष समय: 05:00';
         headerTimer.style.color = '#FFD700';
@@ -1898,10 +1899,8 @@ function renderSplashState(state, btn) {
     } 
     else if (state === 'ended_basic') {
         headerTitle.innerHTML = 'आज का समय समाप्त';
-        headerSubtitle.innerHTML = 'आप अपनी चैट हिस्ट्री देख सकते हैं।';
-        headerSubtitle.className = '';
-        headerSubtitle.style.color = '#EF4444';
-        headerSubtitle.style.fontSize = '14px';
+        headerSubtitle.innerHTML = '';
+        headerSubtitle.style.display = 'none';
         
         headerTimer.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 25px;">
@@ -1931,10 +1930,8 @@ function renderSplashState(state, btn) {
     }
     else if (state === 'ended_app') {
         headerTitle.innerHTML = 'आज का समय समाप्त';
-        headerSubtitle.innerHTML = 'आप अपनी चैट हिस्ट्री देख सकते हैं।';
-        headerSubtitle.className = '';
-        headerSubtitle.style.color = '#EF4444';
-        headerSubtitle.style.fontSize = '14px';
+        headerSubtitle.innerHTML = '';
+        headerSubtitle.style.display = 'none';
         
         headerTimer.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 25px;">
