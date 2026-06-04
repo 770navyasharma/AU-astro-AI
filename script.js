@@ -1897,17 +1897,8 @@ function renderSplashState(state, btn) {
         headerSubtitle.className = '';
         headerSubtitle.style.color = '#EF4444';
         
-        headerTimer.innerHTML = `
-            <div style="width: 100%; max-width: 380px; margin: 15px auto 0; background: rgba(25, 30, 45, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; border: 1px solid rgba(239, 68, 68, 0.3); border-top: 1px solid rgba(239, 68, 68, 0.5); display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1);">
-                <div style="color: #FCA5A5; font-weight: 800; font-size: 16px; text-align: center; line-height: 1.4;">
-                    5 मिनट पूरे हुए! ⏱️<br>
-                    <span style="color: #FFF; font-size: 14px; font-weight: 600; opacity: 0.95;">कल फिर आएं ✨</span>
-                </div>
-                <button onclick="goBackToFeed()" style="width: 100%; background: rgba(255,255,255,0.08); color: #FFF; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                    <i class="fa-solid fa-arrow-left"></i> वापस अमर उजाला पर जाएं
-                </button>
-            </div>
-        `;
+        headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> 5 मिनट पूरे हुए। कल वापस आएं</div>';
+        headerTimer.style.color = '#EF4444';
         
         if (bottomCta) {
             bottomCta.style.display = 'none';
@@ -1915,7 +1906,7 @@ function renderSplashState(state, btn) {
         }
         
         if (basicNudge) {
-            basicNudge.style.display = 'none';
+            basicNudge.style.display = 'flex';
         }
         
         callBtns.forEach(b => b.style.display = 'none');
@@ -1927,23 +1918,8 @@ function renderSplashState(state, btn) {
         headerSubtitle.className = '';
         headerSubtitle.style.color = '#EF4444';
         
-        headerTimer.innerHTML = `
-            <div style="width: 100%; max-width: 380px; margin: 15px auto 0; background: rgba(25, 30, 45, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; border: 1px solid rgba(255,215,0,0.3); border-top: 1px solid rgba(255,215,0,0.5); display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1);">
-                <div style="color: #FBBF24; font-weight: 800; font-size: 15px; text-align: center; line-height: 1.3;">
-                    अमर उजाला ऐप पर रोज़ 10 मिनट फ्री बात करें ✨
-                </div>
-                <div style="display: flex; width: 100%; gap: 10px; height: 48px;">
-                    <button onclick="goBackToFeed()" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.2;">
-                        <i class="fa-solid fa-arrow-left" style="margin-right: 5px;"></i> वापस अमर उजाला<br>पर जाएं
-                    </button>
-                    <button style="flex: 1.3; background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); color: #111827; border: none; border-radius: 12px; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px;" onclick="downloadApp()">
-                        <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> 
-                        ऐप डाउनलोड करें 
-                        <i class="fa-solid fa-download"></i>
-                    </button>
-                </div>
-            </div>
-        `;
+        headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> 5 मिनट पूरे हुए। कल वापस आएं</div>';
+        headerTimer.style.color = '#EF4444';
         
         if (bottomCta) {
             bottomCta.style.display = 'none';
@@ -1951,7 +1927,7 @@ function renderSplashState(state, btn) {
         }
         
         if (fixedNudge) {
-            fixedNudge.style.display = 'none';
+            fixedNudge.style.display = 'flex';
         }
         
         callBtns.forEach(b => b.style.display = 'none');
