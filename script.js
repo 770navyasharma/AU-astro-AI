@@ -1897,8 +1897,15 @@ function renderSplashState(state, btn) {
         headerSubtitle.className = '';
         headerSubtitle.style.color = '#EF4444';
         
-        headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> 5 मिनट पूरे हुए। कल वापस आएं</div>';
-        headerTimer.style.color = '#EF4444';
+        headerTimer.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 25px;">
+                <div style="color: #FFF; font-size: 18px; font-weight: 800; text-align: center; line-height: 1.4;">5 मिनट पूरे हुए! ⏱️ कल फिर आएं ✨</div>
+                <button onclick="goBackToFeed()" style="background: transparent; color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-arrow-left"></i> वापस अमर उजाला पर जाएं
+                </button>
+            </div>
+        `;
+        headerTimer.style.color = '';
         
         if (bottomCta) {
             bottomCta.style.display = 'none';
@@ -1906,7 +1913,7 @@ function renderSplashState(state, btn) {
         }
         
         if (basicNudge) {
-            basicNudge.style.display = 'flex';
+            basicNudge.style.display = 'none';
         }
         
         callBtns.forEach(b => b.style.display = 'none');
@@ -1918,8 +1925,15 @@ function renderSplashState(state, btn) {
         headerSubtitle.className = '';
         headerSubtitle.style.color = '#EF4444';
         
-        headerTimer.innerHTML = '<div style="display:inline-flex; align-items:center; gap:6px; background: rgba(239, 68, 68, 0.15); padding: 4px 12px; border-radius: 20px;"><i class="fa-solid fa-hourglass-end"></i> 5 मिनट पूरे हुए। कल वापस आएं</div>';
-        headerTimer.style.color = '#EF4444';
+        headerTimer.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 25px;">
+                <div style="color: #FFF; font-size: 18px; font-weight: 800; text-align: center; line-height: 1.4;">5 मिनट पूरे हुए! ⏱️ कल फिर आएं ✨</div>
+                <button onclick="goBackToFeed()" style="background: transparent; color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-arrow-left"></i> वापस अमर उजाला पर जाएं
+                </button>
+            </div>
+        `;
+        headerTimer.style.color = '';
         
         if (bottomCta) {
             bottomCta.style.display = 'none';
@@ -1927,7 +1941,7 @@ function renderSplashState(state, btn) {
         }
         
         if (fixedNudge) {
-            fixedNudge.style.display = 'flex';
+            fixedNudge.style.display = 'none';
         }
         
         callBtns.forEach(b => b.style.display = 'none');
