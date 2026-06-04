@@ -2083,6 +2083,10 @@ function closeMicPermission() {
     });
 }
 
+function retryMicPermission() {
+    showMicPermission('android');
+}
+
 // ==========================================
 // SCROLL LISTENER FOR HYBRID APP PROMO NUDGE
 // ==========================================
