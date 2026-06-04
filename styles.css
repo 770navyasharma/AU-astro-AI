@@ -240,7 +240,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 .desktop-premium-bg { background-color: #080a14 !important; background-image: linear-gradient(to right, rgba(8,10,20,0.4), rgba(8,10,20,0.8)), url('assets/bg_astro_nebula.png') !important; background-size: cover !important; background-position: center !important; border: 1px solid rgba(252, 163, 17, 0.3) !important; }
 
 /* Custom Image Backgrounds */
-.astro-premium-bg { background-color: #0b0710 !important; background-image: linear-gradient(to right, rgba(11,7,16,0.5), rgba(11,7,16,0.85)), url('assets/astro_bg.png') !important; background-size: cover !important; background-position: center !important; border: 1px solid rgba(252, 163, 17, 0.3) !important; }
+.astro-premium-bg { background-color: #0b0710 !important; background-image: linear-gradient(to right, rgba(11,7,16,0.3), rgba(11,7,16,0.6)), url('assets/bg_zodiac_wheel.png') !important; background-size: cover !important; background-position: center !important; border: 1px solid rgba(252, 163, 17, 0.3) !important; }
 .astro-premium-bg h2, .astro-premium-bg h4 { color: #FFF !important; }
 .astro-premium-bg p { color: rgba(255,255,255,0.8) !important; }
 
