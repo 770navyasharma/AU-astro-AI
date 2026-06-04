@@ -1879,6 +1879,10 @@ function renderSplashState(state, btn) {
         
         headerTimer.innerHTML = '<i class="fa-regular fa-clock"></i> शेष समय: 05:00';
         headerTimer.style.color = '#FFD700';
+        headerTimer.style.background = '';
+        headerTimer.style.border = '';
+        headerTimer.style.padding = '';
+        headerTimer.style.display = 'inline-flex';
         
         if (bottomCta) {
             bottomCta.style.display = 'none';
@@ -1906,6 +1910,10 @@ function renderSplashState(state, btn) {
             </div>
         `;
         headerTimer.style.color = '';
+        headerTimer.style.background = 'transparent';
+        headerTimer.style.border = 'none';
+        headerTimer.style.padding = '0';
+        headerTimer.style.display = 'block';
         
         if (bottomCta) {
             bottomCta.style.display = 'none';
@@ -1934,6 +1942,10 @@ function renderSplashState(state, btn) {
             </div>
         `;
         headerTimer.style.color = '';
+        headerTimer.style.background = 'transparent';
+        headerTimer.style.border = 'none';
+        headerTimer.style.padding = '0';
+        headerTimer.style.display = 'block';
         
         if (bottomCta) {
             bottomCta.style.display = 'none';
