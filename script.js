@@ -1903,7 +1903,7 @@ function renderSplashState(state, btn) {
         headerSubtitle.style.display = 'none';
         
         headerTimer.innerHTML = `
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 25px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
                 <div style="color: #FFF; font-size: 18px; font-weight: 800; text-align: center; line-height: 1.4;">5 मिनट पूरे हुए! ⏱️ कल फिर आएं ✨</div>
                 <div onclick="goBackToFeed()" style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 4px;">
                     <i class="fa-solid fa-arrow-left" style="margin-right: 4px;"></i> वापस अमर उजाला पर जाएं
@@ -1934,7 +1934,7 @@ function renderSplashState(state, btn) {
         headerSubtitle.style.display = 'none';
         
         headerTimer.innerHTML = `
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 25px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
                 <div style="color: #FFF; font-size: 18px; font-weight: 800; text-align: center; line-height: 1.4;">5 मिनट पूरे हुए! ⏱️ कल फिर आएं ✨</div>
                 <div onclick="goBackToFeed()" style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 4px;">
                     <i class="fa-solid fa-arrow-left" style="margin-right: 4px;"></i> वापस अमर उजाला पर जाएं
