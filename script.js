@@ -1929,16 +1929,16 @@ function renderSplashState(state, btn) {
         chatBtns.forEach(b => { b.style.display = 'flex'; b.style.fontSize = '14px'; });
     }
     else if (state === 'ended_app') {
-        headerTitle.innerHTML = '<i class="fa-regular fa-clock" style="margin-right:4px;"></i> 5 मिनट पूरे हो गए हैं';
+        headerTitle.innerHTML = '<span style="font-size: 22px;">⏱️ 5 मिनट पूरे हो गए हैं</span>';
         headerSubtitle.innerHTML = '';
         headerSubtitle.style.display = 'none';
         
         headerTimer.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 10px;">
-                <div style="color: #FFF; font-size: 18px; font-weight: 800; text-align: center; line-height: 1.4;">अमर उजाला ऐप पर रोज़ 10 मिनट फ्री बात करें ✨</div>
-                <button onclick="downloadApp()" style="width: 100%; max-width: 320px; background: linear-gradient(90deg, #FBBF24, #F59E0B); color: #000; border: none; border-radius: 30px; padding: 12px 20px; font-size: 16px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);">
+                <div style="color: #FFF; font-size: 16px; font-weight: 800; text-align: center; line-height: 1.4;">अमर उजाला ऐप पर रोज़ 10 मिनट फ्री बात करें ✨</div>
+                <button onclick="downloadApp()" style="width: 100%; max-width: 220px; background: linear-gradient(90deg, #FBBF24, #F59E0B); color: #000; border: none; border-radius: 12px; padding: 12px 20px; font-size: 16px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);">
                     <div style="display: flex; align-items: center; gap: 10px;">
-                        <img src="assets/au_logo.png" style="width: 24px; height: 24px; border-radius: 50%;" onerror="this.src='https://amarujala.com/favicon.ico'">
+                        <img src="assets/au_logo.png" style="width: 24px; height: 24px; object-fit: contain;" onerror="this.src='https://amarujala.com/favicon.ico'">
                         <span>ऐप डाउनलोड करें</span>
                     </div>
                     <i class="fa-solid fa-download"></i>
