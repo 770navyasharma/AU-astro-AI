@@ -1900,9 +1900,9 @@ function renderSplashState(state, btn) {
         headerTimer.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 25px;">
                 <div style="color: #FFF; font-size: 18px; font-weight: 800; text-align: center; line-height: 1.4;">5 मिनट पूरे हुए! ⏱️ कल फिर आएं ✨</div>
-                <button onclick="goBackToFeed()" style="background: transparent; color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;">
-                    <i class="fa-solid fa-arrow-left"></i> वापस अमर उजाला पर जाएं
-                </button>
+                <div onclick="goBackToFeed()" style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 4px;">
+                    <i class="fa-solid fa-arrow-left" style="margin-right: 4px;"></i> वापस अमर उजाला पर जाएं
+                </div>
             </div>
         `;
         headerTimer.style.color = '';
@@ -1928,9 +1928,9 @@ function renderSplashState(state, btn) {
         headerTimer.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 25px;">
                 <div style="color: #FFF; font-size: 18px; font-weight: 800; text-align: center; line-height: 1.4;">5 मिनट पूरे हुए! ⏱️ कल फिर आएं ✨</div>
-                <button onclick="goBackToFeed()" style="background: transparent; color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;">
-                    <i class="fa-solid fa-arrow-left"></i> वापस अमर उजाला पर जाएं
-                </button>
+                <div onclick="goBackToFeed()" style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 4px;">
+                    <i class="fa-solid fa-arrow-left" style="margin-right: 4px;"></i> वापस अमर उजाला पर जाएं
+                </div>
             </div>
         `;
         headerTimer.style.color = '';
