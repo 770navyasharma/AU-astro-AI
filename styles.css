@@ -1177,14 +1177,17 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 
 .login-input {
     width: 100%;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: #FFF;
     padding: 15px;
     border-radius: 12px;
     font-size: 15px;
     outline: none;
-    transition: border 0.3s;
+    transition: all 0.3s;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .login-input:focus {
@@ -1193,11 +1196,14 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 
 .phone-input-group {
     display: flex;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
     overflow: hidden;
-    transition: border 0.3s;
+    transition: all 0.3s;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .phone-input-group:focus-within {
@@ -1206,10 +1212,10 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 
 .phone-input-group .country-code {
     padding: 15px;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.4);
     color: #FFF;
     font-weight: 600;
-    border-right: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(255,255,255,0.2);
 }
 
 .phone-input-group .login-input {
@@ -1219,9 +1225,12 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 }
 
 .starry-theme .otp-box {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     color: #FFF;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
 }
 .starry-theme .otp-box:focus {
     border-color: #FFD700;
