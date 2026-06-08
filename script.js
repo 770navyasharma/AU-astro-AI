@@ -1041,11 +1041,17 @@ function openChatHistory(btn, ev) {
 }
 
 function renderChatHistoryState(state, btn) {
-    if (btn) showSection('mweb-chat-history', btn);
-    else showSection('mweb-chat-history');
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
+    
+    if (btn) showSection(prefix + 'chat-history', btn);
+    else showSection(prefix + 'chat-history');
 
-    const activeContainer = document.getElementById('history-active-controls');
-    const combinedContainer = document.getElementById('history-feedback-combined');
+    const activeSection = document.getElementById(prefix + 'chat-history');
+    if (!activeSection) return;
+
+    const activeContainer = activeSection.querySelector('#history-active-controls');
+    const combinedContainer = activeSection.querySelector('#history-feedback-combined');
 
     if(activeContainer) activeContainer.style.display = 'none';
     if(combinedContainer) combinedContainer.style.display = 'none';
