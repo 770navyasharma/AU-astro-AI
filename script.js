@@ -851,7 +851,7 @@ function startDemoFlow() {
 // Override banner click to go to start screen for Mweb
 function handleBannerClick(source) {
     if (source === 'mweb') {
-        showSection('mweb-start-login');
+        const prefix = (platform === 'app' || (document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active'))) ? 'app-' : 'mweb-'; showSection(prefix + 'start-login');
         // startSlider is now called automatically by showSection
     } else if (source === 'app') {
         showSection('app-splash');
@@ -1059,7 +1059,7 @@ function renderChatHistoryState(state, btn) {
 
 function submitFeedbackFlow() {
     // Phase 2 implementation. For demo, we just transition to the splash screen.
-    showSection('mweb-splash-hybrid');
+    const prefix = (document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active')) ? 'app-' : 'mweb-'; showSection(prefix + 'splash-hybrid');
 }
 
 function selectAstrologer(astroId) {
@@ -1367,7 +1367,7 @@ function showOtpSection() {
 let demoOtpInterval = null;
 
 function startDemoOtpTimer(btnElement) {
-    showSection('mweb-otp-timer', btnElement);
+    showSection(prefix + 'otp-timer', btnElement);
     
     clearInterval(demoOtpInterval);
     
@@ -1404,9 +1404,11 @@ function simulateTimeoutRedirect() {
     // Automatically redirect to the main login screen with fields pre-filled
     const btn = document.querySelector('button[onclick="showSection(\\\'mweb-start-login\\\', this)"]');
     if (btn) showSection('mweb-start-login', btn);
-    else showSection('mweb-start-login');
+    else const prefix = (platform === 'app' || (document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active'))) ? 'app-' : 'mweb-'; showSection(prefix + 'start-login');
     
-    const loginSection = document.getElementById('mweb-start-login');
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
+    const loginSection = document.getElementById(prefix + 'start-login');
     if (loginSection) {
         const nameInput = loginSection.querySelector('input[placeholder="आपका शुभ नाम"]');
         const phoneInput = loginSection.querySelector('input[placeholder="मोबाइल नंबर"]');
@@ -1568,7 +1570,7 @@ function splashGoBack() {
 
 function skipSplash() {
     if (document.getElementById('mwebSelectBtn').classList.contains('active')) {
-        showSection('mweb-start-login');
+        const prefix = (platform === 'app' || (document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active'))) ? 'app-' : 'mweb-'; showSection(prefix + 'start-login');
     } else {
         showSection('app-start-login');
     }
@@ -1603,10 +1605,14 @@ function showAppFeedbackSheet() {
 let feedbackStep = 0;
 
 function startFeedbackFlow(btn) {
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
+    const minText = isApp ? "10" : "5";
+
     if(btn) {
-        showSection('mweb-chat-feedback-screen', btn);
+        showSection(prefix + 'chat-feedback-screen', btn);
     } else {
-        showSection('mweb-chat-feedback-screen');
+        showSection(prefix + 'chat-feedback-screen');
     }
     
     const chatContainer = document.getElementById('feedback-chat-container');
@@ -1619,7 +1625,7 @@ function startFeedbackFlow(btn) {
     
     // Initial greeting from AI
     setTimeout(() => {
-        renderFeedbackMessage('ai', 'आपके 5 मिनट समाप्त हो गए हैं। आपसे बात करके बहुत अच्छा लगा। और बात करने के लिए कल वापस आएं। कृपया अपना फीडबैक शेयर करें।');
+        renderFeedbackMessage('ai', `आपके ${minText} मिनट समाप्त हो गए हैं। आपसे बात करके बहुत अच्छा लगा। और बात करने के लिए कल वापस आएं। कृपया अपना फीडबैक शेयर करें।`);
         
         setTimeout(() => {
             renderFeedbackOptions([
@@ -1846,10 +1852,15 @@ function askNextQuestion() {
 // SPLASH SCREEN STATES LOGIC
 // ==========================================
 function renderSplashState(state, btn) {
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
+    const minText = isApp ? "10" : "5";
+    const minTextHindi = isApp ? "10" : "5";
+
     if(btn) {
-        showSection('mweb-splash-hybrid', btn);
+        showSection(prefix + 'splash-hybrid', btn);
     } else {
-        showSection('mweb-splash-hybrid');
+        const prefix = (document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active')) ? 'app-' : 'mweb-'; showSection(prefix + 'splash-hybrid');
     }
     
     const headerTitle = document.getElementById('hybrid-header-title');
@@ -1872,14 +1883,14 @@ function renderSplashState(state, btn) {
     }
 
     if (state === 'active') {
-        headerTitle.innerHTML = 'अपना ज्योतिषी चुनें';
+        headerTitle.innerHTML = `अपना ज्योतिषी चुनें`;
         headerSubtitle.innerHTML = 'करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।';
         headerSubtitle.className = 'glow-gold';
         headerSubtitle.style.color = '#FDE047';
         headerSubtitle.style.fontSize = '17px';
         headerSubtitle.style.display = 'block';
         
-        headerTimer.innerHTML = '<i class="fa-regular fa-clock"></i> आपका आज का शेष समय: 05:00 मिनट';
+        headerTimer.innerHTML = `<i class="fa-regular fa-clock"></i> आपका आज का शेष समय: 0${minText}:00 मिनट`;
         headerTimer.style.color = '#FFD700';
         headerTimer.style.background = '';
         headerTimer.style.border = '';
@@ -1904,7 +1915,7 @@ function renderSplashState(state, btn) {
         
         headerTimer.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 10px;">
-                <div style="color: #FFF; font-size: 18px; font-weight: 800; text-align: center; line-height: 1.4;">5 मिनट पूरे हुए! ⏱️ कल फिर आएं ✨</div>
+                <div style="color: #FFF; font-size: 18px; font-weight: 800; text-align: center; line-height: 1.4;">${minText} मिनट पूरे हुए! ⏱️ कल फिर आएं ✨</div>
                 <div onclick="goBackToFeed()" style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 4px;">
                     <i class="fa-solid fa-arrow-left" style="margin-right: 4px;"></i> वापस अमर उजाला पर जाएं
                 </div>
@@ -1929,7 +1940,7 @@ function renderSplashState(state, btn) {
         chatBtns.forEach(b => { b.style.display = 'flex'; b.style.fontSize = '14px'; });
     }
     else if (state === 'ended_app') {
-        headerTitle.innerHTML = '<span style="font-size: 22px;">⏱️ 5 मिनट पूरे हो गए हैं</span>';
+        headerTitle.innerHTML = `<span style="font-size: 22px;">⏱️ ${minText} मिनट पूरे हो गए हैं</span>`;
         headerSubtitle.innerHTML = '';
         headerSubtitle.style.display = 'none';
         
@@ -2141,3 +2152,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+function goBackToAppFeed() {
+    closeAllModals();
+    closeAllSheets();
+    const btn = document.querySelectorAll('#app-filters .demo-btn-outline')[0];
+    showSection('app-feed', btn);
+    lastFeedSource = 'app-feed';
+}

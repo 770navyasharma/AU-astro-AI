@@ -1389,13 +1389,35 @@
         
 
 <!-- ==========================================
+
+<!-- ==========================================
      APP SCREENS (Duplicated from MWEB)
      ========================================== -->
-<div id="app-feed" class="view-section mobile-frame" style="background: #FFF;">
+        <div id="app-feed" class="view-section mobile-frame" style="background: #FFF;">
             <div class="ios-home-indicator"></div>
-            <!-- Article Body (No Web Nav) -->
+            <!-- Amar Ujala Header Mockup -->
+            <div style="background: #FFF; padding: 15px 15px 10px; border-bottom: 1px solid #EEE;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <i class="fa-solid fa-bars" style="font-size: 20px; color: #333;"></i>
+                    <h2 style="margin:0; font-size: 24px; font-weight: 900; color: #000;">अमर उजाला</h2>
+                    <div style="display: flex; gap: 15px; color: #555;">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 15px; font-size: 15px; font-weight: 600; color: #444; overflow-x: auto; white-space: nowrap; padding-bottom: 5px;">
+                    <span style="color: #000;">होम</span>
+                    <span style="color: #000;">ज्योतिष</span>
+                    <span style="background: #E53935; color: #FFF; padding: 2px 10px; border-radius: 4px;">बोले तारे</span>
+                    <span>राशिफल</span>
+                </div>
+            </div>
+
+            <!-- Article Body -->
             <div style="background: #FFF; padding: 15px; color: #000;">
-                
+                <div style="font-size: 12px; color: #666; margin-bottom: 15px;">
+                    Hindi News &nbsp;>&nbsp; Photo Gallery &nbsp;>&nbsp; Astrology &nbsp;>&nbsp; Predictions &nbsp;>&nbsp; Jupiter Transit
+                </div>
                 
                 <!-- ASTRO BANNER INTEGRATION -->
                 <div class="app-full-width-card astro-premium-bg banner-shine" onclick="handleBannerClick('app')" style="margin: 0 auto 15px; max-width: 430px; height: 77px; width: 100%; border: 1px solid rgba(252, 163, 17, 0.5) !important; box-sizing: border-box; padding: 10px 15px;">
@@ -1437,9 +1459,15 @@
             </div>
         </div>
 
-<div id="app-start-login" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+        <!-- ==========================================
+             2. NEW MWEB START / LOGIN SCREEN
+             ========================================== -->
+        <div id="app-start-login" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
             <div class="ios-home-indicator"></div>
-            <button class="back-btn" onclick="goBackToFeed()"><i class="fa-solid fa-arrow-left"></i></button>
+            <div onclick="goBackToAppFeed()" style="position: absolute; left: 16px; top: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px); z-index: 100;">
+                <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+            </div>
+
             <div class="app-banner-bg"></div>
             
             <!-- Dynamic Slider Area -->
@@ -1496,7 +1524,7 @@
                 <span class="dot"></span>
             </div>
             <div class="login-main-text mt-15" id="loginMainText">
-                <h1>मुफ़्त में रोज़ 10 मिनट बात करें</h1>
+                <h1>मुफ़्त में 10 मिनट बात करें</h1>
                 <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
             </div>
 
@@ -1535,25 +1563,714 @@
                         <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.4;">हमने आपके मोबाइल नंबर पर एक वेरिफिकेशन कोड भेजा है</p>
                     </div>
                     <div class="otp-boxes" style="display:flex; gap:10px; justify-content:center; margin-bottom:25px;">
-                        <input type="text" maxlength="1" class="otp-box" autocomplete="one-time-code" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextOtp(this, 'otp2-app')">
-                        <input type="text" maxlength="1" class="otp-box" id="otp2-app" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextOtp(this, 'otp3-app')">
-                        <input type="text" maxlength="1" class="otp-box" id="otp3-app" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextOtp(this, 'otp4-app')">
-                        <input type="text" maxlength="1" class="otp-box" id="otp4-app" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextOtp(this, 'otp5-app')">
-                        <input type="text" maxlength="1" class="otp-box" id="otp5-app" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextOtp(this, 'otp6-app')">
-                        <input type="text" maxlength="1" class="otp-box" id="otp6-app" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="verifyOtpAndProceed()">
+                        <input type="text" maxlength="1" class="otp-box" autocomplete="one-time-code" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextOtp(this, 'otp2')">
+                        <input type="text" maxlength="1" class="otp-box" id="otp2" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextOtp(this, 'otp3')">
+                        <input type="text" maxlength="1" class="otp-box" id="otp3" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextOtp(this, 'otp4')">
+                        <input type="text" maxlength="1" class="otp-box" id="otp4" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextOtp(this, 'otp5')">
+                        <input type="text" maxlength="1" class="otp-box" id="otp5" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextOtp(this, 'otp6')">
+                        <input type="text" maxlength="1" class="otp-box" id="otp6" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="verifyOtpAndProceed()">
                     </div>
                     <button class="cta-btn yellow-btn" style="width: 60%; height: 48px; padding: 0; margin: 0 auto; display: flex; align-items: center; justify-content: center;" onclick="verifyOtpAndProceed()">कन्फर्म करें</button>
                 </div>
 
+                <div id="loggedInCallSection" class="hidden" style="width: 100%; height: 100%; background: linear-gradient(180deg, #0B0E1A 0%, #111827 100%);">
+
+                    <!-- Timer Pill -->
+                    <div style="padding: 52px 20px 20px; text-align: center;">
+                        <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); padding: 10px 24px; border-radius: 50px;">
+                            <i class="fa-regular fa-clock" style="font-size: 18px; color: #FFD700;"></i>
+                            <span style="color: #FFF; font-size: 22px; font-weight: 900; letter-spacing: 1.5px;">010:00</span>
+                            <span style="color: #FFD700; font-size: 13px; font-weight: 700;">परामर्श समय शेष</span>
+                        </div>
+                        <p style="color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin: 18px 0 0;">ज्योतिषी चुनें</p>
+                    </div>
+
+                    <!-- Contact List -->
+                    <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 12px;">
+
+                        <!-- Row 1: Priya -->
+                        <div class="astro-contact-row" onclick="selectAndCallAstrologer('priya')" style="background: #112240; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 16px 14px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);">
+                            <div style="position: relative; flex-shrink: 0;">
+                                <img src="assets/dr_priya_verma.png" class="astro-contact-avatar" alt="Priya">
+                                <span class="astro-online-dot"></span>
+                            </div>
+                            <div class="astro-contact-info">
+                                <p class="astro-contact-name">आचार्य प्रिया वर्मा</p>
+                                <p class="astro-contact-spec">करियर · प्रेम · रिश्ते</p>
+                                <p class="astro-contact-meta">⭐ 4.9 &nbsp;·&nbsp; 10,000+ सेशन</p>
+                            </div>
+                            <button class="astro-call-btn" onclick="event.stopPropagation(); selectAndCallAstrologer('priya')">
+                                <i class="fa-solid fa-phone"></i>
+                            </button>
+                        </div>
+
+                        <!-- Row 2: Ajay -->
+                        <div class="astro-contact-row" onclick="selectAndCallAstrologer('ajay')" style="background: #112240; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 16px 14px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);">
+                            <div style="position: relative; flex-shrink: 0;">
+                                <img src="assets/dr_ajay.png" class="astro-contact-avatar" alt="Ajay">
+                                <span class="astro-online-dot"></span>
+                            </div>
+                            <div class="astro-contact-info">
+                                <p class="astro-contact-name">आचार्य अजय शर्मा</p>
+                                <p class="astro-contact-spec">व्यापार · धन · भाग्य</p>
+                                <p class="astro-contact-meta">⭐ 4.8 &nbsp;·&nbsp; 8,500+ सेशन</p>
+                            </div>
+                            <button class="astro-call-btn" onclick="event.stopPropagation(); selectAndCallAstrologer('ajay')">
+                                <i class="fa-solid fa-phone"></i>
+                            </button>
+                        </div>
+
+                        <!-- Row 3: Kirti -->
+                        <div class="astro-contact-row" onclick="selectAndCallAstrologer('kirti')" style="background: #112240; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 16px 14px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);">
+                            <div style="position: relative; flex-shrink: 0;">
+                                <img src="assets/dr_kirti.png" class="astro-contact-avatar" alt="Kirti">
+                                <span class="astro-online-dot"></span>
+                            </div>
+                            <div class="astro-contact-info">
+                                <p class="astro-contact-name">आचार्य कीर्ति जोशी</p>
+                                <p class="astro-contact-spec">प्रेम · विवाह · संतान</p>
+                                <p class="astro-contact-meta">⭐ 4.7 &nbsp;·&nbsp; 6,200+ सेशन</p>
+                            </div>
+                            <button class="astro-call-btn" onclick="event.stopPropagation(); selectAndCallAstrologer('kirti')">
+                                <i class="fa-solid fa-phone"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
 
 
-<div id="app-dialing" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+        <!-- ==========================================
+             NEW MWEB LOGIN ERROR (EMPTY)
+             ========================================== -->
+        <div id="app-login-error-empty" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+            <div class="ios-home-indicator"></div>
+    <div onclick="goBackToAppFeed()" style="position: absolute; left: 16px; top: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px); z-index: 100;">
+        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+    </div>
+
+            <div class="app-banner-bg"></div>
+            
+            <div class="login-slider-container">
+                <div class="login-slider" onscroll="onSliderScroll()">
+                    <!-- Card 1: Priya -->
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-priya" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगी नई राह! 🚀</span>
+                        </div>
+                    </div>
+                    <!-- Card 2: Ajay -->
+                    <div class="slider-card" data-astro="ajay">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_ajay.png" alt="Dr Ajay">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">व्यापार में घाटा क्यों?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-ajay" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">चमकेगी किस्मत की दुकान 💰</span>
+                        </div>
+                    </div>
+                    <!-- Card 3: Kirti -->
+                    <div class="slider-card" data-astro="kirti">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_kirti.png" alt="Dr Kirti">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">सच्चा प्यार कब मिलेगा?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-kirti" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगा जीवनसाथी ❤️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-sheet">
+                <div class="slider-dots" style="position: absolute; top: -15px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <div class="login-main-text mt-15" id="loginMainText-empty">
+                    <h1>मुफ़्त में 10 मिनट बात करें</h1>
+                    <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं。<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
+                </div>
+
+                <div class="trust-badges mt-15" id="loginTrustBadges-empty">
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper blue-glow"><i class="fa-solid fa-shield-halved"></i></div>
+                        <p class="trust-stamp-text">100% सुरक्षित</p>
+                    </div>
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper gold-glow"><i class="fa-solid fa-robot"></i></div>
+                        <p class="trust-stamp-text">पर्सनल AI</p>
+                    </div>
+                </div>
+
+                <div class="login-form-container mt-15">
+                    
+                    <div id="loginInputSection-empty" style="position: relative;">
+                        <input type="text" class="login-input input-error" placeholder="आपका शुभ नाम">
+                        <div class="phone-input-group mt-10">
+                            <span class="country-code">+91</span>
+                            <input type="tel" class="login-input input-error" placeholder="मोबाइल नंबर" maxlength="10">
+                        </div>
+                        <div class="error-text" style="display: block; position: absolute; bottom: 40px; left: 0; width: 100%; text-align: center; font-size: 12px; margin: 0;">कृपया अपना नाम और मोबाइल नंबर दर्ज करें</div>
+                        <button class="cta-btn yellow-btn full-width mt-15" style="height: 48px; padding: 0; display: flex; align-items: center; justify-content: center; transform: translateY(18px);">लॉगिन करें और बात शुरू करें</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ==========================================
+             NEW MWEB LOGIN ERROR (INVALID NUM)
+             ========================================== -->
+        <div id="app-login-error-invalid" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+            <div class="ios-home-indicator"></div>
+    <div onclick="goBackToAppFeed()" style="position: absolute; left: 16px; top: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px); z-index: 100;">
+        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+    </div>
+
+            <div class="app-banner-bg"></div>
+            
+            <div class="login-slider-container">
+                <div class="login-slider" onscroll="onSliderScroll()">
+                    <!-- Card 1: Priya -->
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-priya" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगी नई राह! 🚀</span>
+                        </div>
+                    </div>
+                    <!-- Card 2: Ajay -->
+                    <div class="slider-card" data-astro="ajay">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_ajay.png" alt="Dr Ajay">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">व्यापार में घाटा क्यों?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-ajay" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">चमकेगी किस्मत की दुकान 💰</span>
+                        </div>
+                    </div>
+                    <!-- Card 3: Kirti -->
+                    <div class="slider-card" data-astro="kirti">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_kirti.png" alt="Dr Kirti">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">सच्चा प्यार कब मिलेगा?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-kirti" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगा जीवनसाथी ❤️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-sheet">
+                <div class="slider-dots" style="position: absolute; top: -15px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <div class="login-main-text mt-15" id="loginMainText-invalid">
+                    <h1>मुफ़्त में 10 मिनट बात करें</h1>
+                    <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं。<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
+                </div>
+
+                <div class="trust-badges mt-15" id="loginTrustBadges-invalid">
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper blue-glow"><i class="fa-solid fa-shield-halved"></i></div>
+                        <p class="trust-stamp-text">100% सुरक्षित</p>
+                    </div>
+                    <div class="trust-stamp">
+                        <div class="icon-glow-wrapper gold-glow"><i class="fa-solid fa-robot"></i></div>
+                        <p class="trust-stamp-text">पर्सनल AI</p>
+                    </div>
+                </div>
+
+                <div class="login-form-container mt-15">
+                    
+                    <div id="loginInputSection-invalid" style="position: relative;">
+                        <input type="text" class="login-input" placeholder="आपका शुभ नाम" value="Kavita">
+                        <div class="phone-input-group mt-10">
+                            <span class="country-code">+91</span>
+                            <input type="tel" class="login-input input-error" placeholder="मोबाइल नंबर" value="98765" maxlength="10">
+                        </div>
+                        <div class="error-text" style="display: block; position: absolute; bottom: 40px; left: 0; width: 100%; text-align: center; font-size: 12px; margin: 0;">कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें</div>
+                        <button class="cta-btn yellow-btn full-width mt-15" style="height: 48px; padding: 0; display: flex; align-items: center; justify-content: center; transform: translateY(18px);">लॉगिन करें और बात शुरू करें</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ==========================================
+             NEW MWEB OTP TIMER RUNNING
+             ========================================== -->
+        <div id="app-otp-timer" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+            <div class="ios-home-indicator"></div>
+    <div onclick="goBackToAppFeed()" style="position: absolute; left: 16px; top: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px); z-index: 100;">
+        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+    </div>
+
+            <div class="app-banner-bg"></div>
+            
+            <div class="login-slider-container">
+                <div class="login-slider" onscroll="onSliderScroll()">
+                    <!-- Card 1: Priya -->
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-priya" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगी नई राह! 🚀</span>
+                        </div>
+                    </div>
+                    <!-- Card 2: Ajay -->
+                    <div class="slider-card" data-astro="ajay">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_ajay.png" alt="Dr Ajay">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">व्यापार में घाटा क्यों?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-ajay" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">चमकेगी किस्मत की दुकान 💰</span>
+                        </div>
+                    </div>
+                    <!-- Card 3: Kirti -->
+                    <div class="slider-card" data-astro="kirti">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_kirti.png" alt="Dr Kirti">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">सच्चा प्यार कब मिलेगा?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-kirti" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगा जीवनसाथी ❤️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-sheet">
+                <div class="slider-dots" style="position: absolute; top: -15px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <div class="login-form-container" style="padding-top: 40px; padding-bottom: 50px;">
+                    
+                    <div id="otpInputSection-timer" style="width: 100%;">
+                        <div style="text-align: center; margin-bottom: 25px;">
+                            <h2 style="font-size: 20px; font-weight: 800; color: #FFF; margin-bottom: 8px;">वेरिफिकेशन कोड</h2>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.4;">हमने आपके मोबाइल नंबर पर एक वेरिफिकेशन कोड भेजा है</p>
+                        </div>
+                        <div class="otp-boxes" style="display:flex; gap:10px; justify-content:center; margin-bottom:15px;">
+                            <input type="text" maxlength="1" class="otp-box" value="1" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box" value="4" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box" value="3" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                        </div>
+                        <button class="cta-btn yellow-btn" style="width: 60%; height: 48px; padding: 0; margin: 0 auto; display: flex; align-items: center; justify-content: center;">कन्फर्म करें</button>
+                        
+                        <div style="text-align: center;">
+                            <div class="otp-timer-text" id="demo-otp-timer-display">Resend OTP in <span style="color: #FFF;">00:59</span></div>
+                            <div class="resend-link" id="demo-otp-resend-btn" style="display: none;">Resend OTP</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ==========================================
+             NEW MWEB OTP ERROR WRONG
+             ========================================== -->
+        <div id="app-otp-error-wrong" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+            <div class="ios-home-indicator"></div>
+    <div onclick="goBackToAppFeed()" style="position: absolute; left: 16px; top: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px); z-index: 100;">
+        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+    </div>
+
+            <div class="app-banner-bg"></div>
+            
+            <div class="login-slider-container">
+                <div class="login-slider" onscroll="onSliderScroll()">
+                    <!-- Card 1: Priya -->
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-priya" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगी नई राह! 🚀</span>
+                        </div>
+                    </div>
+                    <!-- Card 2: Ajay -->
+                    <div class="slider-card" data-astro="ajay">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_ajay.png" alt="Dr Ajay">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">व्यापार में घाटा क्यों?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-ajay" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">चमकेगी किस्मत की दुकान 💰</span>
+                        </div>
+                    </div>
+                    <!-- Card 3: Kirti -->
+                    <div class="slider-card" data-astro="kirti">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_kirti.png" alt="Dr Kirti">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">सच्चा प्यार कब मिलेगा?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-kirti" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगा जीवनसाथी ❤️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-sheet">
+                <div class="slider-dots" style="position: absolute; top: -15px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <div class="login-form-container" style="padding-top: 40px; padding-bottom: 50px;">
+                    
+                    <div id="otpInputSection-error" style="width: 100%;">
+                        <div style="text-align: center; margin-bottom: 25px;">
+                            <h2 style="font-size: 20px; font-weight: 800; color: #FFF; margin-bottom: 8px;">वेरिफिकेशन कोड</h2>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.4;">हमने आपके मोबाइल नंबर पर एक वेरिफिकेशन कोड भेजा है</p>
+                        </div>
+                        <div class="otp-boxes shake-animation" style="display:flex; gap:10px; justify-content:center; margin-bottom:5px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                            <input type="text" maxlength="1" class="otp-box input-error" value="" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;">
+                        </div>
+                        <div class="error-text" style="display: block; text-align: center; margin-bottom: 15px;">गलत OTP! कृपया पुनः प्रयास करें</div>
+                        <button class="cta-btn yellow-btn" style="width: 60%; height: 48px; padding: 0; margin: 0 auto; display: flex; align-items: center; justify-content: center;">कन्फर्म करें</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             LOGGED-IN SPLASH
+             ========================================== -->
+<div id="app-logged-in-splash" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+            <div class="ios-home-indicator"></div>
+    <div onclick="goBackToAppFeed()" style="position: absolute; left: 16px; top: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px); z-index: 100;">
+        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+    </div>
+
+
+            <div class="app-banner-bg"></div>
+            
+            <!-- Dynamic Slider Area -->
+            <div class="login-slider-container">
+
+                <div class="login-slider" id="loginSlider" onscroll="onSliderScroll()">
+                    <!-- Card 1: Priya -->
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-priya" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगी नई राह! 🚀</span>
+                        </div>
+                    </div>
+                    <!-- Card 2: Ajay -->
+                    <div class="slider-card" data-astro="ajay">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_ajay.png" alt="Dr Ajay">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">व्यापार में घाटा क्यों?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-ajay" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">चमकेगी किस्मत की दुकान 💰</span>
+                        </div>
+                    </div>
+                    <!-- Card 3: Kirti -->
+                    <div class="slider-card" data-astro="kirti">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_kirti.png" alt="Dr Kirti">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">सच्चा प्यार कब मिलेगा?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-kirti" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगा जीवनसाथी ❤️</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="bottom-sheet">
+            <!-- Slider Dots (Floating above bottom sheet) -->
+            <div class="slider-dots" style="position: absolute; top: -20px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="login-main-text" id="loginMainText" style="margin-top: 15px;">
+                <h1 style="font-size: 28px; line-height: 1.3;">जानिए क्या कहते हैं आपके सितारे ✨</h1>
+                <p id="splash-subtext" style="font-size: 16px; line-height: 1.5; margin-top: 10px;">अपने पर्सनल AI ज्योतिषी से जुड़ें और अपने हर सवाल का तुरंत जवाब पाएं।</p>
+            </div>
+
+            <!-- Free Offer -->
+            <div id="splash-timer-container" style="text-align: center; margin-top: 25px; margin-bottom: 10px;">
+                <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); padding: 12px 24px; border-radius: 50px;">
+                    <i class="fa-regular fa-clock" style="color: #FFD700; font-size: 22px;"></i>
+                    <span style="color: #FFD700; font-size: 18px; font-weight: 800; letter-spacing: 0.5px;">शेष समय: 10 मिनट</span>
+                </div>
+            </div>
+            
+            <!-- Action Button -->
+            <div id="splash-cta-container" style="width: 100%; padding: 0 15px; box-sizing: border-box; margin-top: 20px; display: flex; flex-direction: column; gap: 12px;">
+                <button class="cta-btn yellow-btn full-width" style="height: 52px; padding: 0; display: flex; align-items: center; justify-content: center; font-weight:800; font-size:18px;" onclick="selectAstrologer('priya');">
+                    <i class="fa-solid fa-phone" style="margin-right: 10px; font-size: 16px;"></i> बात शुरू करें
+                </button>
+            </div>
+            </div>
+        </div>
+        <!-- HYBRID SPLASH ACTIVE -->
+        <div id="app-splash-hybrid" class="view-section hidden mobile-frame starry-theme astro-premium-bg" style="display: flex; flex-direction: column;">
+            <div class="ios-home-indicator"></div>
+    <div onclick="goBackToAppFeed()" style="position: absolute; left: 16px; top: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px); z-index: 100;">
+        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+    </div>
+
+            
+            <!-- Hybrid Slider -->
+            <div class="hybrid-slider-container">
+                <div class="login-slider" id="hybridSlider" onscroll="onSliderScroll()">
+                    <!-- Card 1: Priya -->
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_banner.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text glow-gold">क्या प्रमोशन रुका हुआ है?</h2>
+                                <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">मिलेगी नई राह! 🚀</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2: Ajay -->
+                    <div class="slider-card" data-astro="ajay">
+                        <div class="slider-image-box">
+                            <img src="assets/ajay_banner.png" alt="Dr Ajay">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text glow-gold">व्यापार में घाटा क्यों?</h2>
+                                <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">चमकेगी किस्मत की दुकान 💰</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3: Kirti -->
+                    <div class="slider-card" data-astro="kirti">
+                        <div class="slider-image-box">
+                            <img src="assets/kirti_banner.png" alt="Dr Kirti">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text glow-gold">सच्चा प्यार कब मिलेगा?</h2>
+                                <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">मिलेगा जीवनसाथी ❤️</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-dots" style="position: absolute; bottom: 30px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+            <!-- Listing Section -->
+            <div class="hybrid-listing-section">
+                <div class="hybrid-listing-header" style="text-align: center; position: relative;">
+                    <div onclick="goBackToAppFeed()" style="position: absolute; left: 0; top: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px);">
+                        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+                    </div>
+                    <h1 id="hybrid-header-title">अपना ज्योतिषी चुनें</h1>
+                    <p id="hybrid-header-subtitle" class="glow-gold" style="font-size: 17px; text-align: center; margin: 0 0 20px 0; font-weight: 600;">करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।</p>
+                    <h2 id="hybrid-header-timer"><i class="fa-regular fa-clock"></i> शेष समय: 010:00</h2>
+                </div>
+
+                <div class="astrologer-list">
+                    <!-- Priya -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('priya')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/dr_priya_verma.png" alt="Dr Priya">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य प्रिया वर्मा</h3>
+                            <p>वैदिक, टैरो, अंक ज्योतिष</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (12.4k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ajay -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('ajay')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/dr_ajay.png" alt="Dr Ajay">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य अजय शर्मा</h3>
+                            <p>वैदिक, वास्तु, प्रश्न</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.8 (8.1k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Kirti -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('kirti')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/dr_kirti.png" alt="Dr Kirti">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य कीर्ति शुक्ला</h3>
+                            <p>टैरो, अंक ज्योतिष, केपी</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (9.3k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Rahul -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('rahul')">
+                        <div class="avatar-animated-border">
+                            <img src="https://i.pravatar.cc/150?img=11" alt="Dr Rahul">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य राहुल तिवारी</h3>
+                            <p>वैदिक, वास्तु, हस्तरेखा</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.8 (5.2k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Bottom CTA Container (used by ended_basic) -->
+                <div id="hybrid-bottom-cta" style="margin-top: 24px; display: none; flex-direction: column; gap: 12px;"></div>
+            </div>
+
+            <!-- Sticky Bottom Nudge for App Promo -->
+            <div id="hybrid-fixed-bottom-nudge" style="position: absolute; bottom: 45px; left: 50%; transform: translateX(-50%); width: 92%; background: rgba(25, 30, 45, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; border: 1px solid rgba(255,215,0,0.3); border-top: 1px solid rgba(255,215,0,0.5); display: none; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 50;">
+                <div style="color: #FBBF24; font-weight: 800; font-size: 15px; text-align: center; line-height: 1.3;">
+                    अमर उजाला ऐप पर रोज़ 10 मिनट फ्री बात करें ✨
+                </div>
+                <div style="display: flex; width: 100%; gap: 10px; height: 48px;">
+                    <button onclick="goBackToAppFeed()" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.2;">
+                        वापस अमर उजाला<br>पर जाएं
+                    </button>
+                    <button style="flex: 1.3; background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); color: #111827; border: none; border-radius: 12px; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px;">
+                        <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> 
+                        ऐप डाउनलोड करें 
+                        <i class="fa-solid fa-download"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sticky Bottom Nudge for Ended Basic (No App Promo) -->
+            <div id="hybrid-basic-bottom-nudge" style="position: absolute; bottom: 45px; left: 50%; transform: translateX(-50%); width: 92%; background: rgba(25, 30, 45, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; border: 1px solid rgba(239, 68, 68, 0.3); border-top: 1px solid rgba(239, 68, 68, 0.5); display: none; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 50;">
+                <div style="color: #FCA5A5; font-weight: 800; font-size: 16px; text-align: center; line-height: 1.4;">
+                    10 मिनट पूरे हुए! ⏱️<br>
+                    <span style="color: #FFF; font-size: 14px; font-weight: 600; opacity: 0.95;">कल फिर आएं और अपने भविष्य का हाल जानें ✨</span>
+                </div>
+                <button onclick="goBackToAppFeed()" style="width: 100%; background: rgba(255,255,255,0.08); color: #FFF; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.2s;">
+                    वापस अमर उजाला पर जाएं
+                </button>
+            </div>
+        </div>
+
+        <!-- New Dialing Screen -->
+        <div id="app-dialing" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div class="ios-home-indicator"></div>
             
             <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
                 <img id="dialing-avatar" src="assets/dr_priya_verma.png" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(255,215,0,0.5); box-shadow: 0 0 40px rgba(255,215,0,0.2); margin-bottom: 24px;" alt="Avatar">
                 <h2 id="dialing-name" style="color: #FFF; font-size: 26px; font-weight: 800; margin: 0 0 10px;">आचार्य प्रिया वर्मा</h2>
-                <p style="color: #10B981; font-size: 16px; font-weight: 600; margin: 0;">कनेक्ट हो रहा है...</p>
+                
+                <div id="dialing-status-container" style="text-align: center; max-width: 85%;">
+                    <!-- State 1: Connecting -->
+                    <p id="dialing-status-connecting" style="color: #10B981; font-size: 16px; font-weight: 600; margin: 0;">कनेक्ट हो रहा है...</p>
+                    
+                    <!-- State 2: No Mic Permission -->
+                    <div id="dialing-status-no-mic" style="display: none; flex-direction: column; align-items: center; gap: 16px; margin-top: 5px;">
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); padding: 16px; border-radius: 16px; border: 1px solid rgba(251, 191, 36, 0.3);">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i class="fa-solid fa-microphone-slash" style="color: #FBBF24; font-size: 22px;"></i>
+                                <p style="color: #FBBF24; font-size: 18px; font-weight: 800; margin: 0; line-height: 1.3; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">माइक्रोफ़ोन एक्सेस नहीं मिला!</p>
+                            </div>
+                            <p style="color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 500; margin: 0; line-height: 1.4;">कॉल शुरू करने के लिए कृपया अपने ब्राउज़र की सेटिंग में जाकर माइक (Mic) की अनुमति (Permission) दें।</p>
+                        </div>
+                        <button onclick="retryMicPermission()" style="background: #FBBF24; color: #000; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-microphone"></i> परमिशन दें</button>
+                    </div>
+                </div>
             </div>
             
             <div style="padding-bottom: 120px;">
@@ -1563,7 +2280,137 @@
             </div>
         </div>
 
-<div id="app-active-call" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
+        
+        <!-- Chat History Screen -->
+        <div id="app-chat-history" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
+            <div class="ios-home-indicator"></div>
+    <div onclick="goBackToAppFeed()" style="position: absolute; left: 16px; top: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px); z-index: 100;">
+        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+    </div>
+
+            
+            <!-- Top Header -->
+            <div style="flex-shrink: 0; padding: 40px 16px 16px; display: flex; align-items: center; justify-content: space-between; background: rgba(11,14,26,0.9); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 10; backdrop-filter: blur(10px);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img id="history-avatar" src="assets/dr_priya_verma.png" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5);" alt="Avatar">
+                    <div>
+                        <h3 id="history-name" style="color: #FFF; font-size: 16px; font-weight: 800; margin: 0 0 2px;">आचार्य प्रिया वर्मा</h3>
+                        <p id="history-expertise" style="color: #FFD700; font-size: 11px; margin: 0;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
+                    </div>
+                </div>
+                <button onclick="showSection('mweb-splash-hybrid')" style="background: rgba(255,255,255,0.1); border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <i class="fa-solid fa-xmark" style="color: #FFF; font-size: 16px;"></i>
+                </button>
+            </div>
+            
+            
+            <!-- Chat Transcript (Scrollable) -->
+            <div class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 260px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
+                
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था... करियर और जीवन दोनों के बारे में।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:45 AM</span>
+                    </div>
+                </div>
+                
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">बिल्कुल बताऊंगी। पहले एक बात याद रखिये — एस्ट्रोलॉजी दिशा देती है, भाग्य लॉक नहीं करती। आपकी मेहनत सबसे बड़ा ग्रह होती है। अपना नाम और जन्म तिथि बता दीजिये।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
+                    </div>
+                </div>
+                
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">मेरा नाम राहुल है। जन्म तिथि 14 अगस्त 1997।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
+                    </div>
+                </div>
+                
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">राहुल, आपका पर्सनैलिटी चार्ट काफी दिलचस्प एनर्जी दिखा रहा है ✨ आप स्वभाव से क्रिएटिव और इंडिपेंडेंट थिंकर हैं। लेकिन एक प्रॉब्लम है — आप बहुत ओवरथिंक करते हैं और कभी-कभी डिसीजन्स डिले कर देते हैं। 2026 के मिडिल के बाद करियर में स्ट्रॉन्ग ग्रोथ दिख रही है। स्पेशली डिजिटल, टेक, मीडिया, डिजाइन, या कम्युनिकेशन फील्ड में लक स्ट्रॉन्ग रहेगा।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:48 AM</span>
+                    </div>
+                </div>
+
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">धन्यवाद आचार्य जी। क्या प्रेम सम्बंध में कोई अड़चन है?</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:49 AM</span>
+                    </div>
+                </div>
+                
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">अभी शुक्र की स्थिति थोड़ी कमजोर है। धैर्य रखें, साल के अंत तक स्थिति बेहतर होगी।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:50 AM</span>
+                    </div>
+                </div>
+                
+                <!-- End message -->
+                <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 10px;">-- 14 Aug, 10:55 AM पर चैट समाप्त --</div>
+
+            </div>
+            
+            <!-- Dynamic Chat History Bottom Panel -->
+            <div id="chat-history-bottom-panel" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 92%; background: rgba(30, 40, 60, 0.55); backdrop-filter: blur(32px) saturate(180%); -webkit-backdrop-filter: blur(32px) saturate(180%); border-radius: 28px; padding: 24px 20px; border: 1px solid rgba(255,255,255,0.2); border-top: 1px solid rgba(255,255,255,0.3); display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                
+                <!-- State 1: Active (Time Left) -->
+                <div id="history-active-controls" style="display: none; flex-direction: column; width: 100%; align-items: center; gap: 12px; opacity: 0.5; pointer-events: none;">
+                    <div style="color: #FFF; font-weight: 800; font-size: 16px;">चैट हिस्ट्री</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0 10px;">
+                        <button style="background: #444; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-microphone-slash" style="color: #FFF; font-size: 18px;"></i>
+                        </button>
+                        <div style="display: flex; gap: 4px; height: 30px; align-items: center;">
+                            <div style="width: 4px; height: 8px; background: #FFD700; border-radius: 2px;"></div>
+                            <div style="width: 4px; height: 12px; background: #FFD700; border-radius: 2px;"></div>
+                            <div style="width: 4px; height: 8px; background: #FFD700; border-radius: 2px;"></div>
+                            <div style="width: 4px; height: 16px; background: #FFD700; border-radius: 2px;"></div>
+                            <div style="width: 4px; height: 10px; background: #FFD700; border-radius: 2px;"></div>
+                        </div>
+                        <button style="background: #444; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-volume-high" style="color: #FFF; font-size: 18px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- State 2: Combined Feedback -->
+                <div id="history-feedback-combined" style="display: flex; flex-direction: column; width: 100%; align-items: center; text-align: center;">
+                    <div style="color: #FBBF24; font-weight: 800; font-size: 17px; line-height: 1.4; margin-bottom: 8px;">
+                        10 मिनट पूरे हो गए हैं! कल पुनः आएं ✨
+                    </div>
+                    <div style="font-size: 15px; font-weight: 500; color: #FFF; margin-bottom: 20px; line-height: 1.4; padding: 0 5px;">
+                        आपका फीडबैक हमारे लिए महत्वपूर्ण है।
+                    </div>
+                    <div style="display: flex; width: 100%; gap: 12px; height: 54px;">
+                        <button onclick="showSection('mweb-splash-hybrid')" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; padding: 0;">
+                            <span style="font-size: 11px; font-weight: 500; color: #9CA3AF; letter-spacing: 0.2px;">फीडबैक दे चुके?</span>
+                            <span style="font-size: 15px; font-weight: 700; color: #F3F4F6; margin-top: 2px;">वापस जाएँ</span>
+                        </button>
+                        <button onclick="submitFeedbackFlow()" style="flex: 1.2; background: linear-gradient(135deg, #10B981 0%, #047857 100%); color: #FFF; border: none; border-radius: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.15); transition: transform 0.2s; padding: 0; display: flex; align-items: center; justify-content: center; gap: 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
+                            फीडबैक भरें <i class="fa-solid fa-arrow-right" style="font-size: 14px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- New Active Call Screen -->
+        <div id="app-active-call" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
             <div class="ios-home-indicator"></div>
             
             <!-- Top Header -->
@@ -1653,8 +2500,16 @@
             
         </div>
 
-<div id="app-toast-test-screen" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
+
+        <!-- ==========================================
+             TEST SCREEN: HARDCODED TOAST
+             ========================================== -->
+        <div id="app-toast-test-screen" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
             <div class="ios-home-indicator"></div>
+    <div onclick="goBackToAppFeed()" style="position: absolute; left: 16px; top: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px); z-index: 100;">
+        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+    </div>
+
             
             <!-- Top Header -->
             <div style="flex-shrink: 0; padding: 40px 16px 16px; display: flex; align-items: center; justify-content: space-between; background: rgba(11,14,26,0.9); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 10; backdrop-filter: blur(10px);">
@@ -1670,19 +2525,8 @@
                 </button>
             </div>
             
-            <!-- HARDCODED TOAST FOR TESTING -->
-            <div style="position: absolute; top: 120px; left: 5%; width: 90%; background: linear-gradient(135deg, #FF9800 0%, #FF5722 100%); border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); z-index: 999999;">
-                <div style="background: rgba(255,255,255,0.2); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <i class="fa-solid fa-hourglass-half" style="color: #FFF; font-size: 16px;"></i>
-                </div>
-                <div style="flex: 1;">
-                    <h4 style="color: #FFF; font-size: 14px; font-weight: 800; margin: 0 0 2px;">1 मिनट शेष</h4>
-                    <p style="color: rgba(255,255,255,0.9); font-size: 11px; margin: 0;">आपके फ्री परामर्श में केवल 1 मिनट शेष है।</p>
-                </div>
-            </div>
-            
             <!-- Chat Transcript (Scrollable) -->
-            <div class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 140px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
+            <div id="toast-test-chat-box" class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 140px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
                 <!-- User Msg -->
                 <div style="display: flex; gap: 10px; align-self: flex-end; max-width: 85%;">
                     <div style="background: rgba(255,215,0,0.9); padding: 12px 16px; border-radius: 20px 20px 0 20px; box-shadow: 0 4px 12px rgba(255,215,0,0.15);">
@@ -1705,7 +2549,81 @@
             </div>
         </div>
 
-<div id="app-time-over-screen" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
+
+        <!-- ==========================================
+             TEST SCREEN: TIME OVER BOTTOMSHEET
+             ========================================== -->
+        <div id="app-time-over-screen" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
+            <div class="ios-home-indicator" style="z-index: 100000;"></div>
+            
+            <!-- Top Header (behind overlay) -->
+            <div style="flex-shrink: 0; padding: 40px 16px 16px; display: flex; align-items: center; justify-content: space-between; background: rgba(11,14,26,0.9); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 10; backdrop-filter: blur(10px);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="assets/dr_priya_verma.png" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5);" alt="Avatar">
+                    <div>
+                        <h3 style="color: #FFF; font-size: 16px; font-weight: 800; margin: 0 0 2px;">आचार्य प्रिया वर्मा</h3>
+                        <p style="color: #FFD700; font-size: 11px; margin: 0;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
+                    </div>
+                </div>
+                <button style="background: #EF4444; border: none; width: 64px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);">
+                    <i class="fa-solid fa-phone" style="color: #FFF; font-size: 16px; transform: rotate(135deg);"></i>
+                </button>
+            </div>
+            
+            <!-- Chat Transcript (behind overlay) -->
+            <div class="no-scrollbar" style="flex: 1; overflow-y: hidden; padding: 20px 16px 140px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
+                <div style="display: flex; gap: 10px; align-self: flex-end; max-width: 85%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 12px 16px; border-radius: 20px 20px 0 20px; box-shadow: 0 4px 12px rgba(255,215,0,0.15);">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dark Overlay -->
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 50000; backdrop-filter: blur(4px);"></div>
+            
+            <!-- Feedback Bottom Sheet -->
+            <div style="position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(180deg, #1C2438 0%, #0B0E1A 100%); border-radius: 32px 32px 0 0; padding: 14px 30px 20px; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); z-index: 50001; display: flex; flex-direction: column; align-items: center; border-top: 1px solid rgba(255,215,0,0.2);">
+                
+                <!-- Drag Handle (Nudge) -->
+                <div style="width: 40px; height: 4px; background: rgba(255,255,255,0.25); border-radius: 2px; margin-bottom: 20px;"></div>
+                
+                <!-- Header Text -->
+                <div style="text-align: center; margin-bottom: 10px;">
+                    <h2 style="font-size: 19px; font-weight: 900; color: #FFF; margin-bottom: 15px; white-space: nowrap;">कैसा रहा आपका अनुभव?</h2>
+                    <p style="color: rgba(255,255,255,0.85); font-size: 14.5px; line-height: 1.5;">आपका एक फीडबैक हमें और बेहतर बनने में मदद करेगा! 🙏<br>आज का समय पूर्ण। कल फिर जुड़ें और समाधान पाएं! 🌟</p>
+                </div>
+                
+                <!-- Emojis Row -->
+                <div class="emoji-rating-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 10px; width: 100%;">
+                    <div class="emoji-btn" onclick="selectEmoji(this)">😡</div>
+                    <div class="emoji-btn" onclick="selectEmoji(this)">🙁</div>
+                    <div class="emoji-btn" onclick="selectEmoji(this)">😐</div>
+                    <div class="emoji-btn" onclick="selectEmoji(this)">😃</div>
+                    <div class="emoji-btn" onclick="selectEmoji(this)">🤩</div>
+                </div>
+                
+                <!-- Tags Section -->
+                <div style="text-align: center; margin-bottom: 20px; width: 100%;">
+                    <p style="color: rgba(255,255,255,0.9); font-size: 13px; font-weight: 700; margin-bottom: 12px;">क्या बेहतर हो सकता है?</p>
+                    <div class="feedback-tags-row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
+                        <div class="feedback-tag" onclick="toggleTag(this)">आवाज़ की क्वालिटी</div>
+                        <div class="feedback-tag" onclick="toggleTag(this)">कीमत</div>
+                        <div class="feedback-tag" onclick="toggleTag(this)">सटीकता</div>
+                        <div class="feedback-tag" onclick="toggleTag(this)">ज्योतिषी का ज्ञान</div>
+                        <div class="feedback-tag" onclick="toggleTag(this)">अन्य</div>
+                    </div>
+                </div>
+                
+                <!-- CTAs -->
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 8px; align-items: center;">
+                    <button class="cta-btn yellow-btn full-width" style="height: 48px; font-size: 15px; border-radius: 24px;" onclick="submitFeedback()">फीडबैक सबमिट करें</button>
+                    <button onclick="goBackToAppFeed()" style="background: transparent; border: none; color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 600; padding: 8px; cursor: pointer;">होम पर वापस जाएं</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="app-time-over-screen" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
             <div class="ios-home-indicator" style="z-index: 100000;"></div>
             
             <!-- Top Header (behind overlay) -->
@@ -1762,208 +2680,52 @@
                 
                 <!-- CTAs -->
                 <button style="width: 90%; min-width: 180px; background: #FBBF24; color: #111827; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.25); margin-bottom: 12px;">ऐप डाउनलोड करें</button>
-                <button onclick="goBackToFeed()" style="width: 90%; min-width: 180px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.3s;">वापस जाएं</button>
+                <button onclick="goBackToAppFeed()" style="width: 90%; min-width: 180px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.3s;">वापस जाएं</button>
                 
             </div>
-        </div><!-- /phone-stage -->
-    </main>
+        </div>
 
 
-    <!-- ==========================================
-         THE CORE UI: NATIVE ASTRO SCREEN (Responsive Desktop/Mobile)
-         ========================================== -->
-    <div class="call-interface hidden" id="callInterface" style="background:#030510;">
-        <!-- New Starry Background for the whole screen -->
-        <div class="starry-bg-layer"></div>
 
-        <div class="desktop-call-wrapper" style="background:transparent; box-shadow:none;">
-            <!-- Sidebar Menu -->
-            <div class="sidebar-overlay hidden" id="sidebarOverlay" onclick="closeSidebar()"></div>
-            <div class="astro-sidebar" id="astroSidebar">
-                <div class="sidebar-header" style="padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <h3 style="color:#FFF; font-size:18px;"><i class="fa-solid fa-message"></i> पिछली चैट्स</h3>
-                </div>
-                <div class="sidebar-chat-list">
-                    <div class="chat-history-item active">
-                        <i class="fa-solid fa-message"></i>
-                        <div class="chat-info">
-                            <h4>शादी और करियर</h4>
-                            <p>आज, 9:41 AM</p>
-                        </div>
+        <!-- ==========================================
+             IN-CHAT FEEDBACK SCREEN
+             ========================================== -->
+        <div id="app-chat-feedback-screen" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column; position: relative;">
+            <div class="ios-home-indicator"></div>
+    <div onclick="goBackToAppFeed()" style="position: absolute; left: 16px; top: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px); z-index: 100;">
+        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+    </div>
+
+            
+            <!-- Top Header -->
+            <div style="flex-shrink: 0; padding: 40px 16px 16px; display: flex; align-items: center; justify-content: space-between; background: rgba(11,14,26,0.9); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 10; backdrop-filter: blur(10px);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="assets/dr_priya_verma.png" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5);" alt="Avatar">
+                    <div>
+                        <h3 style="color: #FFF; font-size: 16px; font-weight: 800; margin: 0 0 2px;">आचार्य प्रिया वर्मा</h3>
+                        <p style="color: #FFD700; font-size: 11px; margin: 0;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
                     </div>
                 </div>
             </div>
-
-            <button class="icon-btn mobile-menu-btn" onclick="openSidebar()" style="position:absolute; top:20px; left:20px; z-index:10; color:#FFF; font-size:20px; background:rgba(255,255,255,0.1); border-radius:50%; width:40px; height:40px; display:flex; justify-content:center; align-items:center; border:none;"><i class="fa-solid fa-bars"></i></button>
             
-            <div class="call-content-grid">
-                <!-- Left Column (Desktop) / Top Section (Mobile) -->
-                <div class="astro-profile-panel">
-                    <div class="profile-center text-center" style="width:100%; max-width:400px;">
-                        <div class="start-avatar-wrapper mx-auto mb-15" style="width:160px; height:160px; margin: 0 auto 20px auto;">
-                            <div class="app-avatar-ring pulse-ring-1" style="width:100%;height:100%;"></div>
-                            <div class="app-avatar-ring pulse-ring-2" style="width:100%;height:100%;"></div>
-                            <img src="assets/dr_priya_verma.png" alt="Profile" style="border:none;">
-                        </div>
-                        <h2 style="font-size:28px; color:#FFF; font-family:serif; margin-bottom:8px;">आचार्य प्रिया वर्मा</h2>
-                        <p style="color:rgba(255,255,255,0.6); font-size:14px; margin-bottom:30px; font-style:italic;">मनोवैज्ञानिक ज्योतिष, करियर काउंसलिंग</p>
-                        
-                        <div class="timer-badge mb-20" style="display:inline-flex; align-items:center; justify-content:center; gap:10px; background:rgba(0,0,0,0.5); padding:12px 24px; border-radius:30px; border:1px solid rgba(255,255,255,0.1); width:100%;">
-                            <i class="fa-solid fa-clock text-gold"></i>
-                            <span style="color:rgba(255,255,255,0.7); font-size:14px;">समय शेष:</span>
-                            <strong id="timer" style="color:#FFF; font-size:18px;">05:00</strong>
-                        </div>
-
-                        <button class="cta-btn yellow-btn" id="primaryCallActionBtn" style="width:100%; max-width:320px; margin:0 auto; border-radius:12px; display:flex; align-items:center; justify-content:center; gap:10px; font-weight:800;" onclick="beginCallTimer()">
-                            <i class="fa-solid fa-play"></i> सेशन शुरू करें
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Right Column (Desktop) / Bottom Section (Mobile) -->
-                <div class="chat-panel-container">
-                    <div class="chat-panel">
-                        <div class="chat-transcript" id="transcript" style="flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column;">
-                            <div style="text-align:center; margin-bottom:30px;">
-                                <p style="color:rgba(255,255,255,0.6); font-style:italic; font-size:14px;">बोलना शुरू करें।<br><span style="font-size:12px; color:rgba(255,255,255,0.4);">आचार्य प्रिया के साथ आपकी बातचीत यहाँ दिखाई देगी।</span></p>
-                            </div>
-                            <div class="chat-bubble ai-bubble">
-                                <img src="assets/dr_priya_verma.png" class="chat-avatar" alt="AI">
-                                <div class="bubble-content">
-                                    <div class="bubble-header">आचार्य प्रिया</div>
-                                    <p>नमस्ते! बताइए, आज मन में क्या सवाल है?</p>
-                                    <span class="timestamp">9:41 AM</span>
-                                </div>
-                            </div>
-                            <div class="chat-bubble user-bubble">
-                                <div class="bubble-content">
-                                    <div class="bubble-header">आप</div>
-                                    <p>मेरी शादी कब होगी?</p>
-                                    <span class="timestamp">9:41 AM</span>
-                                </div>
-                                <img src="https://ui-avatars.com/api/?name=User&background=FCA311&color=fff" class="chat-avatar" alt="User">
-                            </div>
-                            <div class="chat-bubble ai-bubble">
-                                <img src="assets/dr_priya_verma.png" class="chat-avatar" alt="AI">
-                                <div class="bubble-content">
-                                    <div class="bubble-header">आचार्य प्रिया</div>
-                                    <p>आपकी मीन राशि और बृहस्पति की दशा देखें तो फ़रवरी-मार्च 2027 शुभ है।</p>
-                                    <span class="timestamp">9:42 AM</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="chat-input-bar" style="background:transparent; border-top:1px solid rgba(255,255,255,0.05); justify-content:center; padding:15px; border-radius:0 0 16px 16px;">
-                            <div class="voice-wave-anim">
-                                <div class="bar bar-1"></div>
-                                <div class="bar bar-2"></div>
-                                <div class="bar bar-3"></div>
-                                <div class="bar bar-4"></div>
-                                <div class="bar bar-5"></div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Chat Transcript (Scrollable) -->
+            <div id="feedback-chat-container" class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 260px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
+                <!-- Messages injected here dynamically -->
+            </div>
+            
+            <!-- Bottom Options Pill -->
+            <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 90%; background: rgba(25, 30, 45, 0.95); backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); z-index: 20;">
+                <div id="feedback-options-container" style="display: flex; flex-direction: column; width: 100%; gap: 10px;">
+                    <!-- Options injected here dynamically -->
                 </div>
             </div>
         </div>
-    </div>
 
+        <!-- ==========================================
+             ========================================== -->
+        
 
-    <!-- ==========================================
-         THE MODAL ECOSYSTEM (Responsive Modals)
-         ========================================== -->
-         
-
-
-
-    <div class="modal-overlay hidden" id="stop5MinModal">
-        <div class="modal premium-modal modal-bg text-center">
-            <button class="close-sheet-btn" onclick="closeModal('stop5MinModal')"><i class="fa-solid fa-xmark"></i></button>
-            <img src="assets/dr_priya_verma.png" class="feedback-avatar mb-15" alt="Dr Priya">
-            <h3 class="text-white mb-10" style="font-size:20px;">5 मिनट पूरे! 🛑</h3>
-            <p style="color:rgba(255,255,255,0.7); font-size:13px; margin-bottom:20px;">सवाल अधूरा है? बातचीत जारी रखने के लिए ऐप डाउनलोड करें।</p>
-            
-            <button class="cta-btn yellow-btn full-width mb-10" onclick="downloadApp()">ऐप डाउनलोड करें</button>
-        </div>
-    </div>
-
-    <!-- 4. App Welcome Back Modal -->
-    <div class="modal-overlay hidden" id="welcomeBackModal">
-        <div class="modal premium-modal modal-bg">
-            <button class="close-sheet-btn" onclick="closeModal('welcomeBackModal')"><i class="fa-solid fa-xmark"></i></button>
-            <div class="confetti-bg"></div>
-            <h2 class="text-white mb-10" style="font-size:24px;">क्या आप अपने भविष्य के राज़ छोड़ना चाहते हैं? 🔮</h2>
-            <p style="color:rgba(255,255,255,0.7); font-size:14px; margin-bottom:20px; line-height:1.5;">अभी कॉल काटेंगे तो अहम बातें नहीं जान पाएंगे! आचार्य प्रिया आपकी कुंडली के अनुसार करियर और प्रेम के सटीक जवाब देने के लिए इंतज़ार कर रही हैं।</p>
-
-            <button class="cta-btn yellow-btn full-width mb-10" onclick="resumeCallFromWelcome()">बातचीत जारी रखें</button>
-            <button class="cta-btn dark-btn full-width mb-10" onclick="closeModal('welcomeBackModal')">बाद में जारी रखें</button>
-            <button class="cta-btn text-btn full-width" style="color:rgba(255,255,255,0.4);" onclick="endCallManually()">सेशन समाप्त करें</button>
-        </div>
-    </div>
-
-    <!-- 6. App 10-Minute Hard Stop Modal -->
-    <div class="modal-overlay hidden" id="stop10MinModal">
-        <div class="modal premium-modal modal-bg text-center">
-            <button class="close-sheet-btn" onclick="goToFeedbackFrom10Min()"><i class="fa-solid fa-xmark"></i></button>
-            <img src="assets/dr_priya_verma.png" class="feedback-avatar mb-15" alt="Dr Priya">
-            <h3 class="text-white mb-10" style="font-size:20px;">आज का समय पूरा हुआ! 🌅</h3>
-            <p style="color:rgba(255,255,255,0.7); font-size:13px; margin-bottom:20px;">कल 10 फ्री मिनट के साथ फिर मिलेंगे।</p>
-            
-            <button class="cta-btn yellow-btn full-width mb-10" onclick="goToFeedbackFrom10Min()">ठीक है</button>
-        </div>
-    </div>
-
-    <!-- ==========================================
-         MWEB APP DOWNLOAD SHEET (NO CLOSE BUTTON)
-         ========================================== -->
-    <div class="bottom-sheet-overlay hidden" id="mwebAppDownloadSheet">
-        <div class="premium-sheet bottom-sheet">
-            <h3 style="color:#FFF; font-size:22px; font-weight:800; margin-bottom:15px; text-align: center;">आपका मुफ़्त समय समाप्त हो गया है ⏱️</h3>
-            <p style="color:rgba(255,255,255,0.8); font-size:14px; margin-bottom:20px; line-height:1.5; text-align: center;">
-                आपने आचार्य प्रिया के साथ सफलतापूर्वक बात की! आगे अपने भविष्य, करियर और प्रेम के बारे में जानने के लिए अभी Amar Ujala ऐप डाउनलोड करें।
-            </p>
-
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-around;">
-                <img src="assets/au_logo.png" alt="Amar Ujala" style="height: 48px; object-fit: contain;">
-                <div style="text-align: left;">
-                    <div style="color: #FFD700; font-weight: 800; font-size: 16px;"><i class="fa-solid fa-star"></i> 4.5+ Rating</div>
-                    <div style="color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 600;"><i class="fa-solid fa-download"></i> 10M+ Downloads</div>
-                </div>
-            </div>
-
-            <button class="cta-btn yellow-btn full-width mb-10" onclick="downloadApp()">
-                Amar Ujala App डाउनलोड करें
-            </button>
-            <button class="cta-btn text-btn full-width" style="color:rgba(255,255,255,0.6);" onclick="goBackToFeedFromDownloadSheet()">
-                वापस जाएं (Go to Home)
-            </button>
-        </div>
-    </div>
-
-    <!-- ==========================================
-         APP TIME OVER FEEDBACK SHEET (NO CLOSE BUTTON)
-         ========================================== -->
-    <div class="bottom-sheet-overlay hidden" id="appTimeOverFeedbackSheet">
-        <div class="premium-sheet bottom-sheet text-center">
-            <img src="assets/dr_priya_verma.png" class="feedback-avatar mb-15" alt="Dr Priya" style="margin: 0 auto 15px auto;">
-            <h3 class="text-white mb-10" style="font-size:22px;">आज का समय समाप्त हुआ! 🌅</h3>
-            <p style="color:rgba(255,255,255,0.7); font-size:14px; margin-bottom:20px; line-height: 1.5;">
-                आचार्य प्रिया के साथ आपके आज के 10 मुफ़्त मिनट सफलतापूर्वक पूरे हो गए हैं। अपने भविष्य और कुंडली के बारे में और जानने के लिए कल फिर से वापस आएं। कृपया अपना अनुभव रेटिंग के माध्यम से हमारे साथ साझा करें।
-            </p>
-            
-            <div class="star-rating mb-20" style="font-size: 24px; color: #FFD700;">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-            </div>
-
-            <button class="cta-btn yellow-btn full-width mb-10" onclick="submitAppFeedback()">
-                फीडबैक सबमिट करें
-            </button>
-            <button class="cta-btn text-btn full-width" style="color:rgba(255,255,255,0.6);" onclick="goBackToFeedFromAppSheet()">
-                वापस जाएं (Back to Home)
-            </button>
-        </div>
-    </div>
-
+<!-- ==========================================
     <!-- 6. App 10-Minute Hard Stop & Feedback -->
     <div class="modal-overlay hidden" id="feedbackModal">
         <div class="modal premium-modal modal-bg text-center">
