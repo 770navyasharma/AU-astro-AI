@@ -1987,13 +1987,21 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 #mweb-login-error-empty .slider-overlay-text,
 #mweb-login-error-invalid .slider-overlay-text,
 #mweb-otp-timer .slider-overlay-text,
-#mweb-otp-error-wrong .slider-overlay-text {
+#mweb-otp-error-wrong .slider-overlay-text,
+#app-login-error-empty .slider-overlay-text,
+#app-login-error-invalid .slider-overlay-text,
+#app-otp-timer .slider-overlay-text,
+#app-otp-error-wrong .slider-overlay-text {
     bottom: 185px !important;
 }
 
 #mweb-login-error-empty .hanging-cta,
 #mweb-login-error-invalid .hanging-cta,
 #mweb-otp-timer .hanging-cta,
-#mweb-otp-error-wrong .hanging-cta {
+#mweb-otp-error-wrong .hanging-cta,
+#app-login-error-empty .hanging-cta,
+#app-login-error-invalid .hanging-cta,
+#app-otp-timer .hanging-cta,
+#app-otp-error-wrong .hanging-cta {
     bottom: 130px !important;
 }

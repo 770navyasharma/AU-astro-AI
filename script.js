@@ -1367,6 +1367,8 @@ function showOtpSection() {
 let demoOtpInterval = null;
 
 function startDemoOtpTimer(btnElement) {
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
     showSection(prefix + 'otp-timer', btnElement);
     
     clearInterval(demoOtpInterval);
