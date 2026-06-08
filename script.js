@@ -1892,7 +1892,7 @@ function renderSplashState(state, btn) {
         headerSubtitle.style.fontSize = '17px';
         headerSubtitle.style.display = 'block';
         
-        headerTimer.innerHTML = `<i class="fa-regular fa-clock"></i> आपका आज का शेष समय: 0${minText}:00 मिनट`;
+        headerTimer.innerHTML = `<i class="fa-regular fa-clock"></i> आपका आज का शेष समय: ${minText.padStart(2, '0')}:00 मिनट`;
         headerTimer.style.color = '#FFD700';
         headerTimer.style.background = '';
         headerTimer.style.border = '';
