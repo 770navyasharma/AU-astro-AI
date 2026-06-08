@@ -668,8 +668,8 @@ function openSidebar() {
     document.getElementById('sidebarOverlay').classList.remove('hidden');
 }
 function closeSidebar() {
-    document.getElementById('astroSidebar').classList.remove('open');
-    document.getElementById('sidebarOverlay').classList.add('hidden');
+    document.getElementById('astroSidebar')?.classList.remove('open');
+    document.getElementById('sidebarOverlay')?.classList.add('hidden');
 }
 
 
@@ -851,7 +851,7 @@ function startDemoFlow() {
 // Override banner click to go to start screen for Mweb
 function handleBannerClick(source) {
     if (source === 'mweb') {
-        const prefix = (platform === 'app' || (document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active'))) ? 'app-' : 'mweb-'; showSection(prefix + 'start-login');
+        showSection((document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active') ? 'app-' : 'mweb-') + 'start-login');
         // startSlider is now called automatically by showSection
     } else if (source === 'app') {
         showSection('app-splash');
@@ -1404,7 +1404,7 @@ function simulateTimeoutRedirect() {
     // Automatically redirect to the main login screen with fields pre-filled
     const btn = document.querySelector('button[onclick="showSection(\\\'mweb-start-login\\\', this)"]');
     if (btn) showSection('mweb-start-login', btn);
-    else const prefix = (platform === 'app' || (document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active'))) ? 'app-' : 'mweb-'; showSection(prefix + 'start-login');
+    else showSection((document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active') ? 'app-' : 'mweb-') + 'start-login');
     
     const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
     const prefix = isApp ? "app-" : "mweb-";
@@ -1570,7 +1570,7 @@ function splashGoBack() {
 
 function skipSplash() {
     if (document.getElementById('mwebSelectBtn').classList.contains('active')) {
-        const prefix = (platform === 'app' || (document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active'))) ? 'app-' : 'mweb-'; showSection(prefix + 'start-login');
+        showSection((document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active') ? 'app-' : 'mweb-') + 'start-login');
     } else {
         showSection('app-start-login');
     }
