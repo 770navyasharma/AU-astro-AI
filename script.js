@@ -111,7 +111,7 @@ function setActiveFilter(sectionId) {
 
 function showSection(sectionId, btnElement) {
     document.querySelectorAll('.view-section').forEach(s => s.classList.add('hidden'));
-    document.getElementById('callInterface').classList.add('hidden');
+    document.getElementById('callInterface')?.classList.add('hidden');
     stopCallTimer();
     closeSidebar();
 
