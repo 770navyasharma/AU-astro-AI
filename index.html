@@ -74,12 +74,24 @@
             <div class="demo-btn-group">
                 <button class="demo-btn-outline active" onclick="showSection('app-feed', this)">1. App Banner</button>
                 <button class="demo-btn-outline" onclick="showSection('app-start-login', this)">2. Login Screen</button>
-                <button class="demo-btn-outline" onclick="showSection('app-splash', this)">3. Splash Screen</button>
-
-                <button class="demo-btn-outline" onclick="showSection('app-dialing', this)">5. Dialing Screen</button>
+                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('app-login-error-empty', this)">2.1 Login Error (Empty)</button>
+                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('app-login-error-invalid', this)">2.2 Login Error (Invalid)</button>
+                <button class="demo-btn-outline" style="border-color: #FBBF24; color: #F59E0B;" onclick="startDemoOtpTimer(this)">2.3 OTP Timer Running</button>
+                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('app-otp-error-wrong', this)">2.4 OTP Wrong (Error)</button>
+                <button class="demo-btn-outline" onclick="renderSplashState('active', this)">2b. Logged-in Splash (Active)</button>
+                <button class="demo-btn-outline" onclick="renderSplashState('ended_basic', this)">2c. Splash (Ended - No App)</button>
+                <button class="demo-btn-outline" onclick="renderSplashState('ended_app', this)">2d. Splash (Ended - App Promo)</button>
+                <button class="demo-btn-outline" onclick="renderDialingState('connecting', this)">5a. Dialing (Normal)</button>
+                <button class="demo-btn-outline" onclick="renderDialingState('no_mic', this)">5b. Dialing (No Mic)</button>
                 <button class="demo-btn-outline" onclick="showSection('app-active-call', this)">6. Active Call Screen</button>
-                <button class="demo-btn-outline" style="border-color: #FF9800; color: #FF9800;" onclick="showSection('app-toast-test-screen', this)">🔔 1 min left</button>
-                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showAppFeedbackSheet()">⌛ 10 Mins Feedback</button>
+                <button class="demo-btn-outline" onclick="renderChatHistoryState('active', this)">7a. Chat History (Active)</button>
+                <button class="demo-btn-outline" onclick="renderChatHistoryState('combined_feedback', this)">7b. Feedback 10 mins end</button>
+                <button class="demo-btn-outline" style="border-color: #10B981; color: #10B981;" onclick="startFeedbackFlow(this)">💬 Feedback Chat</button>
+                <button class="demo-btn-outline" style="border-color: #FF9800; color: #FF9800;" onclick="showInChatToast(this)">🔔 1 min left</button>
+                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('app-time-over-screen', this)">⌛ 10 Mins End</button>
+                <button class="demo-btn-outline" style="border-color: #3B82F6; color: #3B82F6;" onclick="showMicPermission('ios-chrome', this)">🎙️ iOS Chrome</button>
+                <button class="demo-btn-outline" style="border-color: #3B82F6; color: #3B82F6;" onclick="showMicPermission('android', this)">🎙️ Android</button>
+                <button class="demo-btn-outline" style="border-color: #3B82F6; color: #3B82F6;" onclick="showMicPermission('ios-safari', this)">🎙️ iOS Safari</button>
             </div>
         </div>
 
