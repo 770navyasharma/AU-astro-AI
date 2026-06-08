@@ -1865,14 +1865,17 @@ function renderSplashState(state, btn) {
         const prefix = (document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active')) ? 'app-' : 'mweb-'; showSection(prefix + 'splash-hybrid');
     }
     
-    const headerTitle = document.getElementById('hybrid-header-title');
-    const headerSubtitle = document.getElementById('hybrid-header-subtitle');
-    const headerTimer = document.getElementById('hybrid-header-timer');
-    const bottomCta = document.getElementById('hybrid-bottom-cta');
-    const fixedNudge = document.getElementById('hybrid-fixed-bottom-nudge');
-    const basicNudge = document.getElementById('hybrid-basic-bottom-nudge');
-    const callBtns = document.querySelectorAll('.hybrid-call-btn');
-    const chatBtns = document.querySelectorAll('.hybrid-chat-btn');
+    const activeSection = document.getElementById(prefix + 'splash-hybrid');
+    if (!activeSection) return;
+
+    const headerTitle = activeSection.querySelector('#hybrid-header-title');
+    const headerSubtitle = activeSection.querySelector('#hybrid-header-subtitle');
+    const headerTimer = activeSection.querySelector('#hybrid-header-timer');
+    const bottomCta = activeSection.querySelector('#hybrid-bottom-cta');
+    const fixedNudge = activeSection.querySelector('#hybrid-fixed-bottom-nudge');
+    const basicNudge = activeSection.querySelector('#hybrid-basic-bottom-nudge');
+    const callBtns = activeSection.querySelectorAll('.hybrid-call-btn');
+    const chatBtns = activeSection.querySelectorAll('.hybrid-chat-btn');
 
     // Reset nudge state
     if (fixedNudge) {
@@ -1915,12 +1918,15 @@ function renderSplashState(state, btn) {
         headerSubtitle.innerHTML = '';
         headerSubtitle.style.display = 'none';
         
+        const backLinkHtml = isApp ? "" : `
+                <div onclick="goBackToFeed()" style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 4px;">
+                    <i class="fa-solid fa-arrow-left" style="margin-right: 4px;"></i> वापस अमर उजाला पर जाएं
+                </div>`;
+
         headerTimer.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 10px;">
                 <div style="color: #FFF; font-size: 18px; font-weight: 800; text-align: center; line-height: 1.4;">${minText} मिनट पूरे हुए! ⏱️ कल फिर आएं ✨</div>
-                <div onclick="goBackToFeed()" style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 4px;">
-                    <i class="fa-solid fa-arrow-left" style="margin-right: 4px;"></i> वापस अमर उजाला पर जाएं
-                </div>
+                ${backLinkHtml}
             </div>
         `;
         headerTimer.style.color = '';
