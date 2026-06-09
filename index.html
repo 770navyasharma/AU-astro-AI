@@ -1563,6 +1563,10 @@
                 background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
                 animation: aiShimmer 2.8s ease-in-out infinite;
             }
+            @keyframes rippleMenu {
+                0%   { transform: scale(1); opacity: 0.8; }
+                100% { transform: scale(2.2); opacity: 0; }
+            }
             </style>
 
             <div class="ios-home-indicator" style="background: #555;"></div>
@@ -1664,9 +1668,14 @@
                     <div onclick="handleBannerClick('app')" style="background: linear-gradient(135deg, #1E0A3C 0%, #3B1580 55%, #1A0A2E 100%); border-radius: 14px; min-height: 64px; cursor: pointer; border: 1px solid rgba(255,215,0,0.35); box-shadow: 0 4px 20px rgba(139,92,246,0.45); position: relative; overflow: hidden; display: flex; align-items: center; gap: 0;">
                         <!-- shimmer sweep -->
                         <div class="ai-tile-shimmer"></div>
-                        <!-- Close-up face -->
-                        <div style="width: 52px; height: 52px; border-radius: 50%; overflow: hidden; margin-left: 10px; border: 2px solid rgba(255,215,0,0.85); flex-shrink: 0; position: relative; z-index: 3; box-shadow: 0 0 10px rgba(255,215,0,0.4);">
-                            <img src="assets/ai_astro_menu_icon.png" alt="AI Astrologer" style="width: 130%; height: 130%; object-fit: cover; object-position: center 5%; margin-left: -15%; margin-top: -5%;">
+                        <!-- Avatar: ripple rings around clean face -->
+                        <div style="position: relative; flex-shrink: 0; width: 56px; height: 56px; margin-left: 9px; z-index: 3; display: flex; align-items: center; justify-content: center;">
+                            <div style="position: absolute; inset: -8px; border-radius: 50%; border: 1.5px solid rgba(255,215,0,0.7); animation: rippleMenu 2s ease-out infinite; animation-delay: 0s;"></div>
+                            <div style="position: absolute; inset: -16px; border-radius: 50%; border: 1.5px solid rgba(255,215,0,0.45); animation: rippleMenu 2s ease-out infinite; animation-delay: 0.65s;"></div>
+                            <div style="position: absolute; inset: -24px; border-radius: 50%; border: 1px solid rgba(255,215,0,0.25); animation: rippleMenu 2s ease-out infinite; animation-delay: 1.3s;"></div>
+                            <div style="width: 52px; height: 52px; border-radius: 50%; overflow: hidden; border: 2px solid rgba(255,215,0,0.9); box-shadow: 0 0 12px rgba(255,215,0,0.5); position: relative; z-index: 1;">
+                                <img src="assets/astro_face_clean.png" alt="AI Astrologer" style="width: 100%; height: 100%; object-fit: cover; object-position: center 15%;">
+                            </div>
                         </div>
                         <!-- Text -->
                         <div style="flex: 1; padding: 0 10px; position: relative; z-index: 3;">
