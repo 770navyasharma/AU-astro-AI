@@ -176,6 +176,26 @@
         <div id="mweb-banner-variants" class="view-section hidden mobile-frame" style="background:#F0F0F5; overflow:hidden; display:flex; flex-direction:column;">
             <div class="ios-home-indicator"></div>
             <style>
+            /* New global main title styles with larger size and high-contrast bold look */
+            .bv-t1-main {
+                font-size: 22px;
+                font-weight: 900;
+                line-height: 1.25;
+                margin-bottom: 6px;
+                letter-spacing: -0.2px;
+                text-shadow: 0px 2px 4px rgba(0,0,0,0.85), 0px 4px 12px rgba(0,0,0,0.5);
+                color: #FFFFFF; /* Pure white, extremely bold light text on dark background */
+            }
+            .bv-t1-main-light {
+                font-size: 22px;
+                font-weight: 900;
+                line-height: 1.25;
+                margin-bottom: 6px;
+                letter-spacing: -0.2px;
+                text-shadow: none; /* No fuzzy white shadow to wash out the text */
+                color: #000000; /* Pure black, extremely bold dark text on light background */
+            }
+            
             /* Shared Styles */
             @keyframes bvBlink {0%,100%{opacity:.8}50%{opacity:0}}
             @keyframes bumpZoom {
