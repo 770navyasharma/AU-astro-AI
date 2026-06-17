@@ -176,27 +176,76 @@
         <div id="mweb-banner-variants" class="view-section hidden mobile-frame" style="background:#F0F0F5; overflow:hidden; display:flex; flex-direction:column;">
             <div class="ios-home-indicator"></div>
             <style>
-            /* ── shared banner styles ── */
-            @keyframes bvPulse{0%{width:100%;height:100%;opacity:.7}100%{width:220%;height:220%;opacity:0}}
-            @keyframes bvBar  {0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
-            @keyframes bvStripe{0%{left:-80%}100%{left:130%}}
-            @keyframes bvFadeIn {0%{opacity:0;transform:translateY(4px)}100%{opacity:1;transform:translateY(0)}}
-            @keyframes bvFadeOut{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-4px)}}
-            @keyframes bvOrbit {0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+            /* Shared Styles */
             @keyframes bvBlink {0%,100%{opacity:.8}50%{opacity:0}}
-            .bv-pr{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;opacity:0;animation:bvPulse 2.4s ease-out infinite}
-            .bv-bar{width:3px;border-radius:3px;animation:bvBar .9s ease-in-out infinite}
-            .bv-stripe{position:absolute;top:0;left:-80%;width:40%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.07),transparent);animation:bvStripe 3s linear infinite;pointer-events:none}
-            .bv-mic{flex-shrink:0;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-            .bv-tw{font-style:normal;font-weight:900}
-            .bv-cur{animation:bvBlink .85s step-end infinite}
-            .bv-waves{display:flex;align-items:center;gap:2.5px;height:32px;flex-shrink:0}
-            .bv-card{border-radius:14px;padding:13px 14px;display:flex;align-items:center;gap:11px;cursor:pointer;position:relative;overflow:hidden}
-            .bv-group-label{font-size:10px;font-weight:800;letter-spacing:.9px;margin:14px 0 8px;padding:5px 10px;border-radius:6px;display:inline-block}
+            @keyframes bumpZoom {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.04); }
+            }
+            .bv-group-label{font-size:10px;font-weight:800;letter-spacing:.9px;margin:16px 0 8px;padding:5px 10px;border-radius:6px;display:inline-block}
+            
+            /* The Bump Zoom class */
+            .bv-bump {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                animation: bumpZoom 2.5s infinite ease-in-out;
+                transform-origin: left center;
+            }
+
+            /* Layout 1: Right Focus */
+            .bvl-right-focus {
+                border-radius: 14px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between;
+                position: relative; overflow: hidden; cursor: pointer; height: 90px;
+            }
+            .bvl-rf-astro {
+                position: absolute; right: -15px; top: -10px; width: 110px; height: 110px; border-radius: 50%; opacity: 0.9;
+                border: 3px solid rgba(255,255,255,0.2); box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+            }
+            
+            /* Layout 2: Centered Floating */
+            .bvl-center {
+                border-radius: 16px; padding: 18px 14px 14px; display: flex; flex-direction: column; align-items: center; text-align: center;
+                position: relative; overflow: hidden; cursor: pointer;
+            }
+            .bvl-c-astro {
+                width: 65px; height: 65px; border-radius: 50%; border: 2.5px solid #FFF; margin-bottom: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            }
+
+            /* Layout 3: Glassmorphism */
+            .bvl-glass {
+                border-radius: 16px; padding: 12px; display: flex; flex-direction: column; position: relative; overflow: hidden; cursor: pointer; min-height: 100px;
+            }
+            .bvl-glass-card {
+                background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+                border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 12px; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+            .bvl-glass-dark .bvl-glass-card { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); }
+
+            /* Layout 4: Pill Shape */
+            .bvl-pill {
+                border-radius: 50px; padding: 8px 12px 8px 8px; display: flex; align-items: center; gap: 12px;
+                position: relative; overflow: hidden; cursor: pointer; box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            }
+
+            /* Layout 5: Bottom Bar */
+            .bvl-bottom-bar {
+                border-radius: 14px; display: flex; flex-direction: column; position: relative; overflow: hidden; cursor: pointer;
+            }
+            .bvl-bb-top { padding: 14px 16px; display: flex; align-items: center; gap: 12px; flex: 1; }
+            .bvl-bb-bottom { padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; font-weight: 800; font-size: 13px; }
+
+            /* Text base styles for visibility */
+            .bv-t1 { font-size: 14px; font-weight: 800; margin-bottom: 4px; line-height: 1.2; text-shadow: 0px 2px 4px rgba(0,0,0,0.6); }
+            .bv-t2 { font-size: 12px; font-weight: 700; text-shadow: 0px 1px 3px rgba(0,0,0,0.5); }
+            
+            .bv-t1-light { font-size: 14px; font-weight: 900; margin-bottom: 4px; line-height: 1.2; text-shadow: 0px 1px 2px rgba(255,255,255,0.8); color: #000; }
+            .bv-t2-light { font-size: 12px; font-weight: 700; text-shadow: 0px 1px 2px rgba(255,255,255,0.8); color: #111827; }
+
             </style>
 
             <!-- AU Header -->
-            <div style="background:#FFF;padding:10px 15px 9px;border-bottom:1px solid #E5E5E5;flex-shrink:0">
+            <div style="background:#FFF;padding:10px 15px 9px;border-bottom:1px solid #E5E5E5;flex-shrink:0;box-shadow:0 2px 10px rgba(0,0,0,0.05);z-index:10;">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px">
                     <i class="fa-solid fa-bars" style="font-size:19px;color:#333"></i>
                     <h2 style="margin:0;font-size:22px;font-weight:900;color:#000">अमर उजाला</h2>
@@ -209,507 +258,341 @@
                 </div>
             </div>
 
-            <!-- All 20 Banners -->
-            <div class="no-scrollbar" style="flex:1;overflow-y:auto;padding:10px 11px 30px">
+            <div class="no-scrollbar" style="flex:1;overflow-y:auto;padding:0 12px 30px;">
 
                 <!-- ═══════════════════════════════════════════════
-                     GROUP A · DARK BG + TYPEWRITER ANIMATION (5)
+                     10 DARK THEMES 
                      ═══════════════════════════════════════════════ -->
-                <div class="bv-group-label" style="background:#1a1a2e;color:#A78BFA">🌌 A · DARK + TYPEWRITER ANIMATION</div>
+                <div class="bv-group-label" style="background:#1a1a2e;color:#A78BFA;width:100%;text-align:center;">🌌 10 DARK BANNER IDEAS</div>
 
-                <!-- A1 · Deep Cosmos Purple -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">A1 · DEEP COSMOS PURPLE</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(18,1,46,0.35),rgba(45,27,105,0.35),rgba(12,0,24,0.35)), url('assets/bg_purple.png') center/cover";border:1px solid rgba(167,139,250,.45);box-shadow:0 5px 22px rgba(109,40,217,.45)">
-                        <div class="bv-stripe"></div>
-                        <!-- cosmic stars -->
-                        <div style="position:absolute;top:7px;right:70px;width:2px;height:2px;background:#FFF;border-radius:50%;box-shadow:12px 3px 0 rgba(255,255,255,.55),25px -2px 0 rgba(255,255,255,.4),38px 5px 0 rgba(255,255,255,.6),52px -1px 0 rgba(255,255,255,.35),66px 4px 0 rgba(255,255,255,.5)"></div>
-                        <!-- orbit ring -->
-                        <div style="position:absolute;right:44px;top:50%;transform:translateY(-50%);width:55px;height:55px;border-radius:50%;border:1px solid rgba(167,139,250,.2)"></div>
-                        <!-- avatar -->
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #A78BFA;position:relative;z-index:1;box-shadow:0 0 10px rgba(167,139,250,.4)"><img src="assets/dr_priya_verma.png" style="width:100%;height:100%;object-fit:cover"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#A78BFA;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #12012E;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
+                <!-- D1. Style 1: Right Focus (Purple) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">1. RIGHT FOCUS · DARK PURPLE</div>
+                    <div class="bvl-right-focus" style="background: url('assets/bg_purple.png') center/cover; border:1px solid rgba(167,139,250,.4); box-shadow:0 6px 20px rgba(109,40,217,.3);">
+                        <div style="position:relative; z-index:2; max-width:65%;">
+                            <div class="bv-t1" style="color:#FFF;">जाने अपने भविष्य के राज़</div>
+                            <div class="bv-t2 bv-bump" style="color:#C4B5FD;">
+                                <span style="background:#22C55E;width:6px;height:6px;border-radius:50%;animation:bvBlink 1s infinite;"></span> मुफ़्त में बात करें
+                            </div>
                         </div>
-                        <!-- text -->
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#FFF;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:rgba(196,181,253,.85);font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <!-- waveform -->
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#A78BFA"></div>
-                            <div class="bv-bar" style="height:15px;background:#A78BFA;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#A78BFA;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#A78BFA;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#A78BFA"></div>
+                        <img src="assets/dr_priya_verma.png" class="bvl-rf-astro" style="object-fit:cover;">
+                        <div style="position:absolute; right:15px; bottom:15px; width:30px; height:30px; background:#8B5CF6; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid #FFF; z-index:3; box-shadow:0 4px 10px rgba(0,0,0,0.5);">
+                            <i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- A2 · Midnight Navy Orbit -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">A2 · MIDNIGHT NAVY · ORBIT RINGS</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(6,13,34,0.35),rgba(26,35,126,0.35),rgba(4,10,24,0.35)), url('assets/bg_blue.png') bottom left/cover";border:1px solid rgba(99,179,237,.4);box-shadow:0 5px 22px rgba(26,35,126,.55)">
-                        <div class="bv-stripe"></div>
-                        <!-- orbit rings decoration -->
-                        <div style="position:absolute;right:36px;top:50%;transform:translateY(-50%) rotate(-20deg);width:70px;height:30px;border-radius:50%;border:1px solid rgba(99,179,237,.25)"></div>
-                        <div style="position:absolute;right:30px;top:50%;transform:translateY(-50%) rotate(-20deg);width:85px;height:38px;border-radius:50%;border:1px solid rgba(99,179,237,.12)"></div>
-                        <!-- avatar -->
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #63B3ED;position:relative;z-index:1;box-shadow:0 0 10px rgba(99,179,237,.45)"><img src="assets/astro_face_clean.png" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#63B3ED;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #060D22;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
+                <!-- D2. Style 1: Right Focus (Blue) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">2. RIGHT FOCUS · MIDNIGHT BLUE</div>
+                    <div class="bvl-right-focus" style="background: url('assets/bg_blue.png') center/cover; border:1px solid rgba(99,179,237,.4); box-shadow:0 6px 20px rgba(26,35,126,.3);">
+                        <div style="position:relative; z-index:2; max-width:65%;">
+                            <div class="bv-t1" style="color:#FFF;">कुंडली और ग्रहों की चाल समझें</div>
+                            <div class="bv-t2 bv-bump" style="color:#90CDF4;">
+                                <i class="fa-solid fa-phone" style="font-size:10px;"></i> फ्री कॉल शुरू करें
+                            </div>
                         </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#FFF;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:rgba(144,205,244,.85);font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#63B3ED"></div>
-                            <div class="bv-bar" style="height:15px;background:#63B3ED;animation-delay:.18s"></div>
-                            <div class="bv-bar" style="height:23px;background:#63B3ED;animation-delay:.36s"></div>
-                            <div class="bv-bar" style="height:15px;background:#63B3ED;animation-delay:.18s"></div>
-                            <div class="bv-bar" style="height:7px;background:#63B3ED"></div>
+                        <img src="assets/astro_face_clean.png" class="bvl-rf-astro" style="object-fit:cover;object-position:center 15%;">
+                        <div style="position:absolute; right:15px; top:15px; width:30px; height:30px; background:#3182CE; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid #FFF; z-index:3; box-shadow:0 4px 10px rgba(0,0,0,0.5);">
+                            <i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- A3 · Dark Maroon Nebula -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">A3 · MAROON NEBULA · ZODIAC CIRCLE</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(30,0,0,0.35),rgba(123,0,0,0.35),rgba(45,5,5,0.35)), url('assets/bg_saffron.png') center/cover";border:1px solid rgba(252,129,74,.4);box-shadow:0 5px 22px rgba(123,0,0,.5)">
-                        <div class="bv-stripe"></div>
-                        <!-- zodiac circle bg -->
-                        <div style="position:absolute;right:38px;top:50%;transform:translateY(-50%);width:58px;height:58px;border-radius:50%;border:1px dashed rgba(252,129,74,.3)"></div>
-                        <div style="position:absolute;right:44px;top:50%;transform:translateY(-50%) rotate(45deg);width:46px;height:46px;border-radius:50%;border:1px solid rgba(252,129,74,.15)"></div>
-                        <!-- avatar -->
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #FC814A;position:relative;z-index:1;box-shadow:0 0 10px rgba(252,129,74,.4)"><img src="assets/dr_priya_verma.png" style="width:100%;height:100%;object-fit:cover"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#FC814A;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #1E0000;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
-                        </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#FFF;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:rgba(251,211,141,.85);font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#FC814A"></div>
-                            <div class="bv-bar" style="height:15px;background:#FC814A;animation-delay:.13s"></div>
-                            <div class="bv-bar" style="height:23px;background:#FC814A;animation-delay:.26s"></div>
-                            <div class="bv-bar" style="height:15px;background:#FC814A;animation-delay:.13s"></div>
-                            <div class="bv-bar" style="height:7px;background:#FC814A"></div>
+                <!-- D3. Style 2: Centered Floating (Saffron) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">3. CENTERED · SAFFRON MANDALA</div>
+                    <div class="bvl-center" style="background: url('assets/bg_saffron.png') top center/cover; border:1px solid rgba(252,129,74,.4); box-shadow:0 6px 20px rgba(123,0,0,.4);">
+                        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));"></div>
+                        <div style="position:relative; z-index:2; width:100%;">
+                            <img src="assets/dr_priya_verma.png" class="bvl-c-astro" style="object-fit:cover;">
+                            <div class="bv-t1" style="color:#FFF; font-size:16px;">ज्योतिषी से लाइव जुड़ें</div>
+                            <div class="bv-t2" style="color:#FBD38D; margin-bottom:12px;">सटीक और भरोसेमंद उपाय</div>
+                            <div class="bv-bump" style="background:#E53E3E; color:#FFF; font-weight:800; font-size:13px; padding:8px 24px; border-radius:20px; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 12px rgba(229,62,62,0.5); border:1px solid #FC8181;">
+                                <i class="fa-solid fa-microphone"></i> अभी बात करें - मुफ़्त
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- A4 · Deep Teal Constellation -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">A4 · DEEP TEAL · CONSTELLATION</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(0,26,26,0.35),rgba(0,96,96,0.35),rgba(0,18,18,0.35)), url('assets/bg_emerald.png') top/cover";border:1px solid rgba(45,212,191,.4);box-shadow:0 5px 22px rgba(0,96,96,.5)">
-                        <!-- constellation dots -->
-                        <div style="position:absolute;top:8px;right:60px;width:3px;height:3px;background:#2DD4BF;border-radius:50%;box-shadow:12px 4px 0 1px rgba(45,212,191,.6),20px -3px 0 0 rgba(45,212,191,.4),30px 6px 0 1px rgba(45,212,191,.7),40px -1px 0 0 rgba(45,212,191,.35),10px 12px 0 0 rgba(45,212,191,.5)"></div>
-                        <!-- avatar -->
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #2DD4BF;position:relative;z-index:1;box-shadow:0 0 10px rgba(45,212,191,.45)"><img src="assets/astro_face_clean.png" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#2DD4BF;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #001A1A;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#001A1A"></i></div>
-                        </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#FFF;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:rgba(45,212,191,.85);font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#2DD4BF"></div>
-                            <div class="bv-bar" style="height:15px;background:#2DD4BF;animation-delay:.16s"></div>
-                            <div class="bv-bar" style="height:23px;background:#2DD4BF;animation-delay:.32s"></div>
-                            <div class="bv-bar" style="height:15px;background:#2DD4BF;animation-delay:.16s"></div>
-                            <div class="bv-bar" style="height:7px;background:#2DD4BF"></div>
+                <!-- D4. Style 2: Centered Floating (Emerald) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">4. CENTERED · EMERALD MYSTIC</div>
+                    <div class="bvl-center" style="background: url('assets/bg_emerald.png') center/cover; border:1px solid rgba(45,212,191,.4); box-shadow:0 6px 20px rgba(0,96,96,.4);">
+                        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,26,26,0.8), rgba(0,0,0,0.1));"></div>
+                        <div style="position:relative; z-index:2; width:100%;">
+                            <img src="assets/astro_face_clean.png" class="bvl-c-astro" style="object-fit:cover;object-position:center 15%;">
+                            <div class="bv-t1" style="color:#FFF; font-size:16px;">पहला सवाल एकदम मुफ़्त</div>
+                            <div class="bv-bump" style="margin-top:10px; background:#047857; color:#FFF; font-weight:800; font-size:13px; padding:8px 24px; border-radius:20px; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 12px rgba(4,120,87,0.5); border:1px solid #34D399;">
+                                <span style="background:#A7F3D0;width:6px;height:6px;border-radius:50%;animation:bvBlink 1s infinite;"></span> तुरंत समाधान पाएं
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- A5 · Dark Gold Galaxy -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">A5 · DARK GOLD GALAXY · CRESCENT</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(26,14,0,0.35),rgba(92,58,0,0.35),rgba(26,14,0,0.35)), url('assets/bg_saffron.png') bottom right/cover";border:1px solid rgba(251,191,36,.4);box-shadow:0 5px 22px rgba(92,58,0,.55)">
-                        <div class="bv-stripe"></div>
-                        <!-- crescent moon -->
-                        <div style="position:absolute;right:46px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:transparent;border:8px solid rgba(251,191,36,.15);clip-path:polygon(30% 0%,100% 0%,100% 100%,30% 100%,0% 50%)"></div>
-                        <!-- avatar -->
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #FBBF24;position:relative;z-index:1;box-shadow:0 0 12px rgba(251,191,36,.45)"><img src="assets/dr_priya_verma.png" style="width:100%;height:100%;object-fit:cover"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#FBBF24;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #1A0E00;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#1A0E00"></i></div>
-                        </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#FFF;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:rgba(252,211,77,.85);font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#FBBF24"></div>
-                            <div class="bv-bar" style="height:15px;background:#FBBF24;animation-delay:.14s"></div>
-                            <div class="bv-bar" style="height:23px;background:#FBBF24;animation-delay:.28s"></div>
-                            <div class="bv-bar" style="height:15px;background:#FBBF24;animation-delay:.14s"></div>
-                            <div class="bv-bar" style="height:7px;background:#FBBF24"></div>
+                <!-- D5. Style 3: Glassmorphism (Purple) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">5. GLASSMORPHISM · DARK PURPLE</div>
+                    <div class="bvl-glass bvl-glass-dark" style="background: url('assets/bg_purple.png') bottom left/cover; border:1px solid rgba(139,92,246,0.3);">
+                        <div style="flex:1;"></div>
+                        <div class="bvl-glass-card">
+                            <img src="assets/dr_priya_verma.png" style="width:45px; height:45px; border-radius:10px; object-fit:cover; border:1px solid rgba(255,255,255,0.2);">
+                            <div style="flex:1;">
+                                <div class="bv-t1" style="color:#FFF; font-size:13px;">अनुभवी ज्योतिषी से पाएं सटीक जवाब</div>
+                                <div class="bv-t2 bv-bump" style="color:#C4B5FD;"><i class="fa-solid fa-microphone"></i> मुफ़्त में जुड़ें</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ═══════════════════════════════════════════════
-                     GROUP B · DARK BG + NO ANIMATION (5)
-                     ═══════════════════════════════════════════════ -->
-                <div class="bv-group-label" style="background:#0f172a;color:#38BDF8">🌑 B · DARK + STATIC TEXT</div>
-
-                <!-- B1 · Deep Indigo Static -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">B1 · DEEP INDIGO · STATIC</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(10,5,32,0.35),rgba(55,48,163,0.35),rgba(10,5,32,0.35)), url('assets/bg_blue.png') center/cover";border:1px solid rgba(129,140,248,.4);box-shadow:0 5px 22px rgba(55,48,163,.5)">
-                        <div class="bv-stripe"></div>
-                        <div style="position:absolute;top:6px;right:56px;width:2px;height:2px;background:#818CF8;border-radius:50%;box-shadow:10px 2px 0 rgba(129,140,248,.6),22px -1px 0 rgba(129,140,248,.4),34px 4px 0 rgba(129,140,248,.5),48px -2px 0 rgba(129,140,248,.3)"></div>
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #818CF8;position:relative;z-index:1;box-shadow:0 0 10px rgba(129,140,248,.45)"><img src="assets/astro_face_clean.png" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#818CF8;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #0A0520;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
-                        </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#FFF;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:rgba(165,180,252,.85);font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#818CF8"></div>
-                            <div class="bv-bar" style="height:15px;background:#818CF8;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#818CF8;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#818CF8;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#818CF8"></div>
+                <!-- D6. Style 3: Glassmorphism (Blue) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">6. GLASSMORPHISM · MIDNIGHT BLUE</div>
+                    <div class="bvl-glass bvl-glass-dark" style="background: url('assets/bg_blue.png') center/cover; border:1px solid rgba(56,189,248,0.3); padding-top:40px;">
+                        <div class="bvl-glass-card">
+                            <div style="flex:1;">
+                                <div class="bv-t1" style="color:#FFF; font-size:13px;">अपने करियर और भाग्य का रास्ता जानें</div>
+                                <div class="bv-t2 bv-bump" style="color:#7DD3FC;"><i class="fa-solid fa-phone"></i> पहली कॉल फ्री</div>
+                            </div>
+                            <img src="assets/astro_face_clean.png" style="width:45px; height:45px; border-radius:50%; object-fit:cover; object-position:center 15%; border:1.5px solid rgba(255,255,255,0.4);">
                         </div>
                     </div>
                 </div>
 
-                <!-- B2 · Dark Amber Static -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">B2 · DARK AMBER · STATIC</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(28,10,0,0.35),rgba(120,53,15,0.35),rgba(28,10,0,0.35)), url('assets/bg_saffron.png') top left/cover";border:1px solid rgba(252,163,17,.4);box-shadow:0 5px 22px rgba(120,53,15,.5)">
-                        <div class="bv-stripe"></div>
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #FCA311;position:relative;z-index:1;box-shadow:0 0 10px rgba(252,163,17,.45)"><img src="assets/dr_priya_verma.png" style="width:100%;height:100%;object-fit:cover"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#FCA311;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #1C0A00;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#000"></i></div>
+                <!-- D7. Style 4: Pill Shape (Saffron) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">7. PILL SHAPE · SAFFRON</div>
+                    <div class="bvl-pill" style="background: url('assets/bg_saffron.png') center/cover; border:1px solid rgba(252,129,74,.5);">
+                        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.4);"></div>
+                        <img src="assets/dr_priya_verma.png" style="width:55px; height:55px; border-radius:50%; object-fit:cover; position:relative; z-index:2; border:2px solid #FBD38D;">
+                        <div style="flex:1; position:relative; z-index:2;">
+                            <div class="bv-t1" style="color:#FFF; font-size:13px;">ज्योतिषी से सीधे बात करें</div>
+                            <div class="bv-t2 bv-bump" style="color:#FBD38D;">पहला सवाल एकदम मुफ़्त</div>
                         </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#FFF;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:rgba(252,211,77,.85);font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#FCA311"></div>
-                            <div class="bv-bar" style="height:15px;background:#FCA311;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#FCA311;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#FCA311;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#FCA311"></div>
+                        <div style="width:40px; height:40px; border-radius:50%; background:#DD6B20; border:2px solid #FBD38D; display:flex; align-items:center; justify-content:center; position:relative; z-index:2; margin-right:4px; box-shadow:0 0 10px rgba(221,107,32,0.8);">
+                            <i class="fa-solid fa-microphone" style="color:#FFF; font-size:16px;"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- B3 · Dark Forest Static -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">B3 · DARK FOREST · STATIC</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(0,26,10,0.35),rgba(6,95,70,0.35),rgba(0,26,10,0.35)), url('assets/bg_emerald.png') center/cover";border:1px solid rgba(52,211,153,.38);box-shadow:0 5px 22px rgba(6,95,70,.5)">
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #34D399;position:relative;z-index:1;box-shadow:0 0 10px rgba(52,211,153,.45)"><img src="assets/astro_face_clean.png" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#34D399;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #001A0A;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#001A0A"></i></div>
+                <!-- D8. Style 4: Pill Shape (Emerald) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">8. PILL SHAPE · EMERALD</div>
+                    <div class="bvl-pill" style="background: url('assets/bg_emerald.png') top/cover; border:1px solid rgba(52,211,153,.5);">
+                        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(90deg, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.1));"></div>
+                        <img src="assets/astro_face_clean.png" style="width:55px; height:55px; border-radius:50%; object-fit:cover; object-position:center 15%; position:relative; z-index:2; border:2px solid #6EE7B7;">
+                        <div style="flex:1; position:relative; z-index:2;">
+                            <div class="bv-t1" style="color:#FFF; font-size:13px;">जाने भविष्य के राज़</div>
+                            <div class="bv-t2 bv-bump" style="color:#6EE7B7;">मुफ़्त में जुड़ें</div>
                         </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#FFF;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:rgba(52,211,153,.9);font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#34D399"></div>
-                            <div class="bv-bar" style="height:15px;background:#34D399;animation-delay:.17s"></div>
-                            <div class="bv-bar" style="height:23px;background:#34D399;animation-delay:.34s"></div>
-                            <div class="bv-bar" style="height:15px;background:#34D399;animation-delay:.17s"></div>
-                            <div class="bv-bar" style="height:7px;background:#34D399"></div>
+                        <div style="width:40px; height:40px; border-radius:50%; background:#059669; border:2px solid #A7F3D0; display:flex; align-items:center; justify-content:center; position:relative; z-index:2; margin-right:4px;">
+                            <i class="fa-solid fa-phone" style="color:#FFF; font-size:14px;"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- B4 · Dark Rose Static -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">B4 · DARK ROSE · STATIC</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(26,0,16,0.35),rgba(131,24,67,0.35),rgba(26,0,16,0.35)), url('assets/bg_purple.png') top right/cover";border:1px solid rgba(244,114,182,.38);box-shadow:0 5px 22px rgba(131,24,67,.5)">
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #F472B6;position:relative;z-index:1;box-shadow:0 0 10px rgba(244,114,182,.45)"><img src="assets/dr_priya_verma.png" style="width:100%;height:100%;object-fit:cover"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#F472B6;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #1A0010;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
+                <!-- D9. Style 5: Bottom Bar (Purple) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">9. BOTTOM BAR · DARK PURPLE</div>
+                    <div class="bvl-bottom-bar" style="background: url('assets/bg_purple.png') center/cover; border:1px solid rgba(167,139,250,.4);">
+                        <div class="bvl-bb-top" style="background:rgba(0,0,0,0.3);">
+                            <img src="assets/dr_priya_verma.png" style="width:50px; height:50px; border-radius:12px; object-fit:cover; border:1px solid rgba(255,255,255,0.2);">
+                            <div style="flex:1;">
+                                <div class="bv-t1" style="color:#FFF; font-size:15px;">परेशानी का अचूक उपाय</div>
+                                <div class="bv-t2" style="color:#DDD;">अनुभवी ज्योतिषी द्वारा</div>
+                            </div>
                         </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#FFF;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:rgba(249,168,212,.85);font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#F472B6"></div>
-                            <div class="bv-bar" style="height:15px;background:#F472B6;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#F472B6;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#F472B6;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#F472B6"></div>
+                        <div class="bvl-bb-bottom" style="background:#5B21B6; color:#FFF; border-top:1px solid rgba(167,139,250,.5);">
+                            <div class="bv-bump"><span style="background:#34D399;width:8px;height:8px;border-radius:50%;animation:bvBlink 1s infinite;"></span> लाइव जुड़ें - पहला सवाल फ्री</div>
+                            <i class="fa-solid fa-microphone" style="font-size:16px;"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- B5 · Dark Steel Static -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">B5 · DARK STEEL · STATIC</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(10,15,26,0.35),rgba(30,58,95,0.35),rgba(10,15,26,0.35)), url('assets/bg_blue.png') top/cover";border:1px solid rgba(56,189,248,.35);box-shadow:0 5px 22px rgba(14,58,100,.5)">
-                        <div class="bv-stripe"></div>
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #38BDF8;position:relative;z-index:1;box-shadow:0 0 10px rgba(56,189,248,.4)"><img src="assets/astro_face_clean.png" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#38BDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #0A0F1A;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
+                <!-- D10. Style 5: Bottom Bar (Blue) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">10. BOTTOM BAR · MIDNIGHT BLUE</div>
+                    <div class="bvl-bottom-bar" style="background: url('assets/bg_blue.png') center/cover; border:1px solid rgba(56,189,248,.4);">
+                        <div class="bvl-bb-top" style="background:linear-gradient(to right, rgba(0,0,0,0.7), transparent);">
+                            <div style="flex:1;">
+                                <div class="bv-t1" style="color:#FFF; font-size:15px;">हर समस्या का ज्योतिषीय हल</div>
+                                <div class="bv-t2" style="color:#BAE6FD;">100% गोपनीय चर्चा</div>
+                            </div>
+                            <img src="assets/astro_face_clean.png" style="width:50px; height:50px; border-radius:50%; object-fit:cover; object-position:center 15%; border:2px solid #38BDF8;">
                         </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#FFF;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:rgba(125,211,252,.85);font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#38BDF8"></div>
-                            <div class="bv-bar" style="height:15px;background:#38BDF8;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#38BDF8;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#38BDF8;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#38BDF8"></div>
+                        <div class="bvl-bb-bottom" style="background:#0369A1; color:#FFF; border-top:1px solid rgba(56,189,248,.5);">
+                            <div class="bv-bump"><i class="fa-solid fa-phone"></i> मुफ़्त में बात शुरू करें</div>
+                            <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </div>
                 </div>
 
                 <!-- ═══════════════════════════════════════════════
-                     GROUP C · LIGHT BG + TYPEWRITER ANIMATION (5)
+                     10 LIGHT THEMES 
                      ═══════════════════════════════════════════════ -->
-                <div class="bv-group-label" style="background:#EEF2FF;color:#4338CA;border:1px solid #C7D2FE">☀️ C · LIGHT + TYPEWRITER ANIMATION</div>
+                <div class="bv-group-label" style="background:#EEF2FF;color:#4338CA;border:1px solid #C7D2FE;width:100%;text-align:center;">☀️ 10 LIGHT BANNER IDEAS</div>
 
-                <!-- C1 · Warm Cream Light -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">C1 · WARM CREAM · TYPEWRITER</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(255,251,235,0.25),rgba(254,243,199,0.25),rgba(255,251,235,0.25)), url('assets/bg_light.png') center/cover";border:1px solid rgba(245,158,11,.4);box-shadow:0 4px 18px rgba(245,158,11,.2)">
-                        <!-- soft stars -->
-                        <div style="position:absolute;top:6px;right:58px;width:3px;height:3px;background:#F59E0B;border-radius:50%;opacity:.35;box-shadow:14px 3px 0 rgba(245,158,11,.25),28px -1px 0 rgba(245,158,11,.3),42px 4px 0 rgba(245,158,11,.2)"></div>
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #F59E0B;position:relative;z-index:1;box-shadow:0 0 10px rgba(245,158,11,.3)"><img src="assets/dr_priya_verma.png" style="width:100%;height:100%;object-fit:cover"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#F59E0B;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #FFFBEB;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
+                <!-- L1. Style 1: Right Focus (Light Celestial) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">11. RIGHT FOCUS · LIGHT CELESTIAL</div>
+                    <div class="bvl-right-focus" style="background: url('assets/bg_light.png') center/cover; border:1px solid rgba(245,158,11,.3); box-shadow:0 6px 16px rgba(0,0,0,0.06);">
+                        <div style="position:relative; z-index:2; max-width:65%;">
+                            <div class="bv-t1-light">जाने अपने भविष्य के राज़</div>
+                            <div class="bv-t2-light bv-bump" style="color:#B45309;">
+                                <span style="background:#16A34A;width:6px;height:6px;border-radius:50%;animation:bvBlink 1s infinite;"></span> मुफ़्त में बात करें
+                            </div>
                         </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#000000;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:#111827;font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#F59E0B"></div>
-                            <div class="bv-bar" style="height:15px;background:#F59E0B;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#F59E0B;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#F59E0B;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#F59E0B"></div>
+                        <img src="assets/dr_priya_verma.png" class="bvl-rf-astro" style="object-fit:cover; border:3px solid #FFF; box-shadow: -4px 0 15px rgba(245,158,11,0.2);">
+                        <div style="position:absolute; right:15px; bottom:15px; width:30px; height:30px; background:#F59E0B; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid #FFF; z-index:3; box-shadow:0 4px 10px rgba(0,0,0,0.15);">
+                            <i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- C2 · Light Blue Celestial -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">C2 · LIGHT BLUE CELESTIAL · TYPEWRITER</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(239,246,255,0.25),rgba(219,234,254,0.25),rgba(239,246,255,0.25)), url('assets/bg_light.png') bottom/cover";border:1px solid rgba(59,130,246,.3);box-shadow:0 4px 18px rgba(59,130,246,.15)">
-                        <!-- orbit decoration -->
-                        <div style="position:absolute;right:40px;top:50%;transform:translateY(-50%) rotate(-15deg);width:65px;height:26px;border-radius:50%;border:1px solid rgba(59,130,246,.2)"></div>
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #3B82F6;position:relative;z-index:1;box-shadow:0 0 10px rgba(59,130,246,.25)"><img src="assets/astro_face_clean.png" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#3B82F6;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #EFF6FF;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
+                <!-- L2. Style 1: Right Focus (Light Blue tinted) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">12. RIGHT FOCUS · LIGHT BLUE TINT</div>
+                    <div class="bvl-right-focus" style="background: linear-gradient(rgba(239,246,255,0.7), rgba(219,234,254,0.7)), url('assets/bg_light.png') center/cover; border:1px solid rgba(59,130,246,.3); box-shadow:0 6px 16px rgba(0,0,0,0.06);">
+                        <div style="position:relative; z-index:2; max-width:65%;">
+                            <div class="bv-t1-light" style="color:#1E3A8A;">कुंडली और ग्रहों की चाल समझें</div>
+                            <div class="bv-t2-light bv-bump" style="color:#1D4ED8;">
+                                <i class="fa-solid fa-phone" style="font-size:10px;"></i> फ्री कॉल शुरू करें
+                            </div>
                         </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#000000;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:#111827;font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#3B82F6"></div>
-                            <div class="bv-bar" style="height:15px;background:#3B82F6;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#3B82F6;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#3B82F6;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#3B82F6"></div>
+                        <img src="assets/astro_face_clean.png" class="bvl-rf-astro" style="object-fit:cover;object-position:center 15%; border:3px solid #FFF; box-shadow: -4px 0 15px rgba(59,130,246,0.2);">
+                        <div style="position:absolute; right:15px; top:15px; width:30px; height:30px; background:#2563EB; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid #FFF; z-index:3; box-shadow:0 4px 10px rgba(0,0,0,0.15);">
+                            <i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- C3 · Light Lavender -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">C3 · LIGHT LAVENDER · TYPEWRITER</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(245,243,255,0.25),rgba(237,233,254,0.25),rgba(245,243,255,0.25)), url('assets/bg_light.png') top/cover";border:1px solid rgba(139,92,246,.3);box-shadow:0 4px 18px rgba(139,92,246,.15)">
-                        <div style="position:absolute;top:7px;right:58px;width:3px;height:3px;background:#8B5CF6;border-radius:50%;opacity:.3;box-shadow:14px 2px 0 rgba(139,92,246,.25),28px -1px 0 rgba(139,92,246,.2),44px 3px 0 rgba(139,92,246,.25)"></div>
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #8B5CF6;position:relative;z-index:1;box-shadow:0 0 10px rgba(139,92,246,.25)"><img src="assets/dr_priya_verma.png" style="width:100%;height:100%;object-fit:cover"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#8B5CF6;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #F5F3FF;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
-                        </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#000000;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:#111827;font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#8B5CF6"></div>
-                            <div class="bv-bar" style="height:15px;background:#8B5CF6;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#8B5CF6;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#8B5CF6;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#8B5CF6"></div>
+                <!-- L3. Style 2: Centered Floating (Light) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">13. CENTERED · LIGHT GOLD</div>
+                    <div class="bvl-center" style="background: url('assets/bg_light.png') top center/cover; border:1px solid rgba(245,158,11,.3); box-shadow:0 6px 16px rgba(0,0,0,0.06);">
+                        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.8));"></div>
+                        <div style="position:relative; z-index:2; width:100%;">
+                            <img src="assets/dr_priya_verma.png" class="bvl-c-astro" style="object-fit:cover; border:2.5px solid #F59E0B; box-shadow: 0 4px 12px rgba(245,158,11,0.2);">
+                            <div class="bv-t1-light" style="font-size:16px;">ज्योतिषी से लाइव जुड़ें</div>
+                            <div class="bv-t2-light" style="color:#78350F; margin-bottom:12px;">सटीक और भरोसेमंद उपाय</div>
+                            <div class="bv-bump" style="background:#EA580C; color:#FFF; font-weight:800; font-size:13px; padding:8px 24px; border-radius:20px; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 12px rgba(234,88,12,0.3); border:1px solid #C2410C;">
+                                <i class="fa-solid fa-microphone"></i> अभी बात करें - मुफ़्त
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- C4 · Light Peach -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">C4 · LIGHT PEACH · TYPEWRITER</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(255,247,243,0.25),rgba(255,228,214,0.25),rgba(255,247,243,0.25)), url('assets/bg_light.png') center right/cover";border:1px solid rgba(234,88,12,.3);box-shadow:0 4px 18px rgba(234,88,12,.12)">
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #EA580C;position:relative;z-index:1;box-shadow:0 0 10px rgba(234,88,12,.2)"><img src="assets/astro_face_clean.png" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#EA580C;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #FFF7F3;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
-                        </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#000000;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:#111827;font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#EA580C"></div>
-                            <div class="bv-bar" style="height:15px;background:#EA580C;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#EA580C;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#EA580C;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#EA580C"></div>
+                <!-- L4. Style 2: Centered Floating (Light Teal Tint) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">14. CENTERED · LIGHT TEAL TINT</div>
+                    <div class="bvl-center" style="background: linear-gradient(rgba(240,253,250,0.6), rgba(204,251,241,0.8)), url('assets/bg_light.png') center/cover; border:1px solid rgba(20,184,166,.3); box-shadow:0 6px 16px rgba(0,0,0,0.06);">
+                        <div style="position:relative; z-index:2; width:100%;">
+                            <img src="assets/astro_face_clean.png" class="bvl-c-astro" style="object-fit:cover;object-position:center 15%; border:2.5px solid #0D9488; box-shadow: 0 4px 12px rgba(13,148,136,0.2);">
+                            <div class="bv-t1-light" style="color:#115E59; font-size:16px;">पहला सवाल एकदम मुफ़्त</div>
+                            <div class="bv-bump" style="margin-top:10px; background:#0F766E; color:#FFF; font-weight:800; font-size:13px; padding:8px 24px; border-radius:20px; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 12px rgba(15,118,110,0.3); border:1px solid #115E59;">
+                                <span style="background:#6EE7B7;width:6px;height:6px;border-radius:50%;animation:bvBlink 1s infinite;"></span> तुरंत समाधान पाएं
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- C5 · Light Mint -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">C5 · LIGHT MINT · TYPEWRITER</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(240,253,244,0.25),rgba(220,252,231,0.25),rgba(240,253,244,0.25)), url('assets/bg_light.png') center left/cover";border:1px solid rgba(22,163,74,.3);box-shadow:0 4px 18px rgba(22,163,74,.12)">
-                        <div style="position:absolute;right:40px;top:50%;transform:translateY(-50%) rotate(-10deg);width:60px;height:24px;border-radius:50%;border:1px solid rgba(22,163,74,.2)"></div>
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #16A34A;position:relative;z-index:1;box-shadow:0 0 10px rgba(22,163,74,.2)"><img src="assets/dr_priya_verma.png" style="width:100%;height:100%;object-fit:cover"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#16A34A;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #F0FDF4;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
-                        </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#000000;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:#111827;font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#16A34A"></div>
-                            <div class="bv-bar" style="height:15px;background:#16A34A;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#16A34A;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#16A34A;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#16A34A"></div>
+                <!-- L5. Style 3: Glassmorphism (Light) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">15. GLASSMORPHISM · LIGHT</div>
+                    <div class="bvl-glass" style="background: url('assets/bg_light.png') bottom left/cover; border:1px solid rgba(245,158,11,0.2);">
+                        <div style="flex:1;"></div>
+                        <div class="bvl-glass-card">
+                            <img src="assets/dr_priya_verma.png" style="width:45px; height:45px; border-radius:10px; object-fit:cover; border:1px solid #FFF;">
+                            <div style="flex:1;">
+                                <div class="bv-t1-light" style="font-size:13px;">अनुभवी ज्योतिषी से पाएं सटीक जवाब</div>
+                                <div class="bv-t2-light bv-bump" style="color:#B45309;"><i class="fa-solid fa-microphone" style="color:#D97706;"></i> मुफ़्त में जुड़ें</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ═══════════════════════════════════════════════
-                     GROUP D · LIGHT BG + NO ANIMATION (5)
-                     ═══════════════════════════════════════════════ -->
-                <div class="bv-group-label" style="background:#F8FAFC;color:#334155;border:1px solid #CBD5E1">🌤️ D · LIGHT + STATIC TEXT</div>
-
-                <!-- D1 · White Minimal Static -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">D1 · WHITE MINIMAL · STATIC</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(255,255,255,0.25),rgba(255,255,255,0.25),rgba(255,255,255,0.25)), url('assets/bg_light.png') bottom right/cover";border:1.5px solid #E2E8F0;box-shadow:0 3px 14px rgba(0,0,0,.1)">
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #6366F1;position:relative;z-index:1;box-shadow:0 0 8px rgba(99,102,241,.2)"><img src="assets/astro_face_clean.png" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#6366F1;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #FFF;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
-                        </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#000000;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:#111827;font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#6366F1"></div>
-                            <div class="bv-bar" style="height:15px;background:#6366F1;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#6366F1;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#6366F1;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#6366F1"></div>
+                <!-- L6. Style 3: Glassmorphism (Light Pink Tint) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">16. GLASSMORPHISM · LIGHT ROSE TINT</div>
+                    <div class="bvl-glass" style="background: linear-gradient(rgba(253,242,248,0.5), rgba(252,231,243,0.5)), url('assets/bg_light.png') center/cover; border:1px solid rgba(236,72,153,0.2); padding-top:40px;">
+                        <div class="bvl-glass-card" style="background:rgba(255,255,255,0.4); border:1px solid rgba(255,255,255,0.7);">
+                            <div style="flex:1;">
+                                <div class="bv-t1-light" style="color:#831843; font-size:13px;">अपने करियर और भाग्य का रास्ता जानें</div>
+                                <div class="bv-t2-light bv-bump" style="color:#BE185D;"><i class="fa-solid fa-phone" style="color:#DB2777;"></i> पहली कॉल फ्री</div>
+                            </div>
+                            <img src="assets/astro_face_clean.png" style="width:45px; height:45px; border-radius:50%; object-fit:cover; object-position:center 15%; border:1.5px solid #FFF;">
                         </div>
                     </div>
                 </div>
 
-                <!-- D2 · Light Steel Static -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">D2 · LIGHT STEEL · STATIC</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(241,245,249,0.25),rgba(226,232,240,0.25),rgba(241,245,249,0.25)), url('assets/bg_light.png') top right/cover";border:1px solid rgba(100,116,139,.3);box-shadow:0 3px 14px rgba(0,0,0,.08)">
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #64748B;position:relative;z-index:1;box-shadow:0 0 8px rgba(100,116,139,.2)"><img src="assets/dr_priya_verma.png" style="width:100%;height:100%;object-fit:cover"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#64748B;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #F1F5F9;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
+                <!-- L7. Style 4: Pill Shape (Light) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">17. PILL SHAPE · LIGHT</div>
+                    <div class="bvl-pill" style="background: url('assets/bg_light.png') top right/cover; border:1px solid rgba(245,158,11,.3); box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(255,255,255,0.4);"></div>
+                        <img src="assets/dr_priya_verma.png" style="width:55px; height:55px; border-radius:50%; object-fit:cover; position:relative; z-index:2; border:2px solid #FFF; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="flex:1; position:relative; z-index:2;">
+                            <div class="bv-t1-light" style="font-size:13px;">ज्योतिषी से सीधे बात करें</div>
+                            <div class="bv-t2-light bv-bump" style="color:#B45309;">पहला सवाल एकदम मुफ़्त</div>
                         </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#000000;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:#111827;font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#64748B"></div>
-                            <div class="bv-bar" style="height:15px;background:#64748B;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#64748B;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#64748B;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#64748B"></div>
+                        <div style="width:40px; height:40px; border-radius:50%; background:#F59E0B; border:2px solid #FFF; display:flex; align-items:center; justify-content:center; position:relative; z-index:2; margin-right:4px; box-shadow:0 0 10px rgba(245,158,11,0.3);">
+                            <i class="fa-solid fa-microphone" style="color:#FFF; font-size:16px;"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- D3 · Light Sand Static -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">D3 · LIGHT SAND · STATIC</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(253,246,236,0.25),rgba(250,233,204,0.25),rgba(253,246,236,0.25)), url('assets/bg_light.png') bottom left/cover";border:1px solid rgba(180,130,50,.3);box-shadow:0 3px 14px rgba(180,130,50,.12)">
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #B48032;position:relative;z-index:1;box-shadow:0 0 8px rgba(180,130,50,.2)"><img src="assets/astro_face_clean.png" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#B48032;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #FDF6EC;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
+                <!-- L8. Style 4: Pill Shape (Light Purple Tint) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">18. PILL SHAPE · LIGHT PURPLE TINT</div>
+                    <div class="bvl-pill" style="background: linear-gradient(rgba(250,245,255,0.6), rgba(243,232,255,0.6)), url('assets/bg_light.png') top left/cover; border:1px solid rgba(168,85,247,.3); box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                        <img src="assets/astro_face_clean.png" style="width:55px; height:55px; border-radius:50%; object-fit:cover; object-position:center 15%; position:relative; z-index:2; border:2px solid #FFF; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="flex:1; position:relative; z-index:2;">
+                            <div class="bv-t1-light" style="color:#4C1D95; font-size:13px;">जाने भविष्य के राज़</div>
+                            <div class="bv-t2-light bv-bump" style="color:#6D28D9;">मुफ़्त में जुड़ें</div>
                         </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#000000;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:#111827;font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#B48032"></div>
-                            <div class="bv-bar" style="height:15px;background:#B48032;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#B48032;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#B48032;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#B48032"></div>
+                        <div style="width:40px; height:40px; border-radius:50%; background:#8B5CF6; border:2px solid #FFF; display:flex; align-items:center; justify-content:center; position:relative; z-index:2; margin-right:4px; box-shadow:0 0 10px rgba(139,92,246,0.3);">
+                            <i class="fa-solid fa-phone" style="color:#FFF; font-size:14px;"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- D4 · Light Violet Static -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">D4 · LIGHT VIOLET · STATIC</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(250,245,255,0.25),rgba(243,232,255,0.25),rgba(250,245,255,0.25)), url('assets/bg_light.png') top left/cover";border:1px solid rgba(168,85,247,.28);box-shadow:0 3px 14px rgba(168,85,247,.12)">
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #A855F7;position:relative;z-index:1;box-shadow:0 0 8px rgba(168,85,247,.2)"><img src="assets/dr_priya_verma.png" style="width:100%;height:100%;object-fit:cover"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#A855F7;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #FAF5FF;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
+                <!-- L9. Style 5: Bottom Bar (Light Amber) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">19. BOTTOM BAR · LIGHT AMBER</div>
+                    <div class="bvl-bottom-bar" style="background: url('assets/bg_light.png') center/cover; border:1px solid rgba(245,158,11,.3); box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                        <div class="bvl-bb-top" style="background:rgba(255,255,255,0.6); backdrop-filter:blur(4px);">
+                            <img src="assets/dr_priya_verma.png" style="width:50px; height:50px; border-radius:12px; object-fit:cover; border:1px solid #FFF;">
+                            <div style="flex:1;">
+                                <div class="bv-t1-light" style="font-size:15px;">परेशानी का अचूक उपाय</div>
+                                <div class="bv-t2-light">अनुभवी ज्योतिषी द्वारा</div>
+                            </div>
                         </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#000000;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:#111827;font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#A855F7"></div>
-                            <div class="bv-bar" style="height:15px;background:#A855F7;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#A855F7;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#A855F7;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#A855F7"></div>
+                        <div class="bvl-bb-bottom" style="background:#FEF3C7; color:#B45309; border-top:1px solid rgba(245,158,11,.2);">
+                            <div class="bv-bump"><span style="background:#10B981;width:8px;height:8px;border-radius:50%;animation:bvBlink 1s infinite;"></span> लाइव जुड़ें - पहला सवाल फ्री</div>
+                            <i class="fa-solid fa-microphone" style="font-size:16px;"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- D5 · Light Teal Static -->
-                <div style="margin-bottom:9px">
-                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">D5 · LIGHT TEAL · STATIC</div>
-                    <div onclick="handleBannerClick('mweb')" class="bv-card" style="background:linear-gradient(125deg,rgba(240,253,250,0.25),rgba(204,251,241,0.25),rgba(240,253,250,0.25)), url('assets/bg_light.png') center/cover; background-size: 150%";border:1px solid rgba(13,148,136,.28);box-shadow:0 3px 14px rgba(13,148,136,.1)">
-                        <div style="position:relative;flex-shrink:0;width:65px;height:65px">
-                            <div style="width:65px;height:65px;border-radius:50%;overflow:hidden;border:2px solid #0D9488;position:relative;z-index:1;box-shadow:0 0 8px rgba(13,148,136,.2)"><img src="assets/astro_face_clean.png" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
-                            <div style="position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;background:#0D9488;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #F0FDFA;z-index:2"><i class="fa-solid fa-microphone" style="font-size:12px;color:#FFF"></i></div>
+                <!-- L10. Style 5: Bottom Bar (Light Slate) -->
+                <div style="margin-bottom:12px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">20. BOTTOM BAR · LIGHT SLATE</div>
+                    <div class="bvl-bottom-bar" style="background: linear-gradient(rgba(248,250,252,0.5), rgba(241,245,249,0.5)), url('assets/bg_light.png') center/cover; border:1px solid rgba(148,163,184,.4); box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                        <div class="bvl-bb-top" style="background:linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.2));">
+                            <div style="flex:1;">
+                                <div class="bv-t1-light" style="font-size:15px;">हर समस्या का ज्योतिषीय हल</div>
+                                <div class="bv-t2-light" style="color:#475569;">100% गोपनीय चर्चा</div>
+                            </div>
+                            <img src="assets/astro_face_clean.png" style="width:50px; height:50px; border-radius:50%; object-fit:cover; object-position:center 15%; border:2px solid #FFF; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
                         </div>
-                        <div style="flex:1;min-width:0">
-                            <div style="color:#000000;font-size:15px;font-weight:900;margin-bottom:4px;line-height:1.2;text-shadow: 0px 2px 5px rgba(0,0,0,0.7);">अनुभवी ज्योतिषी से अपने सवाल पूछें</div>
-                            <div style="color:#111827;font-size:16px;font-weight:900;letter-spacing:0.2px;display:flex;align-items:center;gap:6px;"><span style="background:#22C55E;width:6px;height:6px;border-radius:50%;display:inline-block;animation:bvBlink 1s infinite;"></span> मुफ़्त में रोज़ाना बात करें</div>
-                        </div>
-                        <div class="bv-waves">
-                            <div class="bv-bar" style="height:7px;background:#0D9488"></div>
-                            <div class="bv-bar" style="height:15px;background:#0D9488;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:23px;background:#0D9488;animation-delay:.3s"></div>
-                            <div class="bv-bar" style="height:15px;background:#0D9488;animation-delay:.15s"></div>
-                            <div class="bv-bar" style="height:7px;background:#0D9488"></div>
+                        <div class="bvl-bb-bottom" style="background:#F1F5F9; color:#334155; border-top:1px solid rgba(148,163,184,.3);">
+                            <div class="bv-bump"><i class="fa-solid fa-phone" style="color:#3B82F6;"></i> मुफ़्त में बात शुरू करें</div>
+                            <i class="fa-solid fa-arrow-right" style="color:#3B82F6;"></i>
                         </div>
                     </div>
                 </div>
 
             </div>
-
-            
         </div>
 
              2. NEW MWEB START / LOGIN SCREEN
