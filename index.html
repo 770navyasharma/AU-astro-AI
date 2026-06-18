@@ -58,6 +58,7 @@
                 <button class="demo-btn-outline" onclick="showSection('mweb-active-call', this)">6. Active Call Screen</button>
                 <button class="demo-btn-outline" onclick="renderChatHistoryState('active', this)">7a. Chat History (Active)</button>
                 <button class="demo-btn-outline" onclick="renderChatHistoryState('combined_feedback', this)">7b. Feedback 5 mins end</button>
+                <button class="demo-btn-outline" onclick="renderChatHistoryState('app_promo', this)">7c. Feedback Submitted (App Promo)</button>
                 <button class="demo-btn-outline" style="border-color: #10B981; color: #10B981;" onclick="startFeedbackFlow(this)">💬 Feedback Chat</button>
                 <button class="demo-btn-outline" style="border-color: #FF9800; color: #FF9800;" onclick="showInChatToast(this)">🔔 1 min left</button>
                 <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('mweb-time-over-screen', this)">⌛ 5 Mins End</button>
@@ -87,6 +88,7 @@
                 <button class="demo-btn-outline" onclick="showSection('app-active-call', this)">6. Active Call Screen</button>
                 <button class="demo-btn-outline" onclick="renderChatHistoryState('active', this)">7a. Chat History (Active)</button>
                 <button class="demo-btn-outline" onclick="renderChatHistoryState('combined_feedback', this)">7b. Feedback 10 mins end</button>
+                <button class="demo-btn-outline" onclick="renderChatHistoryState('app_promo', this)">7c. Feedback Submitted (App Promo)</button>
                 <button class="demo-btn-outline" style="border-color: #10B981; color: #10B981;" onclick="startFeedbackFlow(this)">💬 Feedback Chat</button>
                 <button class="demo-btn-outline" style="border-color: #FF9800; color: #FF9800;" onclick="showInChatToast(this)">🔔 1 min left</button>
             </div>
@@ -1374,6 +1376,27 @@
                         </button>
                         <button onclick="submitFeedbackFlow()" style="flex: 1.2; background: linear-gradient(135deg, #10B981 0%, #047857 100%); color: #FFF; border: none; border-radius: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.15); transition: transform 0.2s; padding: 0; display: flex; align-items: center; justify-content: center; gap: 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
                             फीडबैक भरें <i class="fa-solid fa-arrow-right" style="font-size: 14px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- State 3: App Promo (Feedback Submitted) -->
+                <div id="history-app-promo" style="display: none; flex-direction: column; width: 100%; align-items: center; text-align: center;">
+                    <div style="color: #FBBF24; font-weight: 800; font-size: 17px; line-height: 1.4; margin-bottom: 8px;">
+                        5 मिनट पूरे हो गए हैं! कल पुनः आएं ✨
+                    </div>
+                    <div style="font-size: 15px; font-weight: 500; color: #FFF; margin-bottom: 20px; line-height: 1.4; padding: 0 5px;">
+                        आपका फीडबैक हमारे लिए महत्वपूर्ण है।
+                    </div>
+                    <div style="display: flex; width: 100%; gap: 12px; height: 54px;">
+                        <button onclick="showSection('mweb-splash-hybrid')" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; padding: 0;">
+                            <span style="font-size: 11px; font-weight: 500; color: #9CA3AF; letter-spacing: 0.2px;">फीडबैक दे चुके?</span>
+                            <span style="font-size: 15px; font-weight: 700; color: #F3F4F6; margin-top: 2px;">वापस जाएँ</span>
+                        </button>
+                        <button style="flex: 1.2; background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); color: #111827; border: none; border-radius: 16px; font-size: 14px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
+                            <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> 
+                            ऐप डाउनलोड करें 
+                            <i class="fa-solid fa-download"></i>
                         </button>
                     </div>
                 </div>
@@ -2925,6 +2948,27 @@
                         </button>
                         <button onclick="submitFeedbackFlow()" style="flex: 1.2; background: linear-gradient(135deg, #10B981 0%, #047857 100%); color: #FFF; border: none; border-radius: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.15); transition: transform 0.2s; padding: 0; display: flex; align-items: center; justify-content: center; gap: 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
                             फीडबैक भरें <i class="fa-solid fa-arrow-right" style="font-size: 14px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- State 3: App Promo (Feedback Submitted) -->
+                <div id="history-app-promo" style="display: none; flex-direction: column; width: 100%; align-items: center; text-align: center;">
+                    <div style="color: #FBBF24; font-weight: 800; font-size: 17px; line-height: 1.4; margin-bottom: 8px;">
+                        10 मिनट पूरे हो गए हैं! कल पुनः आएं ✨
+                    </div>
+                    <div style="font-size: 15px; font-weight: 500; color: #FFF; margin-bottom: 20px; line-height: 1.4; padding: 0 5px;">
+                        आपका फीडबैक हमारे लिए महत्वपूर्ण है।
+                    </div>
+                    <div style="display: flex; width: 100%; gap: 12px; height: 54px;">
+                        <button onclick="showSection('mweb-splash-hybrid')" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; padding: 0;">
+                            <span style="font-size: 11px; font-weight: 500; color: #9CA3AF; letter-spacing: 0.2px;">फीडबैक दे चुके?</span>
+                            <span style="font-size: 15px; font-weight: 700; color: #F3F4F6; margin-top: 2px;">वापस जाएँ</span>
+                        </button>
+                        <button style="flex: 1.2; background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); color: #111827; border: none; border-radius: 16px; font-size: 14px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
+                            <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> 
+                            ऐप डाउनलोड करें 
+                            <i class="fa-solid fa-download"></i>
                         </button>
                     </div>
                 </div>

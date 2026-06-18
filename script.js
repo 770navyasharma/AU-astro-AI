@@ -1052,14 +1052,18 @@ function renderChatHistoryState(state, btn) {
 
     const activeContainer = activeSection.querySelector('#history-active-controls');
     const combinedContainer = activeSection.querySelector('#history-feedback-combined');
+    const appPromoContainer = activeSection.querySelector('#history-app-promo');
 
     if(activeContainer) activeContainer.style.display = 'none';
     if(combinedContainer) combinedContainer.style.display = 'none';
+    if(appPromoContainer) appPromoContainer.style.display = 'none';
 
     if (state === 'active' && activeContainer) {
         activeContainer.style.display = 'flex';
     } else if (state === 'combined_feedback' && combinedContainer) {
         combinedContainer.style.display = 'flex';
+    } else if (state === 'app_promo' && appPromoContainer) {
+        appPromoContainer.style.display = 'flex';
     }
 }
 
