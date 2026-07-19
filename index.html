@@ -312,7 +312,21 @@
             
             .bv-t1-light { font-size: 14px; font-weight: 900; margin-bottom: 4px; line-height: 1.2; text-shadow: 0px 1px 2px rgba(255,255,255,0.8); color: #000; }
             .bv-t2-light { font-size: 12px; font-weight: 700; text-shadow: 0px 1px 2px rgba(255,255,255,0.8); color: #111827; }
-
+            /* New Banner Animations */
+            @keyframes bv-pulse-call {
+                0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+                70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+            }
+            @keyframes bv-bounce-dots {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-3px); }
+            }
+            .bv-typing-dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: #6B7280; margin: 0 2px; animation: bv-bounce-dots 1.4s infinite ease-in-out both; }
+            .bv-typing-dot:nth-child(1) { animation-delay: -0.32s; }
+            .bv-typing-dot:nth-child(2) { animation-delay: -0.16s; }
+            .bv-glass { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.3); }
+            .bv-glass-dark { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
             </style>
 
             <!-- AU Header -->
@@ -460,6 +474,109 @@
                             </div>
                         </div>
                         <img src="assets/user_astro_9.png" class="bvl-rf-astro" style="width:125px; height:125px; top:-12px; right:-15px; object-fit:cover; object-position:center;">
+                    </div>
+                </div>
+
+                <!-- Banner 11. Incoming Live Call Theme -->
+                <div style="margin-bottom:16px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">11. THE INCOMING CALL (URGENCY)</div>
+                    <div class="bvl-right-focus" style="background: #111827; border:1px solid rgba(255,255,255,0.1); height: 100px; display: flex; align-items: center; padding: 0 16px; border-radius: 12px; overflow: hidden; position: relative;">
+                        <!-- Animated background wave -->
+                        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at 10% 50%, rgba(34,197,94,0.15) 0%, transparent 60%); z-index: 1;"></div>
+                        
+                        <div style="position:relative; z-index:2; display: flex; align-items: center; width: 100%;">
+                            <div style="position: relative;">
+                                <img src="assets/user_astro_1.png" style="width: 54px; height: 54px; border-radius: 50%; border: 2px solid #22c55e; object-fit: cover;">
+                                <div style="position: absolute; bottom: 0; right: -4px; width: 14px; height: 14px; background: #22c55e; border-radius: 50%; border: 2px solid #111827;"></div>
+                            </div>
+                            <div style="margin-left: 12px; flex-grow: 1;">
+                                <div style="color: #10B981; font-size: 11px; font-weight: 700; margin-bottom: 2px; letter-spacing: 0.5px;">LIVE CALL</div>
+                                <div style="color: #FFF; font-size: 14px; font-weight: 700; line-height: 1.2;">Astrologer is waiting...</div>
+                                <div style="color: #9CA3AF; font-size: 12px; margin-top: 2px;">Ask 1 free question</div>
+                            </div>
+                            <div style="width: 44px; height: 44px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; animation: bv-pulse-call 1.5s infinite; flex-shrink: 0;">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner 12. Active Chat Theme -->
+                <div style="margin-bottom:16px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">12. THE ACTIVE CHAT (CURIOSITY)</div>
+                    <div class="bvl-right-focus bv-glass" style="background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); border:1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100px; display: flex; align-items: center; padding: 0 12px; border-radius: 12px;">
+                        <img src="assets/user_astro_4.png" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #FFF; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-right: 12px;">
+                        <div style="flex-grow: 1;">
+                            <div style="color: #374151; font-size: 12px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+                                Astrologer Divya <i class="fa-solid fa-circle-check text-blue-500" style="font-size: 10px;"></i>
+                            </div>
+                            <div style="background: #FFF; padding: 8px 12px; border-radius: 0 12px 12px 12px; font-size: 13px; color: #1F2937; border: 1px solid #E5E7EB; box-shadow: 0 2px 5px rgba(0,0,0,0.02); position: relative;">
+                                मैंने आपकी कुंडली देखी है... 
+                                <div style="display:inline-block; margin-left: 4px;">
+                                    <div class="bv-typing-dot"></div><div class="bv-typing-dot"></div><div class="bv-typing-dot"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 36px; height: 36px; background: #3B82F6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4); margin-left: 8px;">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner 13. Social Proof & Trust Theme -->
+                <div style="margin-bottom:16px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">13. SOCIAL PROOF (AUTHORITY)</div>
+                    <div class="bvl-right-focus" style="background: linear-gradient(90deg, #1A365D 0%, #2A4365 100%); border:1px solid #2B6CB0; box-shadow: 0 4px 15px rgba(26, 54, 93, 0.3); height: 100px; display: flex; align-items: center; padding: 0 16px; border-radius: 12px; overflow: hidden; position: relative;">
+                        <!-- Sparkles -->
+                        <div style="position: absolute; right: -10px; top: -10px; opacity: 0.2; font-size: 80px; color: #F6E05E;"><i class="fa-solid fa-certificate"></i></div>
+                        
+                        <div style="position:relative; z-index:2; flex-grow: 1;">
+                            <div style="display: flex; align-items: center; gap: 4px; color: #F6E05E; font-size: 10px; margin-bottom: 4px;">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span style="color:#FFF; font-weight:700; margin-left: 2px;">4.9 (10k+ Reviews)</span>
+                            </div>
+                            <div style="color: #FFF; font-size: 15px; font-weight: 800; margin-bottom: 4px; line-height: 1.1;">#1 Trusted Astrologer</div>
+                            <div style="display:inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: #FFF; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 12px; backdrop-filter: blur(4px);">
+                                <i class="fa-solid fa-gift" style="color: #F6E05E; margin-right: 4px;"></i> 1st Chat FREE
+                            </div>
+                        </div>
+                        <img src="assets/user_astro_7.png" style="width: 100px; height: 100px; object-fit: cover; border-radius: 0 12px 12px 0; position: absolute; right: 0; mask-image: linear-gradient(to left, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);">
+                    </div>
+                </div>
+
+                <!-- Banner 14. Modern Glassmorphism Theme -->
+                <div style="margin-bottom:16px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">14. GLASSMORPHISM (PREMIUM)</div>
+                    <div class="bvl-right-focus" style="background: url('assets/bg_pink_cosmic.png') center/cover; height: 100px; border-radius: 12px; position: relative;">
+                        <div class="bv-glass-dark" style="position: absolute; top:0; left:0; width: 100%; height: 100%; border-radius: 12px; display: flex; align-items: center; padding: 0 16px;">
+                            <div style="flex-grow: 1; z-index: 2;">
+                                <div style="color: #FFF; font-size: 16px; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Unlock Your Future</div>
+                                <div style="color: rgba(255,255,255,0.8); font-size: 12px; margin-bottom: 8px;">Ask AI Astrologer instantly.</div>
+                                <div style="display:inline-block; background: #FFF; color: #111827; font-size: 12px; font-weight: 800; padding: 6px 14px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                                    Try Now ✨
+                                </div>
+                            </div>
+                            <img src="assets/user_astro_pink.png" style="width: 90px; height: 90px; object-fit: cover; z-index: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); transform: scale(1.1); margin-top: 10px;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner 15. Problem-Solution Tabs Theme -->
+                <div style="margin-bottom:16px">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:4px">15. PROBLEM TABS (RELEVANCE)</div>
+                    <div class="bvl-right-focus" style="background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%); border:1px solid #4338CA; box-shadow: 0 4px 15px rgba(30, 27, 75, 0.4); height: 100px; padding: 12px; border-radius: 12px; position: relative; overflow: hidden;">
+                        <div style="color: #E0E7FF; font-size: 14px; font-weight: 800; margin-bottom: 8px;">What's on your mind?</div>
+                        <div style="display: flex; gap: 8px;">
+                            <div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #FFF; font-size: 11px; font-weight: 600; padding: 6px 10px; border-radius: 8px; flex: 1; text-align: center; white-space: nowrap;">
+                                ❤️ Love
+                            </div>
+                            <div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #FFF; font-size: 11px; font-weight: 600; padding: 6px 10px; border-radius: 8px; flex: 1; text-align: center; white-space: nowrap;">
+                                💼 Career
+                            </div>
+                            <div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #FFF; font-size: 11px; font-weight: 600; padding: 6px 10px; border-radius: 8px; flex: 1; text-align: center; white-space: nowrap;">
+                                💰 Money
+                            </div>
+                        </div>
+                        <img src="assets/user_astro_10.png" style="width: 80px; height: 80px; object-fit: cover; position: absolute; right: -10px; bottom: -10px; opacity: 0.5; filter: grayscale(100%) blur(1px);">
                     </div>
                 </div>
 
