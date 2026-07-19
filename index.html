@@ -327,6 +327,24 @@
             .bv-typing-dot:nth-child(2) { animation-delay: -0.16s; }
             .bv-glass { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.3); }
             .bv-glass-dark { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+            
+            /* Advanced Dribbble Premium CSS */
+            @keyframes bv-float-dust {
+                0% { transform: translateY(0) scale(1); opacity: 0.5; }
+                50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
+                100% { transform: translateY(0) scale(1); opacity: 0.5; }
+            }
+            @keyframes bv-spin-ring {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            @keyframes bv-glow-pulse {
+                0%, 100% { opacity: 0.4; filter: blur(30px) scale(1); }
+                50% { opacity: 0.7; filter: blur(40px) scale(1.1); }
+            }
+            .bv-dribbble-btn { position: relative; overflow: hidden; }
+            .bv-dribbble-btn::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent); transform: rotate(45deg) translateX(-100%); animation: bv-shine-sweep 3s infinite; }
+            @keyframes bv-shine-sweep { 0% { transform: rotate(45deg) translateX(-100%); } 100% { transform: rotate(45deg) translateX(100%); } }
             </style>
 
             <!-- AU Header -->
@@ -577,6 +595,79 @@
                             </div>
                         </div>
                         <img src="assets/user_astro_10.png" style="width: 80px; height: 80px; object-fit: cover; position: absolute; right: -10px; bottom: -10px; opacity: 0.5; filter: grayscale(100%) blur(1px);">
+                    </div>
+                </div>
+
+                <!-- Banner 16. Mystic Velvet 3D (Dribbble Premium) -->
+                <div style="margin-bottom:24px; margin-top:24px;">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:8px">16. DRIBBBLE: MYSTIC 3D POP-OUT</div>
+                    <div style="background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); height: 110px; border-radius: 20px; position: relative; padding: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <!-- Dust particles -->
+                        <div style="position: absolute; top: 20%; left: 10%; width: 4px; height: 4px; background: #FFF; border-radius: 50%; box-shadow: 0 0 10px #FFF; animation: bv-float-dust 3s infinite ease-in-out;"></div>
+                        <div style="position: absolute; top: 60%; left: 40%; width: 3px; height: 3px; background: #F6E05E; border-radius: 50%; box-shadow: 0 0 8px #F6E05E; animation: bv-float-dust 4s infinite ease-in-out 1s;"></div>
+                        <div style="position: absolute; top: 30%; right: 30%; width: 5px; height: 5px; background: #FFF; border-radius: 50%; box-shadow: 0 0 12px #FFF; animation: bv-float-dust 3.5s infinite ease-in-out 0.5s;"></div>
+                        
+                        <!-- Inner Frosted Glass Card -->
+                        <div class="bv-glass" style="height: 100%; border-radius: 14px; padding: 12px; display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.15);">
+                            <div style="flex-grow: 1; z-index: 2; max-width: 60%;">
+                                <div style="color: #F6E05E; font-size: 10px; font-weight: 800; letter-spacing: 1px; margin-bottom: 2px;">प्रीमियम ज्योतिष</div>
+                                <div style="color: #FFF; font-size: 16px; font-weight: 800; line-height: 1.2; text-shadow: 0 2px 4px rgba(0,0,0,0.5); font-family: serif;">अपने भविष्य के रहस्य खोलें ✨</div>
+                                <div class="bv-dribbble-btn" style="margin-top: 8px; display: inline-block; background: linear-gradient(90deg, #D69E2E 0%, #ECC94B 100%); color: #422006; font-size: 12px; font-weight: 800; padding: 6px 16px; border-radius: 20px; box-shadow: 0 4px 15px rgba(214,158,46,0.4);">
+                                    रहस्य जानें
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 3D Pop Out Image -->
+                        <img src="assets/user_astro_7.png" style="width: 140px; height: 140px; object-fit: cover; object-position: top; position: absolute; right: 0; bottom: 0; z-index: 3; filter: drop-shadow(-5px 5px 15px rgba(0,0,0,0.6)); mask-image: linear-gradient(to top, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to top, black 80%, transparent 100%);">
+                    </div>
+                </div>
+
+                <!-- Banner 17. Neon Cyber-Astrology (Dribbble Modern) -->
+                <div style="margin-bottom:24px;">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:8px">17. DRIBBBLE: NEON CYBER</div>
+                    <div style="background: #09090b; height: 110px; border-radius: 20px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+                        <!-- Glowing Orbs -->
+                        <div style="position: absolute; top: -20px; left: -20px; width: 100px; height: 100px; background: #ec4899; border-radius: 50%; animation: bv-glow-pulse 4s infinite alternate;"></div>
+                        <div style="position: absolute; bottom: -30px; right: 20px; width: 120px; height: 120px; background: #06b6d4; border-radius: 50%; animation: bv-glow-pulse 5s infinite alternate-reverse;"></div>
+                        
+                        <!-- Heavy Glass Overlay -->
+                        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(24,24,27,0.4); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 2; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; padding: 0 16px;">
+                            
+                            <div style="flex-grow: 1; z-index: 3;">
+                                <div style="color: #FFF; font-size: 16px; font-weight: 800; line-height: 1.2;">AI ज्योतिषी से<br><span style="color: #22d3ee;">लाइव चैट करें</span></div>
+                                <div style="margin-top: 8px; display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #FFF; font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 20px; transition: all 0.3s; box-shadow: 0 0 10px rgba(6,182,212,0.3);">
+                                    शुरू करें ⚡
+                                </div>
+                            </div>
+                            
+                            <!-- Neon Ring Avatar -->
+                            <div style="position: relative; width: 80px; height: 80px; z-index: 3;">
+                                <div style="position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border-radius: 50%; background: linear-gradient(45deg, #ec4899, #06b6d4, #ec4899); animation: bv-spin-ring 3s linear infinite;"></div>
+                                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%; background: #09090b;"></div>
+                                <img src="assets/user_astro_4.png" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; padding: 2px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner 18. Ethereal Dawn (Dribbble Soft UI) -->
+                <div style="margin-bottom:24px;">
+                    <div style="font-size:8px;color:#9CA3AF;font-weight:700;margin-bottom:8px">18. DRIBBBLE: ETHEREAL SOFT</div>
+                    <div style="background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); height: 110px; border-radius: 20px; position: relative; overflow: hidden; box-shadow: -10px -10px 20px rgba(255,255,255,0.8), 10px 10px 20px rgba(0,0,0,0.05); border: 1px solid #FFF;">
+                        
+                        <!-- Soft Light Flare -->
+                        <div style="position: absolute; right: 0; top: 0; width: 150px; height: 150px; background: radial-gradient(circle, rgba(253,230,138,0.4) 0%, transparent 70%); z-index: 1;"></div>
+                        
+                        <div style="position: relative; z-index: 2; display: flex; align-items: center; height: 100%; padding: 0 16px;">
+                            <div style="flex-grow: 1; max-width: 65%;">
+                                <div style="color: #312e81; font-size: 15px; font-weight: 900; line-height: 1.2;">क्या आपके मन में<br>कोई सवाल है?</div>
+                                <div style="margin-top: 8px; display: inline-block; background: #FFF; color: #4338ca; font-size: 12px; font-weight: 800; padding: 6px 18px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                                    पूछें ✨
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <img src="assets/user_astro_2.png" style="width: 120px; height: 120px; object-fit: cover; object-position: top; position: absolute; right: 0; bottom: -10px; z-index: 1; mask-image: linear-gradient(to left, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);">
                     </div>
                 </div>
 
