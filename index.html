@@ -367,10 +367,13 @@
             
             /* Crystal Ball & Advanced Animations */
             @keyframes bv-fall-astro {
-                0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
-                15% { opacity: 0.6; }
-                85% { opacity: 0.6; }
-                100% { transform: translateY(120px) rotate(180deg); opacity: 0; }
+                0% { transform: translateY(-20px) rotate(0deg); opacity: 0; filter: drop-shadow(0 0 2px currentColor); }
+                15% { opacity: 0.8; filter: drop-shadow(0 0 10px currentColor); }
+                30% { opacity: 0.2; filter: drop-shadow(0 0 2px currentColor); }
+                45% { opacity: 0.9; filter: drop-shadow(0 0 15px currentColor); }
+                60% { opacity: 0.3; filter: drop-shadow(0 0 3px currentColor); }
+                75% { opacity: 0.8; filter: drop-shadow(0 0 12px currentColor); }
+                100% { transform: translateY(120px) rotate(180deg); opacity: 0; filter: drop-shadow(0 0 2px currentColor); }
             }
             @keyframes bv-fall-bubble {
                 0% { transform: translateY(-10px) scale(0.5); opacity: 0; }
@@ -746,7 +749,7 @@
                         <div style="position: absolute; top: -10px; left: 15%; color: #FFF; font-size: 16px; opacity: 0; animation: bv-fall-astro 5s infinite linear;">☾</div>
                         <div style="position: absolute; top: -10px; left: 35%; color: #F6E05E; font-size: 12px; opacity: 0; animation: bv-fall-astro 6s infinite linear 2s;">✦</div>
                         <div style="position: absolute; top: -10px; right: 50%; color: #06b6d4; font-size: 14px; opacity: 0; animation: bv-fall-astro 4.5s infinite linear 1s;">✧</div>
-                        <div style="position: absolute; top: -10px; left: 5%; color: #ec4899; font-size: 10px; opacity: 0; animation: bv-fall-astro 5.5s infinite linear 3s;">●</div>
+                        <div style="position: absolute; top: -10px; left: 5%; color: #ec4899; font-size: 12px; opacity: 0; animation: bv-fall-astro 5.5s infinite linear 3s;">✴</div>
 
                         <!-- Crystal Ball -->
                         <div class="bv-crystal-container">
@@ -778,7 +781,7 @@
                         <!-- Background Falling Astro Elements -->
                         <div style="position: absolute; top: -10px; left: 20%; color: #FFF; font-size: 12px; opacity: 0; animation: bv-fall-astro 5.5s infinite linear;">✧</div>
                         <div style="position: absolute; top: -10px; left: 45%; color: #F6E05E; font-size: 14px; opacity: 0; animation: bv-fall-astro 6s infinite linear 1s;">☾</div>
-                        <div style="position: absolute; top: -10px; right: 45%; color: #c084fc; font-size: 10px; opacity: 0; animation: bv-fall-astro 4s infinite linear 2s;">●</div>
+                        <div style="position: absolute; top: -10px; right: 45%; color: #c084fc; font-size: 14px; opacity: 0; animation: bv-fall-astro 4s infinite linear 2s;">✺</div>
                         <div style="position: absolute; top: -10px; left: 10%; color: #e879f9; font-size: 14px; opacity: 0; animation: bv-fall-astro 4.8s infinite linear 3s;">✦</div>
                         
                         <!-- Crystal Ball -->
