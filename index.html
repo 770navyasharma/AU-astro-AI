@@ -751,12 +751,12 @@
                         <div style="position: absolute; top: -10px; right: 50%; color: #06b6d4; font-size: 14px; opacity: 0; animation: bv-fall-astro 4.5s infinite linear 1s;">✧</div>
                         <div style="position: absolute; top: -10px; left: 5%; color: #ec4899; font-size: 12px; opacity: 0; animation: bv-fall-astro 5.5s infinite linear 3s;">✴</div>
 
-                        <!-- Crystal Ball -->
-                        <div class="bv-crystal-container">
-                            <div class="bv-crystal-ball">
-                                <div class="bv-crystal-bubble-3">○</div>
-                            </div>
-                            <div class="bv-crystal-stand"></div>
+                        <!-- Crystal Ball Image -->
+                        <div style="position: absolute; bottom: -5px; right: 120px; z-index: 2;">
+                            <img src="assets/crystal_ball_purple.png" style="width: 75px; height: 75px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.6));">
+                            <div style="position: absolute; left: 20px; top: 15px; color: #fff; font-size: 8px; text-shadow: 0 0 5px #fff; animation: bv-fall-bubble 3s infinite linear;">✦</div>
+                            <div style="position: absolute; left: 45px; top: 10px; color: #F6E05E; font-size: 6px; animation: bv-fall-bubble 4s infinite linear 1.5s;">●</div>
+                            <div style="position: absolute; left: 30px; top: 25px; color: #06b6d4; font-size: 8px; font-weight: 900; animation: bv-fall-bubble 3.5s infinite linear 0.5s;">○</div>
                         </div>
 
                         <div style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 4; display: flex; align-items: center; padding: 0 16px;">
@@ -784,13 +784,14 @@
                         <div style="position: absolute; top: -10px; right: 45%; color: #c084fc; font-size: 14px; opacity: 0; animation: bv-fall-astro 4s infinite linear 2s;">✺</div>
                         <div style="position: absolute; top: -10px; left: 10%; color: #e879f9; font-size: 14px; opacity: 0; animation: bv-fall-astro 4.8s infinite linear 3s;">✦</div>
                         
-                        <!-- Crystal Ball -->
-                        <div class="bv-crystal-container">
-                            <div class="bv-crystal-ball">
-                                <div class="bv-crystal-bubble-3">○</div>
-                            </div>
-                            <div class="bv-crystal-stand"></div>
-                        </div>
+                        <!-- Kundli Chart -->
+                        <svg width="55" height="55" viewBox="0 0 100 100" style="position: absolute; bottom: 5px; right: 125px; z-index: 2; filter: drop-shadow(0 0 8px #e879f9) drop-shadow(0 0 2px #FFF);">
+                            <rect x="5" y="5" width="90" height="90" fill="rgba(232, 121, 249, 0.1)" stroke="#e879f9" stroke-width="4"/>
+                            <line x1="5" y1="5" x2="95" y2="95" stroke="#e879f9" stroke-width="3"/>
+                            <line x1="95" y1="5" x2="5" y2="95" stroke="#e879f9" stroke-width="3"/>
+                            <polygon points="50,5 95,50 50,95 5,50" fill="none" stroke="#e879f9" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="10" fill="#FFF" opacity="0.8"/>
+                        </svg>
                         
                         <div style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 4; display: flex; align-items: center; padding: 0 16px;">
                             <div style="flex-grow: 1; max-width: 60%;">
