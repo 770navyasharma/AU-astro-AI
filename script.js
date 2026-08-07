@@ -823,24 +823,24 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================== */
 
 function selectPlatform(platform) {
-    const mwebBtn = document.getElementById('mwebSelectBtn');
-    const appBtn = document.getElementById('appSelectBtn');
-    
-    if (mwebBtn && appBtn) {
-        mwebBtn.classList.remove('active');
-        appBtn.classList.remove('active');
-        if (platform === 'mweb') mwebBtn.classList.add('active');
-        if (platform === 'app') appBtn.classList.add('active');
-    }
-
     if (platform === 'mweb') {
-        document.getElementById('mweb-filters').style.display = 'block';
-        document.getElementById('app-filters').style.display = 'none';
-        showSection('mweb-feed', document.querySelector('#mweb-filters .demo-btn-outline'));
+        const mwebSelect = document.getElementById('mwebScreensSelect');
+        if (mwebSelect) {
+            mwebSelect.style.display = 'block';
+            mwebSelect.selectedIndex = 0;
+            eval(mwebSelect.value);
+        }
+        const appSelect = document.getElementById('appScreensSelect');
+        if (appSelect) appSelect.style.display = 'none';
     } else {
-        document.getElementById('mweb-filters').style.display = 'none';
-        document.getElementById('app-filters').style.display = 'block';
-        showSection('app-feed', document.querySelector('#app-filters .demo-btn-outline'));
+        const appSelect = document.getElementById('appScreensSelect');
+        if (appSelect) {
+            appSelect.style.display = 'block';
+            appSelect.selectedIndex = 0;
+            eval(appSelect.value);
+        }
+        const mwebSelect = document.getElementById('mwebScreensSelect');
+        if (mwebSelect) mwebSelect.style.display = 'none';
     }
 }
 

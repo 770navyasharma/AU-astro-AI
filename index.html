@@ -27,74 +27,58 @@
     <!-- DEMO DASHBOARD -->
     <div class="demo-dashboard">
         <h4 class="demo-title">Device Mockup</h4>
-        <div class="demo-btn-group" style="margin-bottom: 15px;">
-            <button class="demo-btn-outline active" id="btn-no-mockup" onclick="toggleMockup('none')">None</button>
-            <button class="demo-btn-outline" id="btn-ios-mockup" onclick="toggleMockup('ios')"><i class="fa-brands fa-apple"></i> iOS View</button>
-            <button class="demo-btn-outline" id="btn-android-mockup" onclick="toggleMockup('android')"><i class="fa-brands fa-android"></i> Android View</button>
-        </div>
+        <!-- Navigation Controls -->
+        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+            <select id="platformSelect" onchange="selectPlatform(this.value)" style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #1a1a2e; color: #FFF; font-size: 14px; outline: none; cursor: pointer; min-width: 150px;">
+                <option value="mweb" selected>Mobile Web (Mweb)</option>
+                <option value="app">Native App</option>
+            </select>
+            
+            <select id="mwebScreensSelect" onchange="eval(this.value)" style="display:block; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #1a1a2e; color: #FFF; font-size: 14px; outline: none; cursor: pointer; min-width: 250px;">
+                <option value="showSection('mweb-feed', null)">1. Mweb Banner</option>
+                <option value="showSection('mweb-banner-variants', null)">1b. Banner Designs (20 versions)</option>
+                <option value="showSection('mweb-start-login', null)">2. Login Screen</option>
+                <option value="showSection('mweb-login-error-empty', null)">2.1 Login Error (Empty)</option>
+                <option value="showSection('mweb-login-error-invalid', null)">2.2 Login Error (Invalid)</option>
+                <option value="startDemoOtpTimer(null)">2.3 OTP Timer Running</option>
+                <option value="showSection('mweb-otp-error-wrong', null)">2.4 OTP Wrong (Error)</option>
+                <option value="renderSplashState('active', null)">2b. Logged-in Splash (Active)</option>
+                <option value="renderSplashState('ended_basic', null)">2c. Splash (Ended - No App)</option>
+                <option value="renderSplashState('ended_app', null)">2d. Splash (Ended - App Promo)</option>
+                <option value="renderDialingState('connecting', null)">5a. Dialing (Normal)</option>
+                <option value="renderDialingState('no_mic', null)">5b. Dialing (No Mic)</option>
+                <option value="showSection('mweb-active-call', null)">6. Active Call Screen</option>
+                <option value="renderChatHistoryState('active', null)">7a. Chat History (Active)</option>
+                <option value="renderChatHistoryState('combined_feedback', null)">7b. Feedback 5 mins end</option>
+                <option value="renderChatHistoryState('app_promo', null)">7c. Feedback Submitted (App Promo)</option>
+                <option value="startFeedbackFlow(null)">💬 Feedback Chat</option>
+                <option value="showInChatToast(null)">🔔 1 min left</option>
+                <option value="showMicPermission('ios-chrome', null)">🎙️ iOS Chrome</option>
+                <option value="showMicPermission('android', null)">🎙️ Android</option>
+                <option value="showMicPermission('ios-safari', null)">🎙️ iOS Safari</option>
+            </select>
 
-        <h4 class="demo-title">Select Platform</h4>
-        <div class="demo-btn-group">
-            <button class="demo-btn active" id="mwebSelectBtn" onclick="selectPlatform('mweb')">Mobile Web (Mweb)</button>
-            <button class="demo-btn" id="appSelectBtn" onclick="selectPlatform('app')">Native App</button>
-        </div>
-        
-        <!-- Mweb Filters (Hidden by default unless Mweb is active) -->
-        <div id="mweb-filters" style="display:block;">
-            <h4 class="demo-title mt-10">Mweb Screens</h4>
-            <div class="demo-btn-group">
-                <button class="demo-btn-outline active" onclick="showSection('mweb-feed', this)">1. Mweb Banner</button>
-                <button class="demo-btn-outline" style="border-color:#A855F7;color:#A855F7;" onclick="showSection('mweb-banner-variants', this)">1b. Banner Designs (20 versions)</button>
-                <button class="demo-btn-outline" onclick="showSection('mweb-start-login', this)">2. Login Screen</button>
-                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('mweb-login-error-empty', this)">2.1 Login Error (Empty)</button>
-                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('mweb-login-error-invalid', this)">2.2 Login Error (Invalid)</button>
-                <button class="demo-btn-outline" style="border-color: #FBBF24; color: #F59E0B;" onclick="startDemoOtpTimer(this)">2.3 OTP Timer Running</button>
-                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('mweb-otp-error-wrong', this)">2.4 OTP Wrong (Error)</button>
-                <button class="demo-btn-outline" onclick="renderSplashState('active', this)">2b. Logged-in Splash (Active)</button>
-                <button class="demo-btn-outline" onclick="renderSplashState('ended_basic', this)">2c. Splash (Ended - No App)</button>
-                <button class="demo-btn-outline" onclick="renderSplashState('ended_app', this)">2d. Splash (Ended - App Promo)</button>
-                <button class="demo-btn-outline" onclick="renderDialingState('connecting', this)">5a. Dialing (Normal)</button>
-                <button class="demo-btn-outline" onclick="renderDialingState('no_mic', this)">5b. Dialing (No Mic)</button>
-                <button class="demo-btn-outline" onclick="showSection('mweb-active-call', this)">6. Active Call Screen</button>
-                <button class="demo-btn-outline" onclick="renderChatHistoryState('active', this)">7a. Chat History (Active)</button>
-                <button class="demo-btn-outline" onclick="renderChatHistoryState('combined_feedback', this)">7b. Feedback 5 mins end</button>
-                <button class="demo-btn-outline" onclick="renderChatHistoryState('app_promo', this)">7c. Feedback Submitted (App Promo)</button>
-                <button class="demo-btn-outline" style="border-color: #10B981; color: #10B981;" onclick="startFeedbackFlow(this)">💬 Feedback Chat</button>
-                <button class="demo-btn-outline" style="border-color: #FF9800; color: #FF9800;" onclick="showInChatToast(this)">🔔 1 min left</button>
-                
-                <button class="demo-btn-outline" style="border-color: #3B82F6; color: #3B82F6;" onclick="showMicPermission('ios-chrome', this)">🎙️ iOS Chrome</button>
-                <button class="demo-btn-outline" style="border-color: #3B82F6; color: #3B82F6;" onclick="showMicPermission('android', this)">🎙️ Android</button>
-                <button class="demo-btn-outline" style="border-color: #3B82F6; color: #3B82F6;" onclick="showMicPermission('ios-safari', this)">🎙️ iOS Safari</button>
-
-            </div>
-        </div>
-
-        <!-- App Filters (Hidden by default) -->
-        <div id="app-filters" style="display:none;">
-            <h4 class="demo-title mt-10">Native App Screens</h4>
-            <div class="demo-btn-group">
-                <button class="demo-btn-outline active" onclick="showSection('app-feed', this)">1. App Banner</button>
-                <button class="demo-btn-outline" style="border-color: #8B5CF6; color: #8B5CF6;" onclick="showSection('app-menu', this)">1b. App Menu (AI Tile)</button>
-                <button class="demo-btn-outline" onclick="showSection('app-start-login', this)">2. Login Screen</button>
-                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('app-login-error-empty', this)">2.1 Login Error (Empty)</button>
-                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('app-login-error-invalid', this)">2.2 Login Error (Invalid)</button>
-                <button class="demo-btn-outline" style="border-color: #FBBF24; color: #F59E0B;" onclick="startDemoOtpTimer(this)">2.3 OTP Timer Running</button>
-                <button class="demo-btn-outline" style="border-color: #EF4444; color: #EF4444;" onclick="showSection('app-otp-error-wrong', this)">2.4 OTP Wrong (Error)</button>
-                <button class="demo-btn-outline" onclick="renderSplashState('active', this)">2b. Logged-in Splash (Active)</button>
-                <button class="demo-btn-outline" onclick="renderSplashState('ended_basic', this)">2c. Splash (Ended - No App)</button>
-                <button class="demo-btn-outline" onclick="renderDialingState('connecting', this)">5a. Dialing (Normal)</button>
-                <button class="demo-btn-outline" onclick="renderDialingState('no_mic', this)">5b. Dialing (No Mic)</button>
-                <button class="demo-btn-outline" onclick="showSection('app-active-call', this)">6. Active Call Screen</button>
-                <button class="demo-btn-outline" onclick="renderChatHistoryState('active', this)">7a. Chat History (Active)</button>
-                <button class="demo-btn-outline" onclick="renderChatHistoryState('combined_feedback', this)">7b. Feedback 10 mins end</button>
-                <button class="demo-btn-outline" onclick="renderChatHistoryState('app_promo', this)">7c. Feedback Submitted (App Promo)</button>
-                <button class="demo-btn-outline" style="border-color: #10B981; color: #10B981;" onclick="startFeedbackFlow(this)">💬 Feedback Chat</button>
-                <button class="demo-btn-outline" style="border-color: #FF9800; color: #FF9800;" onclick="showInChatToast(this)">🔔 1 min left</button>
-            </div>
-        </div>
-
-        <div class="demo-btn-group mt-10">
-            <button class="demo-btn-outline text-red" style="border-color:var(--au-red);" onclick="resetDemo()">🔄 Reset Demo</button>
+            <select id="appScreensSelect" onchange="eval(this.value)" style="display:none; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #1a1a2e; color: #FFF; font-size: 14px; outline: none; cursor: pointer; min-width: 250px;">
+                <option value="showSection('app-feed', null)">1. App Banner</option>
+                <option value="showSection('app-menu', null)">1b. App Menu (AI Tile)</option>
+                <option value="showSection('app-start-login', null)">2. Login Screen</option>
+                <option value="showSection('app-login-error-empty', null)">2.1 Login Error (Empty)</option>
+                <option value="showSection('app-login-error-invalid', null)">2.2 Login Error (Invalid)</option>
+                <option value="startDemoOtpTimer(null)">2.3 OTP Timer Running</option>
+                <option value="showSection('app-otp-error-wrong', null)">2.4 OTP Wrong (Error)</option>
+                <option value="renderSplashState('active', null)">2b. Logged-in Splash (Active)</option>
+                <option value="renderSplashState('ended_basic', null)">2c. Splash (Ended - No App)</option>
+                <option value="renderDialingState('connecting', null)">5a. Dialing (Normal)</option>
+                <option value="renderDialingState('no_mic', null)">5b. Dialing (No Mic)</option>
+                <option value="showSection('app-active-call', null)">6. Active Call Screen</option>
+                <option value="renderChatHistoryState('active', null)">7a. Chat History (Active)</option>
+                <option value="renderChatHistoryState('combined_feedback', null)">7b. Feedback 10 mins end</option>
+                <option value="renderChatHistoryState('app_promo', null)">7c. Feedback Submitted (App Promo)</option>
+                <option value="startFeedbackFlow(null)">💬 Feedback Chat</option>
+                <option value="showInChatToast(null)">🔔 1 min left</option>
+            </select>
+            
+            <button class="demo-btn-outline text-red" style="border-color:var(--au-red); margin-left: auto; padding: 10px 15px;" onclick="resetDemo()">🔄 Reset Demo</button>
         </div>
     </div>
 
@@ -3178,7 +3162,7 @@
             <!-- Sticky Bottom Nudge for App Promo -->
             <div id="hybrid-fixed-bottom-nudge" style="position: absolute; bottom: 45px; left: 50%; transform: translateX(-50%); width: 92%; background: rgba(25, 30, 45, 0.35); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; border: 1px solid rgba(255,215,0,0.3); border-top: 1px solid rgba(255,215,0,0.5); display: none; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 50;">
                 <div style="color: #FBBF24; font-weight: 800; font-size: 15px; text-align: center; line-height: 1.3;">
-                    अमर उजाला ऐप पर रोज़ 5 मिनट फ्री बात करें ✨
+                    अमर उजाला ऐप पर रोज़ 10 मिनट फ्री बात करें ✨
                 </div>
                 <div style="display: flex; width: 100%; gap: 10px; height: 48px;">
                     <button onclick="goBackToAppFeed()" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.2;">
@@ -3363,10 +3347,10 @@
                 <!-- State 3: App Promo (Feedback Submitted) -->
                 <div id="history-app-promo" style="display: none; flex-direction: column; width: 100%; align-items: center; text-align: center;">
                     <div style="color: #FBBF24; font-weight: 800; font-size: 17px; line-height: 1.4; margin-bottom: 8px;">
-                        अमर उजाला ऐप पर रोज़ 5 मिनट फ्री बात करें
+                        अमर उजाला ऐप पर रोज़ 10 मिनट फ्री बात करें
                     </div>
                     <div style="font-size: 15px; font-weight: 500; color: #FFF; margin-bottom: 20px; line-height: 1.4; padding: 0 5px;">
-                        5 मिनट पूरे हुए! कृपया अपना फीडबैक दें!
+                        10 मिनट पूरे हुए! कृपया अपना फीडबैक दें!
                     </div>
                     <div style="display: flex; width: 100%; gap: 12px; height: 54px;">
                         <button onclick="submitFeedbackFlow()" style="flex: 1; background: linear-gradient(135deg, #10B981 0%, #047857 100%); color: #FFF; border: none; border-radius: 16px; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.15); transition: transform 0.2s; padding: 0; display: flex; align-items: center; justify-content: center; gap: 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
