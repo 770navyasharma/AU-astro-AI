@@ -1,10 +1,3 @@
-
-function getPrefix() {
-    const isApp = document.getElementById("platformSelect") ? document.getElementById("platformSelect").value === 'app' : false;
-    const isV2 = document.getElementById("versionSelect") ? document.getElementById("versionSelect").value === 'v2' : false;
-    return (isApp ? 'app-' : 'mweb-') + (isV2 ? 'v2-' : '');
-}
-
 // ==========================================
 // STATE MANAGEMENT
 // ==========================================
@@ -830,35 +823,44 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================== */
 
 function selectPlatform(platform) {
-    if (platform === 'mweb') {
-        const mwebSelect = document.getElementById('mwebScreensSelect');
-        if (mwebSelect) {
-            mwebSelect.style.display = 'block';
-            mwebSelect.selectedIndex = 0;
-            eval(mwebSelect.value);
-        }
-        const appSelect = document.getElementById('appScreensSelect');
-        if (appSelect) appSelect.style.display = 'none';
+    document.getElementById('platformSelect').value = platform;
+    updateNavigation();
+}
+
+function updateNavigation() {
+    const platform = document.getElementById('platformSelect').value;
+    const version = document.getElementById('versionSelect').value;
+    
+    document.querySelectorAll('.nav-screen-select').forEach(s => s.style.display = 'none');
+    
+    let targetSelectId = '';
+    let defaultSection = '';
+    if (version === 'v1') {
+        targetSelectId = platform === 'mweb' ? 'mwebScreensSelect' : 'appScreensSelect';
+        defaultSection = platform === 'mweb' ? 'mweb-feed' : 'app-feed';
     } else {
-        const appSelect = document.getElementById('appScreensSelect');
-        if (appSelect) {
-            appSelect.style.display = 'block';
-            appSelect.selectedIndex = 0;
-            eval(appSelect.value);
-        }
-        const mwebSelect = document.getElementById('mwebScreensSelect');
-        if (mwebSelect) mwebSelect.style.display = 'none';
+        targetSelectId = 'mwebV2ScreensSelect'; // App not supported in V2 demo
+        defaultSection = 'mweb-v2-active-call';
+    }
+    
+    const targetSelect = document.getElementById(targetSelectId);
+    if (targetSelect) {
+        targetSelect.style.display = 'block';
+        targetSelect.selectedIndex = 0;
+        eval(targetSelect.value);
+    } else {
+        showSection(defaultSection, null);
     }
 }
 
 function startDemoFlow() {
-    selectPlatform('mweb');
+    updateNavigation();
 }
 
 // Override banner click to go to start screen for Mweb
 function handleBannerClick(source) {
     if (source === 'mweb') {
-        showSection(getPrefix() + 'start-login');
+        showSection((document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active') ? 'app-' : 'mweb-') + 'start-login');
         // startSlider is now called automatically by showSection
     } else if (source === 'app') {
         showSection('app-splash');
@@ -1048,10 +1050,11 @@ function openChatHistory(btn, ev) {
 }
 
 function renderChatHistoryState(state, btn) {
-    const prefix = getPrefix();
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
     
-    if (btn) showSection(prefix + (prefix.includes('v2-') ? 'active-chat' : 'chat-history'), btn);
-    else showSection(prefix + (prefix.includes('v2-') ? 'active-chat' : 'chat-history'));
+    if (btn) showSection(prefix + 'chat-history', btn);
+    else showSection(prefix + 'chat-history');
 
     const activeSection = document.getElementById(prefix + 'chat-history');
     if (!activeSection) return;
@@ -1075,7 +1078,7 @@ function renderChatHistoryState(state, btn) {
 
 function submitFeedbackFlow() {
     // Phase 2 implementation. For demo, we just transition to the splash screen.
-    const prefix = getPrefix(); showSection(prefix + 'splash-hybrid');
+    const prefix = (document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active')) ? 'app-' : 'mweb-'; showSection(prefix + 'splash-hybrid');
 }
 
 function selectAstrologer(astroId) {
@@ -1116,7 +1119,8 @@ function selectAndCallAstrologer(astroId) {
     const details = astroDetails[astroId];
     if (!details) return;
 
-    const prefix = getPrefix();
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
 
     const dialingScreen = document.getElementById(prefix + "dialing");
     const callScreen = document.getElementById(prefix + "active-call");
@@ -1166,7 +1170,8 @@ function selectAndCallAstrologer(astroId) {
 
 function endCall() {
     clearInterval(currentCallTimer);
-    const prefix = getPrefix();
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
     const callScreen = document.getElementById(prefix + "active-call");
     if (callScreen) {
         const visualizer = callScreen.querySelector("#audio-visualizer");
@@ -1281,7 +1286,8 @@ function toggleMute() {
     updateMuteUI();
 }
 function updateMuteUI() {
-    const prefix = getPrefix();
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
     const activeCallScreen = document.getElementById(prefix + "active-call");
     
     if (!activeCallScreen) return;
@@ -1312,7 +1318,8 @@ function toggleInterrupt() {
     updateInterruptUI();
 }
 function updateInterruptUI() {
-    const prefix = getPrefix();
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
     const activeCallScreen = document.getElementById(prefix + "active-call");
     
     if (!activeCallScreen) return;
@@ -1379,7 +1386,8 @@ function showOtpSection() {
 let demoOtpInterval = null;
 
 function startDemoOtpTimer(btnElement) {
-    const prefix = getPrefix();
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
     showSection(prefix + 'otp-timer', btnElement);
     
     clearInterval(demoOtpInterval);
@@ -1417,9 +1425,10 @@ function simulateTimeoutRedirect() {
     // Automatically redirect to the main login screen with fields pre-filled
     const btn = document.querySelector('button[onclick="showSection(\\\'mweb-start-login\\\', this)"]');
     if (btn) showSection('mweb-start-login', btn);
-    else showSection(getPrefix() + 'start-login');
+    else showSection((document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active') ? 'app-' : 'mweb-') + 'start-login');
     
-    const prefix = getPrefix();
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
     const loginSection = document.getElementById(prefix + 'start-login');
     if (loginSection) {
         const nameInput = loginSection.querySelector('input[placeholder="आपका शुभ नाम"]');
@@ -1582,7 +1591,7 @@ function splashGoBack() {
 
 function skipSplash() {
     if (document.getElementById('mwebSelectBtn').classList.contains('active')) {
-        showSection(getPrefix() + 'start-login');
+        showSection((document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active') ? 'app-' : 'mweb-') + 'start-login');
     } else {
         showSection('app-start-login');
     }
@@ -1617,7 +1626,8 @@ function showAppFeedbackSheet() {
 let feedbackStep = 0;
 
 function startFeedbackFlow(btn) {
-    const prefix = getPrefix();
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
     const minText = isApp ? "10" : "5";
 
     if(btn) {
@@ -1863,14 +1873,15 @@ function askNextQuestion() {
 // SPLASH SCREEN STATES LOGIC
 // ==========================================
 function renderSplashState(state, btn) {
-    const prefix = getPrefix();
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const prefix = isApp ? "app-" : "mweb-";
     const minText = isApp ? "10" : "5";
     const minTextHindi = isApp ? "10" : "5";
 
     if(btn) {
         showSection(prefix + 'splash-hybrid', btn);
     } else {
-        const prefix = getPrefix(); showSection(prefix + 'splash-hybrid');
+        const prefix = (document.getElementById('appSelectBtn') && document.getElementById('appSelectBtn').classList.contains('active')) ? 'app-' : 'mweb-'; showSection(prefix + 'splash-hybrid');
     }
     
     const activeSection = document.getElementById(prefix + 'splash-hybrid');
@@ -2180,12 +2191,17 @@ function goBackToAppFeed() {
 // V2 Chat/Call Mode Switch
 function switchToSpeakMode(targetCallId) {
     if ('speechSynthesis' in window) {
+        // Cancel any ongoing speech to ensure immediate playback
         window.speechSynthesis.cancel();
+        
         const msg = new SpeechSynthesisUtterance();
-        msg.text = "अब आप मुझसे बोलकर बात कर सकते हैं";
-        msg.lang = 'hi-IN';
-        msg.rate = 0.95;
+        msg.text = "अब आप मुझसे बोलकर बात कर सकते हैं"; // Hindi text
+        msg.lang = 'hi-IN'; // Hindi voice
+        msg.rate = 0.95; // Slightly slower for natural feel
+        
         window.speechSynthesis.speak(msg);
     }
+    
+    // Switch the UI to the target call screen
     showSection(targetCallId, null);
 }
