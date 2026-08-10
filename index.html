@@ -29,17 +29,12 @@
         <h4 class="demo-title">Device Mockup</h4>
         <!-- Navigation Controls -->
         <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-            <select id="versionSelect" onchange="updateNavigation()" style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #252b48; color: #FFF; font-size: 14px; font-weight: bold; outline: none; cursor: pointer; min-width: 150px;">
-                <option value="v1" selected>Current Version (V1)</option>
-                <option value="v2">New Chat Version (V2)</option>
-            </select>
-
-            <select id="platformSelect" onchange="updateNavigation()" style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #1a1a2e; color: #FFF; font-size: 14px; outline: none; cursor: pointer; min-width: 150px;">
+            <select id="platformSelect" onchange="selectPlatform(this.value)" style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #1a1a2e; color: #FFF; font-size: 14px; outline: none; cursor: pointer; min-width: 150px;">
                 <option value="mweb" selected>Mobile Web (Mweb)</option>
                 <option value="app">Native App</option>
             </select>
             
-            <select id="mwebScreensSelect" class="nav-screen-select" onchange="eval(this.value)" style="display:block; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #1a1a2e; color: #FFF; font-size: 14px; outline: none; cursor: pointer; min-width: 250px;">
+            <select id="mwebScreensSelect" onchange="eval(this.value)" style="display:block; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #1a1a2e; color: #FFF; font-size: 14px; outline: none; cursor: pointer; min-width: 250px;">
                 <option value="showSection('mweb-feed', null)">1. Mweb Banner</option>
                 <option value="showSection('mweb-banner-variants', null)">1b. Banner Designs (20 versions)</option>
                 <option value="showSection('mweb-start-login', null)">2. Login Screen</option>
@@ -63,7 +58,7 @@
                 <option value="showMicPermission('ios-safari', null)">🎙️ iOS Safari</option>
             </select>
 
-            <select id="appScreensSelect" class="nav-screen-select" onchange="eval(this.value)" style="display:none; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #1a1a2e; color: #FFF; font-size: 14px; outline: none; cursor: pointer; min-width: 250px;">
+            <select id="appScreensSelect" onchange="eval(this.value)" style="display:none; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #1a1a2e; color: #FFF; font-size: 14px; outline: none; cursor: pointer; min-width: 250px;">
                 <option value="showSection('app-feed', null)">1. App Banner</option>
                 <option value="showSection('app-menu', null)">1b. App Menu (AI Tile)</option>
                 <option value="showSection('app-start-login', null)">2. Login Screen</option>
@@ -91,6 +86,7 @@
                 <option value="startDemoOtpTimer('mweb')">2.3 V2 OTP Timer Running</option>
                 <option value="showSection('mweb-v2-otp-error-wrong', null)">2.4 V2 OTP Wrong (Error)</option>
                 <option value="renderSplashState('active', null)">2b. V2 Logged-in Splash (Active)</option>
+                <option value="showSection('mweb-v2-splash-hybrid', null)">2c. V2 Astrologer Selection</option>
                 <option value="showSection('mweb-v2-active-call', null)">3. V2 Active Call Mode</option>
                 <option value="showSection('mweb-v2-active-chat', null)">4. V2 Active Chat Mode</option>
             </select>
@@ -103,6 +99,7 @@
                 <option value="startDemoOtpTimer('app')">2.3 V2 OTP Timer Running</option>
                 <option value="showSection('app-v2-otp-error-wrong', null)">2.4 V2 OTP Wrong (Error)</option>
                 <option value="renderSplashState('active', null)">2b. V2 Logged-in Splash (Active)</option>
+                <option value="showSection('app-v2-splash-hybrid', null)">2c. V2 Astrologer Selection</option>
                 <option value="showSection('app-v2-active-call', null)">3. V2 Active Call Mode</option>
                 <option value="showSection('app-v2-active-chat', null)">4. V2 Active Chat Mode</option>
             </select>
@@ -3770,15 +3767,80 @@
     </div>
 
     <!-- Android Chrome -->
-        <script src="script.js?v=2"></script>
+        <script src="script.js?v=3"></script>
 
 
 
 </body>
 </html>
 
-
 <!-- V2 SCREENS -->
+<div id="mweb-v2-feed" class="view-section hidden mobile-frame" style="background: #FFF;">
+            <div class="ios-home-indicator"></div>
+            <!-- Amar Ujala Header Mockup -->
+            <div style="background: #FFF; padding: 15px 15px 10px; border-bottom: 1px solid #EEE;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <i class="fa-solid fa-bars" style="font-size: 20px; color: #333;"></i>
+                    <h2 style="margin:0; font-size: 24px; font-weight: 900; color: #000;">अमर उजाला</h2>
+                    <div style="display: flex; gap: 15px; color: #555;">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 15px; font-size: 15px; font-weight: 600; color: #444; overflow-x: auto; white-space: nowrap; padding-bottom: 5px;">
+                    <span style="color: #000;">होम</span>
+                    <span style="color: #000;">ज्योतिष</span>
+                    <span style="background: #E53935; color: #FFF; padding: 2px 10px; border-radius: 4px;">बोले तारे</span>
+                    <span>राशिफल</span>
+                </div>
+            </div>
+
+            <!-- Article Body -->
+            <div style="background: #FFF; padding: 15px; color: #000;">
+                <div style="font-size: 12px; color: #666; margin-bottom: 15px;">
+                    Hindi News &nbsp;>&nbsp; Photo Gallery &nbsp;>&nbsp; Astrology &nbsp;>&nbsp; Predictions &nbsp;>&nbsp; Jupiter Transit
+                </div>
+                
+                <!-- ASTRO BANNER INTEGRATION -->
+                <div class="app-full-width-card astro-premium-bg banner-shine" onclick="handleBannerClick('mweb')" style="margin: 0 auto 15px; max-width: 430px; height: 77px; width: 100%; border: 1px solid rgba(252, 163, 17, 0.5) !important; box-sizing: border-box; padding: 10px 15px;">
+                    <div class="full-card-avatar" style="width: 50px; height: 50px;">
+                        <div class="app-avatar-ring pulse-ring-1" style="width:100%; height:100%;"></div>
+                        <img src="assets/classy_astro_1.png" alt="Dr Priya">
+                        <div class="mweb-waveform app-small-waveform">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                            <div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
+                    <div class="full-card-text">
+                        <h4 id="mwebBannerTitle" style="font-size: 14px; margin-bottom: 2px; white-space: nowrap;">जानिए अपना <span id="bannerTypewriterWord" class="tw-glow-word"></span><span class="tw-cursor">|</span></h4>
+                        <p id="mwebBannerSub" style="color: #FFD700; font-size: 13px; margin-top: 6px; font-weight: 600;">पाएं सटीक ज्योतिष परामर्श ✨</p>
+                    </div>
+                    <div class="full-card-icon">
+                        <i class="fa-solid fa-chevron-right" style="color: #FFF; font-size: 16px;"></i>
+                    </div>
+                </div>
+
+                <h1 style="font-size: 24px; font-weight: 900; line-height: 1.4; color: #000; margin-bottom: 15px;">
+                    Jupiter Transit: 2 जून से इन राशि वालों के शुरू होंगे अच्छे दिन, बिजनेस में होगा जबरदस्त लाभ
+                </h1>
+                
+                <p style="font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.5;">
+                    <b>ज्योतिष डेस्क, अमर उजाला</b><br>
+                    Published by: <span style="color: #2196F3;">Megha Kumari</span> Updated Fri, 29 May 2026
+                </p>
+                
+                <h3 style="color: #D32F2F; font-size: 18px; font-weight: 900; margin-bottom: 10px;">सार</h3>
+                <p style="font-size: 17px; line-height: 1.5; color: #222; margin-bottom: 20px;">
+                    <b>Jupiter Transit in Cancer:</b> गुरु कर्क राशि गोचर से इन राशि वालों के करियर में बड़ा बदलाव देखने को मिल सकता है। व्यापार में लाभ, आर्थिक स्थिति में पहले से सुधार और परीक्षा में शानदार परिणाम मिलने की संभावना है।
+                </p>
+                
+                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800" style="width: 100%; border-radius: 8px; margin-top: 10px;" alt="Article Image">
+                <p style="font-size: 17px; line-height: 1.5; color: #222; margin-top: 20px;">
+                    ज्योतिष शास्त्र के अनुसार, देवगुरु बृहस्पति का गोचर बहुत महत्वपूर्ण माना जाता है। जब गुरु ग्रह राशि परिवर्तन करते हैं, तो सभी 12 राशियों पर इसका प्रभाव पड़ता है...
+                </p>
+            </div>
+        </div>
+
 <div id="mweb-v2-start-login" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
             <div class="ios-home-indicator"></div>
 
@@ -4343,6 +4405,476 @@
                     <i class="fa-solid fa-phone" style="margin-right: 10px; font-size: 16px;"></i> बात शुरू करें
                 </button>
             </div>
+            </div>
+        </div>
+
+<div id="mweb-v2-splash-hybrid" class="view-section hidden mobile-frame starry-theme astro-premium-bg" style="display: flex; flex-direction: column;">
+            <div class="ios-home-indicator"></div>
+            
+            <!-- Hybrid Slider -->
+            <div class="hybrid-slider-container">
+                <div class="login-slider" id="hybridSlider" onscroll="onSliderScroll()">
+                    <!-- Card 1: Priya -->
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_banner.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text glow-gold">क्या प्रमोशन रुका हुआ है?</h2>
+                                <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">मिलेगी नई राह! 🚀</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2: Ajay -->
+                    <div class="slider-card" data-astro="ajay">
+                        <div class="slider-image-box">
+                            <img src="assets/ajay_banner.png" alt="Dr Ajay">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text glow-gold">व्यापार में घाटा क्यों?</h2>
+                                <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">चमकेगी किस्मत की दुकान 💰</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3: Kirti -->
+                    <div class="slider-card" data-astro="kirti">
+                        <div class="slider-image-box">
+                            <img src="assets/kirti_banner.png" alt="Dr Kirti">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text glow-gold">सच्चा प्यार कब मिलेगा?</h2>
+                                <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">मिलेगा जीवनसाथी ❤️</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-dots" style="position: absolute; bottom: 30px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+            <!-- Listing Section -->
+            <div class="hybrid-listing-section">
+                <div class="hybrid-listing-header" style="text-align: center; position: relative;">
+                    <div onclick="goBackToFeed()" style="position: absolute; left: 0; top: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px);">
+                        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+                    </div>
+                    <h1 id="hybrid-header-title">अपना ज्योतिषी चुनें</h1>
+                    <p id="hybrid-header-subtitle" class="glow-gold" style="font-size: 17px; text-align: center; margin: 0 0 20px 0; font-weight: 600;">करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।</p>
+                    <h2 id="hybrid-header-timer"><i class="fa-regular fa-clock"></i> शेष समय: 05:00</h2>
+                </div>
+
+                <div class="astrologer-list">
+                    <!-- Priya -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('priya')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/classy_astro_1.png" alt="Dr Priya">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य प्रिया वर्मा</h3>
+                            <p>वैदिक, टैरो, अंक ज्योतिष</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (12.4k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ajay -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('ajay')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/dr_ajay.png" alt="Dr Ajay">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य अजय शर्मा</h3>
+                            <p>वैदिक, वास्तु, प्रश्न</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.8 (8.1k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Kirti -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('kirti')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/dr_kirti.png" alt="Dr Kirti">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य कीर्ति शुक्ला</h3>
+                            <p>टैरो, अंक ज्योतिष, केपी</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (9.3k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Rahul -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('rahul')">
+                        <div class="avatar-animated-border">
+                            <img src="https://i.pravatar.cc/150?img=11" alt="Dr Rahul">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य राहुल तिवारी</h3>
+                            <p>वैदिक, वास्तु, हस्तरेखा</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.8 (5.2k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Bottom CTA Container (used by ended_basic) -->
+                <div id="hybrid-bottom-cta" style="margin-top: 24px; display: none; flex-direction: column; gap: 12px;"></div>
+            </div>
+
+            <!-- Sticky Bottom Nudge for App Promo -->
+            <div id="hybrid-fixed-bottom-nudge" style="position: absolute; bottom: 45px; left: 50%; transform: translateX(-50%); width: 92%; background: rgba(25, 30, 45, 0.35); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; border: 1px solid rgba(255,215,0,0.3); border-top: 1px solid rgba(255,215,0,0.5); display: none; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 50;">
+                <div style="color: #FBBF24; font-weight: 800; font-size: 15px; text-align: center; line-height: 1.3;">
+                    अमर उजाला ऐप पर रोज़ 5 मिनट फ्री बात करें ✨
+                </div>
+                <div style="display: flex; width: 100%; gap: 10px; height: 48px;">
+                    <button onclick="goBackToFeed()" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.2;">
+                        वापस अमर उजाला<br>पर जाएं
+                    </button>
+                    <button style="flex: 1.3; background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); color: #111827; border: none; border-radius: 12px; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px;">
+                        <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> 
+                        ऐप डाउनलोड करें 
+                        <i class="fa-solid fa-download"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sticky Bottom Nudge for Ended Basic (No App Promo) -->
+            <div id="hybrid-basic-bottom-nudge" style="position: absolute; bottom: 45px; left: 50%; transform: translateX(-50%); width: 92%; background: rgba(25, 30, 45, 0.35); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; border: 1px solid rgba(239, 68, 68, 0.3); border-top: 1px solid rgba(239, 68, 68, 0.5); display: none; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 50;">
+                <div style="color: #FCA5A5; font-weight: 800; font-size: 16px; text-align: center; line-height: 1.4;">
+                    5 मिनट पूरे हुए! ⏱️<br>
+                    <span style="color: #FFF; font-size: 14px; font-weight: 600; opacity: 0.95;">कल फिर आएं और अपने भविष्य का हाल जानें ✨</span>
+                </div>
+                <button onclick="goBackToFeed()" style="width: 100%; background: rgba(255,255,255,0.08); color: #FFF; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.2s;">
+                    वापस अमर उजाला पर जाएं
+                </button>
+            </div>
+        </div>
+
+<div id="mweb-v2-active-call" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
+            <div class="ios-home-indicator"></div>
+            
+            <!-- Top Header -->
+            <div style="flex-shrink: 0; padding: 40px 16px 16px; display: flex; align-items: center; justify-content: space-between; background: rgba(11,14,26,0.9); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 10; backdrop-filter: blur(10px);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img id="active-call-avatar" src="assets/classy_astro_1.png" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5);" alt="Avatar">
+                    <div>
+                        <h3 id="active-call-name" style="color: #FFF; font-size: 16px; font-weight: 800; margin: 0 0 2px;">आचार्य प्रिया वर्मा</h3>
+                        <p id="active-call-expertise" style="color: #FFD700; font-size: 11px; margin: 0;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
+                    </div>
+                </div>
+                <button onclick="endCall()" style="background: #EF4444; border: none; width: 64px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);">
+                    <i class="fa-solid fa-phone" style="color: #FFF; font-size: 16px; transform: rotate(135deg);"></i>
+                </button>
+            </div>
+            
+            <audio id="toast-sound" preload="auto">
+                <source src="https://assets.mixkit.co/active_storage/sfx/2574/2574-preview.mp3" type="audio/mpeg">
+            </audio>
+
+
+            
+            
+            <!-- Chat Transcript (Scrollable) -->
+            <div class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 140px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
+                
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था... करियर और जीवन दोनों के बारे में।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:45 AM</span>
+                    </div>
+                </div>
+                
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">बिल्कुल बताऊंगी। पहले एक बात याद रखिये — एस्ट्रोलॉजी दिशा देती है, भाग्य लॉक नहीं करती। आपकी मेहनत सबसे बड़ा ग्रह होती है। अपना नाम और जन्म तिथि बता दीजिये।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
+                    </div>
+                </div>
+                
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">मेरा नाम राहुल है। जन्म तिथि 14 अगस्त 1997।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
+                    </div>
+                </div>
+                
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">राहुल, आपका पर्सनैलिटी चार्ट काफी दिलचस्प एनर्जी दिखा रहा है ✨ आप स्वभाव से क्रिएटिव और इंडिपेंडेंट थिंकर हैं। लेकिन एक प्रॉब्लम है — आप बहुत ओवरथिंक करते हैं और कभी-कभी डिसीजन्स डिले कर देते हैं। 2026 के मिडिल के बाद करियर में स्ट्रॉन्ग ग्रोथ दिख रही है। स्पेशली डिजिटल, टेक, मीडिया, डिजाइन, या कम्युनिकेशन फील्ड में लक स्ट्रॉन्ग रहेगा।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:48 AM</span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Bottom Control Pill -->
+            <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 85%; background: rgba(25, 30, 45, 0.35); backdrop-filter: blur(20px); border-radius: 40px; padding: 16px 20px; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.6);">
+                <div id="call-timer" style="color: #FFF; font-weight: 800; font-size: 16px; font-variant-numeric: tabular-nums;">03:26</div>
+                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0 10px;">
+                    <!-- Mute Toggle -->
+                    <button id="mute-btn" onclick="toggleMute()" style="background: #444; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                        <i id="mute-icon" class="fa-solid fa-microphone-slash" style="color: #FFF; font-size: 18px;"></i>
+                    </button>
+                    
+                    <!-- Amplitude Animation -->
+                    <div class="amplitude-bars" id="audio-visualizer" style="display: flex; gap: 4px; height: 30px; align-items: center; opacity: 0.3;">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                    
+                    <!-- Interrupt / Speaker Toggle -->
+                    <button id="interrupt-btn" onclick="toggleInterrupt()" style="background: #10B981; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(16,185,129,0.4);">
+                        <i id="interrupt-icon" class="fa-solid fa-volume-high" style="color: #FFF; font-size: 18px;"></i>
+                    </button>
+
+                    <button onclick="showSection('mweb-v2-active-chat', null)" style="background: #3B82F6; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(59,130,246,0.4);">
+                        <i class="fa-solid fa-message" style="color: #FFF; font-size: 18px;"></i>
+                    </button>
+            
+                </div>
+            </div>
+            
+        </div>
+
+<div id="mweb-v2-active-chat" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
+            <div class="ios-home-indicator"></div>
+            
+            <!-- Top Header -->
+            <div style="flex-shrink: 0; padding: 40px 16px 16px; display: flex; align-items: center; justify-content: space-between; background: rgba(11,14,26,0.9); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 10; backdrop-filter: blur(10px);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img id="history-avatar" src="assets/classy_astro_1.png" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5);" alt="Avatar">
+                    <div>
+                        <h3 id="history-name" style="color: #FFF; font-size: 16px; font-weight: 800; margin: 0 0 2px;">आचार्य प्रिया वर्मा</h3>
+                        <p id="history-expertise" style="color: #FFD700; font-size: 11px; margin: 0;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
+                    </div>
+                </div>
+                <button onclick="showSection('mweb-v2-splash-hybrid')" style="background: rgba(255,255,255,0.1); border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <i class="fa-solid fa-xmark" style="color: #FFF; font-size: 16px;"></i>
+                </button>
+            </div>
+            
+            
+            <!-- Chat Transcript (Scrollable) -->
+            <div class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 260px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
+                
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था... करियर और जीवन दोनों के बारे में।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:45 AM</span>
+                    </div>
+                </div>
+                
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">बिल्कुल बताऊंगी। पहले एक बात याद रखिये — एस्ट्रोलॉजी दिशा देती है, भाग्य लॉक नहीं करती। आपकी मेहनत सबसे बड़ा ग्रह होती है। अपना नाम और जन्म तिथि बता दीजिये।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
+                    </div>
+                </div>
+                
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">मेरा नाम राहुल है। जन्म तिथि 14 अगस्त 1997।</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
+                    </div>
+                </div>
+                
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">राहुल, आपका पर्सनैलिटी चार्ट काफी दिलचस्प एनर्जी दिखा रहा है ✨ आप स्वभाव से क्रिएटिव और इंडिपेंडेंट थिंकर हैं। लेकिन एक प्रॉब्लम है — आप बहुत ओवरथिंक करते हैं और कभी-कभी डिसीजन्स डिले कर देते हैं। 2026 के मिडिल के बाद करियर में स्ट्रॉन्ग ग्रोथ दिख रही है। स्पेशली डिजिटल, टेक, मीडिया, डिजाइन, या कम्युनिकेशन फील्ड में लक स्ट्रॉन्ग रहेगा।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:48 AM</span>
+                    </div>
+                </div>
+
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">धन्यवाद आचार्य जी। क्या प्रेम सम्बंध में कोई अड़चन है?</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:49 AM</span>
+                    </div>
+                </div>
+                
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">अभी शुक्र की स्थिति थोड़ी कमजोर है। धैर्य रखें, साल के अंत तक स्थिति बेहतर होगी।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:50 AM</span>
+                    </div>
+                </div>
+                
+                <!-- End message -->
+                <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 10px;">-- 14 Aug, 10:55 AM पर चैट समाप्त --</div>
+
+            </div>
+            
+            <!-- Dynamic Chat History Bottom Panel -->
+            <div id="chat-history-bottom-panel" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 92%; background: rgba(30, 40, 60, 0.25); backdrop-filter: blur(32px) saturate(180%); -webkit-backdrop-filter: blur(32px) saturate(180%); border-radius: 28px; padding: 24px 20px; border: 1px solid rgba(255,255,255,0.2); border-top: 1px solid rgba(255,255,255,0.3); display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                
+                <!-- State 1: Active (Time Left) -->
+                
+            <!-- Bottom Chat Controls -->
+            <div style="position: absolute; bottom: 0; left: 0; width: 100%; background: #0B0E1A; border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; display: flex; align-items: center; gap: 10px; z-index: 10;">
+                <button onclick="switchToSpeakMode('mweb-v2-active-call')" style="background: #10B981; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
+                    <i class="fa-solid fa-microphone" style="color: #FFF; font-size: 16px;"></i>
+                </button>
+                <input type="text" placeholder="Type a message..." style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 10px 16px; color: #FFF; font-size: 14px; outline: none;">
+                <button style="background: #3B82F6; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
+                    <i class="fa-solid fa-paper-plane" style="color: #FFF; font-size: 16px;"></i>
+                </button>
+            </div>
+            
+</div>
+
+                <!-- State 2: Combined Feedback -->
+                <div id="history-feedback-combined" style="display: flex; flex-direction: column; width: 100%; align-items: center; text-align: center;">
+                    <div style="color: #FBBF24; font-weight: 800; font-size: 17px; line-height: 1.4; margin-bottom: 8px;">
+                        5 मिनट पूरे हो गए हैं! कल पुनः आएं ✨
+                    </div>
+                    <div style="font-size: 15px; font-weight: 500; color: #FFF; margin-bottom: 20px; line-height: 1.4; padding: 0 5px;">
+                        आपका फीडबैक हमारे लिए महत्वपूर्ण है।
+                    </div>
+                    <div style="display: flex; width: 100%; gap: 12px; height: 54px;">
+                        <button onclick="showSection('mweb-v2-splash-hybrid')" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; padding: 0;">
+                            <span style="font-size: 11px; font-weight: 500; color: #9CA3AF; letter-spacing: 0.2px;">फीडबैक दे चुके?</span>
+                            <span style="font-size: 15px; font-weight: 700; color: #F3F4F6; margin-top: 2px;">वापस जाएँ</span>
+                        </button>
+                        <button onclick="submitFeedbackFlow()" style="flex: 1.2; background: linear-gradient(135deg, #10B981 0%, #047857 100%); color: #FFF; border: none; border-radius: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.15); transition: transform 0.2s; padding: 0; display: flex; align-items: center; justify-content: center; gap: 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
+                            फीडबैक भरें <i class="fa-solid fa-arrow-right" style="font-size: 14px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- State 3: App Promo (Feedback Submitted) -->
+                <div id="history-app-promo" style="display: none; flex-direction: column; width: 100%; align-items: center; text-align: center;">
+                    <div style="color: #FBBF24; font-weight: 800; font-size: 17px; line-height: 1.4; margin-bottom: 8px;">
+                        अमर उजाला ऐप पर रोज़ 5 मिनट फ्री बात करें
+                    </div>
+                    <div style="font-size: 15px; font-weight: 500; color: #FFF; margin-bottom: 20px; line-height: 1.4; padding: 0 5px;">
+                        5 मिनट पूरे हुए! कृपया अपना फीडबैक दें!
+                    </div>
+                    <div style="display: flex; width: 100%; gap: 12px; height: 54px;">
+                        <button onclick="submitFeedbackFlow()" style="flex: 1; background: linear-gradient(135deg, #10B981 0%, #047857 100%); color: #FFF; border: none; border-radius: 16px; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.15); transition: transform 0.2s; padding: 0; display: flex; align-items: center; justify-content: center; gap: 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
+                            फीडबैक भरें <i class="fa-solid fa-arrow-right" style="font-size: 14px;"></i>
+                        </button>
+                        <button style="flex: 1; background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); color: #111827; border: none; border-radius: 16px; font-size: 14px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
+                            <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> 
+                            ऐप डाउनलोड करें 
+                            <i class="fa-solid fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+<div id="app-v2-feed" class="view-section hidden mobile-frame" style="background: #FFF;">
+            <div class="ios-home-indicator"></div>
+            <!-- Amar Ujala Header Mockup -->
+            <div style="background: #FFF; padding: 15px 15px 10px; border-bottom: 1px solid #EEE;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <i class="fa-solid fa-bars" style="font-size: 20px; color: #333;"></i>
+                    <h2 style="margin:0; font-size: 24px; font-weight: 900; color: #000;">अमर उजाला</h2>
+                    <div style="display: flex; gap: 15px; color: #555;">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 15px; font-size: 15px; font-weight: 600; color: #444; overflow-x: auto; white-space: nowrap; padding-bottom: 5px;">
+                    <span style="color: #000;">होम</span>
+                    <span style="color: #000;">ज्योतिष</span>
+                    <span style="background: #E53935; color: #FFF; padding: 2px 10px; border-radius: 4px;">बोले तारे</span>
+                    <span>राशिफल</span>
+                </div>
+            </div>
+
+
+            <!-- Article Body -->
+            <div style="background: #FFF; padding: 15px; color: #000;">
+                <div style="font-size: 12px; color: #666; margin-bottom: 15px;">
+                    Hindi News &nbsp;>&nbsp; Photo Gallery &nbsp;>&nbsp; Astrology &nbsp;>&nbsp; Predictions &nbsp;>&nbsp; Jupiter Transit
+                </div>
+                
+                <!-- ASTRO BANNER INTEGRATION -->
+                <div class="app-full-width-card astro-premium-bg banner-shine" onclick="handleBannerClick('app')" style="margin: 0 auto 15px; max-width: 430px; height: 77px; width: 100%; border: 1px solid rgba(252, 163, 17, 0.5) !important; box-sizing: border-box; padding: 10px 15px;">
+                    <div class="full-card-avatar" style="width: 50px; height: 50px;">
+                        <div class="app-avatar-ring pulse-ring-1" style="width:100%; height:100%;"></div>
+                        <img src="assets/classy_astro_1.png" alt="Dr Priya">
+                        <div class="mweb-waveform app-small-waveform">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                            <div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
+                    <div class="full-card-text">
+                        <h4 id="mwebBannerTitle" style="font-size: 14px; margin-bottom: 2px; white-space: nowrap;">जानिए अपना <span id="bannerTypewriterWord" class="tw-glow-word"></span><span class="tw-cursor">|</span></h4>
+                        <p id="mwebBannerSub" style="color: #FFD700; font-size: 13px; margin-top: 6px; font-weight: 600;">पाएं सटीक ज्योतिष परामर्श ✨</p>
+                    </div>
+                    <div class="full-card-icon">
+                        <i class="fa-solid fa-chevron-right" style="color: #FFF; font-size: 16px;"></i>
+                    </div>
+                </div>
+
+                <h1 style="font-size: 24px; font-weight: 900; line-height: 1.4; color: #000; margin-bottom: 15px;">
+                    Jupiter Transit: 2 जून से इन राशि वालों के शुरू होंगे अच्छे दिन, बिजनेस में होगा जबरदस्त लाभ
+                </h1>
+                
+                <p style="font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.5;">
+                    <b>ज्योतिष डेस्क, अमर उजाला</b><br>
+                    Published by: <span style="color: #2196F3;">Megha Kumari</span> Updated Fri, 29 May 2026
+                </p>
+                
+                <h3 style="color: #D32F2F; font-size: 18px; font-weight: 900; margin-bottom: 10px;">सार</h3>
+                <p style="font-size: 17px; line-height: 1.5; color: #222; margin-bottom: 20px;">
+                    <b>Jupiter Transit in Cancer:</b> गुरु कर्क राशि गोचर से इन राशि वालों के करियर में बड़ा बदलाव देखने को मिल सकता है। व्यापार में लाभ, आर्थिक स्थिति में पहले से सुधार और परीक्षा में शानदार परिणाम मिलने की संभावना है।
+                </p>
+                
+                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800" style="width: 100%; border-radius: 8px; margin-top: 10px;" alt="Article Image">
+                <p style="font-size: 17px; line-height: 1.5; color: #222; margin-top: 20px;">
+                    ज्योतिष शास्त्र के अनुसार, देवगुरु बृहस्पति का गोचर बहुत महत्वपूर्ण माना जाता है। जब गुरु ग्रह राशि परिवर्तन करते हैं, तो सभी 12 राशियों पर इसका प्रभाव पड़ता है...
+                </p>
             </div>
         </div>
 
@@ -4936,331 +5468,176 @@
             </div>
         </div>
 
-<div id="mweb-v2-feed" class="view-section mobile-frame" style="background: #FFF;">
+<div id="app-v2-splash-hybrid" class="view-section hidden mobile-frame starry-theme astro-premium-bg" style="display: flex; flex-direction: column;">
             <div class="ios-home-indicator"></div>
-            <!-- Amar Ujala Header Mockup -->
-            <div style="background: #FFF; padding: 15px 15px 10px; border-bottom: 1px solid #EEE;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                    <i class="fa-solid fa-bars" style="font-size: 20px; color: #333;"></i>
-                    <h2 style="margin:0; font-size: 24px; font-weight: 900; color: #000;">अमर उजाला</h2>
-                    <div style="display: flex; gap: 15px; color: #555;">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                </div>
-                <div style="display: flex; gap: 15px; font-size: 15px; font-weight: 600; color: #444; overflow-x: auto; white-space: nowrap; padding-bottom: 5px;">
-                    <span style="color: #000;">होम</span>
-                    <span style="color: #000;">ज्योतिष</span>
-                    <span style="background: #E53935; color: #FFF; padding: 2px 10px; border-radius: 4px;">बोले तारे</span>
-                    <span>राशिफल</span>
-                </div>
-            </div>
+    <div onclick="goBackToAppFeed()" style="position: absolute; left: 16px; top: 16px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px); z-index: 100;">
+        <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+    </div>
 
-            <!-- Article Body -->
-            <div style="background: #FFF; padding: 15px; color: #000;">
-                <div style="font-size: 12px; color: #666; margin-bottom: 15px;">
-                    Hindi News &nbsp;>&nbsp; Photo Gallery &nbsp;>&nbsp; Astrology &nbsp;>&nbsp; Predictions &nbsp;>&nbsp; Jupiter Transit
-                </div>
-                
-                <!-- ASTRO BANNER INTEGRATION -->
-                <div class="app-full-width-card astro-premium-bg banner-shine" style="margin: 0 auto 15px; max-width: 430px; height: 77px; width: 100%; border: 1px solid rgba(252, 163, 17, 0.5) !important; box-sizing: border-box; padding: 10px 15px;">
-                    <div class="full-card-avatar" style="width: 50px; height: 50px;">
-                        <div class="app-avatar-ring pulse-ring-1" style="width:100%; height:100%;"></div>
-                        <img src="assets/classy_astro_1.png" alt="Dr Priya">
-                        <div class="mweb-waveform app-small-waveform">
-                            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                            <div class="bar"></div><div class="bar"></div>
+            
+            <!-- Hybrid Slider -->
+            <div class="hybrid-slider-container">
+                <div class="login-slider" id="hybridSlider" onscroll="onSliderScroll()">
+                    <!-- Card 1: Priya -->
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_banner.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text glow-gold">क्या प्रमोशन रुका हुआ है?</h2>
+                                <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">मिलेगी नई राह! 🚀</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="full-card-text">
-                        <h4 id="mwebBannerTitle" style="font-size: 14px; margin-bottom: 2px; white-space: nowrap;">जानिए अपना <span id="bannerTypewriterWord" class="tw-glow-word"></span><span class="tw-cursor">|</span></h4>
-                        <p id="mwebBannerSub" style="color: #FFD700; font-size: 13px; margin-top: 6px; font-weight: 600;">पाएं सटीक ज्योतिष परामर्श ✨</p>
-                    </div>
-                    
-                    <div style="display: flex; gap: 8px; margin-left: auto;">
-                        <button onclick="event.stopPropagation(); showSection('mweb-v2-active-chat', null)" style="background: linear-gradient(135deg, #10B981, #047857); color: #FFF; border: none; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(16,185,129,0.3);">
-                            <i class="fa-solid fa-message"></i>
-                        </button>
-                        <button onclick="event.stopPropagation(); showSection('mweb-v2-active-call', null)" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8); color: #FFF; border: none; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(59,130,246,0.3);">
-                            <i class="fa-solid fa-phone"></i>
-                        </button>
-                    </div>
-    
-                </div>
-
-                <h1 style="font-size: 24px; font-weight: 900; line-height: 1.4; color: #000; margin-bottom: 15px;">
-                    Jupiter Transit: 2 जून से इन राशि वालों के शुरू होंगे अच्छे दिन, बिजनेस में होगा जबरदस्त लाभ
-                </h1>
-                
-                <p style="font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.5;">
-                    <b>ज्योतिष डेस्क, अमर उजाला</b><br>
-                    Published by: <span style="color: #2196F3;">Megha Kumari</span> Updated Fri, 29 May 2026
-                </p>
-                
-                <h3 style="color: #D32F2F; font-size: 18px; font-weight: 900; margin-bottom: 10px;">सार</h3>
-                <p style="font-size: 17px; line-height: 1.5; color: #222; margin-bottom: 20px;">
-                    <b>Jupiter Transit in Cancer:</b> गुरु कर्क राशि गोचर से इन राशि वालों के करियर में बड़ा बदलाव देखने को मिल सकता है। व्यापार में लाभ, आर्थिक स्थिति में पहले से सुधार और परीक्षा में शानदार परिणाम मिलने की संभावना है।
-                </p>
-                
-                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800" style="width: 100%; border-radius: 8px; margin-top: 10px;" alt="Article Image">
-                <p style="font-size: 17px; line-height: 1.5; color: #222; margin-top: 20px;">
-                    ज्योतिष शास्त्र के अनुसार, देवगुरु बृहस्पति का गोचर बहुत महत्वपूर्ण माना जाता है। जब गुरु ग्रह राशि परिवर्तन करते हैं, तो सभी 12 राशियों पर इसका प्रभाव पड़ता है...
-                </p>
-            </div>
-        </div>
-
-<div id="app-v2-feed" class="view-section mobile-frame" style="background: #FFF;">
-            <div class="ios-home-indicator"></div>
-            <!-- Amar Ujala Header Mockup -->
-            <div style="background: #FFF; padding: 15px 15px 10px; border-bottom: 1px solid #EEE;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                    <i class="fa-solid fa-bars" style="font-size: 20px; color: #333;"></i>
-                    <h2 style="margin:0; font-size: 24px; font-weight: 900; color: #000;">अमर उजाला</h2>
-                    <div style="display: flex; gap: 15px; color: #555;">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                </div>
-                <div style="display: flex; gap: 15px; font-size: 15px; font-weight: 600; color: #444; overflow-x: auto; white-space: nowrap; padding-bottom: 5px;">
-                    <span style="color: #000;">होम</span>
-                    <span style="color: #000;">ज्योतिष</span>
-                    <span style="background: #E53935; color: #FFF; padding: 2px 10px; border-radius: 4px;">बोले तारे</span>
-                    <span>राशिफल</span>
-                </div>
-            </div>
-
-
-            <!-- Article Body -->
-            <div style="background: #FFF; padding: 15px; color: #000;">
-                <div style="font-size: 12px; color: #666; margin-bottom: 15px;">
-                    Hindi News &nbsp;>&nbsp; Photo Gallery &nbsp;>&nbsp; Astrology &nbsp;>&nbsp; Predictions &nbsp;>&nbsp; Jupiter Transit
-                </div>
-                
-                <!-- ASTRO BANNER INTEGRATION -->
-                <div class="app-full-width-card astro-premium-bg banner-shine" style="margin: 0 auto 15px; max-width: 430px; height: 77px; width: 100%; border: 1px solid rgba(252, 163, 17, 0.5) !important; box-sizing: border-box; padding: 10px 15px;">
-                    <div class="full-card-avatar" style="width: 50px; height: 50px;">
-                        <div class="app-avatar-ring pulse-ring-1" style="width:100%; height:100%;"></div>
-                        <img src="assets/classy_astro_1.png" alt="Dr Priya">
-                        <div class="mweb-waveform app-small-waveform">
-                            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                            <div class="bar"></div><div class="bar"></div>
+                    <!-- Card 2: Ajay -->
+                    <div class="slider-card" data-astro="ajay">
+                        <div class="slider-image-box">
+                            <img src="assets/ajay_banner.png" alt="Dr Ajay">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text glow-gold">व्यापार में घाटा क्यों?</h2>
+                                <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">चमकेगी किस्मत की दुकान 💰</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="full-card-text">
-                        <h4 id="mwebBannerTitle" style="font-size: 14px; margin-bottom: 2px; white-space: nowrap;">जानिए अपना <span id="bannerTypewriterWord" class="tw-glow-word"></span><span class="tw-cursor">|</span></h4>
-                        <p id="mwebBannerSub" style="color: #FFD700; font-size: 13px; margin-top: 6px; font-weight: 600;">पाएं सटीक ज्योतिष परामर्श ✨</p>
+                    <!-- Card 3: Kirti -->
+                    <div class="slider-card" data-astro="kirti">
+                        <div class="slider-image-box">
+                            <img src="assets/kirti_banner.png" alt="Dr Kirti">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text glow-gold">सच्चा प्यार कब मिलेगा?</h2>
+                                <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">मिलेगा जीवनसाथी ❤️</span>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div style="display: flex; gap: 8px; margin-left: auto;">
-                        <button onclick="event.stopPropagation(); showSection('app-v2-active-chat', null)" style="background: linear-gradient(135deg, #10B981, #047857); color: #FFF; border: none; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(16,185,129,0.3);">
-                            <i class="fa-solid fa-message"></i>
-                        </button>
-                        <button onclick="event.stopPropagation(); showSection('app-v2-active-call', null)" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8); color: #FFF; border: none; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(59,130,246,0.3);">
-                            <i class="fa-solid fa-phone"></i>
-                        </button>
-                    </div>
-    
                 </div>
-
-                <h1 style="font-size: 24px; font-weight: 900; line-height: 1.4; color: #000; margin-bottom: 15px;">
-                    Jupiter Transit: 2 जून से इन राशि वालों के शुरू होंगे अच्छे दिन, बिजनेस में होगा जबरदस्त लाभ
-                </h1>
                 
-                <p style="font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.5;">
-                    <b>ज्योतिष डेस्क, अमर उजाला</b><br>
-                    Published by: <span style="color: #2196F3;">Megha Kumari</span> Updated Fri, 29 May 2026
-                </p>
-                
-                <h3 style="color: #D32F2F; font-size: 18px; font-weight: 900; margin-bottom: 10px;">सार</h3>
-                <p style="font-size: 17px; line-height: 1.5; color: #222; margin-bottom: 20px;">
-                    <b>Jupiter Transit in Cancer:</b> गुरु कर्क राशि गोचर से इन राशि वालों के करियर में बड़ा बदलाव देखने को मिल सकता है। व्यापार में लाभ, आर्थिक स्थिति में पहले से सुधार और परीक्षा में शानदार परिणाम मिलने की संभावना है।
-                </p>
-                
-                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800" style="width: 100%; border-radius: 8px; margin-top: 10px;" alt="Article Image">
-                <p style="font-size: 17px; line-height: 1.5; color: #222; margin-top: 20px;">
-                    ज्योतिष शास्त्र के अनुसार, देवगुरु बृहस्पति का गोचर बहुत महत्वपूर्ण माना जाता है। जब गुरु ग्रह राशि परिवर्तन करते हैं, तो सभी 12 राशियों पर इसका प्रभाव पड़ता है...
-                </p>
+                <div class="slider-dots" style="position: absolute; bottom: 30px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
             </div>
-        </div>
 
-<div id="mweb-v2-active-call" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
-            <div class="ios-home-indicator"></div>
-            
-            <!-- Top Header -->
-            <div style="flex-shrink: 0; padding: 40px 16px 16px; display: flex; align-items: center; justify-content: space-between; background: rgba(11,14,26,0.9); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 10; backdrop-filter: blur(10px);">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <img id="active-call-avatar" src="assets/classy_astro_1.png" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5);" alt="Avatar">
-                    <div>
-                        <h3 id="active-call-name" style="color: #FFF; font-size: 16px; font-weight: 800; margin: 0 0 2px;">आचार्य प्रिया वर्मा</h3>
-                        <p id="active-call-expertise" style="color: #FFD700; font-size: 11px; margin: 0;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
+            <!-- Listing Section -->
+            <div class="hybrid-listing-section">
+                <div class="hybrid-listing-header" style="text-align: center; position: relative;">
+                    <h1 id="hybrid-header-title">अपना ज्योतिषी चुनें</h1>
+                    <p id="hybrid-header-subtitle" class="glow-gold" style="font-size: 17px; text-align: center; margin: 0 0 20px 0; font-weight: 600;">करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।</p>
+                    <h2 id="hybrid-header-timer"><i class="fa-regular fa-clock"></i> शेष समय: 10:00</h2>
+                </div>
+
+                <div class="astrologer-list">
+                    <!-- Priya -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('priya')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/classy_astro_1.png" alt="Dr Priya">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य प्रिया वर्मा</h3>
+                            <p>वैदिक, टैरो, अंक ज्योतिष</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (12.4k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ajay -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('ajay')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/dr_ajay.png" alt="Dr Ajay">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य अजय शर्मा</h3>
+                            <p>वैदिक, वास्तु, प्रश्न</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.8 (8.1k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Kirti -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('kirti')">
+                        <div class="avatar-animated-border">
+                            <img src="assets/dr_kirti.png" alt="Dr Kirti">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य कीर्ति शुक्ला</h3>
+                            <p>टैरो, अंक ज्योतिष, केपी</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (9.3k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Rahul -->
+                    <div class="astrologer-list-item" onclick="selectAstrologer('rahul')">
+                        <div class="avatar-animated-border">
+                            <img src="https://i.pravatar.cc/150?img=11" alt="Dr Rahul">
+                        </div>
+                        <div class="astro-details">
+                            <h3>आचार्य राहुल तिवारी</h3>
+                            <p>वैदिक, वास्तु, हस्तरेखा</p>
+                            <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.8 (5.2k)</div>
+                        </div>
+                        <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                            <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-phone"></i> Call
+                            </button>
+                            <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                                चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <button onclick="endCall()" style="background: #EF4444; border: none; width: 64px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);">
-                    <i class="fa-solid fa-phone" style="color: #FFF; font-size: 16px; transform: rotate(135deg);"></i>
-                </button>
+
+                <!-- Dynamic Bottom CTA Container (used by ended_basic) -->
+                <div id="hybrid-bottom-cta" style="margin-top: 24px; display: none; flex-direction: column; gap: 12px;"></div>
             </div>
-            
-            <audio id="toast-sound" preload="auto">
-                <source src="https://assets.mixkit.co/active_storage/sfx/2574/2574-preview.mp3" type="audio/mpeg">
-            </audio>
 
-
-            
-            
-            <!-- Chat Transcript (Scrollable) -->
-            <div class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 140px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
-                
-                <!-- User Msg -->
-                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
-                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
-                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था... करियर और जीवन दोनों के बारे में।</p>
-                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:45 AM</span>
-                    </div>
+            <!-- Sticky Bottom Nudge for App Promo -->
+            <div id="hybrid-fixed-bottom-nudge" style="position: absolute; bottom: 45px; left: 50%; transform: translateX(-50%); width: 92%; background: rgba(25, 30, 45, 0.35); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; border: 1px solid rgba(255,215,0,0.3); border-top: 1px solid rgba(255,215,0,0.5); display: none; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 50;">
+                <div style="color: #FBBF24; font-weight: 800; font-size: 15px; text-align: center; line-height: 1.3;">
+                    अमर उजाला ऐप पर रोज़ 10 मिनट फ्री बात करें ✨
                 </div>
-                
-                <!-- Astro Msg -->
-                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
-                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
-                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
-                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">बिल्कुल बताऊंगी। पहले एक बात याद रखिये — एस्ट्रोलॉजी दिशा देती है, भाग्य लॉक नहीं करती। आपकी मेहनत सबसे बड़ा ग्रह होती है। अपना नाम और जन्म तिथि बता दीजिये।</p>
-                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
-                    </div>
-                </div>
-                
-                <!-- User Msg -->
-                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
-                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
-                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">मेरा नाम राहुल है। जन्म तिथि 14 अगस्त 1997।</p>
-                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
-                    </div>
-                </div>
-                
-                <!-- Astro Msg -->
-                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
-                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
-                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
-                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">राहुल, आपका पर्सनैलिटी चार्ट काफी दिलचस्प एनर्जी दिखा रहा है ✨ आप स्वभाव से क्रिएटिव और इंडिपेंडेंट थिंकर हैं। लेकिन एक प्रॉब्लम है — आप बहुत ओवरथिंक करते हैं और कभी-कभी डिसीजन्स डिले कर देते हैं। 2026 के मिडिल के बाद करियर में स्ट्रॉन्ग ग्रोथ दिख रही है। स्पेशली डिजिटल, टेक, मीडिया, डिजाइन, या कम्युनिकेशन फील्ड में लक स्ट्रॉन्ग रहेगा।</p>
-                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:48 AM</span>
-                    </div>
-                </div>
-
-            </div>
-            
-            <!-- Bottom Control Pill -->
-            <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 85%; background: rgba(25, 30, 45, 0.35); backdrop-filter: blur(20px); border-radius: 40px; padding: 16px 20px; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.6);">
-                <div id="call-timer" style="color: #FFF; font-weight: 800; font-size: 16px; font-variant-numeric: tabular-nums;">03:26</div>
-                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0 10px;">
-                    <!-- Mute Toggle -->
-                    <button id="mute-btn" onclick="toggleMute()" style="background: #444; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-                        <i id="mute-icon" class="fa-solid fa-microphone-slash" style="color: #FFF; font-size: 18px;"></i>
+                <div style="display: flex; width: 100%; gap: 10px; height: 48px;">
+                    <button onclick="goBackToAppFeed()" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.2;">
+                        वापस अमर उजाला<br>पर जाएं
                     </button>
-                    
-                    <!-- Amplitude Animation -->
-                    <div class="amplitude-bars" id="audio-visualizer" style="display: flex; gap: 4px; height: 30px; align-items: center; opacity: 0.3;">
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                    </div>
-                    
-                    <!-- Interrupt / Speaker Toggle -->
-                    <button id="interrupt-btn" onclick="toggleInterrupt()" style="background: #10B981; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(16,185,129,0.4);">
-                        <i id="interrupt-icon" class="fa-solid fa-volume-high" style="color: #FFF; font-size: 18px;"></i>
-                    </button>
-
-                    <button onclick="showSection('mweb-v2-active-chat', null)" style="background: #3B82F6; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(59,130,246,0.4);">
-                        <i class="fa-solid fa-message" style="color: #FFF; font-size: 18px;"></i>
-                    </button>
-        
-                </div>
-            </div>
-            
-        </div>
-
-<div id="mweb-v2-active-chat" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
-            <div class="ios-home-indicator"></div>
-            
-            <!-- Top Header -->
-            <div style="flex-shrink: 0; padding: 40px 16px 16px; display: flex; align-items: center; justify-content: space-between; background: rgba(11,14,26,0.9); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 10; backdrop-filter: blur(10px);">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <img id="active-call-avatar" src="assets/classy_astro_1.png" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5);" alt="Avatar">
-                    <div>
-                        <h3 id="active-call-name" style="color: #FFF; font-size: 16px; font-weight: 800; margin: 0 0 2px;">आचार्य प्रिया वर्मा</h3>
-                        <p id="active-call-expertise" style="color: #FFD700; font-size: 11px; margin: 0;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
-                    </div>
-                </div>
-                <button onclick="endCall()" style="background: #EF4444; border: none; width: 64px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);">
-                    <i class="fa-solid fa-phone" style="color: #FFF; font-size: 16px; transform: rotate(135deg);"></i>
-                </button>
-            </div>
-            
-            <audio id="toast-sound" preload="auto">
-                <source src="https://assets.mixkit.co/active_storage/sfx/2574/2574-preview.mp3" type="audio/mpeg">
-            </audio>
-
-
-            
-            
-            <!-- Chat Transcript (Scrollable) -->
-            <div class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 140px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
-                
-                <!-- User Msg -->
-                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
-                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
-                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">नमस्ते मैम, मुझे अपने भविष्य के बारे में जानना था... करियर और जीवन दोनों के बारे में।</p>
-                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:45 AM</span>
-                    </div>
-                </div>
-                
-                <!-- Astro Msg -->
-                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
-                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
-                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
-                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">बिल्कुल बताऊंगी। पहले एक बात याद रखिये — एस्ट्रोलॉजी दिशा देती है, भाग्य लॉक नहीं करती। आपकी मेहनत सबसे बड़ा ग्रह होती है। अपना नाम और जन्म तिथि बता दीजिये।</p>
-                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
-                    </div>
-                </div>
-                
-                <!-- User Msg -->
-                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
-                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
-                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">मेरा नाम राहुल है। जन्म तिथि 14 अगस्त 1997।</p>
-                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:46 AM</span>
-                    </div>
-                </div>
-                
-                <!-- Astro Msg -->
-                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
-                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
-                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
-                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">राहुल, आपका पर्सनैलिटी चार्ट काफी दिलचस्प एनर्जी दिखा रहा है ✨ आप स्वभाव से क्रिएटिव और इंडिपेंडेंट थिंकर हैं। लेकिन एक प्रॉब्लम है — आप बहुत ओवरथिंक करते हैं और कभी-कभी डिसीजन्स डिले कर देते हैं। 2026 के मिडिल के बाद करियर में स्ट्रॉन्ग ग्रोथ दिख रही है। स्पेशली डिजिटल, टेक, मीडिया, डिजाइन, या कम्युनिकेशन फील्ड में लक स्ट्रॉन्ग रहेगा।</p>
-                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:48 AM</span>
-                    </div>
-                </div>
-
-            </div>
-            
-            
-            <div style="position: absolute; bottom: 0; left: 0; width: 100%; background: #0B0E1A; border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; display: flex; align-items: center; gap: 10px; z-index: 10;">
-                <button onclick="switchToSpeakMode('mweb-v2-active-call')" style="background: #10B981; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
-                    <i class="fa-solid fa-microphone" style="color: #FFF; font-size: 16px;"></i>
-                </button>
-                <input type="text" placeholder="Type a message..." style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 10px 16px; color: #FFF; font-size: 14px; outline: none;">
-                <button style="background: #3B82F6; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
-                    <i class="fa-solid fa-paper-plane" style="color: #FFF; font-size: 16px;"></i>
-                </button>
-            </div>
-        
-</div>
-                    
-                    <!-- Interrupt / Speaker Toggle -->
-                    <button id="interrupt-btn" onclick="toggleInterrupt()" style="background: #10B981; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(16,185,129,0.4);">
-                        <i id="interrupt-icon" class="fa-solid fa-volume-high" style="color: #FFF; font-size: 18px;"></i>
+                    <button style="flex: 1.3; background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); color: #111827; border: none; border-radius: 12px; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px;">
+                        <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> 
+                        ऐप डाउनलोड करें 
+                        <i class="fa-solid fa-download"></i>
                     </button>
                 </div>
             </div>
-            
+
+            <!-- Sticky Bottom Nudge for Ended Basic (No App Promo) -->
+            <div id="hybrid-basic-bottom-nudge" style="position: absolute; bottom: 45px; left: 50%; transform: translateX(-50%); width: 92%; background: rgba(25, 30, 45, 0.35); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; border: 1px solid rgba(239, 68, 68, 0.3); border-top: 1px solid rgba(239, 68, 68, 0.5); display: none; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 50;">
+                <div style="color: #FCA5A5; font-weight: 800; font-size: 16px; text-align: center; line-height: 1.4;">
+                    10 मिनट पूरे हुए! ⏱️<br>
+                    <span style="color: #FFF; font-size: 14px; font-weight: 600; opacity: 0.95;">कल फिर आएं और अपने भविष्य का हाल जानें ✨</span>
+                </div>
+                <button onclick="goBackToAppFeed()" style="width: 100%; background: rgba(255,255,255,0.08); color: #FFF; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.2s;">
+                    वापस अमर उजाला पर जाएं
+                </button>
+            </div>
         </div>
 
 <div id="app-v2-active-call" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
@@ -5352,7 +5729,7 @@
                     <button onclick="showSection('app-v2-active-chat', null)" style="background: #3B82F6; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(59,130,246,0.4);">
                         <i class="fa-solid fa-message" style="color: #FFF; font-size: 18px;"></i>
                     </button>
-        
+            
                 </div>
             </div>
             
@@ -5360,30 +5737,26 @@
 
 <div id="app-v2-active-chat" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
             <div class="ios-home-indicator"></div>
+
+
             
             <!-- Top Header -->
             <div style="flex-shrink: 0; padding: 40px 16px 16px; display: flex; align-items: center; justify-content: space-between; background: rgba(11,14,26,0.9); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 10; backdrop-filter: blur(10px);">
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <img id="active-call-avatar" src="assets/classy_astro_1.png" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5);" alt="Avatar">
+                    <img id="history-avatar" src="assets/classy_astro_1.png" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,215,0,0.5);" alt="Avatar">
                     <div>
-                        <h3 id="active-call-name" style="color: #FFF; font-size: 16px; font-weight: 800; margin: 0 0 2px;">आचार्य प्रिया वर्मा</h3>
-                        <p id="active-call-expertise" style="color: #FFD700; font-size: 11px; margin: 0;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
+                        <h3 id="history-name" style="color: #FFF; font-size: 16px; font-weight: 800; margin: 0 0 2px;">आचार्य प्रिया वर्मा</h3>
+                        <p id="history-expertise" style="color: #FFD700; font-size: 11px; margin: 0;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
                     </div>
                 </div>
-                <button onclick="endCall()" style="background: #EF4444; border: none; width: 64px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);">
-                    <i class="fa-solid fa-phone" style="color: #FFF; font-size: 16px; transform: rotate(135deg);"></i>
+                <button onclick="showSection('mweb-v2-splash-hybrid')" style="background: rgba(255,255,255,0.1); border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <i class="fa-solid fa-xmark" style="color: #FFF; font-size: 16px;"></i>
                 </button>
             </div>
             
-            <audio id="toast-sound" preload="auto">
-                <source src="https://assets.mixkit.co/active_storage/sfx/2574/2574-preview.mp3" type="audio/mpeg">
-            </audio>
-
-
-            
             
             <!-- Chat Transcript (Scrollable) -->
-            <div class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 140px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
+            <div class="no-scrollbar" style="flex: 1; overflow-y: auto; padding: 20px 16px 260px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #0B0E1A 0%, #151A2C 100%);">
                 
                 <!-- User Msg -->
                 <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
@@ -5419,9 +5792,34 @@
                     </div>
                 </div>
 
+                <!-- User Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-end; max-width: 80%;">
+                    <div style="background: rgba(255,215,0,0.9); padding: 8px 12px; border-radius: 12px 12px 0 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.15); position: relative;">
+                        <p style="color: #0B0E1A; font-size: 14px; font-weight: 600; margin: 0 0 14px 0; line-height: 1.4;">धन्यवाद आचार्य जी। क्या प्रेम सम्बंध में कोई अड़चन है?</p>
+                        <span style="font-size: 10px; color: rgba(0,0,0,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:49 AM</span>
+                    </div>
+                </div>
+                
+                <!-- Astro Msg -->
+                <div style="display: flex; flex-direction: column; align-self: flex-start; max-width: 80%;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                        <span class="bubble-header" style="font-size: 11px; font-weight: 700; color: #FFD700; margin-bottom: 4px; display: block;">आचार्य प्रिया वर्मा</span>
+                        <p style="color: #FFF; font-size: 14px; margin: 0 0 14px 0; line-height: 1.5;">अभी शुक्र की स्थिति थोड़ी कमजोर है। धैर्य रखें, साल के अंत तक स्थिति बेहतर होगी।</p>
+                        <span style="font-size: 10px; color: rgba(255,255,255,0.5); position: absolute; bottom: 4px; right: 8px;">14 Aug, 10:50 AM</span>
+                    </div>
+                </div>
+                
+                <!-- End message -->
+                <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 10px;">-- 14 Aug, 10:55 AM पर चैट समाप्त --</div>
+
             </div>
             
-            
+            <!-- Dynamic Chat History Bottom Panel -->
+            <div id="chat-history-bottom-panel" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 92%; background: rgba(30, 40, 60, 0.25); backdrop-filter: blur(32px) saturate(180%); -webkit-backdrop-filter: blur(32px) saturate(180%); border-radius: 28px; padding: 24px 20px; border: 1px solid rgba(255,255,255,0.2); border-top: 1px solid rgba(255,255,255,0.3); display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                
+                <!-- State 1: Active (Time Left) -->
+                
+            <!-- Bottom Chat Controls -->
             <div style="position: absolute; bottom: 0; left: 0; width: 100%; background: #0B0E1A; border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; display: flex; align-items: center; gap: 10px; z-index: 10;">
                 <button onclick="switchToSpeakMode('app-v2-active-call')" style="background: #10B981; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
                     <i class="fa-solid fa-microphone" style="color: #FFF; font-size: 16px;"></i>
@@ -5431,15 +5829,48 @@
                     <i class="fa-solid fa-paper-plane" style="color: #FFF; font-size: 16px;"></i>
                 </button>
             </div>
-        
-</div>
-                    
-                    <!-- Interrupt / Speaker Toggle -->
-                    <button id="interrupt-btn" onclick="toggleInterrupt()" style="background: #10B981; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(16,185,129,0.4);">
-                        <i id="interrupt-icon" class="fa-solid fa-volume-high" style="color: #FFF; font-size: 18px;"></i>
-                    </button>
-                </div>
-            </div>
             
+</div>
+
+                <!-- State 2: Combined Feedback -->
+                <div id="history-feedback-combined" style="display: flex; flex-direction: column; width: 100%; align-items: center; text-align: center;">
+                    <div style="color: #FBBF24; font-weight: 800; font-size: 17px; line-height: 1.4; margin-bottom: 8px;">
+                        10 मिनट पूरे हो गए हैं! कल पुनः आएं ✨
+                    </div>
+                    <div style="font-size: 15px; font-weight: 500; color: #FFF; margin-bottom: 20px; line-height: 1.4; padding: 0 5px;">
+                        आपका फीडबैक हमारे लिए महत्वपूर्ण है।
+                    </div>
+                    <div style="display: flex; width: 100%; gap: 12px; height: 54px;">
+                        <button onclick="showSection('mweb-v2-splash-hybrid')" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; padding: 0;">
+                            <span style="font-size: 11px; font-weight: 500; color: #9CA3AF; letter-spacing: 0.2px;">फीडबैक दे चुके?</span>
+                            <span style="font-size: 15px; font-weight: 700; color: #F3F4F6; margin-top: 2px;">वापस जाएँ</span>
+                        </button>
+                        <button onclick="submitFeedbackFlow()" style="flex: 1.2; background: linear-gradient(135deg, #10B981 0%, #047857 100%); color: #FFF; border: none; border-radius: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.15); transition: transform 0.2s; padding: 0; display: flex; align-items: center; justify-content: center; gap: 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
+                            फीडबैक भरें <i class="fa-solid fa-arrow-right" style="font-size: 14px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- State 3: App Promo (Feedback Submitted) -->
+                <div id="history-app-promo" style="display: none; flex-direction: column; width: 100%; align-items: center; text-align: center;">
+                    <div style="color: #FBBF24; font-weight: 800; font-size: 17px; line-height: 1.4; margin-bottom: 8px;">
+                        अमर उजाला ऐप पर रोज़ 10 मिनट फ्री बात करें
+                    </div>
+                    <div style="font-size: 15px; font-weight: 500; color: #FFF; margin-bottom: 20px; line-height: 1.4; padding: 0 5px;">
+                        10 मिनट पूरे हुए! कृपया अपना फीडबैक दें!
+                    </div>
+                    <div style="display: flex; width: 100%; gap: 12px; height: 54px;">
+                        <button onclick="submitFeedbackFlow()" style="flex: 1; background: linear-gradient(135deg, #10B981 0%, #047857 100%); color: #FFF; border: none; border-radius: 16px; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.15); transition: transform 0.2s; padding: 0; display: flex; align-items: center; justify-content: center; gap: 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
+                            फीडबैक भरें <i class="fa-solid fa-arrow-right" style="font-size: 14px;"></i>
+                        </button>
+                        <button style="flex: 1; background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); color: #111827; border: none; border-radius: 16px; font-size: 14px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 8px;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
+                            <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;"> 
+                            ऐप डाउनलोड करें 
+                            <i class="fa-solid fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
