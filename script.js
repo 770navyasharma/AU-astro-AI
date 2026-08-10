@@ -2192,12 +2192,12 @@ function goBackToAppFeed() {
 
 
 // Unified V2 Session Logic
-function openV2Session(mode) {
+function openV2Session(mode, isFreshConnection = false) {
     showSection('mweb-v2-active-session', null);
-    switchV2SessionMode(mode);
+    switchV2SessionMode(mode, isFreshConnection);
 }
 
-function switchV2SessionMode(mode) {
+function switchV2SessionMode(mode, isFreshConnection = false) {
     const callControls = document.getElementById('v2-call-controls');
     const chatControls = document.getElementById('v2-chat-controls');
     const switchToChatBtn = document.getElementById('switch-to-chat-btn');
@@ -2255,13 +2255,61 @@ function switchV2SessionMode(mode) {
         }
         
         // Trigger TTS feedback when switching to call mode
-        if ('speechSynthesis' in window) {
+        if ('speechSynthesis' in window && isFreshConnection) {
             window.speechSynthesis.cancel();
             const msg = new SpeechSynthesisUtterance();
-            msg.text = "अब आप मुझसे बोलकर बात कर सकते हैं";
+            msg.text = "Hello navya ji continue karte hain";
             msg.lang = 'hi-IN';
             msg.rate = 0.95;
             window.speechSynthesis.speak(msg);
         }
     }
+}
+
+
+// ==========================================
+// V2 DIALING AND CONNECTION LOGIC
+// ==========================================
+
+function startV2CallConnection(btn) {
+    if (btn) showSection('mweb-v2-dialing', btn);
+    else showSection('mweb-v2-dialing');
+
+    const connectingContainer = document.getElementById('v2-dialing-status-connecting');
+    const noMicContainer = document.getElementById('v2-dialing-status-no-mic');
+    const ringtone = document.getElementById('v2-dialing-ringtone');
+
+    if (connectingContainer && noMicContainer) {
+        connectingContainer.style.display = 'block';
+        noMicContainer.style.display = 'none';
+        
+        // Play ringtone
+        if (ringtone) {
+            ringtone.currentTime = 0;
+            ringtone.play().catch(e => console.log("Audio play blocked by browser:", e));
+        }
+
+        // Simulate connecting delay before showing mic permission prompt
+        setTimeout(() => {
+            connectingContainer.style.display = 'none';
+            noMicContainer.style.display = 'flex';
+            // We can pause ringtone when permission prompt shows, or let it ring. Let's let it ring to build urgency.
+        }, 1500);
+    }
+}
+
+function grantV2MicPermission() {
+    const ringtone = document.getElementById('v2-dialing-ringtone');
+    if (ringtone) {
+        ringtone.pause();
+        ringtone.currentTime = 0;
+    }
+
+    // Trigger vibration if supported (Android mostly)
+    if (navigator.vibrate) {
+        navigator.vibrate([200, 100, 200]);
+    }
+
+    // Transition to V2 Session Call Mode
+    openV2Session('call', true); // Pass a flag to indicate it's a fresh connection
 }
