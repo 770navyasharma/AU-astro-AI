@@ -840,7 +840,7 @@ function updateNavigation() {
         defaultSection = platform === 'mweb' ? 'mweb-feed' : 'app-feed';
     } else {
         targetSelectId = 'mwebV2ScreensSelect'; // App not supported in V2 demo
-        defaultSection = 'mweb-v2-active-call';
+        defaultSection = 'mweb-v2-active-session';
     }
     
     const targetSelect = document.getElementById(targetSelectId);
@@ -849,7 +849,7 @@ function updateNavigation() {
         targetSelect.selectedIndex = 0;
         eval(targetSelect.value);
     } else {
-        showSection(defaultSection, null);
+        if(defaultSection === 'mweb-v2-active-session') openV2Session('call'); else showSection(defaultSection, null);
     }
 }
 
@@ -2188,20 +2188,80 @@ function goBackToAppFeed() {
     lastFeedSource = 'app-feed';
 }
 
-// V2 Chat/Call Mode Switch
-function switchToSpeakMode(targetCallId) {
-    if ('speechSynthesis' in window) {
-        // Cancel any ongoing speech to ensure immediate playback
-        window.speechSynthesis.cancel();
-        
-        const msg = new SpeechSynthesisUtterance();
-        msg.text = "अब आप मुझसे बोलकर बात कर सकते हैं"; // Hindi text
-        msg.lang = 'hi-IN'; // Hindi voice
-        msg.rate = 0.95; // Slightly slower for natural feel
-        
-        window.speechSynthesis.speak(msg);
-    }
+
+
+
+// Unified V2 Session Logic
+function openV2Session(mode) {
+    showSection('mweb-v2-active-session', null);
+    switchV2SessionMode(mode);
+}
+
+function switchV2SessionMode(mode) {
+    const callControls = document.getElementById('v2-call-controls');
+    const chatControls = document.getElementById('v2-chat-controls');
+    const switchToChatBtn = document.getElementById('switch-to-chat-btn');
+    const switchToCallBtn = document.getElementById('switch-to-call-btn');
     
-    // Switch the UI to the target call screen
-    showSection(targetCallId, null);
+    if (mode === 'chat') {
+        // Hide Call Controls (Scale down and fade out)
+        if (callControls) {
+            callControls.style.transform = 'translateX(-50%) scale(0.8)';
+            callControls.style.opacity = '0';
+            callControls.style.pointerEvents = 'none';
+        }
+        
+        // Show Chat Controls (Slide up and fade in)
+        if (chatControls) {
+            chatControls.style.transform = 'translateY(0)';
+            chatControls.style.opacity = '1';
+            chatControls.style.pointerEvents = 'auto';
+        }
+        
+        // Swap Header Buttons
+        if (switchToChatBtn) switchToChatBtn.style.display = 'none';
+        if (switchToCallBtn) {
+            switchToCallBtn.style.display = 'flex';
+            // Pop animation on appearance
+            switchToCallBtn.style.transform = 'scale(0.8)';
+            requestAnimationFrame(() => {
+                switchToCallBtn.style.transform = 'scale(1)';
+            });
+        }
+        
+    } else {
+        // Show Call Controls (Scale up and fade in)
+        if (callControls) {
+            callControls.style.transform = 'translateX(-50%) scale(1)';
+            callControls.style.opacity = '1';
+            callControls.style.pointerEvents = 'auto';
+        }
+        
+        // Hide Chat Controls (Slide down and fade out)
+        if (chatControls) {
+            chatControls.style.transform = 'translateY(100%)';
+            chatControls.style.opacity = '0';
+            chatControls.style.pointerEvents = 'none';
+        }
+        
+        // Swap Header Buttons
+        if (switchToCallBtn) switchToCallBtn.style.display = 'none';
+        if (switchToChatBtn) {
+            switchToChatBtn.style.display = 'flex';
+            switchToChatBtn.style.transform = 'scale(0.8)';
+            requestAnimationFrame(() => {
+                switchToChatBtn.style.transform = 'scale(1)';
+            });
+        }
+        
+        // Trigger TTS feedback when switching to call mode
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const msg = new SpeechSynthesisUtterance();
+            msg.text = "अब आप मुझसे बोलकर बात कर सकते हैं";
+            msg.lang = 'hi-IN';
+            msg.rate = 0.95;
+            window.speechSynthesis.speak(msg);
+        }
+    }
 }
