@@ -823,29 +823,38 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================== */
 
 function selectPlatform(platform) {
-    if (platform === 'mweb') {
-        const mwebSelect = document.getElementById('mwebScreensSelect');
-        if (mwebSelect) {
-            mwebSelect.style.display = 'block';
-            mwebSelect.selectedIndex = 0;
-            eval(mwebSelect.value);
-        }
-        const appSelect = document.getElementById('appScreensSelect');
-        if (appSelect) appSelect.style.display = 'none';
+    document.getElementById('platformSelect').value = platform;
+    updateNavigation();
+}
+
+function updateNavigation() {
+    const platform = document.getElementById('platformSelect').value;
+    const version = document.getElementById('versionSelect').value;
+    
+    document.querySelectorAll('.nav-screen-select').forEach(s => s.style.display = 'none');
+    
+    let targetSelectId = '';
+    let defaultSection = '';
+    if (version === 'v1') {
+        targetSelectId = platform === 'mweb' ? 'mwebScreensSelect' : 'appScreensSelect';
+        defaultSection = platform === 'mweb' ? 'mweb-feed' : 'app-feed';
     } else {
-        const appSelect = document.getElementById('appScreensSelect');
-        if (appSelect) {
-            appSelect.style.display = 'block';
-            appSelect.selectedIndex = 0;
-            eval(appSelect.value);
-        }
-        const mwebSelect = document.getElementById('mwebScreensSelect');
-        if (mwebSelect) mwebSelect.style.display = 'none';
+        targetSelectId = platform === 'mweb' ? 'mwebV2ScreensSelect' : 'appV2ScreensSelect';
+        defaultSection = platform === 'mweb' ? 'mweb-v2-feed' : 'app-v2-feed';
+    }
+    
+    const targetSelect = document.getElementById(targetSelectId);
+    if (targetSelect) {
+        targetSelect.style.display = 'block';
+        targetSelect.selectedIndex = 0;
+        eval(targetSelect.value);
+    } else {
+        showSection(defaultSection, null);
     }
 }
 
 function startDemoFlow() {
-    selectPlatform('mweb');
+    updateNavigation();
 }
 
 // Override banner click to go to start screen for Mweb
@@ -2177,4 +2186,22 @@ function goBackToAppFeed() {
     const btn = document.querySelectorAll('#app-filters .demo-btn-outline')[0];
     showSection('app-feed', btn);
     lastFeedSource = 'app-feed';
+}
+
+// V2 Chat/Call Mode Switch
+function switchToSpeakMode(targetCallId) {
+    if ('speechSynthesis' in window) {
+        // Cancel any ongoing speech to ensure immediate playback
+        window.speechSynthesis.cancel();
+        
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = "अब आप मुझसे बोलकर बात कर सकते हैं"; // Hindi text
+        msg.lang = 'hi-IN'; // Hindi voice
+        msg.rate = 0.95; // Slightly slower for natural feel
+        
+        window.speechSynthesis.speak(msg);
+    }
+    
+    // Switch the UI to the target call screen
+    showSection(targetCallId, null);
 }
