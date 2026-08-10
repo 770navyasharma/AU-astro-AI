@@ -3775,9 +3775,16 @@
                         <p id="active-call-expertise" style="color: #FFD700; font-size: 11px; margin: 0;">करियर · प्रेम · रिश्ते विशेषज्ञ</p>
                     </div>
                 </div>
-                <button onclick="endCall()" style="background: #EF4444; border: none; width: 64px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);">
-                    <i class="fa-solid fa-phone" style="color: #FFF; font-size: 16px; transform: rotate(135deg);"></i>
-                </button>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <button onclick="showSection('mweb-v2-active-chat', null)" style="position: relative; overflow: hidden; background: linear-gradient(135deg, #3B82F6, #1D4ED8); border: 1px solid rgba(255,255,255,0.15); height: 36px; padding: 0 16px; border-radius: 18px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 12px rgba(59,130,246,0.4);">
+                        <i class="fa-solid fa-message" style="color: #FFF; font-size: 14px;"></i>
+                        <span style="color: #FFF; font-size: 12px; font-weight: 700; letter-spacing: 0.5px;">चैट करें</span>
+                        <div style="position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transform: skewX(-20deg); animation: sweep 2.5s infinite; z-index: 5; pointer-events: none;"></div>
+                    </button>
+                    <button onclick="endCall()" style="background: #EF4444; border: none; width: 64px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);">
+                        <i class="fa-solid fa-phone" style="color: #FFF; font-size: 16px; transform: rotate(135deg);"></i>
+                    </button>
+                </div>
             </div>
             
             <audio id="toast-sound" preload="auto">
@@ -3849,10 +3856,7 @@
                         <i id="interrupt-icon" class="fa-solid fa-volume-high" style="color: #FFF; font-size: 18px;"></i>
                     </button>
 
-                    <button onclick="showSection('mweb-v2-active-chat', null)" style="background: #3B82F6; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(59,130,246,0.4);">
-                        <i class="fa-solid fa-message" style="color: #FFF; font-size: 18px;"></i>
-                    </button>
-    
+
                 </div>
             </div>
             
