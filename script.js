@@ -2202,6 +2202,11 @@ function switchV2SessionMode(mode, isFreshConnection = false) {
     const chatControls = document.getElementById('v2-chat-controls');
     const switchToChatBtn = document.getElementById('switch-to-chat-btn');
     const switchToCallBtn = document.getElementById('switch-to-call-btn');
+    const timerPill = document.getElementById('v2-session-timer');
+    
+    if (timerPill) {
+        timerPill.style.display = mode === 'chat' ? 'flex' : 'none';
+    }
     
     if (mode === 'chat') {
         // Hide Call Controls (Scale down and fade out)
