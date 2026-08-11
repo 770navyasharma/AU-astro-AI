@@ -2210,6 +2210,12 @@ function switchV2SessionMode(mode, isFreshConnection = false) {
             callControls.style.opacity = '0';
             callControls.style.pointerEvents = 'none';
         }
+
+        if (isFreshConnection) {
+            // Give it a tiny delay to feel natural
+            setTimeout(injectV2ChatGreeting, 800);
+        }
+    
         
         // Show Chat Controls (Slide up and fade in)
         if (chatControls) {
@@ -2312,4 +2318,81 @@ function grantV2MicPermission() {
 
     // Transition to V2 Session Call Mode
     openV2Session('call', true); // Pass a flag to indicate it's a fresh connection
+}
+
+
+// ==========================================
+// V2 LOGIN FLOW & ROUTING
+// ==========================================
+let v2EntryMode = 'call';
+let v2SelectedAstro = 'priya';
+
+function initiateV2Flow(mode, astroId) {
+    v2EntryMode = mode;
+    v2SelectedAstro = astroId;
+    
+    // Reset login form just in case
+    const v2LoginSection = document.getElementById('mweb-v2-start-login');
+    if (v2LoginSection) {
+        const inputContainer = v2LoginSection.querySelector('#loginInputSection');
+        const otpContainer = v2LoginSection.querySelector('#otpInputSection');
+        if (inputContainer && otpContainer) {
+            inputContainer.classList.remove('hidden');
+            otpContainer.classList.add('hidden');
+        }
+    }
+    
+    showSection('mweb-v2-start-login');
+}
+
+function showV2OtpSection() {
+    const v2LoginSection = document.getElementById('mweb-v2-start-login');
+    if (v2LoginSection) {
+        const phoneInput = v2LoginSection.querySelector('input[type="tel"]');
+        if (phoneInput && phoneInput.value.length < 10) {
+            alert('कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें।');
+            return;
+        }
+        v2LoginSection.querySelector('#loginInputSection').classList.add('hidden');
+        v2LoginSection.querySelector('#otpInputSection').classList.remove('hidden');
+    }
+}
+
+function moveToNextV2Otp(current, nextFieldID) {
+    if (current.value.length >= 1) {
+        const next = document.getElementById(nextFieldID);
+        if (next) {
+            next.focus();
+        } else {
+            current.blur();
+        }
+    }
+}
+
+function verifyV2OtpAndProceed() {
+    // Proceed based on entry mode
+    if (v2EntryMode === 'call') {
+        startV2CallConnection();
+    } else {
+        openV2Session('chat', true);
+    }
+}
+
+function injectV2ChatGreeting() {
+    const chatContainer = document.getElementById('v2-chat-history-container');
+    if (!chatContainer) return;
+    
+    const botHtml = `
+        <div class="chat-message bot-message" style="display: flex; gap: 8px; max-width: 85%; align-self: flex-start; opacity: 0; transform: translateY(10px); animation: chatPopIn 0.3s forwards;">
+            <img src="assets/classy_astro_1.png" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;" alt="Astro">
+            <div style="background: rgba(255,255,255,0.05); padding: 12px 14px; border-radius: 0 16px 16px 16px; border: 1px solid rgba(255,255,255,0.1);">
+                <p style="color: #FFF; font-size: 14px; margin: 0; line-height: 1.4;">
+                    नमस्ते जी! 🙏 आज आप क्या जानना चाहते हैं? अपनी कुंडली के बारे में पूछना चाहते हैं? कृपया अपना नाम, जन्म तिथि, जन्म स्थान, और जन्म का समय बताएं ताकि मैं आपकी कुंडली देख पाऊं। ✨
+                </p>
+                <p style="color: rgba(255,255,255,0.4); font-size: 10px; margin: 4px 0 0; text-align: right;">अभी</p>
+            </div>
+        </div>
+    `;
+    chatContainer.insertAdjacentHTML('beforeend', botHtml);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
 }

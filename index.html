@@ -86,7 +86,10 @@
             
             
             
+            
             <select id="mwebV2ScreensSelect" class="nav-screen-select" onchange="eval(this.value)" style="display:none; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,215,0,0.5); background: #252b48; color: #FFD700; font-size: 14px; outline: none; cursor: pointer; min-width: 250px;">
+                <option value="showSection('mweb-v2-astro-listing', null)">0. V2 Astrologer Listing</option>
+                <option value="showSection('mweb-v2-start-login', null)">0.1 V2 Login Screen</option>
                 <option value="openV2Session('call')">1. V2 Active Call Mode</option>
                 <option value="openV2Session('chat')">2. V2 Active Chat Mode</option>
                 <option value="startV2CallConnection()">3. V2 Dialing Screen</option>
@@ -1654,7 +1657,7 @@
                                 <i class="fa-solid fa-microphone-slash" style="color: #FBBF24; font-size: 22px;"></i>
                                 <p style="color: #FBBF24; font-size: 18px; font-weight: 800; margin: 0; line-height: 1.3; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">माइक्रोफ़ोन एक्सेस नहीं मिला!</p>
                             </div>
-                            <p style="color: rgba(255,255,255,0.35); font-size: 13px; font-weight: 500; margin: 0; line-height: 1.4;">कॉल शुरू करने के लिए कृपया अपने ब्राउज़र की सेटिंग में जाकर माइक (Mic) की अनुमति (Permission) दें।</p>
+                            <p style="color: rgba(255,255,255,0.35); font-size: 13px; font-weight: 500; margin: 0; line-height: 1.4;">कॉल शुरू करने के लिए कृपया अपने ब्राउज़र की सेटिंग में जाकर माइक (Mic) की अनुमति (Permission) दें। माइक की अनुमति दें और नीचे बटन पर टैप करें, इससे कॉल शुरू होगी।</p>
                         </div>
                         <button onclick="retryMicPermission()" style="background: #FBBF24; color: #000; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-microphone"></i> परमिशन दें</button>
                     </div>
@@ -3223,7 +3226,7 @@
                                 <i class="fa-solid fa-microphone-slash" style="color: #FBBF24; font-size: 22px;"></i>
                                 <p style="color: #FBBF24; font-size: 18px; font-weight: 800; margin: 0; line-height: 1.3; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">माइक्रोफ़ोन एक्सेस नहीं मिला!</p>
                             </div>
-                            <p style="color: rgba(255,255,255,0.35); font-size: 13px; font-weight: 500; margin: 0; line-height: 1.4;">कॉल शुरू करने के लिए कृपया अपने ब्राउज़र की सेटिंग में जाकर माइक (Mic) की अनुमति (Permission) दें।</p>
+                            <p style="color: rgba(255,255,255,0.35); font-size: 13px; font-weight: 500; margin: 0; line-height: 1.4;">कॉल शुरू करने के लिए कृपया अपने ब्राउज़र की सेटिंग में जाकर माइक (Mic) की अनुमति (Permission) दें। माइक की अनुमति दें और नीचे बटन पर टैप करें, इससे कॉल शुरू होगी।</p>
                         </div>
                         <button onclick="retryMicPermission()" style="background: #FBBF24; color: #000; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-microphone"></i> परमिशन दें</button>
                     </div>
@@ -3780,6 +3783,270 @@
         </div>
 <!-- V2 UNIFIED SESSION SCREEN -->
 <!-- V2 DIALING SCREEN -->
+<!-- V2 ASTRO LISTING -->
+
+        <div id="mweb-v2-astro-listing" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine" style="display: flex; flex-direction: column;">
+            <div class="ios-home-indicator"></div>
+            <!-- Header -->
+            <div style="padding: 40px 16px 20px; text-align: center; background: rgba(11,14,26,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <h2 style="color: #FFF; font-size: 22px; font-weight: 800; margin: 0 0 5px;">हमारे विशेषज्ञ ज्योतिषी</h2>
+                <p style="color: rgba(255,255,255,0.7); font-size: 13px; margin: 0;">परामर्श के लिए ज्योतिषी चुनें</p>
+            </div>
+            
+            <!-- Contact List -->
+            <div style="padding: 20px 16px; display: flex; flex-direction: column; gap: 16px; flex: 1; overflow-y: auto;">
+
+                <!-- Row 1: Priya -->
+                <div class="astro-contact-row" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 18px; padding: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <div style="position: relative; flex-shrink: 0;">
+                            <img src="assets/classy_astro_1.png" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #FFD700;" alt="Priya">
+                            <span class="astro-online-dot"></span>
+                        </div>
+                        <div class="astro-contact-info" style="flex: 1;">
+                            <p class="astro-contact-name" style="margin: 0 0 2px; font-weight: 800; color: #FFF; font-size: 16px;">आचार्य प्रिया वर्मा</p>
+                            <p class="astro-contact-spec" style="margin: 0 0 4px; color: #FFD700; font-size: 12px;">करियर · प्रेम · रिश्ते</p>
+                            <p class="astro-contact-meta" style="margin: 0; color: rgba(255,255,255,0.5); font-size: 11px;">⭐ 4.9 &nbsp;·&nbsp; 10,000+ सेशन</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="initiateV2Flow('chat', 'priya')" style="flex: 1; background: linear-gradient(135deg, #3B82F6, #1D4ED8); border: none; padding: 8px 0; border-radius: 12px; color: #FFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;">
+                            <i class="fa-solid fa-message"></i> चैट
+                        </button>
+                        <button onclick="initiateV2Flow('call', 'priya')" style="flex: 1; background: linear-gradient(135deg, #10B981, #047857); border: none; padding: 8px 0; border-radius: 12px; color: #FFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;">
+                            <i class="fa-solid fa-microphone"></i> कॉल
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Row 2: Ajay -->
+                <div class="astro-contact-row" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 18px; padding: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <div style="position: relative; flex-shrink: 0;">
+                            <img src="assets/dr_ajay.png" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #FFD700;" alt="Ajay">
+                            <span class="astro-online-dot"></span>
+                        </div>
+                        <div class="astro-contact-info" style="flex: 1;">
+                            <p class="astro-contact-name" style="margin: 0 0 2px; font-weight: 800; color: #FFF; font-size: 16px;">आचार्य अजय शर्मा</p>
+                            <p class="astro-contact-spec" style="margin: 0 0 4px; color: #FFD700; font-size: 12px;">व्यापार · धन · भाग्य</p>
+                            <p class="astro-contact-meta" style="margin: 0; color: rgba(255,255,255,0.5); font-size: 11px;">⭐ 4.8 &nbsp;·&nbsp; 8,500+ सेशन</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="initiateV2Flow('chat', 'ajay')" style="flex: 1; background: linear-gradient(135deg, #3B82F6, #1D4ED8); border: none; padding: 8px 0; border-radius: 12px; color: #FFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;">
+                            <i class="fa-solid fa-message"></i> चैट
+                        </button>
+                        <button onclick="initiateV2Flow('call', 'ajay')" style="flex: 1; background: linear-gradient(135deg, #10B981, #047857); border: none; padding: 8px 0; border-radius: 12px; color: #FFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;">
+                            <i class="fa-solid fa-microphone"></i> कॉल
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Row 3: Kirti -->
+                <div class="astro-contact-row" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 18px; padding: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <div style="position: relative; flex-shrink: 0;">
+                            <img src="assets/dr_kirti.png" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #FFD700;" alt="Kirti">
+                            <span class="astro-online-dot"></span>
+                        </div>
+                        <div class="astro-contact-info" style="flex: 1;">
+                            <p class="astro-contact-name" style="margin: 0 0 2px; font-weight: 800; color: #FFF; font-size: 16px;">आचार्य कीर्ति जोशी</p>
+                            <p class="astro-contact-spec" style="margin: 0 0 4px; color: #FFD700; font-size: 12px;">प्रेम · विवाह · संतान</p>
+                            <p class="astro-contact-meta" style="margin: 0; color: rgba(255,255,255,0.5); font-size: 11px;">⭐ 4.7 &nbsp;·&nbsp; 6,200+ सेशन</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="initiateV2Flow('chat', 'kirti')" style="flex: 1; background: linear-gradient(135deg, #3B82F6, #1D4ED8); border: none; padding: 8px 0; border-radius: 12px; color: #FFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;">
+                            <i class="fa-solid fa-message"></i> चैट
+                        </button>
+                        <button onclick="initiateV2Flow('call', 'kirti')" style="flex: 1; background: linear-gradient(135deg, #10B981, #047857); border: none; padding: 8px 0; border-radius: 12px; color: #FFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;">
+                            <i class="fa-solid fa-microphone"></i> कॉल
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    
+
+<!-- V2 LOGIN -->
+<div id="mweb-v2-start-login" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+            <div class="ios-home-indicator"></div>
+
+            <div class="app-banner-bg"></div>
+            
+            <!-- Dynamic Slider Area -->
+            <div class="login-slider-container">
+
+                <div class="login-slider" id="loginSlider" onscroll="onSliderScroll()">
+                    <!-- Card 1: Priya -->
+                    <div class="slider-card" data-astro="priya">
+                        <div class="slider-image-box">
+                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-priya" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगी नई राह! 🚀</span>
+                        </div>
+                    </div>
+                    <!-- Card 2: Ajay -->
+                    <div class="slider-card" data-astro="ajay">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_ajay.png" alt="Dr Ajay">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">व्यापार में घाटा क्यों?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-ajay" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">चमकेगी किस्मत की दुकान 💰</span>
+                        </div>
+                    </div>
+                    <!-- Card 3: Kirti -->
+                    <div class="slider-card" data-astro="kirti">
+                        <div class="slider-image-box">
+                            <img src="assets/dr_kirti.png" alt="Dr Kirti">
+                            <div class="slider-overlay-text">
+                                <h2 class="slide-in-text">सच्चा प्यार कब मिलेगा?</h2>
+                            </div>
+                        </div>
+                        <div class="hanging-cta theme-kirti" style="cursor: default; padding-right: 24px; justify-content: center;">
+                            <span class="cta-text">मिलेगा जीवनसाथी ❤️</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="bottom-sheet">
+            <!-- Slider Dots (Floating above bottom sheet) -->
+            <div class="slider-dots" style="position: absolute; top: -15px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="login-main-text mt-15" id="loginMainText">
+                <h1>फ्री में 5 मिनट बात करें</h1>
+                <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="trust-badges mt-15" id="loginTrustBadges">
+                <div class="trust-stamp">
+                    <div class="icon-glow-wrapper blue-glow">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <p class="trust-stamp-text">100% सुरक्षित</p>
+                </div>
+                <div class="trust-stamp">
+                    <div class="icon-glow-wrapper gold-glow">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <p class="trust-stamp-text">पर्सनल AI</p>
+                </div>
+            </div>
+
+
+
+            <!-- Login Form & OTP -->
+            <div class="login-form-container mt-15">
+                <div id="loginInputSection">
+                    <input type="text" class="login-input" placeholder="आपका शुभ नाम">
+                    <div class="phone-input-group mt-10">
+                        <span class="country-code">+91</span>
+                        <input type="tel" class="login-input" placeholder="मोबाइल नंबर" maxlength="10">
+                    </div>
+                    <button class="cta-btn yellow-btn full-width mt-15" style="height: 48px; padding: 0; display: flex; align-items: center; justify-content: center;" onclick="showV2OtpSection()">लॉगिन करें और बात शुरू करें</button>
+                </div>
+
+                <div id="otpInputSection" class="hidden mt-10" style="width: 100%;">
+                    <div style="text-align: center; margin-bottom: 25px;">
+                        <h2 style="font-size: 20px; font-weight: 800; color: #FFF; margin-bottom: 8px;">वेरिफिकेशन कोड</h2>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.4;">हमने आपके मोबाइल नंबर पर एक वेरिफिकेशन कोड भेजा है</p>
+                    </div>
+                    <div class="otp-boxes" style="display:flex; gap:10px; justify-content:center; margin-bottom:25px;">
+                        <input type="text" maxlength="1" class="otp-box" autocomplete="one-time-code" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextV2Otp(this, 'v2otp2')">
+                        <input type="text" maxlength="1" class="otp-box" id="v2otp2" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextV2Otp(this, 'v2otp3')">
+                        <input type="text" maxlength="1" class="otp-box" id="v2otp3" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextV2Otp(this, 'v2otp4')">
+                        <input type="text" maxlength="1" class="otp-box" id="v2otp4" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextV2Otp(this, 'v2otp5')">
+                        <input type="text" maxlength="1" class="otp-box" id="v2otp5" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="moveToNextV2Otp(this, 'v2otp6')">
+                        <input type="text" maxlength="1" class="otp-box" id="v2otp6" style="width: 42px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border-radius: 12px;" oninput="verifyV2OtpAndProceed()">
+                    </div>
+                    <button class="cta-btn yellow-btn" style="width: 60%; height: 48px; padding: 0; margin: 0 auto; display: flex; align-items: center; justify-content: center;" onclick="verifyV2OtpAndProceed()">कन्फर्म करें</button>
+                </div>
+
+                <div id="loggedInCallSection" class="hidden" style="width: 100%; height: 100%; background: linear-gradient(180deg, #0B0E1A 0%, #111827 100%);">
+
+                    <!-- Timer Pill -->
+                    <div style="padding: 52px 20px 20px; text-align: center;">
+                        <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); padding: 10px 24px; border-radius: 50px;">
+                            <i class="fa-regular fa-clock" style="font-size: 18px; color: #FFD700;"></i>
+                            <span style="color: #FFF; font-size: 22px; font-weight: 900; letter-spacing: 1.5px;">05:00</span>
+                            <span style="color: #FFD700; font-size: 13px; font-weight: 700;">परामर्श समय शेष</span>
+                        </div>
+                        <p style="color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin: 18px 0 0;">ज्योतिषी चुनें</p>
+                    </div>
+
+                    <!-- Contact List -->
+                    <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 12px;">
+
+                        <!-- Row 1: Priya -->
+                        <div class="astro-contact-row" onclick="selectAndCallAstrologer('priya')" style="background: #112240; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 16px 14px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);">
+                            <div style="position: relative; flex-shrink: 0;">
+                                <img src="assets/classy_astro_1.png" class="astro-contact-avatar" alt="Priya">
+                                <span class="astro-online-dot"></span>
+                            </div>
+                            <div class="astro-contact-info">
+                                <p class="astro-contact-name">आचार्य प्रिया वर्मा</p>
+                                <p class="astro-contact-spec">करियर · प्रेम · रिश्ते</p>
+                                <p class="astro-contact-meta">⭐ 4.9 &nbsp;·&nbsp; 10,000+ सेशन</p>
+                            </div>
+                            <button class="astro-call-btn" onclick="event.stopPropagation(); selectAndCallAstrologer('priya')">
+                                <i class="fa-solid fa-phone"></i>
+                            </button>
+                        </div>
+
+                        <!-- Row 2: Ajay -->
+                        <div class="astro-contact-row" onclick="selectAndCallAstrologer('ajay')" style="background: #112240; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 16px 14px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);">
+                            <div style="position: relative; flex-shrink: 0;">
+                                <img src="assets/dr_ajay.png" class="astro-contact-avatar" alt="Ajay">
+                                <span class="astro-online-dot"></span>
+                            </div>
+                            <div class="astro-contact-info">
+                                <p class="astro-contact-name">आचार्य अजय शर्मा</p>
+                                <p class="astro-contact-spec">व्यापार · धन · भाग्य</p>
+                                <p class="astro-contact-meta">⭐ 4.8 &nbsp;·&nbsp; 8,500+ सेशन</p>
+                            </div>
+                            <button class="astro-call-btn" onclick="event.stopPropagation(); selectAndCallAstrologer('ajay')">
+                                <i class="fa-solid fa-phone"></i>
+                            </button>
+                        </div>
+
+                        <!-- Row 3: Kirti -->
+                        <div class="astro-contact-row" onclick="selectAndCallAstrologer('kirti')" style="background: #112240; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 16px 14px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);">
+                            <div style="position: relative; flex-shrink: 0;">
+                                <img src="assets/dr_kirti.png" class="astro-contact-avatar" alt="Kirti">
+                                <span class="astro-online-dot"></span>
+                            </div>
+                            <div class="astro-contact-info">
+                                <p class="astro-contact-name">आचार्य कीर्ति जोशी</p>
+                                <p class="astro-contact-spec">प्रेम · विवाह · संतान</p>
+                                <p class="astro-contact-meta">⭐ 4.7 &nbsp;·&nbsp; 6,200+ सेशन</p>
+                            </div>
+                            <button class="astro-call-btn" onclick="event.stopPropagation(); selectAndCallAstrologer('kirti')">
+                                <i class="fa-solid fa-phone"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
 <div id="mweb-v2-dialing" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div class="ios-home-indicator"></div>
 
@@ -3803,7 +4070,7 @@
                                 <i class="fa-solid fa-microphone-slash" style="color: #FBBF24; font-size: 22px;"></i>
                                 <p style="color: #FBBF24; font-size: 18px; font-weight: 800; margin: 0; line-height: 1.3; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">माइक्रोफ़ोन एक्सेस नहीं मिला!</p>
                             </div>
-                            <p style="color: rgba(255,255,255,0.35); font-size: 13px; font-weight: 500; margin: 0; line-height: 1.4;">कॉल शुरू करने के लिए कृपया अपने ब्राउज़र की सेटिंग में जाकर माइक (Mic) की अनुमति (Permission) दें।</p>
+                            <p style="color: rgba(255,255,255,0.35); font-size: 13px; font-weight: 500; margin: 0; line-height: 1.4;">कॉल शुरू करने के लिए कृपया अपने ब्राउज़र की सेटिंग में जाकर माइक (Mic) की अनुमति (Permission) दें। माइक की अनुमति दें और नीचे बटन पर टैप करें, इससे कॉल शुरू होगी।</p>
                         </div>
                         <button onclick="grantV2MicPermission()" style="background: #FBBF24; color: #000; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-microphone"></i> परमिशन दें</button>
                     </div>
@@ -3830,6 +4097,11 @@
                     </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
+<div id="v2-session-timer" style="display: flex; align-items: center; gap: 4px; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); padding: 4px 8px; border-radius: 12px; margin-right: 4px;">
+                            <i class="fa-regular fa-clock" style="font-size: 10px; color: #FFD700;"></i>
+                            <span style="color: #FFF; font-size: 12px; font-weight: 800; letter-spacing: 0.5px;">05:00</span>
+                        </div>
+                        
                     <!-- Switch to Chat -->
                     <button id="switch-to-chat-btn" onclick="switchV2SessionMode('chat')" style="position: relative; overflow: hidden; background: linear-gradient(135deg, #3B82F6, #1D4ED8); border: 1px solid rgba(255,255,255,0.15); height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; box-shadow: 0 4px 12px rgba(59,130,246,0.4); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
                         <i class="fa-solid fa-message" style="color: #FFF; font-size: 12px;"></i>
