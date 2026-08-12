@@ -1792,7 +1792,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     bottom: 180px;
 }
 #mweb-v2-start-login .hanging-cta {
-    bottom: 220px;
+    bottom: 150px;
     font-size: 22px;
 }
 #mweb-start-login .slider-overlay-text,
@@ -1800,7 +1800,7 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     bottom: 235px;
 }
 #mweb-v2-start-login .slider-overlay-text {
-    bottom: 265px; /* 45px above hanging-cta */
+    bottom: 195px; /* 45px above hanging-cta */
 }
 #mweb-v2-start-login .slide-in-text {
     font-size: 22px;
