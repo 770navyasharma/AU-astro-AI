@@ -1788,14 +1788,22 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 }
 
 #mweb-start-login .hanging-cta,
-#mweb-v2-start-login .hanging-cta,
 #app-start-login .hanging-cta {
-    bottom: 130px;
+    bottom: 180px;
+}
+#mweb-v2-start-login .hanging-cta {
+    bottom: 220px;
+    font-size: 22px;
 }
 #mweb-start-login .slider-overlay-text,
-#mweb-v2-start-login .slider-overlay-text,
 #app-start-login .slider-overlay-text {
-    bottom: 185px;
+    bottom: 235px;
+}
+#mweb-v2-start-login .slider-overlay-text {
+    bottom: 265px; /* 45px above hanging-cta */
+}
+#mweb-v2-start-login .slide-in-text {
+    font-size: 22px;
 }
 
 /* ==========================================
