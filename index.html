@@ -4141,6 +4141,75 @@
             </div>
         </div>
 
+<!-- Intake Form -->
+<div id="mweb-intake-form" class="view-section hidden mobile-frame galaxy-bg-intake" style="position: relative; overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth;">
+    <!-- Animated Stars Container -->
+    <div id="intake-stars-container" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 1;"></div>
+    
+    <div class="ios-home-indicator"></div>
+
+    <!-- Top Bar with Skip Button -->
+    <div style="position: sticky; top: 0; z-index: 50; display: flex; justify-content: flex-end; padding: 45px 20px 10px;">
+        <button id="skip-intake-btn" onclick="skipIntakeForm()" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; color: #FFF; font-size: 13px; font-weight: 600; cursor: pointer; backdrop-filter: blur(5px); display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+            कॉल पर जाएँ <i class="fa-solid fa-forward-step" style="font-size: 11px;"></i>
+        </button>
+    </div>
+
+    <!-- Header Section -->
+    <div style="padding: 20px 24px; position: relative; z-index: 10;">
+        <h1 style="color: #FFD700; font-size: 28px; font-weight: 900; margin: 0 0 12px; line-height: 1.2; text-shadow: 0 2px 10px rgba(255,215,0,0.3);">
+            ज्योतिषी से बेहतर अनुभव के लिए 🌌
+        </h1>
+        <p style="color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 500; margin: 0; line-height: 1.5;">
+            ये छोटी सी जानकारी हमें आपकी सटीक कुंडली और भविष्य बताने में सहायता करेगी।
+        </p>
+    </div>
+
+    <!-- Form Section -->
+    <div class="intake-form-container" style="padding: 10px 24px 100px; position: relative; z-index: 10; display: flex; flex-direction: column; gap: 20px;">
+        <!-- Name -->
+        <div class="intake-field-group">
+            <label style="color: #FFF; font-size: 14px; font-weight: 600; margin-bottom: 6px; display: block;">पूरा नाम</label>
+            <input type="text" placeholder="अपना नाम दर्ज करें" class="intake-input">
+            <p style="color: rgba(255,255,255,0.4); font-size: 11px; margin: 6px 0 0; font-style: italic;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i> आपकी जानकारी पूरी तरह सुरक्षित है</p>
+        </div>
+
+        <!-- DOB -->
+        <div class="intake-field-group">
+            <label style="color: #FFF; font-size: 14px; font-weight: 600; margin-bottom: 6px; display: block;">जन्म तिथि</label>
+            <input type="date" class="intake-input date-time-input">
+            <p style="color: rgba(255,255,255,0.4); font-size: 11px; margin: 6px 0 0; font-style: italic;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i> आपकी जानकारी पूरी तरह सुरक्षित है</p>
+        </div>
+
+        <!-- Time of Birth -->
+        <div class="intake-field-group">
+            <label style="color: #FFF; font-size: 14px; font-weight: 600; margin-bottom: 6px; display: block;">जन्म का समय</label>
+            <input type="time" class="intake-input date-time-input">
+            <p style="color: rgba(255,255,255,0.4); font-size: 11px; margin: 6px 0 0; font-style: italic;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i> आपकी जानकारी पूरी तरह सुरक्षित है</p>
+        </div>
+
+        <!-- Place of Birth -->
+        <div class="intake-field-group">
+            <label style="color: #FFF; font-size: 14px; font-weight: 600; margin-bottom: 6px; display: block;">जन्म स्थान</label>
+            <input type="text" placeholder="शहर का नाम (उदा. New Delhi)" class="intake-input">
+            <p style="color: rgba(255,255,255,0.4); font-size: 11px; margin: 6px 0 0; font-style: italic;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i> आपकी जानकारी पूरी तरह सुरक्षित है</p>
+        </div>
+    </div>
+
+    <!-- Bottom Sticky CTA -->
+    <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 16px 24px 30px; background: linear-gradient(180deg, rgba(11,14,26,0) 0%, rgba(11,14,26,1) 50%, rgba(11,14,26,1) 100%); z-index: 50; display: flex; flex-direction: column; align-items: center;">
+        <button id="submit-intake-btn" onclick="submitIntakeForm()" class="btn-primary" style="width: 100%; height: 54px; font-size: 16px; border-radius: 27px; display: flex; justify-content: center; align-items: center; position: relative;">
+            <span id="submit-intake-text" class="btn-text">सेव करें और कॉल शुरू करें</span>
+            <div id="submit-intake-spinner" class="btn-spinner hidden" style="width: 20px; height: 20px; border: 3px solid rgba(0,0,0,0.1); border-top-color: #000; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+        </button>
+    </div>
+
+    <!-- Success Toast (Hidden initially) -->
+    <div id="intake-success-toast" style="position: absolute; top: -100px; left: 50%; transform: translateX(-50%); background: #10B981; color: #FFF; padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 15px rgba(16,185,129,0.4); z-index: 100; transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1); display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+        <i class="fa-solid fa-circle-check"></i> जानकारी सफलतापूर्वक सेव हो गई
+    </div>
+</div>
+
 <div id="mweb-v2-dialing" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div class="ios-home-indicator"></div>
 

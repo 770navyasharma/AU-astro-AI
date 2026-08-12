@@ -2375,12 +2375,22 @@ function moveToNextV2Otp(current, nextFieldID) {
 }
 
 function verifyV2OtpAndProceed() {
-    // Proceed based on entry mode
+    // Route to intake form instead of directly to call/chat
+    showSection('mweb-intake-form');
+    
+    // Set up button texts based on entry mode
+    const skipBtn = document.getElementById('skip-intake-btn');
+    const submitText = document.getElementById('submit-intake-text');
+    
     if (v2EntryMode === 'call') {
-        startV2CallConnection();
+        skipBtn.innerHTML = 'कॉल पर जाएँ <i class="fa-solid fa-forward-step" style="font-size: 11px;"></i>';
+        submitText.innerText = 'सेव करें और कॉल शुरू करें';
     } else {
-        openV2Session('chat', true);
+        skipBtn.innerHTML = 'चैट पर जाएँ <i class="fa-solid fa-forward-step" style="font-size: 11px;"></i>';
+        submitText.innerText = 'सेव करें और चैट शुरू करें';
     }
+    
+    generateIntakeStars();
 }
 
 function injectV2ChatGreeting() {
@@ -2400,4 +2410,70 @@ function injectV2ChatGreeting() {
     `;
     chatContainer.insertAdjacentHTML('beforeend', botHtml);
     chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+// ==========================================
+// V2 INTAKE FORM LOGIC
+// ==========================================
+
+function skipIntakeForm() {
+    if (v2EntryMode === 'call') {
+        startV2CallConnection();
+    } else {
+        openV2Session('chat', true);
+    }
+}
+
+function submitIntakeForm() {
+    const btnText = document.getElementById('submit-intake-text');
+    const spinner = document.getElementById('submit-intake-spinner');
+    const toast = document.getElementById('intake-success-toast');
+    
+    // Show loading
+    btnText.style.display = 'none';
+    spinner.classList.remove('hidden');
+    
+    // Simulate API save delay
+    setTimeout(() => {
+        // Hide loading
+        btnText.style.display = 'block';
+        spinner.classList.add('hidden');
+        
+        // Show success toast
+        toast.style.top = '60px';
+        
+        // Wait 3 seconds, hide toast and proceed
+        setTimeout(() => {
+            toast.style.top = '-100px';
+            skipIntakeForm(); // proceeds to call/chat
+        }, 3000);
+        
+    }, 1500);
+}
+
+function generateIntakeStars() {
+    const container = document.getElementById('intake-stars-container');
+    if (!container || container.children.length > 0) return; // already generated
+    
+    const colors = ['#FFF', '#FFD700', '#FF9AA2', '#82B1FF'];
+    
+    for (let i = 0; i < 50; i++) {
+        const star = document.createElement('div');
+        const size = Math.random() * 3 + 1;
+        
+        star.style.position = 'absolute';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        star.style.borderRadius = '50%';
+        star.style.opacity = Math.random() * 0.8 + 0.2;
+        star.style.boxShadow = `0 0 ${size * 2}px ${star.style.backgroundColor}`;
+        
+        // simple twinkle animation inline
+        star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite alternate`;
+        
+        container.appendChild(star);
+    }
 }
