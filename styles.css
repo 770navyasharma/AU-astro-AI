@@ -1788,10 +1788,12 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 }
 
 #mweb-start-login .hanging-cta,
+#mweb-v2-start-login .hanging-cta,
 #app-start-login .hanging-cta {
     bottom: 130px;
 }
 #mweb-start-login .slider-overlay-text,
+#mweb-v2-start-login .slider-overlay-text,
 #app-start-login .slider-overlay-text {
     bottom: 185px;
 }
