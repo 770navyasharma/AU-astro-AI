@@ -524,6 +524,7 @@ function startCallTimer() {
     updateCallTimerUI();
     
     currentCallTimer = setInterval(() => {
+        if (typeof isV2TimerPaused !== 'undefined' && isV2TimerPaused) return;
         currentCallSeconds++;
         updateCallTimerUI();
         
@@ -1191,6 +1192,7 @@ function startCallTimer() {
     updateCallTimerUI();
     
     currentCallTimer = setInterval(() => {
+        if (typeof isV2TimerPaused !== 'undefined' && isV2TimerPaused) return;
         currentCallSeconds++;
         updateCallTimerUI();
         
@@ -2476,4 +2478,59 @@ function generateIntakeStars() {
         
         container.appendChild(star);
     }
+}
+
+// ==========================================
+// V2 MODAL CONFIRMATIONS & TIMER PAUSE
+// ==========================================
+let isV2TimerPaused = false;
+let pendingV2SessionSwitch = null;
+
+function requestV2SessionSwitch(mode) {
+    isV2TimerPaused = true;
+    pendingV2SessionSwitch = mode;
+    const title = document.getElementById('v2SwitchTitle');
+    const icon = document.getElementById('v2SwitchIcon');
+    if (mode === 'chat') {
+        title.textContent = 'क्या आप चैट में स्विच करना चाहते हैं?';
+        icon.className = 'fa-solid fa-message';
+    } else {
+        title.textContent = 'क्या आप कॉल में स्विच करना चाहते हैं?';
+        icon.className = 'fa-solid fa-phone';
+    }
+    openModal('v2SwitchConfirmModal');
+}
+
+function cancelV2SessionSwitch() {
+    isV2TimerPaused = false;
+    pendingV2SessionSwitch = null;
+    closeModal('v2SwitchConfirmModal');
+}
+
+function confirmV2SessionSwitch() {
+    isV2TimerPaused = false;
+    closeModal('v2SwitchConfirmModal');
+    if (pendingV2SessionSwitch === 'chat') {
+        switchV2SessionMode('chat');
+    } else {
+        startV2CallConnection();
+    }
+}
+
+function requestEndV2Session() {
+    isV2TimerPaused = true;
+    openModal('v2EndConfirmModal');
+}
+
+function cancelEndV2Session() {
+    isV2TimerPaused = false;
+    closeModal('v2EndConfirmModal');
+}
+
+function confirmEndV2Session() {
+    isV2TimerPaused = false;
+    closeModal('v2EndConfirmModal');
+    clearInterval(currentCallTimer);
+    renderChatHistoryState('combined_feedback', null);
+    showSection('app-chat-history');
 }
