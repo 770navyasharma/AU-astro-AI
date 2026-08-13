@@ -97,6 +97,28 @@
                 <option value="openV2Session('call'); requestV2SessionSwitch('chat');">4. V2 Switch to Chat Prompt</option>
                 <option value="openV2Session('chat'); requestV2SessionSwitch('call');">5. V2 Switch to Call Prompt</option>
                 <option value="openV2Session('call'); requestEndV2Session();">6. V2 End Session Prompt</option>
+                            <option disabled style="color:rgba(255,255,255,0.5)">--- V1 SCREENS ---</option>
+                <option value="showSection('mweb-feed', null)">1. Mweb Banner</option>
+                <option value="showSection('mweb-banner-variants', null)">1b. Banner Designs (20 versions)</option>
+                <option value="showSection('mweb-start-login', null)">2. Login Screen</option>
+                <option value="showSection('mweb-login-error-empty', null)">2.1 Login Error (Empty)</option>
+                <option value="showSection('mweb-login-error-invalid', null)">2.2 Login Error (Invalid)</option>
+                <option value="startDemoOtpTimer(null)">2.3 OTP Timer Running</option>
+                <option value="showSection('mweb-otp-error-wrong', null)">2.4 OTP Wrong (Error)</option>
+                <option value="renderSplashState('active', null)">2b. Logged-in Splash (Active)</option>
+                <option value="renderSplashState('ended_basic', null)">2c. Splash (Ended - No App)</option>
+                <option value="renderSplashState('ended_app', null)">2d. Splash (Ended - App Promo)</option>
+                <option value="renderDialingState('connecting', null)">5a. Dialing (Normal)</option>
+                <option value="renderDialingState('no_mic', null)">5b. Dialing (No Mic)</option>
+                <option value="showSection('mweb-active-call', null)">6. Active Call Screen</option>
+                <option value="renderChatHistoryState('active', null)">7a. Chat History (Active)</option>
+                <option value="renderChatHistoryState('combined_feedback', null)">7b. Feedback 5 mins end</option>
+                <option value="renderChatHistoryState('app_promo', null)">7c. Feedback Submitted (App Promo)</option>
+                <option value="startFeedbackFlow(null)">💬 Feedback Chat</option>
+                <option value="showInChatToast(null)">🔔 1 min left</option>
+                <option value="showMicPermission('ios-chrome', null)">🎙️ iOS Chrome</option>
+                <option value="showMicPermission('android', null)">🎙️ Android</option>
+                <option value="showMicPermission('ios-safari', null)">🎙️ iOS Safari</option>
             </select>
 
             
@@ -896,7 +918,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -1075,7 +1097,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -1160,7 +1182,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -1245,7 +1267,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -1325,7 +1347,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -1403,7 +1425,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -1480,7 +1502,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_banner.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text glow-gold">क्या प्रमोशन रुका हुआ है?</h2>
                                 <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">मिलेगी नई राह! 🚀</span>
@@ -1490,7 +1512,7 @@
                     <!-- Card 2: Ajay -->
                     <div class="slider-card" data-astro="ajay">
                         <div class="slider-image-box">
-                            <img src="assets/ajay_banner.png" alt="Dr Ajay">
+                            <img src="assets/ajay_listing.jpg" alt="Dr Ajay">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text glow-gold">व्यापार में घाटा क्यों?</h2>
                                 <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">चमकेगी किस्मत की दुकान 💰</span>
@@ -1500,7 +1522,7 @@
                     <!-- Card 3: Kirti -->
                     <div class="slider-card" data-astro="kirti">
                         <div class="slider-image-box">
-                            <img src="assets/kirti_banner.png" alt="Dr Kirti">
+                            <img src="assets/kirti_listing.jpg" alt="Dr Kirti">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text glow-gold">सच्चा प्यार कब मिलेगा?</h2>
                                 <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">मिलेगा जीवनसाथी ❤️</span>
@@ -2444,7 +2466,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -2627,7 +2649,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -2716,7 +2738,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -2805,7 +2827,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -2889,7 +2911,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -2971,7 +2993,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_gesture_1.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text">क्या प्रमोशन रुका हुआ है?</h2>
                             </div>
@@ -3052,7 +3074,7 @@
                     <!-- Card 1: Priya -->
                     <div class="slider-card" data-astro="priya">
                         <div class="slider-image-box">
-                            <img src="assets/priya_banner.png" alt="Dr Priya">
+                            <img src="assets/priya_listing.jpg" alt="Dr Priya">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text glow-gold">क्या प्रमोशन रुका हुआ है?</h2>
                                 <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">मिलेगी नई राह! 🚀</span>
@@ -3062,7 +3084,7 @@
                     <!-- Card 2: Ajay -->
                     <div class="slider-card" data-astro="ajay">
                         <div class="slider-image-box">
-                            <img src="assets/ajay_banner.png" alt="Dr Ajay">
+                            <img src="assets/ajay_listing.jpg" alt="Dr Ajay">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text glow-gold">व्यापार में घाटा क्यों?</h2>
                                 <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">चमकेगी किस्मत की दुकान 💰</span>
@@ -3072,7 +3094,7 @@
                     <!-- Card 3: Kirti -->
                     <div class="slider-card" data-astro="kirti">
                         <div class="slider-image-box">
-                            <img src="assets/kirti_banner.png" alt="Dr Kirti">
+                            <img src="assets/kirti_listing.jpg" alt="Dr Kirti">
                             <div class="slider-overlay-text">
                                 <h2 class="slide-in-text glow-gold">सच्चा प्यार कब मिलेगा?</h2>
                                 <span style="color: white; font-weight: 700; font-size: 17px; margin-top: 5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">मिलेगा जीवनसाथी ❤️</span>
@@ -3789,7 +3811,8 @@
 <!-- V2 DIALING SCREEN -->
 <!-- V2 ASTRO LISTING -->
 
-        <div id="mweb-v2-astro-listing" class="view-section hidden mobile-frame starry-theme astro-premium-bg" style="display: flex; flex-direction: column;">
+        <div id="mweb-v2-astro-listing" class="view-section hidden mobile-frame starry-theme astro-premium-bg" style="display: flex; flex-direction: column; position: relative;">
+            <div style="position: absolute; top: 16px; left: 16px; z-index: 100; padding: 12px; cursor: pointer; border-radius: 50%; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); box-shadow: 0 4px 12px rgba(0,0,0,0.2);" onclick="showSection('mweb-feed')"><i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 18px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"></i></div>
             <div class="ios-home-indicator"></div>
             
             <!-- Hybrid Slider -->
@@ -3968,7 +3991,8 @@
     
 
 <!-- V2 LOGIN -->
-<div id="mweb-v2-start-login" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine">
+<div id="mweb-v2-start-login" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine" style="position: relative;">
+            <div style="position: absolute; top: 16px; left: 16px; z-index: 100; padding: 12px; cursor: pointer; border-radius: 50%; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); box-shadow: 0 4px 12px rgba(0,0,0,0.2);" onclick="showSection('mweb-v2-astro-listing')"><i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 18px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"></i></div>
             <div class="ios-home-indicator"></div>
 
             <div class="app-banner-bg"></div>
@@ -4158,6 +4182,7 @@
 
 <!-- Intake Form -->
 <div id="mweb-intake-form" class="view-section hidden mobile-frame galaxy-bg-intake" style="position: relative; overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth;">
+            <div style="position: absolute; top: 16px; left: 16px; z-index: 100; padding: 12px; cursor: pointer; border-radius: 50%; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); box-shadow: 0 4px 12px rgba(0,0,0,0.2);" onclick="showSection('mweb-v2-start-login')"><i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 18px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"></i></div>
     <!-- Animated Stars Container -->
     <div id="intake-stars-container" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 1;"></div>
     
@@ -4225,7 +4250,8 @@
     </div>
 </div>
 
-<div id="mweb-v2-dialing" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<div id="mweb-v2-dialing" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+            <div style="position: absolute; top: 16px; left: 16px; z-index: 100; padding: 12px; cursor: pointer; border-radius: 50%; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); box-shadow: 0 4px 12px rgba(0,0,0,0.2);" onclick="showSection('mweb-v2-astro-listing')"><i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 18px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"></i></div>
             <div class="ios-home-indicator"></div>
 
             <audio id="v2-dialing-ringtone" loop preload="auto">
@@ -4262,7 +4288,8 @@
             </div>
         </div>
 
-<div id="mweb-v2-active-session" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column;">
+<div id="mweb-v2-active-session" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column; position: relative;">
+            <div style="position: absolute; top: 16px; left: 16px; z-index: 100; padding: 12px; cursor: pointer; border-radius: 50%; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); box-shadow: 0 4px 12px rgba(0,0,0,0.2);" onclick="requestEndV2Session()"><i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 18px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"></i></div>
             <div class="ios-home-indicator"></div>
             
             <!-- Top Header -->
