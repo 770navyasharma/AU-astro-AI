@@ -4395,7 +4395,7 @@
             
     <!-- V2 Switch Mode Modal -->
     <div class="modal-overlay hidden" id="v2SwitchConfirmModal">
-        <div class="modal-content" style="background: rgba(30, 40, 60, 0.85); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border: 1px solid rgba(255,255,255,0.15); border-top: 1px solid rgba(255,255,255,0.25); text-align: center; border-radius: 24px; padding: 32px 24px; max-width: 320px; box-shadow: 0 24px 64px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);">
+        <div class="modal-content" style="background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 1px, transparent 1px), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.15) 1.5px, transparent 1.5px), linear-gradient(135deg, rgba(15, 20, 40, 0.45) 0%, rgba(25, 30, 60, 0.65) 100%); backdrop-filter: blur(12px) saturate(180%); -webkit-backdrop-filter: blur(12px) saturate(180%); border: 1px solid rgba(255,255,255,0.2); border-top: 1px solid rgba(255,255,255,0.3); text-align: center; border-radius: 24px; padding: 32px 24px; max-width: 320px; box-shadow: 0 24px 64px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1); position: relative; overflow: hidden;">
             <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,215,0,0.05)); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1px solid rgba(255,215,0,0.3);">
                 <i id="v2SwitchIcon" class="fa-solid fa-message" style="color: #FFD700; font-size: 24px;"></i>
             </div>
@@ -4403,15 +4403,15 @@
             <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.5; margin: 0 0 24px;">इस दौरान आपका टाइमर रुका हुआ है। कन्फर्म करने पर आप दूसरे मोड में चले जाएंगे।</p>
             
             <div style="display: flex; gap: 12px; justify-content: center;">
-                <button class="cta-btn" onclick="cancelV2SessionSwitch()" style="flex: 1; background: rgba(255,255,255,0.1); color: #FFF; border: 1px solid rgba(255,255,255,0.2); font-size: 14px; padding: 12px;">नहीं, रुकें</button>
-                <button class="cta-btn yellow-btn" onclick="confirmV2SessionSwitch()" style="flex: 1; font-size: 14px; padding: 12px;">हाँ, जाएँ</button>
+                <button class="cta-btn" onclick="cancelV2SessionSwitch()" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.15); font-size: 14px; padding: 12px;">नहीं, रुकें</button>
+                <button class="cta-btn yellow-btn" onclick="confirmV2SessionSwitch()" style="flex: 1; font-size: 14px; padding: 12px; box-shadow: 0 4px 12px rgba(255,215,0,0.3);">हाँ, जाएँ</button>
             </div>
         </div>
     </div>
 
     <!-- V2 End Session Modal -->
     <div class="modal-overlay hidden" id="v2EndConfirmModal">
-        <div class="modal-content" style="background: rgba(30, 40, 60, 0.85); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border: 1px solid rgba(255,255,255,0.15); border-top: 1px solid rgba(255,255,255,0.25); text-align: center; border-radius: 24px; padding: 32px 24px; max-width: 320px; box-shadow: 0 24px 64px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);">
+        <div class="modal-content" style="background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 1px, transparent 1px), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.15) 1.5px, transparent 1.5px), linear-gradient(135deg, rgba(15, 20, 40, 0.45) 0%, rgba(25, 30, 60, 0.65) 100%); backdrop-filter: blur(12px) saturate(180%); -webkit-backdrop-filter: blur(12px) saturate(180%); border: 1px solid rgba(255,255,255,0.2); border-top: 1px solid rgba(255,255,255,0.3); text-align: center; border-radius: 24px; padding: 32px 24px; max-width: 320px; box-shadow: 0 24px 64px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1); position: relative; overflow: hidden;">
             <div style="background: linear-gradient(135deg, rgba(239,68,68,0.2), rgba(239,68,68,0.05)); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1px solid rgba(239,68,68,0.3);">
                 <i class="fa-solid fa-phone-slash" style="color: #EF4444; font-size: 24px;"></i>
             </div>
@@ -4419,8 +4419,8 @@
             <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.5; margin: 0 0 24px;">टाइमर अभी रुका हुआ है। समाप्त करने पर आप चैट हिस्ट्री में चले जाएंगे।</p>
             
             <div style="display: flex; gap: 12px; justify-content: center;">
-                <button class="cta-btn" onclick="cancelEndV2Session()" style="flex: 1; background: rgba(255,255,255,0.1); color: #FFF; border: 1px solid rgba(255,255,255,0.2); font-size: 14px; padding: 12px;">जारी रखें</button>
-                <button class="cta-btn" onclick="confirmEndV2Session()" style="flex: 1; background: #EF4444; color: #FFF; font-size: 14px; padding: 12px;">हाँ, समाप्त करें</button>
+                <button class="cta-btn" onclick="cancelEndV2Session()" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.15); font-size: 14px; padding: 12px;">जारी रखें</button>
+                <button class="cta-btn" onclick="confirmEndV2Session()" style="flex: 1; background: #EF4444; color: #FFF; font-size: 14px; padding: 12px; box-shadow: 0 4px 12px rgba(239,68,68,0.3);">हाँ, समाप्त करें</button>
             </div>
         </div>
     </div>
