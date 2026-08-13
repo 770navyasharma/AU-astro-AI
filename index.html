@@ -3985,6 +3985,11 @@
                         <div class="hanging-cta theme-priya" style="cursor: default; padding-right: 24px; justify-content: center;">
                             <span class="cta-text">मिलेगी नई राह! 🚀</span>
                         </div>
+                        <!-- Chat Button -->
+                        <button id="switch-to-chat-btn" onclick="requestV2SessionSwitch('chat')" style="position: relative; overflow: hidden; background: linear-gradient(135deg, #3B82F6, #1D4ED8); border: 1px solid rgba(255,255,255,0.15); height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; box-shadow: 0 4px 12px rgba(59,130,246,0.4); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+                            <i class="fa-solid fa-message" style="color: #FFF; font-size: 13px;"></i>
+                            <span style="color: #FFF; font-size: 11px; font-weight: 800; letter-spacing: 0.3px;">चैट करें</span>
+                        </button>
                     </div>
                     <!-- Card 2: Ajay -->
                     <div class="slider-card" data-astro="ajay">
@@ -3997,6 +4002,11 @@
                         <div class="hanging-cta theme-ajay" style="cursor: default; padding-right: 24px; justify-content: center;">
                             <span class="cta-text">चमकेगी किस्मत की दुकान 💰</span>
                         </div>
+                        <!-- Call Button (Hidden by default in chat) -->
+                        <button id="switch-to-call-btn" onclick="requestV2SessionSwitch('call')" style="display: none; position: relative; overflow: hidden; background: linear-gradient(135deg, #10B981, #047857); border: 1px solid rgba(255,255,255,0.15); height: 32px; padding: 0 12px; border-radius: 16px; align-items: center; justify-content: center; gap: 5px; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.4); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+                            <i class="fa-solid fa-phone" style="color: #FFF; font-size: 13px;"></i>
+                            <span style="color: #FFF; font-size: 11px; font-weight: 800; letter-spacing: 0.3px;">कॉल करें</span>
+                        </button>
                     </div>
                     <!-- Card 3: Kirti -->
                     <div class="slider-card" data-astro="kirti">
@@ -4380,4 +4390,35 @@
                 </div>
             </div>
             
+    <!-- V2 Switch Mode Modal -->
+    <div class="modal-overlay hidden" id="v2SwitchConfirmModal">
+        <div class="modal-content" style="background: rgba(30, 40, 60, 0.85); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border: 1px solid rgba(255,255,255,0.15); border-top: 1px solid rgba(255,255,255,0.25); text-align: center; border-radius: 24px; padding: 32px 24px; max-width: 320px; box-shadow: 0 24px 64px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);">
+            <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,215,0,0.05)); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1px solid rgba(255,215,0,0.3);">
+                <i id="v2SwitchIcon" class="fa-solid fa-message" style="color: #FFD700; font-size: 24px;"></i>
+            </div>
+            <h2 id="v2SwitchTitle" style="color: #FFF; font-size: 20px; margin: 0 0 12px; font-weight: 800; letter-spacing: 0.5px;">क्या आप चैट में स्विच करना चाहते हैं?</h2>
+            <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.5; margin: 0 0 24px;">इस दौरान आपका टाइमर रुका हुआ है। कन्फर्म करने पर आप दूसरे मोड में चले जाएंगे।</p>
+            
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button class="cta-btn" onclick="cancelV2SessionSwitch()" style="flex: 1; background: rgba(255,255,255,0.1); color: #FFF; border: 1px solid rgba(255,255,255,0.2); font-size: 14px; padding: 12px;">नहीं, रुकें</button>
+                <button class="cta-btn yellow-btn" onclick="confirmV2SessionSwitch()" style="flex: 1; font-size: 14px; padding: 12px;">हाँ, जाएँ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- V2 End Session Modal -->
+    <div class="modal-overlay hidden" id="v2EndConfirmModal">
+        <div class="modal-content" style="background: rgba(30, 40, 60, 0.85); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border: 1px solid rgba(255,255,255,0.15); border-top: 1px solid rgba(255,255,255,0.25); text-align: center; border-radius: 24px; padding: 32px 24px; max-width: 320px; box-shadow: 0 24px 64px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);">
+            <div style="background: linear-gradient(135deg, rgba(239,68,68,0.2), rgba(239,68,68,0.05)); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1px solid rgba(239,68,68,0.3);">
+                <i class="fa-solid fa-phone-slash" style="color: #EF4444; font-size: 24px;"></i>
+            </div>
+            <h2 style="color: #FFF; font-size: 20px; margin: 0 0 12px; font-weight: 800; letter-spacing: 0.5px;">क्या आप इस सेशन को समाप्त करना चाहते हैं?</h2>
+            <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.5; margin: 0 0 24px;">टाइमर अभी रुका हुआ है। समाप्त करने पर आप चैट हिस्ट्री में चले जाएंगे।</p>
+            
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button class="cta-btn" onclick="cancelEndV2Session()" style="flex: 1; background: rgba(255,255,255,0.1); color: #FFF; border: 1px solid rgba(255,255,255,0.2); font-size: 14px; padding: 12px;">जारी रखें</button>
+                <button class="cta-btn" onclick="confirmEndV2Session()" style="flex: 1; background: #EF4444; color: #FFF; font-size: 14px; padding: 12px;">हाँ, समाप्त करें</button>
+            </div>
+        </div>
+    </div>
         </div>
