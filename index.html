@@ -4318,9 +4318,16 @@
                     </button>
                 </div>
                 <!-- Dynamic Island Chat Timer Attached to Header -->
-                <div id="chat-dynamic-island-timer" style="position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 100%); background: rgba(11,14,26,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 0 0 16px 16px; padding: 4px 16px 6px; display: none; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9; border: 1px solid rgba(255,255,255,0.15); border-top: none;">
-                    <i class="fa-regular fa-clock" style="color: #FFD700; font-size: 12px;"></i>
-                    <span class="chat-time-display" style="color: #FFF; font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: 0.5px;">05:00</span>
+                <div id="chat-dynamic-island-timer" style="position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 100%); width: 120px; height: 28px; display: none; align-items: center; justify-content: center; gap: 6px; z-index: 9;">
+                    <!-- Blur and transparent fill -->
+                    <div style="position: absolute; inset: 0; clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);"></div>
+                    <!-- Smooth border -->
+                    <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;" preserveAspectRatio="none" viewBox="0 0 120 28">
+                        <path d="M0,0 L120,0 L102,28 L18,28 Z" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linejoin="round"/>
+                    </svg>
+                    <!-- Content -->
+                    <i class="fa-regular fa-clock" style="color: #FFD700; font-size: 11px; position: relative; z-index: 1;"></i>
+                    <span class="chat-time-display" style="color: #FFF; font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: 0.5px; position: relative; z-index: 1;">05:00</span>
                 </div>
             </div>
             
