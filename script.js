@@ -2217,8 +2217,8 @@ function openV2Session(mode, isFreshConnection = false) {
 function switchV2SessionMode(mode, isFreshConnection = false) {
     const callControls = document.getElementById('v2-call-controls');
     const chatControls = document.getElementById('v2-chat-controls');
-    const switchToChatBtn = document.getElementById('switch-to-chat-btn');
-    const switchToCallBtn = document.getElementById('switch-to-call-btn');
+    const switchToChatBtn = document.getElementById('active-switch-to-chat-btn');
+    const switchToCallBtn = document.getElementById('active-switch-to-call-btn');
     const dynamicIslandTimer = document.getElementById('chat-dynamic-island-timer');
     
     if (dynamicIslandTimer) {
