@@ -2063,3 +2063,16 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
     filter: invert(1) brightness(0.8);
     cursor: pointer;
 }
+
+
+@keyframes subtlePulseChat {
+    0% { box-shadow: 0 0 0 0 rgba(59,130,246, 0.4); transform: scale(1); }
+    70% { box-shadow: 0 0 0 10px rgba(59,130,246, 0); transform: scale(1.05); }
+    100% { box-shadow: 0 0 0 0 rgba(59,130,246, 0); transform: scale(1); }
+}
+
+@keyframes subtlePulseCall {
+    0% { box-shadow: 0 0 0 0 rgba(16,185,129, 0.4); transform: scale(1); }
+    70% { box-shadow: 0 0 0 10px rgba(16,185,129, 0); transform: scale(1.05); }
+    100% { box-shadow: 0 0 0 0 rgba(16,185,129, 0); transform: scale(1); }
+}

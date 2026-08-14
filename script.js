@@ -2207,7 +2207,7 @@ function switchV2SessionMode(mode, isFreshConnection = false) {
     const timerPill = document.getElementById('v2-session-timer');
     
     if (timerPill) {
-        timerPill.style.display = mode === 'chat' ? 'flex' : 'none';
+        timerPill.style.display = mode === 'chat' ? 'none' : 'flex';
     }
     
     if (mode === 'chat') {
