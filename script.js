@@ -1181,6 +1181,21 @@ function endCall() {
     showSection("astro-contact-screen");
 }
 
+function updateCallTimerUI() {
+    const isApp = document.getElementById("appSelectBtn") && document.getElementById("appSelectBtn").classList.contains("active");
+    const maxTime = isApp ? 600 : 300;
+    const remaining = Math.max(0, maxTime - currentCallSeconds);
+    const rMin = Math.floor(remaining / 60);
+    const rSec = remaining % 60;
+    const timeStr = `${rMin.toString().padStart(2, '0')}:${rSec.toString().padStart(2, '0')}`;
+    
+    const callTimerEl = document.getElementById("call-timer");
+    if (callTimerEl) callTimerEl.textContent = timeStr;
+    
+    const chatTimerEl = document.querySelector(".chat-time-display");
+    if (chatTimerEl) chatTimerEl.textContent = timeStr;
+}
+
 function startCallTimer() {
     clearInterval(currentCallTimer);
     currentCallSeconds = 0;
@@ -2204,10 +2219,10 @@ function switchV2SessionMode(mode, isFreshConnection = false) {
     const chatControls = document.getElementById('v2-chat-controls');
     const switchToChatBtn = document.getElementById('switch-to-chat-btn');
     const switchToCallBtn = document.getElementById('switch-to-call-btn');
-    const timerPill = document.getElementById('v2-session-timer');
+    const dynamicIslandTimer = document.getElementById('chat-dynamic-island-timer');
     
-    if (timerPill) {
-        timerPill.style.display = mode === 'chat' ? 'none' : 'flex';
+    if (dynamicIslandTimer) {
+        dynamicIslandTimer.style.display = mode === 'chat' ? 'flex' : 'none';
     }
     
     if (mode === 'chat') {
