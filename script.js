@@ -2225,6 +2225,13 @@ function switchV2SessionMode(mode, isFreshConnection = false) {
         dynamicIslandTimer.style.display = mode === 'chat' ? 'flex' : 'none';
     }
     
+    if (switchToChatBtn) {
+        switchToChatBtn.style.display = mode === 'chat' ? 'none' : 'flex';
+    }
+    if (switchToCallBtn) {
+        switchToCallBtn.style.display = mode === 'chat' ? 'flex' : 'none';
+    }
+    
     if (mode === 'chat') {
         // Hide Call Controls (Scale down and fade out)
         if (callControls) {
