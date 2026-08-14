@@ -48,6 +48,8 @@
                 <option value="startDemoOtpTimer(null)">2.3 OTP Timer Running</option>
                 <option value="showSection('mweb-otp-error-wrong', null)">2.4 OTP Wrong (Error)</option>
                 <option value="renderSplashState('active', null)">2b. Logged-in Splash (Active)</option>
+                <option value="renderSplashState('ended_basic', null)">2c. Splash (Ended - No App)</option>
+                <option value="renderSplashState('ended_app', null)">2d. Splash (Ended - App Promo)</option>
                 <option value="renderDialingState('connecting', null)">5a. Dialing (Normal)</option>
                 <option value="renderDialingState('no_mic', null)">5b. Dialing (No Mic)</option>
                 <option value="showSection('mweb-active-call', null)">6. Active Call Screen</option>
@@ -3988,7 +3990,7 @@
 
 
 <!-- V2 SPLASH ENDED APP PROMO -->
-<div id="mweb-v2-splash-ended-app" class="view-section hidden mobile-frame starry-theme astro-premium-bg" style="display: flex; flex-direction: column; position: relative;">
+<div id="mweb-v2-splash-ended-app" class="view-section hidden mobile-frame starry-theme astro-premium-bg" style="display: flex; flex-direction: column;">
     <div class="ios-home-indicator"></div>
 
     <!-- Hybrid Slider with V2 listing images -->
@@ -4025,7 +4027,6 @@
                 </div>
             </div>
         </div>
-
         <div class="slider-dots" style="position: absolute; bottom: 30px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; pointer-events: none; z-index: 100;">
             <span class="dot active"></span>
             <span class="dot"></span>
@@ -4033,11 +4034,15 @@
         </div>
     </div>
 
-    <!-- Listing Section -->
+    <!-- Listing Section (same as V1) -->
     <div class="hybrid-listing-section">
         <div class="hybrid-listing-header" style="text-align: center; position: relative;">
-            <h1 style="font-size: 24px; margin: 0 0 8px 0;">जानिए क्या कहते हैं आपके सितारे ✨</h1>
-            <p style="color: rgba(255,215,0,0.85); font-size: 15px; text-align: center; margin: 0 0 16px 0; font-weight: 500;">अपने पर्सनल AI ज्योतिषी से जुड़ें और हर सवाल का तुरंत जवाब पाएं।</p>
+            <div onclick="goBackToFeed()" style="position: absolute; left: 0; top: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px);">
+                <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
+            </div>
+            <h1 id="v2splash-header-title">अपना ज्योतिषी चुनें</h1>
+            <p id="v2splash-header-subtitle" class="glow-gold" style="font-size: 17px; text-align: center; margin: 0 0 20px 0; font-weight: 600;">करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।</p>
+            <h2 id="v2splash-header-timer"><i class="fa-regular fa-clock"></i> शेष समय: 05:00</h2>
         </div>
 
         <div class="astrologer-list">
@@ -4046,80 +4051,83 @@
                 <div class="avatar-animated-border">
                     <img src="assets/classy_astro_1.png" alt="Dr Priya">
                 </div>
-                <div class="astro-details" style="flex: 1; min-width: 0; margin-right: 12px;">
-                    <h3 style="font-size: 14px; margin:0 0 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">आचार्य प्रिया वर्मा</h3>
-                    <p style="font-size: 10px; margin:0 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">वैदिक, टैरो, अंक ज्योतिष</p>
+                <div class="astro-details">
+                    <h3>आचार्य प्रिया वर्मा</h3>
+                    <p>वैदिक, टैरो, अंक ज्योतिष</p>
                     <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (12.4k)</div>
                 </div>
-                <div class="hybrid-action-group" style="display: flex; align-items: center; justify-content: flex-end; gap: 12px;">
-                    <button style="position: relative; overflow: hidden; background: linear-gradient(135deg, #3B82F6, #1D4ED8); color: #FFF; border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
-                        <i class="fa-solid fa-message" style="font-size: 15px;"></i>
+                <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                    <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                        <i class="fa-solid fa-phone"></i> Call
                     </button>
-                    <button style="position: relative; overflow: hidden; background: linear-gradient(135deg, #10B981, #047857); color: #FFF; border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
-                        <i class="fa-solid fa-phone" style="font-size: 15px;"></i>
+                    <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                        चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
                     </button>
                 </div>
             </div>
-
             <!-- Ajay -->
             <div class="astrologer-list-item" onclick="selectAstrologer('ajay')">
                 <div class="avatar-animated-border">
                     <img src="assets/dr_ajay.png" alt="Dr Ajay">
                 </div>
-                <div class="astro-details" style="flex: 1; min-width: 0; margin-right: 12px;">
-                    <h3 style="font-size: 14px; margin:0 0 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">आचार्य अजय शर्मा</h3>
-                    <p style="font-size: 10px; margin:0 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">वैदिक, वास्तु, प्रश्न</p>
+                <div class="astro-details">
+                    <h3>आचार्य अजय शर्मा</h3>
+                    <p>वैदिक, वास्तु, प्रश्न</p>
                     <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.8 (8.1k)</div>
                 </div>
-                <div class="hybrid-action-group" style="display: flex; align-items: center; justify-content: flex-end; gap: 12px;">
-                    <button style="position: relative; overflow: hidden; background: linear-gradient(135deg, #3B82F6, #1D4ED8); color: #FFF; border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
-                        <i class="fa-solid fa-message" style="font-size: 15px;"></i>
+                <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                    <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                        <i class="fa-solid fa-phone"></i> Call
                     </button>
-                    <button style="position: relative; overflow: hidden; background: linear-gradient(135deg, #10B981, #047857); color: #FFF; border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
-                        <i class="fa-solid fa-phone" style="font-size: 15px;"></i>
+                    <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                        चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
                     </button>
                 </div>
             </div>
-
             <!-- Kirti -->
             <div class="astrologer-list-item" onclick="selectAstrologer('kirti')">
                 <div class="avatar-animated-border">
                     <img src="assets/dr_kirti.png" alt="Dr Kirti">
                 </div>
-                <div class="astro-details" style="flex: 1; min-width: 0; margin-right: 12px;">
-                    <h3 style="font-size: 14px; margin:0 0 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">आचार्य कीर्ति जोशी</h3>
-                    <p style="font-size: 10px; margin:0 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">टैरो, अंक ज्योतिष, केपी</p>
+                <div class="astro-details">
+                    <h3>आचार्य कीर्ति शुक्ला</h3>
+                    <p>टैरो, अंक ज्योतिष, केपी</p>
                     <div class="astro-rating"><i class="fa-solid fa-star"></i> 4.9 (9.3k)</div>
                 </div>
-                <div class="hybrid-action-group" style="display: flex; align-items: center; justify-content: flex-end; gap: 12px;">
-                    <button style="position: relative; overflow: hidden; background: linear-gradient(135deg, #3B82F6, #1D4ED8); color: #FFF; border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
-                        <i class="fa-solid fa-message" style="font-size: 15px;"></i>
+                <div class="hybrid-action-group" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%;">
+                    <button class="call-btn-small hybrid-call-btn" onclick="initiateCallFlow(this, event)" style="background: #25D366; color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                        <i class="fa-solid fa-phone"></i> Call
                     </button>
-                    <button style="position: relative; overflow: hidden; background: linear-gradient(135deg, #10B981, #047857); color: #FFF; border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
-                        <i class="fa-solid fa-phone" style="font-size: 15px;"></i>
+                    <button class="hybrid-chat-btn" onclick="openChatHistory(this, event)" style="background: transparent; color: rgba(255,255,255,0.7); border: none; font-size: 11px; display: flex; align-items: center; gap: 4px; padding: 0; cursor: pointer;">
+                        चैट पढ़ें <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
                     </button>
                 </div>
             </div>
         </div>
+
+        <!-- Bottom CTA container (empty — nudge below handles it) -->
+        <div id="v2splash-bottom-cta" style="margin-top: 24px; display: none; flex-direction: column; gap: 12px;"></div>
     </div>
 
-    <!-- Sticky Bottom Nudge for App Promo -->
+    <!-- Sticky Bottom Nudge — App Promo (always visible, same as V1 ended_app) -->
     <div style="position: absolute; bottom: 45px; left: 50%; transform: translateX(-50%); width: 92%; background: rgba(25, 30, 45, 0.35); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 20px; padding: 16px; border: 1px solid rgba(255,215,0,0.3); border-top: 1px solid rgba(255,215,0,0.5); display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1); z-index: 50;">
         <div style="color: #FBBF24; font-weight: 800; font-size: 15px; text-align: center; line-height: 1.3;">
             अमर उजाला ऐप पर रोज़ 5 मिनट फ्री बात करें ✨
         </div>
         <div style="display: flex; width: 100%; gap: 10px; height: 48px;">
-            <button style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.2;">
+            <button onclick="goBackToFeed()" style="flex: 1; background: rgba(255,255,255,0.05); color: #FFF; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.2;">
                 वापस अमर उजाला<br>पर जाएं
             </button>
-            <button style="flex: 1.3; background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); color: #111827; border: none; border-radius: 12px; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251,191,36,0.2); display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px;">
+            <button style="flex: 1.3; background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); color: #111827; border: none; border-radius: 12px; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2); display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px;">
                 <img src="assets/au_logo.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;">
-                ऐप डाउनलोड करें
+                ऐप डाउनलोड करें 
                 <i class="fa-solid fa-download"></i>
             </button>
         </div>
     </div>
 </div>
+
+
 
 <!-- V2 LOGIN -->
 <div id="mweb-v2-start-login" class="view-section hidden mobile-frame starry-theme astro-premium-bg banner-shine" style="position: relative;">
@@ -4553,22 +4561,8 @@
                 <span class="dot"></span>
                 <span class="dot"></span>
             </div>
-            <div class="login-main-text mt-15">
-                <h1>फ्री में 5 मिनट बात करें</h1>
-                <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
-            </div>
-            <!-- Trust Badges -->
-            <div class="trust-badges mt-15">
-                <div class="trust-stamp">
-                    <div class="icon-glow-wrapper blue-glow"><i class="fa-solid fa-shield-halved"></i></div>
-                    <p class="trust-stamp-text">100% सुरक्षित</p>
-                </div>
-                <div class="trust-stamp">
-                    <div class="icon-glow-wrapper gold-glow"><i class="fa-solid fa-robot"></i></div>
-                    <p class="trust-stamp-text">पर्सनल AI</p>
-                </div>
-            </div>
-
+                        <!-- Trust Badges -->
+            
             <!-- OTP Section -->
             <div class="login-form-container mt-15">
                 <div>
@@ -4653,22 +4647,8 @@
                 <span class="dot"></span>
                 <span class="dot"></span>
             </div>
-            <div class="login-main-text mt-15">
-                <h1>फ्री में 5 मिनट बात करें</h1>
-                <p>करियर, प्रेम या धन... अपने हर सवाल का सटीक जवाब पाएं।<div style="height: 8px;"></div><span style="color: #FFD700; font-weight: bold;">अपने पर्सनल AI ज्योतिषी से बात करें।</span></p>
-            </div>
-            <!-- Trust Badges -->
-            <div class="trust-badges mt-15">
-                <div class="trust-stamp">
-                    <div class="icon-glow-wrapper blue-glow"><i class="fa-solid fa-shield-halved"></i></div>
-                    <p class="trust-stamp-text">100% सुरक्षित</p>
-                </div>
-                <div class="trust-stamp">
-                    <div class="icon-glow-wrapper gold-glow"><i class="fa-solid fa-robot"></i></div>
-                    <p class="trust-stamp-text">पर्सनल AI</p>
-                </div>
-            </div>
-
+                        <!-- Trust Badges -->
+            
             <!-- OTP Section Error -->
             <div class="login-form-container mt-15">
                 <div>

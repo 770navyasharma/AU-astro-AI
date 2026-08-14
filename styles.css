@@ -1791,7 +1791,11 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 #app-start-login .hanging-cta {
     bottom: 180px;
 }
-#mweb-v2-start-login .hanging-cta {
+#mweb-v2-start-login .hanging-cta,
+#mweb-v2-login-error-empty .hanging-cta,
+#mweb-v2-login-error-invalid .hanging-cta,
+#mweb-v2-otp-timer .hanging-cta,
+#mweb-v2-otp-error .hanging-cta {
     bottom: 150px;
     font-size: 22px;
 }
