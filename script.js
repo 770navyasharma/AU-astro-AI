@@ -2593,69 +2593,6 @@ function startDemoV2OtpTimer() {
 // V2 NATIVE MIC PERMISSION AND TOAST
 // ==========================================
 
-function showV2InChatToast(btn) {
-    showSection('mweb-v2-toast-test-screen', btn);
-    
-    const chatBox = document.getElementById('toast-v2-test-chat-box');
-    if (!chatBox) return;
-    
-    const screen = document.getElementById('mweb-v2-toast-test-screen');
-    
-    // Create the overlay toast bubble
-    const toastElem = document.createElement('div');
-    toastElem.style.position = 'absolute';
-    toastElem.style.bottom = '180px'; // Positioned higher
-    toastElem.style.left = '50%';
-    toastElem.style.width = '90%';
-    toastElem.style.maxWidth = '340px';
-    toastElem.style.background = 'linear-gradient(135deg, #FF9800 0%, #F97316 100%)';
-    toastElem.style.borderRadius = '16px';
-    toastElem.style.padding = '14px 18px';
-    toastElem.style.display = 'flex';
-    toastElem.style.alignItems = 'center';
-    toastElem.style.gap = '12px';
-    toastElem.style.boxShadow = '0 10px 25px rgba(249, 115, 22, 0.4)';
-    toastElem.style.zIndex = '50';
-    toastElem.style.opacity = '0';
-    toastElem.style.transform = 'translate(-50%, 150%)'; // Start hidden below
-    toastElem.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-    
-    toastElem.innerHTML = `
-        <div style="background: rgba(255,255,255,0.25); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <i class="fa-solid fa-hourglass-half" style="color: #FFF; font-size: 16px;"></i>
-        </div>
-        <div style="flex: 1;">
-            <h4 style="color: #FFF; font-size: 15px; font-weight: 800; margin: 0 0 2px;">1 मिनट शेष</h4>
-            <p style="color: rgba(255,255,255,0.9); font-size: 12px; margin: 0; line-height: 1.3;">आपके फ्री परामर्श में केवल 1 मिनट शेष है।</p>
-        </div>
-    `;
-    
-    screen.appendChild(toastElem);
-    
-    // Prepare chatBox for smooth shifting
-    chatBox.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-    
-    // Animate in: slide toast up and shift chat up
-    setTimeout(() => {
-        toastElem.style.opacity = '1';
-        toastElem.style.transform = 'translate(-50%, 0)';
-        chatBox.style.transform = 'translateY(-120px)';
-    }, 100);
-    
-    // Remove after 5 seconds: slide toast down and chat back to original
-    setTimeout(() => {
-        toastElem.style.opacity = '0';
-        toastElem.style.transform = 'translate(-50%, 150%)';
-        chatBox.style.transform = 'translateY(0)';
-        
-        setTimeout(() => {
-            if(screen.contains(toastElem)) {
-                screen.removeChild(toastElem);
-            }
-            chatBox.style.transition = ''; // Reset transition
-        }, 500);
-    }, 5000);
-}
 
 
 function closeV2MicPermission() {
