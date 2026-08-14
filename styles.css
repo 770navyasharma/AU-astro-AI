@@ -1799,10 +1799,18 @@ body { background-color: var(--bg-light); color: var(--text-dark); transition: a
 #app-start-login .slider-overlay-text {
     bottom: 235px;
 }
-#mweb-v2-start-login .slider-overlay-text {
+#mweb-v2-start-login .slider-overlay-text,
+#mweb-v2-login-error-empty .slider-overlay-text,
+#mweb-v2-login-error-invalid .slider-overlay-text,
+#mweb-v2-otp-timer .slider-overlay-text,
+#mweb-v2-otp-error .slider-overlay-text {
     bottom: 195px; /* 45px above hanging-cta */
 }
-#mweb-v2-start-login .slide-in-text {
+#mweb-v2-start-login .slide-in-text,
+#mweb-v2-login-error-empty .slide-in-text,
+#mweb-v2-login-error-invalid .slide-in-text,
+#mweb-v2-otp-timer .slide-in-text,
+#mweb-v2-otp-error .slide-in-text {
     font-size: 22px;
 }
 
