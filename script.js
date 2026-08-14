@@ -2556,3 +2556,29 @@ function confirmEndV2Session() {
     renderChatHistoryState('combined_feedback', null);
     showSection('app-chat-history');
 }
+let v2DemoOtpInterval = null;
+
+function startDemoV2OtpTimer() {
+    showSection('mweb-v2-otp-timer', null);
+    
+    clearInterval(v2DemoOtpInterval);
+    
+    let secondsLeft = 15;
+    const timerDisplay = document.getElementById('v2-demo-otp-timer');
+    
+    if (timerDisplay) {
+        timerDisplay.innerText = `00:${secondsLeft}`;
+    }
+    
+    v2DemoOtpInterval = setInterval(() => {
+        secondsLeft--;
+        
+        if (timerDisplay) {
+            timerDisplay.innerText = `00:${secondsLeft.toString().padStart(2, '0')}`;
+        }
+        
+        if (secondsLeft <= 0) {
+            clearInterval(v2DemoOtpInterval);
+        }
+    }, 1000);
+}
