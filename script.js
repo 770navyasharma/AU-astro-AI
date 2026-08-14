@@ -2306,6 +2306,10 @@ function switchV2SessionMode(mode, isFreshConnection = false) {
 // V2 DIALING AND CONNECTION LOGIC
 // ==========================================
 
+function showV2NoMicScreen() {
+    showSection('mweb-v2-dialing-no-mic');
+}
+
 function startV2CallConnection(btn) {
     if (btn) showSection('mweb-v2-dialing', btn);
     else showSection('mweb-v2-dialing');

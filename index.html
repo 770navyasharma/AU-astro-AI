@@ -98,6 +98,7 @@
                 <option value="openV2Session('call')">1. V2 Active Call Mode</option>
                 <option value="openV2Session('chat')">2. V2 Active Chat Mode</option>
                 <option value="startV2CallConnection()">3. V2 Dialing Screen</option>
+                <option value="showV2NoMicScreen()">3b. V2 Dialing (No Mic)</option>
                 <option value="openV2Session('call'); requestV2SessionSwitch('chat');">4. V2 Switch to Chat Prompt</option>
                 <option value="openV2Session('chat'); requestV2SessionSwitch('call');">5. V2 Switch to Call Prompt</option>
                 <option value="openV2Session('call'); requestEndV2Session();">6. V2 End Session Prompt</option>
@@ -4034,10 +4035,6 @@
     <!-- Listing Section — exact ended_app state -->
     <div class="hybrid-listing-section">
         <div class="hybrid-listing-header" style="text-align: center; position: relative;">
-            <!-- Back arrow (same as V1) -->
-            <div onclick="goBackToFeed()" style="position: absolute; left: 0; top: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; backdrop-filter: blur(4px);">
-                <i class="fa-solid fa-arrow-left" style="color: #FFF; font-size: 16px;"></i>
-            </div>
 
             <!-- Title: ended_app state -->
             <h1 style="font-size: 22px; margin: 0 0 8px;">⏱️ 5 मिनट पूरे हो गए हैं</h1>
@@ -4760,6 +4757,34 @@
                 </button>
             </div>
         </div>
+
+<!-- V2 DIALING NO MIC (static preview) -->
+<div id="mweb-v2-dialing-no-mic" class="view-section hidden mobile-frame" style="background: linear-gradient(160deg, #0B0E1A 0%, #0F1628 60%, #0B1120 100%); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+    <div class="ios-home-indicator"></div>
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+        <img src="assets/classy_astro_1.png" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(255,215,0,0.5); box-shadow: 0 0 40px rgba(255,215,0,0.2); margin-bottom: 24px;" alt="Avatar">
+        <h2 style="color: #FFF; font-size: 26px; font-weight: 800; margin: 0 0 10px;">आचार्य प्रिया वर्मा</h2>
+        <div style="text-align: center; max-width: 85%;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 5px;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); padding: 16px; border-radius: 16px; border: 1px solid rgba(251, 191, 36, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-microphone-slash" style="color: #FBBF24; font-size: 22px;"></i>
+                        <p style="color: #FBBF24; font-size: 18px; font-weight: 800; margin: 0; line-height: 1.3; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">माइक्रोफ़ोन एक्सेस नहीं मिला!</p>
+                    </div>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 500; margin: 0; line-height: 1.6;">कॉल शुरू करने के लिए कृपया अपने ब्राउज़र की सेटिंग में जाकर माइक (Mic) की अनुमति (Permission) दें और नीचे बटन पर टैप करें।</p>
+                </div>
+                <button style="background: #FBBF24; color: #000; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-microphone"></i> परमिशन दें
+                </button>
+            </div>
+        </div>
+    </div>
+    <div style="padding-bottom: 120px;">
+        <button style="background: #EF4444; border: none; width: 160px; height: 60px; border-radius: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 24px rgba(239,68,68,0.4);">
+            <i class="fa-solid fa-phone" style="color: #FFF; font-size: 28px; transform: rotate(135deg);"></i>
+        </button>
+    </div>
+</div>
 
 <div id="mweb-v2-active-session" class="view-section hidden mobile-frame" style="background: #0B0E1A; overflow: hidden; display: flex; flex-direction: column; position: relative;">
             <div class="ios-home-indicator"></div>
